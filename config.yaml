@@ -55,7 +55,7 @@ menu:
       url: /syllabus
       weight: 20
     - name: office hours
-      url: https://duke.box.com/
+      url: https://duke.box.com/s/bfx0fkhlrss4fqguuf6fhrqhswgbsnqu
       weight: 30
     - name: practice
       url: /practice

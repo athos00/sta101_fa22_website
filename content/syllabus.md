@@ -1,6 +1,6 @@
 ---
 title: "Data Analysis and statistical inference"
-subtitle: "Summer 2022"
+subtitle: "Fall 2022"
 output:
   pdf_document: default
   html_document:
@@ -24,7 +24,7 @@ output:
 - 03: 1:45-3:00pm
 - 04: 1:45-3:00pm
 
-**Website:** [sta101.github.io](https://sta101.github.io)
+**Website:** [sta101-fa22.netlify.app](https://sta101-fa22.netlify.app)
 
 **Textbooks:** [Introduction to Modern Statistics](https://openintro-ims.netlify.app/) by Mine Çetinkaya-Rundel and Johanna Hardin. Available free at [https://openintro-ims.netlify.app/](https://openintro-ims.netlify.app/)
 
@@ -53,7 +53,7 @@ By the end of this course you will be able to:
 | Regression project (20%) | Written report (PDF).                                                         |
 | Final project (30%)      | Proposal, video presentation and written report. Students will work in teams. |
 
-A >= 93.0, A- < 93.0, B+ < 90.0, B < 87, B- < 83, C+ <80, C < 77, C- < 73, D+ < 70, D < 67, D < 63, F < 60
+A >= 93.0, A- < 93.0, B+ < 90.0, B < 87, B- < 83, C+ <80, C < 77, C- < 73, D+ < 70, D < 67, D- < 63, F < 60
 
 ---
 

@@ -1,0 +1,3 @@
+penguins %>%
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = island)) +
+  geom_point()

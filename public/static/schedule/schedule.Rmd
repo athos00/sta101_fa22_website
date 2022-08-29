@@ -1,0 +1,102 @@
+---
+title: "STA101 Schedule"
+subtitle: Fall, 2022
+output:
+  html_document:
+    css: custom-site.css
+    df_print: paged
+  pdf_document: default
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, include = FALSE, eval=F)
+```
+
+```{r load-libraries}
+library(tidyverse)
+library(knitr)
+library(emo)
+```
+
+```{r smart-date-setup}
+# set these:
+firstDay = as.Date("2022-08-29")
+firstDayID = "Mon"
+lastDay = as.Date("2022-12-09")
+lectureDays = c("Tue", "Thu")
+labDays = c("Fri")
+holidays = as.Date(c("2022-10-10", "2022-10-11", "2022-11-23", "2022-11-24", "2022-11-24"))
+### render table
+allDates = seq(from = firstDay, to = lastDay, by = 'day')
+schedule = data.frame(allDates,
+                        dayOfWeek = weekdays(allDates, abbreviate=T)) %>%
+  filter(dayOfWeek %in% c(lectureDays, labDays))
+schedule = schedule %>%
+  mutate(lab = ifelse(dayOfWeek %in% labDays, TRUE, FALSE)) %>%
+  mutate(Topic = ifelse(allDates %in% holidays, "NO CLASS", "")) %>%
+  mutate(Date = format(allDates, format = "%b %d")) %>%
+  mutate(Date = paste(dayOfWeek, Date)) %>%
+  mutate(Week = rep("", nrow(schedule))) %>%
+  mutate(Prepare = rep("", nrow(schedule))) %>%
+  mutate(AE = rep("", nrow(schedule))) %>%
+  mutate(Assignment = rep("", nrow(schedule))) %>%
+  mutate(Exam = rep("", nrow(schedule))) %>%
+  mutate(Project = rep("", nrow(schedule))) %>%
+  select(Week, Date, Topic, Prepare, AE, Assignment, Exam, Project)
+# to be pasted into console then pasted into markdown:
+schedule %>%
+  kable(format = "markdown")
+```
+
+Find all assignments and due dates here. This schedule updates frequently. 
+
+|Week |Date       |Topic    |Prepare |AE |Lab |Exam |Project |
+|:----|:----------|:--------|:-------|:--|:----------|:----|:-------|
+|  1   |Tue Aug 30 | Welcome to STA 101!        |        |   |           |     |        |
+|     |Thu Sep 01 | Intro to R       |        |   |           |     |        |
+|     |Fri Sep 02 | Hello R!      |        |   |  lab 1         |     |        |
+|  2   |Tue Sep 06 | Exploratory data analysis I         |        |   |           |     |        |
+|     |Thu Sep 08 |  Exploratory data analysis II       |        |   |           |     |        |
+|     |Fri Sep 09 |   EDA      |        |   | lab 2          |     |        |
+| 3    |Tue Sep 13 | Exploratory data analysis III         |        |   |           |     |        |
+|     |Thu Sep 15 | Simple regression        |        |   |           |     |        |
+|     |Fri Sep 16 | EDA and simple regression   |        |   |  lab 3         |     |        |
+|  4   |Tue Sep 20 |  Multiple regression I       |        |   |           |     |        |
+|     |Thu Sep 22 |  Multiple regression II       |        |   |           | exam 1    |        |
+|     |Fri Sep 23 |   No lab: exam      |        |   |           |     |        |
+|  5   |Mon Sep 26 |        |        |   |           | exam 1 due    |        |
+|     |Tue Sep 27 |  Multiple regression III, Prediction       |        |   |           |     |  Regression project      |
+|     |Thu Sep 29 |  Logistic regression       |        |   |           |     |        |
+|     |Fri Sep 30 | All about regression   |        |   |  lab 4         |     |        |
+|  6   |Tue Oct 04 |  Random variables      |        |   |           |     |        |
+|     |Thu Oct 06 |   Probability    |        |   |           |     |        |
+|     |Fri Oct 07 |  Project workday    |        |   |         |     |        |
+|  7   |Tue Oct 11 |NO CLASS: Fall break |        |   |           |     |        |
+|     |Thu Oct 13 |  Distributions I     |        |   |           |     |  Final project      |
+|     |Fri Oct 14 |   Probability and distributions    |        |   |  lab 5         |     |        |
+|  8   |Tue Oct 18 |  Distributions II    |        |   |           |     |        |
+|     |Thu Oct 20 |   Sampling and the bootstrap    |        |   |           |     |        |
+|     |Fri Oct 21 |    The bootstrap     |        |  |   lab 6         |     |        |
+|  9   |Tue Oct 25 |  Central limit theorem I     |        |   |           |     |        |
+|     |Thu Oct 27 |  Central limit theorem II    |        |   |           |     |        |
+|     |Fri Oct 28 |   CLT and CI      |        |   |  lab 7         |     |        |
+|  10   |Tue Nov 01 |  Hypothesis testing I       |        |   |           |     |        |
+|     |Thu Nov 03 |  Hypothesis testing II      |        |   |           |     |        |
+|     |Fri Nov 04 |    Hypothesis tests     |        |   |   lab 8         |     |        |
+|  11   |Tue Nov 08 | Hypothesis testing III       |        |   |           |     |        |
+|     |Thu Nov 10 | Hypothesis testing recap      |        |   |           | exam 2    |        |
+|     |Fri Nov 11 |   No lab: exam released      |        |   |           |     |        |
+|  12   |Mon Nov 14 |         |        |   |           | exam 2 due    |        |
+|       |Tue Nov 15 | Data science ethics        |        |   |           |     |        |
+|     |Thu Nov 17 |   Project report tips      |        |   |           |     |        |
+|     |Fri Nov 18 | New packages     |        |  |   lab 9        |     |        |
+|  13   |Tue Nov 22 | Project presentation tips        |        |   |           |     |        |
+|     |Thu Nov 24 |NO CLASS: Thanksgiving |        |   |           |     |        |
+|     |Fri Nov 25 |  NO CLASS: Thanksgiving       |        |   |           |     |        |
+|  13   |Tue Nov 29 | Special topic: genetic forensic analysis        |        |   |           |     |        |
+|     |Thu Dec 01 |  Special topic: cryptanalysis      |        |   |           |     |        |
+|     |Fri Dec 02 |   Final project peer review     |        |   |           |     |        |
+|  15   |Tue Dec 06 | Special topic        |        |   |           |     |        |
+|     |Thu Dec 08 | Special topic      |        |   |           |     |        |
+|     |Fri Dec 09 |  Project workday      |        |   |           |     |        |

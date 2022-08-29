@@ -1,0 +1,107 @@
+---
+title: "Practice questions: probability and bootstrap confidence intervals"
+output: html_document
+css: ../labs/labs.css
+date: 'July 17 2022'
+---
+
+## About
+
+Below are some practice questions on computing probabilities and constructing a bootstrap confidence interval.
+
+## Getting started
+
+Paste the code below to download a template file to answer the exercises.
+
+```{r download-template, eval=F}
+download.file("https://sta101.github.io/static/practice/probability_practice_template.Rmd",
+              destfile = "probability_practice.rmd")
+```
+
+
+**Libraries**
+
+```{r load-library, warning = F, message = F}
+library(tidyverse)
+library(tidymodels)
+library(openintro)
+```
+
+**Data**
+
+
+Use the code below to load the data sets into R. This data is on nutritional content of fast food items from several popular fast food restaurants. The data is loaded via the `openintro` package.
+```{r load-data}
+data(fastfood)
+```
+
+## Exercises
+
+1. The [FDA recommends](https://www.fda.gov/food/nutrition-education-resources-materials/sodium-your-diet) that individuals consume fewer than 2300 mg of sodium per day. Given that you randomly select a food item off the McDonalds menu and eat the entire item, what is the probability you ingest more than 1/2 of the daily recommended value?
+
+```{r ex-1, eval = F, echo = F}
+fastfood %>%
+  filter(restaurant == "Mcdonalds") %>%
+  mutate(moreThanHalfSodium = ifelse(sodium > (2300/2), TRUE, FALSE)) %>%
+  summarize(probMoreThanHalfSodiumMcDonalds = mean(moreThanHalfSodium))
+```
+
+2. Let *A* be the event an individual consumes more than 1000 calories eating 1 item off the menu. Let *B* be the event an individual orders from Chick Fil-A. What can you say about events *A* and *B*?
+
+```{r, echo = F, eval = F}
+fastfood %>%
+  filter(restaurant == "Chick Fil-A") %>%
+  summarize(range(calories))
+
+# the two events are disjoint
+```
+
+3. Let *A* be the event that an individual ordered and consumed 1 fast food item from a fast food restaurant that contained more than 6 grams of sugar. Let *B* be the event an individual orders from Dairy Queen. Is event *A* independent of *B*?
+
+```{r, echo = F, eval = F}
+fastfood %>%
+  mutate(moreThanSix = ifelse(sugar > 7, TRUE, FALSE)) %>%
+  summarize(probB = mean(moreThanSix))
+
+fastfood %>%
+  filter(restaurant == "Dairy Queen") %>%
+  mutate(moreThanSix = ifelse(sugar > 7, TRUE, FALSE)) %>%
+  summarize(conditionalProb = mean(moreThanSix))
+
+# Not independent, but close. Pr(B) = 0.36. Pr(B | A) = 0.33
+```
+
+4. You randomly sample 12 items from the Subway menu using the code below.
+
+```{r sample-subway}
+set.seed(4)
+subwaySample = fastfood %>%
+  filter(restaurant == "Subway") %>%
+  slice_sample(n = 12)
+
+subwaySample
+```
+
+- Compute the mean cholesterol from your sample, together with a 90% confidence interval. Interpret the confidence interval.
+
+- Next compute the true mean using all the subway menu items in the `fastfood` data frame. Assuming `fastfood` contains every single item on the Subway menu, does your confidence interval capture the **true** mean? Use `set.seed(4)` when creating your bootstrap distribution.
+
+```{r eval = F, echo = F}
+set.seed(4)
+boot_dist = subwaySample %>%
+  specify(response = cholesterol) %>%
+  generate(10000, type = "bootstrap") %>%
+  calculate(stat = "mean")
+
+boot_dist %>%
+  summarize(lower = quantile(stat, 0.05),
+            upper = quantile(stat, 0.95))
+
+fastfood %>%
+  filter(restaurant == "Subway") %>%
+  summarize(meanCholesterol = mean(cholesterol))
+```
+
+5. Could you use Central Limit theorem to construct a confidence interval in exercise 4? Why or why not?
+
+

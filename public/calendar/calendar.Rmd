@@ -1,0 +1,96 @@
+---
+title: "Schedule"
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, include = FALSE, eval=F)
+```
+
+```{r load-libraries}
+library(tidyverse)
+library(knitr)
+```
+
+```{r smart-date-setup}
+# set these:
+firstDay = as.Date("2022-01-07")
+firstDayID = "Fri"
+lastDay = as.Date("2022-04-20")
+
+lectureDays = c("Wed", "Fri")
+labDays = c("Tue")
+holidays = as.Date(c("2022-03-08", "2022-03-09", "2022-03-11"))
+
+### render table
+
+allDates = seq(from = firstDay, to = lastDay, by = 'day')
+schedule = data.frame(allDates,
+                        dayOfWeek = weekdays(allDates, abbreviate=T)) %>%
+  filter(dayOfWeek %in% c(lectureDays, labDays)) %>%
+  mutate(lab = ifelse(dayOfWeek %in% labDays, TRUE, FALSE)) %>%
+  mutate(Topic = ifelse(allDates %in% holidays, "NO CLASS", "")) %>%
+  mutate(Date = format(allDates, format = "%b %d")) %>%
+  mutate(Date = paste(dayOfWeek, Date)) %>%
+  mutate(Week = rep("", nrow(schedule))) %>%
+  mutate(Prepare = rep("", nrow(schedule))) %>%
+  mutate(AE = rep("", nrow(schedule))) %>%
+  mutate(Assignment = rep("", nrow(schedule))) %>%
+  mutate(Exam = rep("", nrow(schedule))) %>%
+  mutate(Project = rep("", nrow(schedule))) %>%
+  select(Week, Date, Topic, Prepare, AE, Assignment, Exam, Project)
+
+
+# to be pasted into console then pasted into markdown:
+schedule %>%
+  kable(format = "markdown")
+```
+
+|Week |Date       |Topic    |Prepare |AE |Assignment |Exam |Project |
+|:----|:----------|:--------|:-------|:--|:----------|:----|:-------|
+|     |Fri Jan 07 |         |        | [ae1](/static/static/appex/ae1.html)  |           |     |        |
+|     |Tue Jan 11 |         |        |   |           |     |        |
+|     |Wed Jan 12 |         |        |   |           |     |        |
+|     |Fri Jan 14 |         |        |   |           |     |        |
+|     |Tue Jan 18 |         |        |   |           |     |        |
+|     |Wed Jan 19 |         |        |   |           |     |        |
+|     |Fri Jan 21 |         |        |   |           |     |        |
+|     |Tue Jan 25 |         |        |   |           |     |        |
+|     |Wed Jan 26 |         |        |   |           |     |        |
+|     |Fri Jan 28 |         |        |   |           |     |        |
+|     |Tue Feb 01 |         |        |   |           |     |        |
+|     |Wed Feb 02 |         |        |   |           |     |        |
+|     |Fri Feb 04 |         |        |   |           |     |        |
+|     |Tue Feb 08 |         |        |   |           |     |        |
+|     |Wed Feb 09 |         |        |   |           |     |        |
+|     |Fri Feb 11 |         |        |   |           |     |        |
+|     |Tue Feb 15 |         |        |   |           |     |        |
+|     |Wed Feb 16 |         |        |   |           |     |        |
+|     |Fri Feb 18 |         |        |   |           |     |        |
+|     |Tue Feb 22 |         |        |   |           |     |        |
+|     |Wed Feb 23 |         |        |   |           |     |        |
+|     |Fri Feb 25 |         |        |   |           |     |        |
+|     |Tue Mar 01 |         |        |   |           |     |        |
+|     |Wed Mar 02 |         |        |   |           |     |        |
+|     |Fri Mar 04 |         |        |   |           |     |        |
+|     |Tue Mar 08 |NO CLASS |        |   |           |     |        |
+|     |Wed Mar 09 |NO CLASS |        |   |           |     |        |
+|     |Fri Mar 11 |NO CLASS |        |   |           |     |        |
+|     |Tue Mar 15 |         |        |   |           |     |        |
+|     |Wed Mar 16 |         |        |   |           |     |        |
+|     |Fri Mar 18 |         |        |   |           |     |        |
+|     |Tue Mar 22 |         |        |   |           |     |        |
+|     |Wed Mar 23 |         |        |   |           |     |        |
+|     |Fri Mar 25 |         |        |   |           |     |        |
+|     |Tue Mar 29 |         |        |   |           |     |        |
+|     |Wed Mar 30 |         |        |   |           |     |        |
+|     |Fri Apr 01 |         |        |   |           |     |        |
+|     |Tue Apr 05 |         |        |   |           |     |        |
+|     |Wed Apr 06 |         |        |   |           |     |        |
+|     |Fri Apr 08 |         |        |   |           |     |        |
+|     |Tue Apr 12 |         |        |   |           |     |        |
+|     |Wed Apr 13 |         |        |   |           |     |        |
+|     |Fri Apr 15 |         |        |   |           |     |        |
+|     |Tue Apr 19 |         |        |   |           |     |        |
+|     |Wed Apr 20 |         |        |   |           |     |        |

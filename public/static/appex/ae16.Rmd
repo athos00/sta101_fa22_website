@@ -1,0 +1,99 @@
+---
+title: "Data Science Ethics"
+output: html_document
+date: "August 2, 2022"
+---
+
+## Bulletin
+
+- [Final project](/projects/final-project) presentations due Thursday 11:59pm to sakai discussion forum
+- [Final project](/projects/final-project) report due Friday 11:59pm to Gradescope
+
+## Today
+
+- Data misrepresentation, data ethics and algorithmic bias
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+    download.file("https://sta101.github.io/static/appex/ae16.Rmd",
+    destfile = "ae16.rmd")
+
+## Load packages
+
+```{r load-libraries, message = F, warning = F}
+library(tidyverse)
+library(tidymodels)
+```
+
+### Guidelines for Discussion
+
+- Listen respectfully. Listen actively and with an ear to understanding others’ views.
+
+- Criticize ideas, not individuals.
+
+- Commit to learning, not debating. Comment in order to share information, not to persuade.
+
+- Avoid blame, speculation, and inflammatory language.
+
+- Avoid assumptions about any member of the class or generalizations about social groups.
+
+## Data Representation
+
+### Misleading Data Visualizations^[Source: https://humansofdata.atlan.com/2019/02/dos-donts-data-visualization]
+
+**Brexit**
+
+![Brexit](https://sta101.github.io/static/img/brexit.png){width=50%}
+
+- What is the graph trying to show?
+
+- Why is this graph misleading?
+
+- How can you improve this graph?
+
+**Spurious Correlations**^[Source: https://www.tylervigen.com/spurious-correlations Content warning: some examples include death or suicide.]
+
+![ A Spurious Correlation](https://sta101.github.io/static/img/spurious.png){ width=75%}
+
+- What is the graph trying to show?
+
+- Why is this graph misleading?
+
+## Ethics of collecting + handling data
+
+### Web scraping^[Modified from Modern Data Science with R, 2nd Edition]
+
+A data analyst received permission to post a data set that was scraped from a social media site. The full data set included name, screen name, email address, geographic location, IP (Internet protocol) address, demographic profiles, and preferences for relationships. The analyst removes name and email address from the data set in effort to deidentify it.
+
+- Why might it be problematic to post this data set publicly?
+
+- How can you store the full dataset in a safe and ethical way?
+
+- You want to make the data available so your analysis is transparent and reproducible. How can you modify the full data set to make the data available in an ethical way?
+
+### Additional readings
+
+- [Why pokemon go's plan to 3d scan the world is dangerous](https://www.sydney.edu.au/news-opinion/news/2020/06/18/why-pokemon-go-s-plan-to-3d-scan-the-world-is-dangerous.html)
+
+- [How companies learn your secrets](https://www.nytimes.com/2012/02/19/magazine/shopping-habits.html)
+
+## Algorithmic bias: deep dive
+
+[- **Video**](https://www.youtube.com/watch?v=UG_X_7g63rY)
+
+### Discussion questions
+
+- "Simpson's paradox", where conclusions drawn from analyzing subgroups differ from conclusions drawn when the groups are combined. Can you demonstrate Simpson's Paradox with the data below? ^[Source:  https://www.randomservices.org/random/data/Berkeley.html]
+
+```{r s-p, warning = F}
+berk = read_csv("https://sta101.github.io/static/appex/data/BerkeleyAdmissionsData.csv")
+berk
+
+```
+
+
+- A company uses a machine learning algorithm to determine which job advertisement to display for users searching for technology jobs. Based on past results, the algorithm tends to display lower paying jobs for women than for men (after controlling for other characteristics than gender). What ethical considerations might be considered when reviewing this algorithm?^[Source: Modern Data Science with R, 2nd Edition]
+
+- As you start working on data analyses for the STA 101 project, internships, research, etc., what are 1 - 2 things you can do to ensure you’re doing the analysis in an ethical way?

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Hypothesis testing</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Alexander Fisher" />
+    <script src="hypoTest01_files/header-attrs-2.11/header-attrs.js"></script>
+    <script src="hypoTest01_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <link href="hypoTest01_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="hypoTest01_files/datatables-binding-0.22/datatables.js"></script>
+    <script src="hypoTest01_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <link href="hypoTest01_files/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="hypoTest01_files/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="hypoTest01_files/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+    <link href="hypoTest01_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="hypoTest01_files/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+    <link href="hypoTest01_files/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="hypoTest01_files/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer-2.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Hypothesis testing
+## STA101
+### Prof. Alexander Fisher
+### Duke University
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+## Introduction
+
+North Carolina Courage is a professional women's soccer team based in Cary, North Carolina (approximately 30 minutes from Duke). The team was founded in 2017. In 2019, the team became the first team to win the Championship on its home field. 
+
+--
+
+Here's a look at how the NC Courage performed in the 2017-2019 seasons.
+
+<div id="htmlwidget-0621c2f4cbcd895ea2ed" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0621c2f4cbcd895ea2ed">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["4/15/2017","4/22/2017","4/29/2017","5/7/2017","5/14/2017","5/21/2017","5/24/2017","5/27/2017","6/3/2017","6/17/2017","6/24/2017","7/1/2017","7/8/2017","7/15/2017","8/5/2017","8/10/2017","8/13/2017","8/19/2017","8/30/2017","9/3/2017","9/9/2017","9/27/2017","9/30/2017","10/8/2017","10/14/2017","3/24/2018","3/31/2018","4/14/2018","4/18/2018","4/28/2018","5/12/2018","5/19/2018","5/23/2018","5/30/2018","6/16/2018","6/23/2018","6/30/2018","7/4/2018","7/11/2018","7/14/2018","8/5/2018","8/19/2018","9/8/2018","9/18/2018","9/22/2018","4/17/2019","4/28/2019","5/12/2019","5/27/2019","6/1/2019","6/29/2019","7/5/2019","7/13/2019","7/21/2019","7/27/2019","8/3/2019","8/11/2019","8/24/2019","9/7/2019","9/11/2019","9/14/2019","9/17/2019","9/21/2019","9/28/2019","10/12/2019","10/20/2019","10/27/2019"],["Away","Home","Home","Away","Away","Home","Home","Away","Home","Home","Away","Home","Home","Away","Home","Away","Away","Home","Away","Away","Home","Away","Home","Home","Home","Home","Home","Away","Home","Away","Home","Away","Away","Away","Home","Away","Away","Home","Home","Away","Home","Home","Home","Home","Home","Home","Away","Away","Away","Away","Away","Home","Home","Away","Away","Home","Away","Home","Away","Away","Home","Home","Away","Away","Home","Home","Home"],["WAS","POR","ORL","BOS","ORL","CHI","NJ","CHI","KC","BOS","BOS","NJ","SEA","POR","SEA","KC","SEA","WAS","WAS","CHI","HOU","HOU","ORL","CHI","POR","POR","NJ","WAS","SEA","HOU","WAS","NJ","ORL","POR","UTA","SEA","ORL","CHI","WAS","NJ","POR","ORL","HOU","CHI","POR","ORL","HOU","CHI","SEA","ORL","WAS","HOU","SEA","CHI","UTA","WAS","POR","SEA","NJ","POR","ORL","HOU","UTA","WAS","NJ","SEA","CHI"],["win","win","win","win","loss","loss","win","loss","win","win","win","loss","win","loss","win","win","win","win","win","loss","win","win","loss","win","loss","win","win","win","win","win","win","win","win","win","loss","win","win","win","win","win","win","win","win","win","win","win","win","loss","loss","win","win","win","win","loss","win","win","loss","win","win","win","win","win","win","loss","win","win","win"],[2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>game_date<\/th>\n      <th>location<\/th>\n      <th>opponent<\/th>\n      <th>result<\/th>\n      <th>season<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":3,"columnDefs":[{"className":"dt-right","targets":4}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[3,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+## Hypothesis
+
+We are interested in whether or not NC Courage have a home-field advantage.
+
+--
+
+Are the Courage more likely to win a game at **Home** than **Away**?
+
+--
+
+Mathematically: 
+
+Let `\(p_H\)` be the probability the NC Courage win a home game and let `\(p_A\)` be the probability the NC Courage win an away game
+
+$$
+p_H &gt; p_A?
+$$
+
+&lt;!-- -- --&gt;
+
+$$
+H_A: p_H - p_A &gt; 0
+$$
+
+&lt;!-- This is our hypothesis of interest, formally called the **alternative hypothesis** or `\(H_A\)`. To perform a hypothesis test we need to define a **null hypothesis**. The null hypothesis is a default theory. The goal of hypothesis testing is to determine if the data give us enough evidence to reject the default theory. --&gt;
+
+--
+
+A plausible default theory (null hypothesis) is that there is no home-field advantage,
+
+$$
+H_0: p_H - p_A = 0
+$$
+---
+## The observed statistic
+
+If the null is true, `\(p_H - p_A = 0\)` and if the alternative is true `\(p_H - p_A &gt; 0\)`.
+
+--
+
+&lt;!-- Our observed statistic relates to our hypotheses--&gt;
+**Observed statistic:** `\(\hat{p}_H - \hat{p}_A\)`
+
+--
+
+.panelset[
+.panel[.panel-name[Table]
+
+|location |  prob_win|
+|:--------|---------:|
+|Away     | 0.7096774|
+|Home     | 0.8611111|
+]
+
+
+.panel[.panel-name[Code]
+
+
+```r
+courage %&gt;%
+  dplyr::count(location, result) %&gt;%
+  group_by(location) %&gt;%
+  mutate(total_games = sum(n)) %&gt;%
+  filter(result == "win") %&gt;%
+  summarize(location, prob_win = n / total_games) %&gt;%
+  kable()
+```
+
+
+
+|location |  prob_win|
+|:--------|---------:|
+|Away     | 0.7096774|
+|Home     | 0.8611111|
+]
+]
+
+$$
+\hat{p}_H = 0.86\\
+\hat{p}_A = 0.71
+$$
+and 
+
+$$
+\hat{p}_H - \hat{p}_A = 0.15
+$$
+
+Is this strong enough evidence against our default hypothesis?
+
+---
+## Simulating under the null
+
+What could the observed statistic looked like if the null was true?
+
+--
+
+### Plan
+
+1. Simulate what the data could have looked like **if the null was true**
+2. Compute an **observed statistic** from our simulation
+3. Repeat (1) and (2) many times!
+
+---
+## Simulating under the null
+
+$$
+H_0: p_H - p_A = 0
+$$
+
+&lt;!--Now that we have our null, we want to see what the data would have looked like if this was true. To do this, we will use simulation.--&gt;
+
+&lt;!--There's many different possible ways we might model how the Courage win and lose a game but it's important to make our simulation as similar to reality as possible --&gt;
+
+&lt;!--What do I mean?--&gt;
+
+If the probability of winning at home is the same as winning away, then the game's label **Home** or **Away** should not be important.
+
+Looking at the data,
+&lt;!-- The courage played 67 games, won 53 and lost 14, we're ignoring ties in this example --&gt;
+
+
+|Result | Number|
+|:------|------:|
+|loss   |     14|
+|win    |     53|
+
+**If the null is true** and the **Home** and **Away** labels don't matter, then they could have been randomly assigned.
+
+This is what we will do to **simulate under the null**.
+
+&lt;!-- go to doc cam example or animated example...--&gt;
+
+---
+## Shuffle
+
+What might our observed statistic looked like if the null was true?
+
+
+
+---
+## Shuffle labels
+
+.pull-left[
+We want to shuffle labels,
+
+
+```
+## # A tibble: 67 × 3
+##    game_date result random_location
+##    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;          
+##  1 4/15/2017 win    Home           
+##  2 4/22/2017 win    Away           
+##  3 4/29/2017 win    Home           
+##  4 5/7/2017  win    Home           
+##  5 5/14/2017 loss   Home           
+##  6 5/21/2017 loss   Home           
+##  7 5/24/2017 win    Home           
+##  8 5/27/2017 loss   Away           
+##  9 6/3/2017  win    Away           
+## 10 6/17/2017 win    Home           
+## # … with 57 more rows
+```
+
+and then find the relevant statistic.
+]
+
+.pull-right[
+$$
+H_0: p_H = p_A
+$$
+so
+
+$$
+H_0: p_H - p_A = 0
+$$
+
+and the statistic is the estimate from our data:
+
+$$
+\hat{p}_H - \hat{p}_A
+$$
+
+In `R`
+
+
+```r
+null_dist = courage %&gt;%
+specify(response = result, explanatory = location, success = "win") %&gt;% 
+  hypothesize(null = "independence") %&gt;%
+  generate(1000, type = "permute") %&gt;%
+  calculate(stat = "diff in props")
+```
+]
+---
+
+## Visualize the null
+
+&lt;img src="hypoTest01_files/figure-html/unnamed-chunk-6-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Meet the professor
+
+.pull-left[
+
+- Alexander Fisher
+
+- [alexander.fisher@duke.edu](alexander.fisher@duke.edu)
+
+- [Office hours](https://sta101.github.io/)
+
+  - Monday/Wednesday 9:30-10:30am
+
+- A little bit about my research...
+]
+
+--
+
+.pull-right[
+
+&lt;img src="img/01/alignment_xaringan.png" width="60%" style="display: block; margin: auto;" /&gt;&lt;img src="img/01/basic_tree_xaringan.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Why data analysis and statistical inference?
+
+&lt;img src="img/01/prisonLetter.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+- `\(26 \times 25 \times 24 \times ... \times 2 \times 1 = 4 \times 10^{26}\)` possible combinations
+
+--
+
+- Check 100M per second
+
+- 120,000,000,000 years of computational time
+
+---
+## Why data analysis and statistical inference?
+
+- On January 28 1986 the Challenger space shuttle exploded 73 seconds after takeoff.
+
+- It was determined failed O rings were the cause: [https://en.wikipedia.org/wiki/O-ring](https://en.wikipedia.org/wiki/O-ring)
+
+- Could the Challenger disaster have been prevented?
+
+- [Challenger O-ring logistic regression](https://byuistats.github.io/Statistics-Notebook/Analyses/Logistic%20Regression/Examples/challengerLogisticReg.html)
+
+---
+## Why data analysis and statistical inference?
+
+- [Infectious disease tracker](https://nextstrain.org)
+
+- [José Ramirez is Baseball's Last-Appreciate Superstar](https://fivethirtyeight.com/features/jose-ramirez-is-baseballs-least-appreciated-superstar/)
+
+---
+## Course learning objectives
+
+By the end of this course you will:
+
+- explore, visualize and analyze real data in a reproducible manner
+
+- gain proficiency in the statistical computing language R and integrated development environment RStudio
+
+- work collaboratively to apply statistical analyses to a data set of your own choosing 
+
+- present and communicate statistical results effectively
+
+- be a critical consumer of statistics
+
+---
+
+## The course website
+
+[sta101.github.io](https://sta101.github.io)
+
+Here you'll find 
+
+- course schedule
+
+- syllabus
+
+- office hours
+
+and three important links: R containers, slack and the book.
+
+Let's take a look...
+
+---
+
+## Logistics
+
+- Prepare, participate, practice, perform
+
+- Policy: sharing / reusing code
+
+- Course community &amp; learning environment
+
+- Late policy and regrade requests
+
+- Resources
+
+---
+
+## Logistics
+
+- **Prepare, participate, practice, perform**
+
+  - prepare: watch preparatory videos or read from the book
+  - participate in lectures, labs, office hours and slack
+  - practice applying concepts on in-class application exercises
+  - perform on labs, exams and projects
+
+&lt;img src="img/01/assignments.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Logistics
+
+- **Policy: sharing / reusing code**
+
+  - you must always cite any code you copy or use as inspiration. Copied code without citation is plagiarism and will result in a 0 for the assignment
+
+  - copying and citing a large amount of code to satisfy a main objective of an assignment will result in a 0 for the assignment
+
+  - carefully read each assignment so you know what is permitted and what is not. If you are ever unsure what is allowed, please ask a member of the teaching team
+
+---
+
+## Logistics
+
+**Course community &amp; learning environment**
+
+
+Course community
+- Uphold the Duke Community Standard: 
+&gt; - I will not lie, cheat, or steal in my academic endeavors;
+&gt;- I will conduct myself honorably in all my endeavors; and
+&gt; - I will act if the Standard is compromised.
+
+--
+
+Learning environment
+
+  - Respect, honor, and celebrate our diverse community 
+  - Learning environment that is welcoming, inclusive, and accessible to everyone
+
+---
+
+## Logistics
+
+- **Late policy and regrade requests**
+
+  Late policy
+  - late work is not accepted
+  - to accommodate this strict policy, your lowest lab will be dropped
+  - missed lab or exams can only be excused under exceptional circumstances and requires a letter from the Dean
+  
+  Regrade requests
+  - must be submitted within 4 days of when the assignment is returned
+
+---
+## Logistics
+
+- **Resources**
+  
+  - Check the [syllabus](https://sta101.github.io/syllabus)
+  - Attend [office hours](https://duke.box.com/s/5d31hvs4jkwcn4qpwz827zkpiaic7177)
+  - Post on [slack](https://sta101-su22.slack.com/)
+  - Ask/email a member of the teaching team
+
+---
+
+## Additional resources
+
+**Academic Resource Center**
+
+The [Academic Resource Center (ARC)](https://arc.duke.edu/) offers free services to all students during their undergraduate careers at Duke. 
+
+Services include 
+  - Learning Consultations
+  - Peer Tutoring and Study Groups
+  - ADHD/LD Coaching, Outreach Workshops
+  - and more. 
+
+  
+Contact the ARC at [ARC@duke.edu](mailto:arc@duke.edu) or call 919-684-5917 to schedule an appointment. 
+
+---
+
+## Additional resources
+
+**CAPS**
+
+[Duke Counseling &amp; Psychological Services (CAPS)](https://studentaffairs.duke.edu/caps) helps Duke Students enhance strengths and develop abilities to successfully live, grow and learn in their personal and academic lives. 
+
+Services include 
+- brief individual and group counseling
+- couples counseling
+- outreach to student groups
+- and more...
+
+---
+
+## STA101 Strategy Guide
+
+**tl;dr**
+
+1. Bookmark the course webpage: [sta101.github.io](https://sta101.github.io)
+
+2. Check the schedule frequently
+
+3. Prepare (videos), Practice (in-class), Perform honorably (labs, exams, projects), Profit
+
+---
+
+## Your turn
+
+- Check your email / sakai announcements for slack invite.
+
+- Post on [slack](https://sta101-su22.slack.com/)
+
+- When you're done, fill out [this short questionnaire](https://forms.gle/UkBhKxZQvnh1mToRA)
+
+- **Notice**: Drop/Add ends Wednesday June 29 at 11:59pm
+
+<div class="countdown" id="timer_62db09ef" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+
+
+
+## Jump in
+
+- [Click here](https://cmgr.oit.duke.edu/containers) to go to the Duke containers website. Click "Reserve"
+
+- Onto today's application exercise: [ae1](https://sta101.github.io/static/appex/ae1.html)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

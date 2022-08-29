@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Peer review instructions</title>
+    <meta charset="utf-8" />
+    <meta name="date" content="2022-08-02" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer-2.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Peer review instructions
+## STA 101
+### August 2, 2022
+
+---
+
+
+
+
+## Peer-review upload
+
+- Go to the [course sakai page](https://sakai.duke.edu/) and click discussions on the left-hand side navigate to `Discussions` &gt; `Peer-review` &gt; `Start a new conversation`
+
+- Make the title of your post "Team name -- project name" as in the example. Upload the most current draft  of your project report as a PDF.
+
+<div class="countdown" id="timer_62e85e8b" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+## Peer-review
+
+- Check the [team assignments page](https://duke.box.com/s/06n8tniiuroqg2ms0nkrbz79zsq73gpk) and click the `peer-review` tab at the bottom to access peer-review assignments. 
+
+- On the discussion forum, navigate to your assigned group's "Conversation" and click `Reply to initial message`. Answer the questions on the following slides and click `Post`. It might help to assign 1 group member to each slide of questions.
+
+---
+
+## Project motivation
+
+1. Is the research question clear and concisely stated? Be specific.
+
+2. Is the topic well motivated?
+
+3. Is enough context provided, or is anything unclear? E.g. variable names etc.
+
+4. Are the observations and relevant variables described?
+
+---
+
+## Methodology
+
+1. Do the methods proposed help answer the research question?
+
+2. Are any methods (regression, hypothesis testing etc.) adequately introduced and defended? E.g. if using regression, the full model equation should be listed here.
+
+3. Are the variables used pertinent to the question at hand? Are strengths and weaknesses of variables discussed?
+
+4. Include any additional comments, questions, or suggestions related to the choice of variables, statistical models, or general methods
+
+
+---
+
+## Cohesiveness of results
+
+1. Do the results match the methods? 
+
+2. If statistical methods are used, are relevant fitted equations and/or p-values, confidence intervals etc. reported?
+
+3. Do any included figures/plots help tell a story related to the initial research question? Are the plots useful? Note if any plots are unclear.
+
+4. Is the research question answered accurately and effectively? Is the answer to the research question summarized and supported by statistical arguments or effective visualizations?
+
+---
+
+## Formatting
+
+1. Is the paper professionally presented and generally free of distracting errors or other issues, including (but not limited to) insufficient organization or formatting; poor grammar, spelling, or punctuation; or too-small font? Is the overall paper easily readable for someone with your expert level of knowledge? Note any concerns here.
+
+2. Are all figures legible and appropriately labeled?
+
+3. Is the author name and team name printed at the top of the document?
+
+4. What questions and/or general feedback do you have for the authors?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,210 @@
+---
+title: "Lab 06: Inference and more"
+output:
+  html_document: default
+  pdf_document: default
+date: "Due Monday August 1 at 11:59pm"
+css: labs.css
+---
+
+By the end of this lab you will
+
+- compare hypothesis tests and confidence intervals
+- explore a new package of your choice
+
+## Getting started
+
+\ 1. Download the lab template by pasting the code below in your **console**:
+
+```
+download.file("https://sta101.github.io/static/labs/lab_template.Rmd",
+              destfile = "lab06.rmd")
+```
+
+\ 2. Under the "Files" tab on the right hand side, click on `lab06.rmd` to open the lab template.
+
+\ 3. Add code chunks and `## Exercises` as needed.
+
+\ 4. Complete the exercises below.
+
+## Warm up
+
+Be sure to update the YAML at the top of the document to include your name and the date.
+
+### Packages
+
+```{r load-packages, warning=F, message=F}
+library(tidyverse)
+library(tidymodels)
+```
+
+### Data
+
+Load the data:
+
+```{r load-data, warning=F, message=F}
+pantheria = read_csv("https://sta101.github.io/static/labs/data/pantheria_subset.csv")
+```
+```{r echo=FALSE, out.width='45%', out.height='400cm', fig.align='center', fig.show='hold', fig.cap = "The yellow bat (left) is an example of Vespertilionidae, aka 'microbats'. Soricidae aka 'shrews' (right). Images from wikipedia: [microbat](https://en.wikipedia.org/wiki/Scotophilus), [shrew](https://en.wikipedia.org/wiki/Shrew)"}
+knitr::include_graphics(c('img/microbat.jpg', 'img/shrew.jpg'))
+```
+
+Today's data is a subset of the [PanTHERIA dataset](https://ecologicaldata.org/wiki/pantheria) on mammalian life history traits.
+
+Jones, Kate E., et al. "PanTHERIA: a species‐level database of life history, ecology, and geography of extant and recently extinct mammals: Ecological Archives E090‐184." Ecology 90.9 (2009): 2648-2648
+
+Data dictionary:
+
+- `family`: what family the species belongs to
+
+- `species`: species observation
+
+- `abm_g`: average adult body mass in grams observed for a given species
+
+## Exercises
+
+### Written response
+
+1. You are interested in the average difference in body mass between shrews (Soricidae) and microbats (Vespertilionidae); see the images above. You decide to conduct a hypothesis test: $H_0: \mu_{\text{soricidae}} - \mu_{\text{vespertilionidae}} = 0$ and $H_A: \mu_{\text{soricidae}} - \mu_{\text{vespertilionidae}} \neq 0$ and draw a conclusion based on an $\alpha = 0.01$. What is the probability of rejecting the null if it's actually true? What type of error is this (type 1 or type 2)?
+
+2. In your own words, describe the differences and similarities between performing a hypothesis test and constructing a confidence interval.
+
+3. What does it mean to "simulate under the null"? When and why do we do it?
+
+### Practice in `R`
+
+4. Before beginning our data analysis, let's clean the data. Values of `-999` should in fact be `NA`. To convert these to NA, use the code chunk below as a template, replacing the question mark with the appropriate value.
+
+```
+pantheria[pantheria == ?] = NA
+```
+
+- In one sentence, describe what the code above does. 
+
+5. Report the observed difference $\hat{\mu}_{\text{soricidae}} - \hat{\mu}_{\text{vespertilionidae}}$ and report a 99% bootstrap confidence interval using `set.seed(4)` and `reps=10000`. Is 0 within the interval?
+
+6. Perform the hypothesis test described in question 1. Use `set.seed(6)` and `reps=5000`. Visualize the null distribution and shade the p-value. Be sure to label the x-axis. Make a conclusion based on significance level $\alpha = 0.01$. Given your response from the previous exercise, does this result surprise you? Why or why not?
+
+### Beyond this class with `R`
+
+*This last exercise was adapted from an assignment originally developed by [Prof. Mine Çentinkaya-Rundel](https://mine-cr.com/), (see [here](https://ids-s1-20.github.io/homework/hw-04/hw-04-potpourri.html) for the original).*
+
+7. For this last exercise, find a package in `R` that we have not yet used in class and do something with it.
+
+-   Pick a package. You can choose one from the list below, or venture into the great unknown and find one online. If you have trouble getting a package to work, ask for help on slack or come to office hours.
+
+-   Install the package. Be sure to do this in the Console, not in your R Markdown document because you do not want to keep re-installing every time you knit the document.
+
+Depending on where the package comes from, how you install the package differs:
+
+  - If the package is on CRAN (Comprehensive R Archive Network), you can install it with `install.packages`.
+  - If the package is only on Github (most likely because it is still under development), you need to use the `install_github` function, click [here](https://www.rdocumentation.org/packages/devtools/versions/1.13.6/topics/install_github) for more details.
+
+-   Load the package. Regardless of how you installed the package you can load it with the `library` function.
+
+-   Do something with the package. Typically, simpler is better. The goal is for you to read and understand the package documentation to carry out a simple task.
+
+-   Finally, write a short 3-4 sentence statement (at the beginning of your solution to this exercise) and include:
+
+    \ 1.  The name of the package you use and whether it is from CRAN or GitHub
+    \ 2.  A short description of what the package does (in your own words)
+    \ 3.  A short description of what you do with the package.
+
+A sample of packages you might choose from are listed below, but feel free to choose any package you can find that we have not used in class.
+
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| package name                                                                                  | description                                                                                                                                                                                                                                                                                                                              |
++===============================================================================================+==========================================================================================================================================================================================================================================================================================================================================+
+| [ape](https://cran.r-project.org/web/packages/ape/index.html)                                 | Manipulate, plot and interact with phylogenetic trees and models. Comes with sample data                                                                                                                                                                                                                                                 |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [astrodatR](https://cran.r-project.org/web/packages/astrodatR/index.html)                     | Astronomy datasets                                                                                                                                                                                                                                                                                                                       |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [cowsay](https://cran.r-project.org/web/packages/cowsay/vignettes/cowsay_tutorial.html)       | Allows printing of character strings as messages/warnings/etc. with ASCII animals, including cats, cows, frogs, chickens, ghosts, and more                                                                                                                                                                                               |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [babynames](http://hadley.github.io/babynames/)                                               | US Baby Names 1880-2015                                                                                                                                                                                                                                                                                                                  |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [dragracer](https://cran.r-project.org/web/packages/dragracer/vignettes/dragracer-intro.html) | These are data sets for the hit TV show, RuPaul's Drag Race. Data right now include episode-level data, contestant-level data, and episode-contestant-level data                                                                                                                                                                         |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [datapasta](https://milesmcbain.github.io/datapasta/)                                         | RStudio addins and R functions that make copy-pasting vectors and tables to text painless                                                                                                                                                                                                                                                |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [DiagrammeR](https://rich-iannone.github.io/DiagrammeR/)                                      | Graph/Network Visualization                                                                                                                                                                                                                                                                                                              |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [janeaustenr](https://github.com/juliasilge/janeaustenr)                                      | Full texts for Jane Austen's 6 completed novels, ready for text analysis. These novels are "Sense and Sensibility", "Pride and Prejudice", "Mansfield Park", "Emma", "Northanger Abbey", and "Persuasion"                                                                                                                                |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [ggimage](https://cran.r-project.org/web/packages/ggimage/vignettes/ggimage.html)             | Supports image files and graphic objects to be visualized in 'ggplot2' graphic system                                                                                                                                                                                                                                                    |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [gganimate](https://github.com/dgrtwo/gganimate)                                              | Create easy animations with ggplot2                                                                                                                                                                                                                                                                                                      |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [gt](https://gt.rstudio.com/)                                                                 | Easily Create Presentation-Ready Display Tables                                                                                                                                                                                                                                                                                          |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [leaflet](https://rstudio.github.io/leaflet/)                                                 | Create Interactive Web Maps with the JavaScript 'Leaflet' Library                                                                                                                                                                                                                                                                        |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [praise](https://cran.r-project.org/web/packages/praise/praise.pdf)                           | Build friendly R packages that praise their users if they have done something good, or they just need it to feel better                                                                                                                                                                                                                  |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [plotly](https://plotly-r.com/)                                                               | Create interactive web graphics from ggplot2 graphs and/or a custom interface to the JavaScript library plotly.js inspired by the grammar of graphics                                                                                                                                                                                    |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [suncalc](https://cran.r-project.org/web/packages/suncalc/suncalc.pdf)                        | R interface to `suncalc.js` library, part of the [SunCalc.net project](http://suncalc.net), for calculating sun position, sunlight phases (times for sunrise, sunset, dusk, etc.), moon position and lunar phase for the given location and time                                                                                         |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [schrute](https://bradlindblad.github.io/schrute/)                                            | The complete scripts from the American version of the Office television show in tibble format                                                                                                                                                                                                                                            |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [statebins](https://cran.r-project.org/web/packages/statebins/statebins.pdf)                  | The cartogram heatmaps generated by the included methods are an alternative to choropleth maps for the United States and are based on work by the Washington Post graphics department in their report on ["The states most threatened by trade"](http://www.washingtonpost.com/wp-srv/special/business/states-most-threatened-by-trade/) |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [ttbbeer](https://cran.r-project.org/web/packages/ttbbeer/ttbbeer.pdf)                        | An R data package of beer statistics from U.S. Department of the Treasury, Alcohol and Tobacco Tax and Trade Bureau (TTB)                                                                                                                                                                                                                |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [ttbbeer](https://cran.r-project.org/web/packages/ttbbeer/ttbbeer.pdf)                        | An R data package of beer statistics from U.S. Department of the Treasury, Alcohol and Tobacco Tax and Trade Bureau (TTB)                                                                                                                                                                                                                |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [ukbabynames](https://cran.r-project.org/web/packages/ukbabynames/ukbabynames.pdf)            | Full listing of UK baby names occurring more than three times per year between 1996 and 2015, and rankings of baby name popularity by decade from 1904 to 1994                                                                                                                                                                           |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [wesanderson](https://cran.r-project.org/web/packages/wesanderson/wesanderson.pdf)            | Color palettes from Wes Anderson films                                                                                                                                                                                                                                                                                                   |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| [scatterplot3d](https://cran.r-project.org/web/packages/scatterplot3d/scatterplot3d.pdf)      | Create 3D plots                                                                                                                                                                                                                                                                                                                          |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+
+## Formatting
+
+**Reminder**: For all assignments in this course there is a "formatting" component to the grade. To receive full points for "formatting", you must:
+
+\ 1. Have your name at the top of the knitted document
+
+\ 2. Pipes `%>%` and ggplot layers `+` should be followed by a newline (see formatting above)
+
+\ 3. Your code should be under the 80 character code limit. (You shouldn't have to scroll to see all your code on the knitted document).
+
+\ 4. All exercises and corresponding pages should be linked on gradescope.
+
+These necessary "tidyverse" style choices are good general practice and will help make your code more legible. For a more extensive list of recommended guidelines, [click here](https://style.tidyverse.org/).
+
+## Submitting to gradescope
+
+Once you are fully satisfied with your lab, Knit to .pdf to create a .pdf document. You may notice that the formatting/theme of the report has changed – this is expected. Remember – you must turn in a .pdf file to the Gradescope page before the submission deadline for credit. To submit your assignment: 
+
+- Go to [http://www.gradescope.com](http://www.gradescope.com) and click Log in in the top right corner. - Click `School Credentials`, `Duke NetID` and log in using your NetID credentials. 
+
+- Click on your STA 101 course. 
+
+- Click on the assignment, and you'll be prompted to submit it. 
+
+- Mark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”). Select the first page of your .pdf submission to be associated with the "Formatting" section.
+
+## Grading
+
+Total: 50 pts.
+
+    Exercise 1: 2pts
+
+    Exercise 2: 4pts
+
+    Exercise 3: 4pts
+
+    Exercise 4: 7pts
+
+    Exercise 5: 10pts
+    
+    Exercise 6: 6pts
+    
+    Exercise 7: 13pts
+    
+    Workflow and formatting:  4pts
+    

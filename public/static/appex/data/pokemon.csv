@@ -1,0 +1,43 @@
+pokedex_number,name,generation,leg_status,type_1,type_2,height_m,weight_kg,bst,hp,atk,def,spa,spd,spe
+5,Charmeleon,1,Not Legendary,Fire,None,1.1,19,405,58,64,58,80,65,80
+10,Caterpie,1,Not Legendary,Bug,None,0.3,2.9,195,45,30,35,20,20,45
+37,Alolan Vulpix,1,Not Legendary,Ice,None,0.6,9.9,299,38,41,40,50,65,65
+40,Wigglytuff,1,Not Legendary,Normal,Fairy,1,12,435,140,70,45,85,50,45
+44,Gloom,1,Not Legendary,Grass,Poison,0.8,8.6,395,60,65,70,85,75,40
+54,Psyduck,1,Not Legendary,Water,None,0.8,19.6,320,50,52,48,65,50,55
+117,Seadra,1,Not Legendary,Water,None,1.2,25,440,55,65,95,95,45,85
+120,Staryu,1,Not Legendary,Water,None,0.8,34.5,340,30,45,55,70,55,85
+125,Electabuzz,1,Not Legendary,Electric,None,1.1,30,490,65,83,57,95,85,105
+136,Flareon,1,Not Legendary,Fire,None,0.9,25,525,65,130,60,95,110,65
+163,Hoothoot,2,Not Legendary,Normal,Flying,0.7,21.2,262,60,30,30,36,56,50
+165,Ledyba,2,Not Legendary,Bug,Flying,1,10.8,265,40,20,30,40,80,55
+185,Sudowoodo,2,Not Legendary,Rock,None,1.2,38,410,70,100,115,30,65,30
+236,Tyrogue,2,Not Legendary,Fighting,None,0.7,21,210,35,35,35,35,35,35
+254,Mega Sceptile,3,Not Legendary,Grass,Dragon,1.9,55.2,630,70,110,75,145,85,145
+254,Sceptile,3,Not Legendary,Grass,None,1.7,52.2,530,70,85,65,105,85,120
+259,Marshtomp,3,Not Legendary,Water,Ground,0.7,28,405,70,85,70,60,70,50
+265,Wurmple,3,Not Legendary,Bug,None,0.3,3.6,195,45,45,35,20,30,20
+269,Dustox,3,Not Legendary,Bug,Poison,1.2,31.6,385,60,50,70,50,90,65
+272,Ludicolo,3,Not Legendary,Water,Grass,1.5,55,480,80,70,70,90,100,70
+314,Illumise,3,Not Legendary,Bug,None,0.6,17.7,430,65,47,75,73,85,85
+315,Roselia,3,Not Legendary,Grass,Poison,0.3,2,400,50,60,45,100,80,65
+325,Spoink,3,Not Legendary,Psychic,None,0.7,30.6,330,60,25,35,70,80,60
+339,Barboach,3,Not Legendary,Water,Ground,0.4,1.9,288,50,48,43,46,41,60
+356,Dusclops,3,Not Legendary,Ghost,None,1.6,30.6,455,40,70,130,60,130,25
+402,Kricketune,4,Not Legendary,Bug,None,1,25.5,384,77,85,51,55,51,65
+445,Mega Garchomp,4,Not Legendary,Dragon,Ground,1.9,95,700,108,170,115,120,95,92
+463,Lickilicky,4,Not Legendary,Normal,None,1.7,140,515,110,85,95,80,95,50
+533,Gurdurr,5,Not Legendary,Fighting,None,1.2,40,405,85,105,85,40,50,40
+554,Galarian Darumaka,5,Not Legendary,Ice,None,0.7,40,315,70,90,45,15,45,50
+579,Reuniclus,5,Not Legendary,Psychic,None,1,20.1,490,110,65,75,125,85,30
+590,Foongus,5,Not Legendary,Grass,Poison,0.2,1,294,69,55,45,55,55,15
+620,Mienshao,5,Not Legendary,Fighting,None,1.4,35.5,510,65,125,60,95,60,105
+621,Druddigon,5,Not Legendary,Dragon,None,1.6,139,485,77,120,90,60,90,48
+634,Zweilous,5,Not Legendary,Dark,Dragon,1.4,50,420,72,85,70,65,70,58
+648,Meloetta Aria Forme,5,Mythical,Normal,Psychic,0.6,6.5,600,100,77,77,128,128,90
+655,Delphox,6,Not Legendary,Fire,Psychic,1.5,39,534,75,69,72,114,100,104
+669,Flabébé,6,Not Legendary,Fairy,None,0.1,0.1,303,44,38,39,61,79,42
+742,Cutiefly,7,Not Legendary,Bug,Fairy,0.1,0.2,304,40,45,40,55,40,84
+826,Orbeetle,8,Not Legendary,Bug,Psychic,0.4,40.8,505,60,45,110,80,120,90
+860,Morgrem,8,Not Legendary,Dark,Fairy,0.8,12.5,370,65,60,45,75,55,70
+871,Pincurchin,8,Not Legendary,Electric,None,0.3,1,435,48,101,95,91,85,15

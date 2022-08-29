@@ -1,0 +1,104 @@
+---
+title: "Lab 01: Hello R!"
+subtitle: "Due Friday July 1 at 11:59pm"
+author: ""
+date: ""
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Load Packages
+
+```{r load-packages, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(datasauRus)
+``` 
+
+# Exercise 1
+
+Type your answer to exercise 1 here. Note this exercise does not require any
+R code. 
+
+Note also in this lab we are telling you exactly when to stage, commit, and
+push.
+
+# Exercise 2
+
+The answer for this exercise is given below, but you should clean up the 
+narrative (that's this text here!) so it only includes what you want to turn in.
+
+First, let's plot the data in the dino data set  (we will cover `ggplot2` in
+much more depth later):
+
+```{r plot-dino}
+dino_data <- datasaurus_dozen %>%
+  filter(dataset == "dino")
+ggplot(data = dino_data, mapping = aes(x = x, y = y)) + 
+  geom_point()
+```
+
+Next calculate the correlation between `x` and `y` in this data set 
+(an explanation for this code is given in the lab document).
+
+```{r cor-dino}
+dino_data %>%
+  summarize(r = cor(x, y))
+```
+
+# Exercise 3
+
+Add code and narrative here as needed. Note the code chunks below are labeled
+with `ex-3` and should be changed.
+
+When you have finished, delete these instructions.
+
+```{r ex3-1}
+# Your code should go here! This is a comment, which should be deleted.
+```
+
+Some more narrative can go here.
+
+```{r ex3-2}
+# Calculate the correlation here
+```
+
+Conclude with some more narrative, if needed.
+
+# Exercise 4
+
+Add a labeled code chunk and narrative here. Insert code chunks using the 
+"insert chunk" button (a green C with a +) and select `R`. Alternatively, 
+use CMD + OPTION + I (Mac) or CTRL + ALT + I (Windows/Linux).
+
+Be sure to name your code chunks!
+
+# Exercise 5
+
+You can run the code in the console, or create a new code chunk. Delete this narrative when you are done.
+
+# Exercise 6
+
+Use the space provided to label each. Delete this narrative when you are done.
+
+- `summarize`: 
+
+- `dino_data`: 
+
+- `mean`: 
+
+- `x`: 
+
+- `y`: 
+
+- `mu_x = mean(x)`: 
+
+# Exercise 7
+
+Add a labeled code chunk and narrative here. Insert code chunks using the 
+"insert chunk" button (a green C with a +) and select `R`. Alternatively, 
+use CMD + OPTION + I (Mac) or CTRL + ALT + I (Windows/Linux).
+
+Be sure to name your code chunks!
+
+

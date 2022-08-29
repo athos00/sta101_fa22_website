@@ -1,0 +1,16 @@
+---
+title: "Do the NC Courage have a home-field advantage?"
+subtitle: "STA 101 Final Project"
+author: "The Straw Hat Pirates: Brook, Chopper, Franky, Jinbe, Luffy, Nami, Robin, Sanji, Usopp, Zoro"
+output: pdf_document
+date: "August 5, 2022"
+---
+
+# Introduction
+
+# Methodology
+
+# Results
+
+# Discussion
+

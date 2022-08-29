@@ -1,0 +1,196 @@
+/* * Customizing tufte.css * */
+
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700';
+@import 'https://fonts.googleapis.com/css?family=Source+Code+Pro'; 
+@charset "UTF-8";
+
+/* Tufte CSS styles */
+
+html {
+	font-size: 15px;
+}
+
+body {
+	font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+	font-weight: 400;
+	background-color: #002b36;
+	color: #e8eef2;
+	counter-reset: li;
+	font-size: 16px;
+}
+
+
+h1.title {
+	font-weight: 700;
+	font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+	color: #e8eef2;
+}
+
+h1 {
+	font-style: normal;
+	font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+	color: #e8eef2;
+}
+
+h2 {
+	font-style: normal;
+	font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+	font-weight: 400;
+	color: #e8eef2;
+}
+
+h3.subtitle {
+	font-style: normal;
+	color: #e8eef2;
+}
+
+h4 {
+	font-style: normal;
+	font-weight: 400;
+	font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+	margin-top: 1.5rem;
+	margin-bottom: 0;
+	line-height: 1;
+}
+
+h4.author,
+h4.date {
+	font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+	font-weight: 350;
+}
+
+.numeral {
+	font-family: "Source Sans Pro";
+	font-weight: 350;
+}
+
+em {
+	font-style: italic;
+	font-weight: 350;
+	font-family: "Source Sans Pro";
+}
+
+strong {
+	font-style: bold;
+	font-weight: 600;
+	font-family: "Source Sans Pro";
+}
+
+a {
+  color: #14aaeb;
+  text-decoration: underline;
+}
+
+/* Code formatting */
+
+/* @media screen and (max-width: 760px) {
+	pre {
+		width: 100%;
+		font-size: 15px;
+	}
+}
+*/
+
+@media screen and (max-width: 760px) {
+	pre {
+		width: 100%;
+		font-size: 15px;
+     	overflow-x: auto;
+	}
+}
+
+code {
+	font-family: 'Source Code Pro', Consolas, "Liberation Mono", Menlo, Courier, monospace;
+	font-size: 18px;
+	line-height: 1.7; 
+}
+
+pre {
+	background-color: #002b36;
+	/*border-color: #CCCCCC;*/
+	/*border-style: solid;*/
+	border-width: 0px;
+  border-radius: 4px;*/
+  overflow-x: auto;
+ 	padding: 1em;
+ 	white-space: inherit;
+ 	word-break: normal;
+ 	word-wrap: normal;
+}
+
+
+pre.r {
+	background-color: #F5F5F5;	
+	/*border-color: #CCCCCC*/
+	 white-space: inherit;
+}
+
+
+.marginnote code,
+.sidenote code {
+	font-size: 14px;
+}
+
+
+
+/* Exercise counter */
+
+ol {
+	/* Remove the default left padding */
+	padding-left: 0;
+}
+
+ol>li {
+	/* Create a positioning context */
+	position: relative;
+	/* Disable the normal item numbering */
+	list-style: none;
+	width: 90%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 0px;
+	padding-left: 110px;
+}
+
+ol>li:before {
+	/* Use the counter as content */
+	content: "Exercise " counter(li)".";
+	/* Increment the counter by 1 */
+	counter-increment: li;
+	position: absolute;
+	color: #00539B;
+	left: -0.5px;
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+ol ul {
+  width: 92%;
+}
+
+ol ol {
+	counter-reset: subitem;
+}
+
+td {
+  font-size: 16px;
+}
+
+/*Style for the Footer*/
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #7C878E;
+  font-size: 14px;
+}
+
+/*Commit message*/
+
+div .commit {
+  font-size: 16px;
+  font-weight: 400;
+  color: #7a0404;
+  text-decoration: italic;
+}

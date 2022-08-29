@@ -1,0 +1,91 @@
+---
+title: "Practice questions: exploratory data analysis"
+output: html_document
+css: ../labs/labs.css
+date: 'July 1 2022'
+---
+
+## About
+
+Below are some practice exam questions based on week 1 material which covered exploratory data analysis. Please note that the exam will also cover material introduced in week 2.
+
+## Getting started
+
+Paste the code below to download a template file to answer the exercises.
+
+```{r download-template, eval=F}
+download.file("https://sta101.github.io/static/practice/eda_practice_template.Rmd",
+              destfile = "eda-practice.rmd")
+```
+
+
+**Libraries**
+
+```{r load-library, warning = F, message = F}
+library(tidyverse)
+library(viridis)
+```
+
+**Data**
+
+The dataset for these practice questions comes from the `ggplot` package (loaded with the tidyverse) and contains fuel economy data on 38 popular models of cars from 1999 to 2008. Be sure to check out `?mpg` for more info, especially to understand the column names.
+
+```{r load-data, warning = F, message = F}
+data(mpg)
+```
+
+
+## Exercises
+
+0. How many observations are in the `mpg` data set? How many variables?
+
+1. Create a scatterplot with engine displacement on the x-axis and city miles per gallon (mpg) on the y-axis, color the points by the number of cylinders the vehicle has. Be sure to appropriately label the axes and give your graph a title. Discuss any trends you notice.
+
+2. What proportion of vehicles in the dataset have a 4 cylinder engine? What proportion have an 8 cylinder engine?
+
+3. Create a new column called `avg_mpg` that reports the average mpg a vehicle gets between city and highway. Save your new data frame as `mpg2`.
+
+```{r, echo = F, message = F, eval = F}
+mpg2 = mpg %>%
+  mutate(avg_mpg = (hwy + cty) / 2)
+```
+
+4. Recreate the plot below. Make sure axes and title labels are exactly matching, including spelling, capitalization, etc.
+
+- Hint: you should use your `mpg2` dataset. Also, if you try, e.g. `aes(x = cyl)` you will not see the correct plot because `R` thinks the number of cylinders is continuous. Instead try `aes(x = as.factor(cyl))` to make it a discrete category. If you are unsure what geometry to use, check out a list of common geometries [here](https://ggplot2.tidyverse.org/reference/).
+
+```{r echo = F}
+mpg %>%
+  mutate(avg_mpg = (cty + hwy)/2) %>%
+  filter(cyl != 5) %>%
+  ggplot(aes(x = as.factor(cyl), y = avg_mpg)) + 
+  geom_boxplot() +
+  labs(x = "Cylinders", y = "Average MPG", title = "MPG by Engine Cylinders")
+```
+
+5. Create a new column titled `mpg_class` that labels a vehicle as "great mpg" if average mpg is greater than or equal to 25 mpg, and "not great mpg" if average mpg is less than 25 mpg. Next, recreate the plot below. Make sure axes and title labels are exactly matching, including spelling, capitalization, etc. Is the figure informative? Why or why not?
+
+- Hint: start with your `mpg2` dataset again. You will need to use `filter()` paired with the appropriate logic to plot only a subset of the data. See [ae3](/static/appex/ae3.html) for more information on `filter()`. You will need to use the viridis package to obtain the correct color scheme. check `?scale_fill_viridis` for more information. 
+
+```{r, echo = F}
+mpg %>%
+  mutate(avg_mpg = (cty + hwy)/2) %>%
+  mutate(mpg_class = ifelse(avg_mpg >= 25, "great MPG", "not great MPG" )) %>%
+  filter(manufacturer %in% c("dodge", "volkswagen", "honda", "toyota")) %>%
+  ggplot(aes(x = manufacturer, fill = mpg_class)) +
+  geom_bar(position = 'fill') +
+  scale_fill_viridis(discrete = TRUE) + 
+  labs(x = "Manufacturer", y = "Count", fill = "MPG class",
+       title = "MPG Classification % by Manufacturer")
+```
+
+6. Find the mean `avg_mpg` per manufacturer and then sort the resulting data frame so that the most fuel-efficient auto manufacturers appear first. (i.e. highest MPG manufacturers at the top). Print the five most fuel-efficient manufacturers to the screen.
+
+```{r, eval=F, message = F, echo = F}
+mpg2 %>%
+  group_by(manufacturer) %>%
+  summarize(mean_avg_mpg = mean(avg_mpg)) %>%
+  arrange(desc(mean_avg_mpg)) %>%
+  slice_head(n = 5)
+```
+

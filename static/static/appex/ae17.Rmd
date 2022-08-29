@@ -1,0 +1,179 @@
+---
+title: "Forensic genetic analysis"
+date: "August 4, 2022"
+output: html_document
+---
+
+## Bulletin
+
+-   Final project presentations due tonight 11:59pm to sakai discussion forum
+
+-   Final project report due tomorrow, August 5 at 11:59pm to Gradescope
+
+-   Be sure to comment on your assigned team's projects by tomorrow evening as well.
+
+- TA evaluations
+
+## Getting started
+
+Download this application exercise by pasting the code below into your console
+
+    download.file("https://sta101.github.io/static/appex/ae17.Rmd",
+    destfile = "ae17.rmd")
+
+## Load packages
+
+```{r, message = F}
+library(tidyverse)
+```
+
+## Background
+
+DNA evidence is sometimes used in court. In this AE, you will learn about the case of Dr. Schmidt from Lafayette, Louisiana, who was accused of infecting his former lover with HIV through a contaminated blood sample of one of his patients. Read more about this court case [here](https://www.wired.com/story/strands-of-evidence-genetic-testing-trial/) and [here](https://www.science.org/content/article/novel-dna-evidence-may-get-its-day-court).
+
+## Today
+
+By the end of today you will
+
+-   be able to critical think about the use of DNA evidence and statistics in court
+
+-   analyze non-numerical data rigorously
+
+## Explore the data
+
+```{r load-data, message = F, warning = F }
+df_HIV = read_csv("https://sta101.github.io/static/appex/data/HIV.csv")
+```
+
+`df_HIV` contains several observations of HIV genomes. Within this data set are two samples with special ids: `sample1` and `sample2`. 
+
+For the purpose of this exercise, you might imagine `sample1` is associated with the HIV sampled from the plaintiff while `sample2` belongs to that of the defendant's patient.
+
+Fundamentally, we are interested in whether or not `sample1` and `sample2` are closely related.
+
+#### Exercise 1
+
+-   how many observations are present in the data set?
+
+-   what are the observational units?
+
+-   how many bases does the first DNA sequence contain? Hint: use the `R` function `nchar`.
+
+## Extracting a sub-sequence of DNA
+
+For computational speed, we will have to work with shorter sub-sequences of DNA.
+
+The function `str_sub` from the package `stringr` in the `Tidyverse` can be used to extract a sub-string from a character vector.
+
+#### Exercise 2
+
+-   how many arguments does the function `str_sub` take? What does each argument do?
+
+-   use `str_sub` to extract (i) the first four letters of the words *statistics*, (ii) the sub-string between the third and the seventh letters, and (iii) the last four letters
+
+```{r ex-2-1}
+term = "statistics"
+```
+
+
+Let's use `str_sub` to extract the first 500 bases from the DNA sequences using the template below.
+
+```{r ex-2-2, eval = F}
+HIV = df_HIV %>% 
+  mutate(dna_short = ___) %>%
+  select(-dna)
+```
+
+-   use `nchar` to verify that each sub-sequence `dna_short` contains 500 bases. Hint: `nchar` is vectorized, meaning if given a vector input, it will return a vector output.
+
+## Computing the pairwise distances between the DNA sequence
+
+Now that the data have been prepared, we will establish how similar/different each DNA sequence is to the others. To accomplish this, given two DNA sequences we will count the number of bases for which they differ. The rationale for this step is the following. If two DNA differ on many bases, it means that they have evolved separately for a while and had the time to undergo numerous mutations. On the other hand, if they only differ on a few bases, it means that the two sequences have only recently began to evolve separately.
+
+The following code creates a data frame where each row corresponds to a pair of DNA sequences.
+
+```{r pair-seq, eval = F}
+d_pairs <- combn(HIV$person_id, 2) %>%
+  t() %>% # go from wide matrix (2 rows) to long matrix (2 columns)
+  as_tibble() %>%
+  rename(id1 = V1, id2 = V2) %>%
+  left_join(HIV, by = c("id1" = "person_id")) %>% # add dna for person 1
+  rename(dna1 = dna_short) %>%
+  left_join(HIV, by = c("id2" = "person_id")) %>% # add dna for person 1
+  rename(dna2 = dna_short)
+```
+
+**Question**: What are the dimensions of `d_pairs`?
+
+### Hamming distance
+
+To measure the distance between two sequences, we first consider the Hamming distance
+
+$$
+d(i,j) = \sum_{k=1}^n 1\{\text{dna}_{ik} \neq \text{dna}_{jk}\} 
+$$
+
+which counts the number of elements that are different between two sequences. Here $d(i,j)$ denotes the Hamming distance between sequences $i$ and $j$, and $1\{\text{dna}_{ik} \neq \text{dna}_{jk}\}$ is equal to $1$ is the $k$-th element of sequence $i$ is different from that of sequence $j$.
+
+The following code computes the Hamming distance between each pair of sequences. We first construct function `compute_hamming` which computes the Hamming distance between two DNA sequences. We then apply this function to each row of the `d_pairs` data frame.
+
+```{r get-hamming, eval = F}
+compute_hamming <- function(dna1, dna2) {
+  
+  dna1_split <- str_split(dna1, pattern = "", simplify = TRUE)
+  dna2_split <- str_split(dna2, pattern = "", simplify = TRUE)
+  
+  hamming_distance <- sum(dna1_split != dna2_split)
+  return(hamming_distance)
+}
+
+d_hamming <- d_pairs %>%
+  mutate(
+    distance_ham = list(dna1, dna2) %>% pmap_dbl(compute_hamming)
+  )
+```
+
+#### Exercise 3
+
+- Make a histogram of the Hamming distances and describe the distribution.
+
+```{r ex-3-1}
+
+```
+
+- Find the 10 pairs of DNA sequences that are the closest to the plaintiff's sequence in terms of Hamming distance.
+
+```{r ex-3-2}
+
+```
+
+- Which sequence is most closely related to the plaintiff's sequence?
+
+- How many differences are there between the DNA sequence of the plaintiff and that of the defendant's patient?
+
+- Can you identify a shortcoming of the Hamming distance? Does a large Hamming distance necessarily imply that the two DNA sequences are very different?
+
+### An alternative measure of distance for DNA sequences
+
+Let us now consider an alternative measure of distance for DNA sequences.
+
+```{r adist-measure, eval = F}
+d_biology <- d_pairs %>%
+  mutate(
+    distance_bio = list(dna1, dna2) %>% pmap_dbl(adist)
+    )
+```
+
+#### Exercise 4
+
+- Again, make a histogram of the new distance and find the 10 DNA sequences closest to the plaintiff's.
+
+```{r ex-4}
+
+```
+
+- Which of the two measures do you find more adequate for these data?
+
+#### Exercise 5
+
+- Imagine that you are a juror in this court case, would you find this piece of evidence convincing? Would you like to have more information? If so, what additional information would you need? Now, imagine that you are a judge; do you think that this piece of evidence should be admitted to court? Why?

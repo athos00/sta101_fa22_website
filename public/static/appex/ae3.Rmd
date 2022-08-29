@@ -1,0 +1,209 @@
+---
+title: "Exploratory data II: penguins"
+subtitle: "STA 101"
+output: html_document
+date: "June 30, 2022"
+---
+
+## Bulletin
+
+- **Lab** today is remote. See email / announcement on sakai
+- No class/office hours Monday. Happy 4th of July! Next week only, my usual Monday office hours will be held on Tuesday July 5th directly after class
+- [Lab 1](https://sta101.github.io/static/labs/lab01.html) due tomorrow July 1st at 11:59pm on gradescope
+- [Lab 2](https://sta101.github.io/static/labs/lab02.html) due Tuesday July 5th at 11:59pm
+- Reminder: Exam 1 will be released next Thursday
+
+
+### Packages
+
+```{r load-library, message = F, warning = F}
+library(tidyverse)
+library(palmerpenguins)
+library(viridis) # we'll use to customize colors
+```
+
+### Data
+
+```{r load-data, message = F, warning = F}
+data(penguins)
+```
+
+
+## Today
+
+We'll begin today by completing [ae2](https://sta101.github.io/static/appex/ae2.html).
+
+By the end of today you will...
+
+- harness the power of `filter()`,
+- understand the basics of the grammar of graphics and create plots with `ggplot`
+
+
+## Filtering revisited
+
+The table of logical operators below will be helpful as you work with filtering.
+
+|operator | definition |
+|:----------|:--------|
+| `<` |   is less than? |
+| `<=` |   is less than or equal to? |
+| `>` |   is greater than? |
+| `>=` |   is greater than or equal to? |
+| `==` |   is exactly equal to? |
+| `!=` |   is not equal to? |
+| `is.na(x)` |   is x NA? |
+| `!is.na(x)` |   is x not NA? |
+| `x %in% y` |   is x in y? |
+| `!(x %in% y)` |   is x not in y? |
+| `x & y` |   is x AND y? |
+| `x \| y` |   is x OR y? |
+| `!x` |   is not x? |
+
+### Examples
+
+How many penguins have flipper length > 200 mm?
+
+```{r penguin-filter-1}
+penguins %>%
+  filter(flipper_length_mm > 200)
+```
+
+- We could also pipe into `nrow()` to quickly grab the number of rows. Try it!
+
+How many **female** penguins have flipper length > 200 mm?
+
+```{r penguin-filter-2}
+penguins %>%
+  filter(flipper_length_mm > 200 & (sex == "female"))
+```
+
+For how many penguins was flipper length not measured (i.e. reported as NA)?
+
+```{r penguin-filter-3}
+penguins %>%
+  filter(is.na(flipper_length_mm))
+```
+
+What proportion of penguins are from each island?
+
+```{r penguin-filter-4}
+penguins %>%
+  count(island) %>%
+  mutate(proportion = n / sum(n))
+```
+
+#### Exercise:
+What proportion of penguins are from each species?
+
+```{r prop-species}
+# code here
+```
+
+
+
+## Plots
+
+The procedure used to construct plots can be summarized using the code below.
+
+```{r eval = FALSE}
+ggplot(data = [dataset], 
+       mapping = aes(x = [x-variable], y = [y-variable])) +
+   geom_xxx() +
+   geom_xxx() + 
+  other options
+```
+
+### Example: bar plot
+
+```{r ex-bar-plot}
+ggplot(data = penguins, 
+       mapping = aes(x = species)) +
+  geom_bar() +
+  labs(x = "Species", y = "Count", title = "Palmer penguin species")
+```
+
+### Example: stacked bar plot
+
+```{r bar-plot-fill}
+penguins %>%
+  filter(!is.na(sex)) %>%
+ggplot(mapping = aes(x = species, fill = sex)) +
+  geom_bar(position = "fill") +
+  labs(x = "Species", y = "Count", title = "Palmer penguin species")
+```
+
+- try with and without `position = "fill"`
+
+### Aesthetics
+
+An aesthetic is a visual property in your plot that is derived from the data.
+
+- shape
+- color
+- size
+- alpha (transparency)
+
+We can map a variable in our dataset to a color, a size, a transparency, and so on. The aesthetics that can be used with each `geom_` can be found in the documentation.
+
+Here we are going to use the viridis package, which has more color-blind accessible colors. `scale_color_viridis` specifies which colors you want to use. You can learn more about the options [here](https://www.rdocumentation.org/packages/viridis/versions/0.5.1/topics/scale_color_viridis).
+
+Other sources that can be helpful in devising accessible color schemes include [Color Brewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3), the [Wes Anderson package](https://github.com/karthik/wesanderson), and the [cividis package](https://github.com/marcosci/cividis).
+
+This visualization shows a scatterplot of bill length (x variable) and flipper length (y variable). Using the viridis function, we make points for male penguins purple and female penguins yellow. We also add axes labels and a title.
+
+```{r aesthetic-1}
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm, y = flipper_length_mm,
+                     color = sex)) + 
+   geom_point() + 
+   labs(title = "Flipper length vs bill length",
+        x = "Bill length (mm)", y = "Flipper length (mm)") + 
+        scale_color_viridis(discrete=TRUE, option = "D", name="Sex")
+```
+
+#### Exercise:
+Can you remove the NAs from the above visualization?
+
+**Question:** What will the visualization look like below? Write your answer 
+down before running the code.
+
+```{r aesthetic-2, eval = F}
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm, y = flipper_length_mm,
+                     shape = sex)) + 
+   geom_point() + 
+   labs(title = "Flipper length vs bill length",
+        x = "Bill length (mm)", y = "Flipper length (mm)") + 
+        scale_color_viridis(discrete=TRUE, option = "D", name="Sex")
+```
+### Faceting
+
+We can use smaller plots to display different subsets of the data using faceting. This is helpful to examine conditional relationships.
+
+```{r faceting-1}
+penguins %>%
+  ggplot(aes(x = bill_length_mm, flipper_length_mm, color = island)) +
+  geom_point() +
+  facet_wrap(~ species) +
+  labs(x = "Bill length (mm)", y = "Flipper length (mm)", color = "Island")
+```
+
+```{r faceting-2}
+penguins %>%
+  ggplot(aes(x = bill_length_mm, flipper_length_mm, color = species)) +
+  geom_point() +
+  facet_wrap(~ island) +
+  labs(x = "Bill length (mm)", y = "Flipper length (mm)", color = "Island") +
+  scale_color_viridis(discrete = TRUE)
+```
+
+## `ggplot` activity
+
+```{r ggplot-activity}
+# code here
+```
+
+## Additional resources
+
+- Find more ggplot geometries at [https://ggplot2.tidyverse.org/reference/](https://ggplot2.tidyverse.org/reference/)
+

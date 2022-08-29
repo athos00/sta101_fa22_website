@@ -1,0 +1,116 @@
+---
+title: "Welcome to R"
+subtitle: "STA 101"
+output: html_document
+date: "June 27, 2022"
+---
+
+## Today
+
+By the end of today you will... 
+
+- begin to know your way around RStudio
+- be able to define package, data frame, variable, function, argument
+- use a few functions, including: `glimpse()`, `count()`, `group_by()` and `summarize()`
+- play with data
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console** (bottom left of screen)
+
+```{r download-rmd, eval=F}
+download.file("https://sta101.github.io/static/appex/ae1.Rmd",
+destfile = "ae1.rmd")
+```
+
+## R as a calculator
+
+- Use `R` as a calculator by typing the following into the console:
+
+```
+5 * 5 + 10
+```
+
+```
+x = 3
+x + x^2
+```
+
+```
+x = 1:10
+x * 7
+```
+
+In the last couple examples we save some value as the object "x".
+
+We can "print" x to the screen by typing the name of the object ("x") in the console or in a code chunk.
+
+## Tour of RStudio
+
+- environment
+- `R` functions
+- loading and viewing a data frame
+- accessing a variable in a data frame
+
+
+## Load a package
+
+```{r load-package, warning=F, message=F}
+library(tidyverse) 
+```
+
+## Load data
+```{r load-data, warning=F, message=F}
+roster = read_csv("https://sta101.github.io/static/appex/data/sample-roster.csv")
+survey = read_csv("https://sta101.github.io/static/appex/data/sample-survey.csv")
+```
+
+**Question**: What objects store the data in the code chunk above? Can you print them to the screen?
+
+Create a new code chunk with `CMD+OPTION+I` (mac) or `CTRL+ALT+I` (windows/linux)
+
+So far we've already seen two functions. `library` and `read_csv`. **Functions** in R are attached to parentheses and take an input, aka an **argument**, and often (but not always) return an output. To learn more about a function, you can check the documentation with `?`, e.g. `?library`.
+
+
+
+## Demos
+
+Let's glimpse the data frame. 
+
+```{r glimpse-data}
+glimpse(survey)
+```
+
+To look at all of it, we can use `view()`
+
+```{r view-data}
+view(survey)
+```
+
+**View the roster data in the console**
+
+Terminology: "columns" of a dataframe are called **variables** whereas "rows" are **observations**.
+
+**Question: How many variables are in the data frame `survey`? How many observations? What about the data frame `roster`?**
+
+Why must I input net-id email?
+
+```{r join-roster, eval=F}
+roster %>% 
+  left_join(survey, by = "email")
+```
+
+Count the benders in the data
+
+```{r count-benders}
+count(survey, bender)
+```
+
+
+```{r count-cat-dog-by-group}
+survey %>%
+  mutate(pet = ifelse(cat_dog == "dog", 1, 0)) %>%
+  group_by(bender) %>%
+  summarize(proportion_dog = mean(pet))
+```
+

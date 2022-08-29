@@ -1,0 +1,316 @@
+---
+title: "Random variables, probabilities and distributions"
+output: html_document
+date: "July 14, 2022"
+---
+
+## Bulletin
+
+- No lab next week
+- Regression project due next Tuesday
+- Exam 2 next Thursday
+- Extra exam review session / office hours next week (time TBD)
+
+## Today
+
+By the end of today you will...
+
+- be able to define and give examples of sample space, outcomes, events, probabilities, conditional, marginal, joint and independent probabilities, binomial distribution, normal distribution, sample, continuous and discrete random variables.
+- practice computing probabilites, visualizing distributions and simulating samples from binomial and normal distributions
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101.github.io/static/appex/ae8.Rmd",
+destfile = "ae8.rmd")
+```
+
+## Load packages
+
+```{r load-libraries, message = F, warning = F}
+library(tidyverse)
+library(knitr) # contains kable()
+```
+
+## Notes
+
+
+### Sample space
+
+The **sample space** is the set of all possible outcomes of an experiment.
+
+#### Discrete examples
+
+- Experiment 1: You flip a coin once. The sample space is $\{H, T\}$.
+
+We separate each outcome by a comma and use brackets $\{ \}$ to denote a "set".
+
+- Experiment 2: You flip a coin twice. The sample space is $\{ HH, HT, TH, TT\}$
+
+- Experiment 3: You roll a die once. The sample space is $\{ 1, 2, 3, 4, 5, 6\}$
+
+- Experiment 4: You send out a survey asking participants whether they prefer cats or dogs. The sample space is $\{ \text{Cats}, \text{Dogs} \}$
+
+- Experiment 5: A car manufacturer makes 100 vehicles. You count the number of recalls. The sample space is $\{0, 1, 2, 3, \ldots, 99, 100 \}$
+
+#### Continuous examples
+
+- Experiment 6: You observe the numeric grade you earn in a course. The sample space is $[0, 100]$
+
+Here we write the lower bound and upper bound of the sample space and assume we can observe all values in-between. Brackets, $[$ $]$, are inclusive of the end values while parentheses, $($ $)$, are not.
+
+- Experiment 7: You measure the tail length of American alligators The sample space is $(0, c ]$ feet where $c$ is the maximum tail length of an alligator, e.g. $c$ might be approximately 10.
+
+- Experiment 8: You measure the geographic coordinates (longitude and latitude) of a COVID case. The sample space is $[-90, 90]$ for latitude and $[-180, 180 ]$ for longitude. 
+
+### Events
+
+An **event** is a collection of 1 or more outcomes. Two events are said to be **disjoint** if they cannot occur at the same time.
+
+#### Examples
+
+- You roll a die once. Let *A* be the event that you roll an even number, i.e. *A* $= \{2, 4, 6 \}$. Let *B* be the event you roll a 1 or a 2, i.e. *B* $= \{1, 2 \}$. *A* and *B* are **not** disjoint.
+
+- A car manufacturer makes 100 vehicles. You count the number of recalls. Let *C* be the event you see fewer than 10 recalls. *C* $= \{0, 1, 2, 3, \ldots, 8, 9 \}$
+
+- You observe the numeric grade you earn in a course. Let *D* be the event you receive a letter grade of "A". *D* $= [93, 100]$. Let *E* be the event that you earn a "B" or worse. *E* $= [0, 87)$. *D* and *E* **are disjoint** events because they cannot occur simultaneously.
+
+
+### Probability
+
+A **probability** is the long-run frequency of an *event*. In other words, the proportion of times we would see an event occur if we could repeat an experiment an infinite number of times. Probabilities take values between 0 and 1 inclusive.
+
+If *A* and *B* are two disjoint events, then the probability of *A* or *B* occuring is equal to the probability of *A* plus the probability of *B*. More concisely, Pr(*A* or *B*) = Pr(*A*) + Pr(*B*).
+
+#### More definitions
+
+Let *A* and *B* be two events.
+
+- Marginal probability: The probability an event occurs regardless of values of the other event
+  - P(*A*)
+  - Example: What’s the probability a student in STA101 is an airbender?
+- Joint probability: The probability two or more events simultaneously occur
+  - Example: What’s the probability a student is an airbender and favors dogs?
+  - P(*A* and *B*)
+- Conditional probability: The probability an event occurs given the other has occurred
+  - P(*A*|*B*) or P(*B*|*A*)
+  - Example: What is the probability a student is an airbender given they favor dogs?
+  - P(*A*|*B*) = P(*A* and *B*) / P(*B*)
+- Independent events: Knowing one event has occurred does not lead to any change in the probability we assign to another event.
+  - P(*A*| *B*) = P(*A*) or P(*B*|*A*) = P(*B*)
+  - Example: P(Airbender | dogs) = P(Airbender)
+
+Let's try out some of these ideas with data from the in-class survey.
+
+```{r load-data}
+class = read_csv("https://sta101.github.io/static/appex/data/sta101-su22.csv")
+```
+
+
+## Practice
+
+#### Exercise 1
+
+What is the probability a randomly selected STA101 student is a Earthbender?
+
+```{r ex-1-1}
+# code here
+```
+
+What is the probability a randomly selected STA101 student is a Waterbender given that they prefer cats?
+
+```{r ex-1-2}
+# code here
+```
+
+Let *A* be the event that a person prefers dogs and *B* be the event a person is an Airbender. Are events *A* and *B* independent?
+
+```{r ex-1-3}
+# code here
+```
+
+
+Let *C* be the event a person likes cats and *D* be the event a person is a Firebender. Are *C* and *D* disjoint?
+
+```{r ex-1-4}
+# code here
+```
+
+
+## Practical answers to simple questions in R
+
+#### Example
+
+You toss a fair coin 10 times. Let *A* be the event there is at least one head.
+
+What is the probability of *A*?
+
+`rbinom()` arguments:
+
+- size is the number of trials, aka the number of coin flips in 1 experiment
+- prob is the probability of a success
+- n defines how many times to repeat the entire experiment
+
+```{r coin-1}
+
+N = 100
+coin_flips = data.frame(num_heads = rbinom(n = N, size = 10, prob = 0.5))
+
+coin_flips %>%
+  filter(num_heads >=1) %>%
+  nrow() / N
+```
+
+
+```{r visualize-binomial}
+coin_flips %>%
+  ggplot(aes(x = num_heads)) +
+  geom_histogram() +
+  theme_bw() +
+  labs(x = "Number of heads", y  = "Count", title = "Distribution of the total number of heads seen in 10 coin flips")
+```
+
+
+#### Example
+
+How many people prefer dogs to cats? Make your tables pretty with `kable()`. Read `?kable` for more details
+
+```{r prefer-dogs-to-cats}
+class %>%
+  count(pet) %>%
+  kable(col.names = c("Pet", "Number"))
+```
+
+
+`sample()` is a powerful function. 17/20 students in STA101 prefer dogs to cats. Let's assume ask 10 more people if they prefer dogs to cats and assume that 17/20 is the true proportion of people that prefer dogs.
+
+```{r sample-example}
+set.seed(1) # ensure you and I will both get the same "random" result
+
+outcomes = c("Dogs", "Cats")
+
+sample(outcomes, size = 10, replace = TRUE, prob = c(0.85,0.15))
+
+```
+
+Alternatively, we could have used `rbinom()`. When using a `rbinom()` we must define our outcomes "success" (1) and a "failure" (0). This is arbitrary and does not reflect the outcome itself being positive or negative. Let's call "Dogs" a success and "Cats" a failure (1 and 0 respectively).
+
+```{r rbinom-example}
+set.seed(1)
+# we survey 10 people 1 time
+numberOfPeople = 10 
+numberOfSurveys = 1
+probOfSuccess = 17 / 20
+rbinom(n = numberOfSurveys, size = numberOfPeople, prob = probOfSuccess)
+```
+
+
+#### Example
+
+You roll a six-sided die five times. Let *B* be the event that you roll exactly one "2". What is the probability of *B*?
+
+```{r dice-1}
+outcomes = 1:6
+one.roll = function() {
+  roll = sample(outcomes, size = 1, replace = TRUE)
+  return(roll)
+}
+
+five.rolls = function() {
+  rolls = replicate(5, one.roll())
+  return(sum(rolls == 2) == 1)
+}
+
+samples = replicate(10000, five.rolls())
+mean(samples)
+
+```
+
+#### Exercise 2
+
+Modify the code above to instead generate 1000 random samples of bender element, e.g. "Airbender", "Waterbender", etc. where each one is equally likely. Visualize the distribution using `geom_bar()`.
+
+```{r ex-2}
+# code here
+```
+
+## Random variables
+
+You may not have realized it, but we've been talking about **random variables**. A **random variable** is a function that maps an observed outcome to a number.
+
+For example, when you ask someone what pet they prefer, and map "Dog" to 1 and "Cat" to 0, you are defining a random variable!
+
+Random variables have distributions...
+
+## Distributions
+
+### Binomial distribution
+
+The **binomial distribution** models the number of success in a series of independent and identical binary trials and is defined by two parameters:
+
+- $k$, the total number of trials,
+- $p$, the probability of a success in an individual trial.
+
+The sample space of a binomial random variable is $\{0, 1, \ldots, k \}$. In words, there could be up to $k$ success in an binomial experiment.
+
+
+#### Exercise 3
+
+Assume that the true proportion of people who prefer dogs is in fact 17 / 20. 
+
+Let's perform a simulation. Go out and ask 100 people if they prefer cats or dogs using `rbinom()` (where 0 is cat and 1 is dog). This is called a **single sample** of 100 individuals. What proportion of people prefer dogs to cats in your new sample? 
+
+Now repeat this 10 times. What is the average number of people **in each sample**? Plot the distribution of the mean across all 10 samples.
+
+Now ask 100 samples of 100 people the same question and plot the distribution of the mean.
+
+Now ask 1000 samples of 100 people the same question and plot the distribution of the mean. What do you notice?
+
+Note: you might need to play with `binwidth` argument of `geom_histogram()` for the best results.
+
+```{r}
+set.seed(714)
+# code here
+```
+
+### Normal distribution
+
+The **normal distribution**, also known as "Gaussian distribution" is a distribution of a continuous random variable. The sample space of a normal random variable is $\{- \infty, + \infty \}$ and is defined by two parameters: a mean $\mu$ and a standard deviation $\sigma$.
+
+We can sample `N` times from a normal with mean `mu` and standard deviation `s` using `rnorm(n = N, mean = mu, sd = s)`.
+
+Let's visualize the normal function curve using the code below.
+
+```{r visualize-normal}
+
+mu1 = 100
+s1 = 6
+
+mu2 = 105
+s2 = 3
+
+ggplot(data = data.frame(x = c(mu1 - s1*3, mu1 + s1*3)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = mu1, sd = s1),
+                color = "steelblue") +
+  stat_function(fun = dnorm, args = list(mean = mu2, sd = s2),
+                color = "orange") + 
+  theme_bw() +
+  labs(title = "Two normal curves")
+```
+
+#### Exercise 4
+
+Try setting `mu2` to 99 and `s2` to 4. What do you notice? Play with a few more settings and describe what the mean and standard deviation do to the shape of the curve.
+
+
+#### Exercise 5
+
+Paste the code of your histogram from exercise 3 below but change your geometry to `geom_histogram(aes(y = ..density..))`. This will rescale your histogram so that the area under the curve is 1. Next, use the `stat_function` code above as a template to superimpose a normal distribution on top of your histogram. Adjust the mean and standard deviation until you obtain a good looking fit. What do you notice?
+
+```{r ex-5}
+set.seed(714)
+# code here
+```
+

@@ -1,0 +1,159 @@
+---
+title: "Lab 02: Take Courage with data analysis"
+output: html_document
+date: "Due Tuesday July 5 at 11:59pm"
+css: "labs.css"
+---
+
+
+By the end of this lab you will effectively visualize numeric and categorical data.
+
+## Getting started
+
+\ 1. Download the lab template by pasting the code below in your **console**:
+
+```{r download-file, eval=F}
+download.file("https://sta101.github.io/static/labs/lab02_template.Rmd",
+              destfile = "lab02.rmd")
+```
+
+\ 2. Under the "Files" tab on the right hand side, click on `lab02.rmd` to open the lab template.
+
+
+\ 3. Complete the exercises below using the space provided.
+
+## Warm up
+
+Be sure to update the YAML at the top of the document to include your name and the date.
+
+### Packages
+
+Today we will use our standard 
+```{r load-packages, warning=F, message=F}
+library(tidyverse)
+```
+
+### Data
+
+Today, we will be working with data from the first three full seasons of the NC Courage, a highly successful National Women’s Soccer League (NWSL) team located near Duke in Cary, NC. The Courage moved to the Triangle from Western New York in 2017 and had three epic seasons in NC, culminating in winning the championship game that was held at their stadium in Cary in 2019! (Data for this lab was sourced from the `nwslR` package on Github, and verified with the NC Courage website by Meredith Brown in a previous semester.)
+
+```{r load-data, warning=F, message=F}
+courage = read_csv("https://sta101.github.io/static/labs/data/courage.csv")
+```
+
+## Exercises
+
+1. How many observations are there in the courage data frame? What does each observation in the `courage` data frame represent? Write your answer as narrative under "Exercise 1". You do not need to create a new code chunk here.
+
+2. How many games did the Courage win, lose and tie between 2017 and 2019 seasons? Show your code in the space provided under "Exercise 2" and write your response as narrative.
+
+3. How many points do the Courage typically win by (on average)? Use the code chunk below to get started. In the code below, `abs()` is the absolute value function. Why do we want to use this absolute value function here? Write your answers as narrative (but keep the code chunk to show your work).
+
+Hint: we are only interested in games the Courage win.
+
+```{r win-by, eval=F}
+courage %>%
+  mutate(win_pts = abs(home_pts - away_pts)) %>%
+  filter(___) %>%
+  summarize(___)
+```
+
+
+4. How many points do the Courage score when they win (on average)? Note this is **different than how many points** they win by. How many points do the Courage score when they lose on average? Use the code below to get started. Note that we save the mutated data frame as "courage2" so that we can access it in a future question.
+
+```{r win-on-average, eval=F}
+courage2 = courage %>%
+  mutate(courage_pts = ifelse(home_team == "NC", home_pts, away_pts))
+
+courage2 %>%
+  group_by(___) %>%
+  summarize(___)
+```
+
+In the code chunk above we use `ifelse` logic to mutate a new column. 
+
+- `home_team == "NC"` finds all rows where the home team is NC Courage.
+- if the home team is NC Courage, then we assign the `courage_pts` column with `home_pts` otherwise (else) Courage must be the away team and we populate `courage_pts` with `away_pts`.
+
+
+5. Create a bar plot of Courage wins, losses and ties. Change the x-axis label to "Game outcome" and give the graph an informative title.
+
+6. Next we'll investigate visually whether or not NC Courage has a home-field advantage. To start, let's build on the `courage2` data frame. Add a new column called `home_courage` that takes the value "home" if Courage is the home team and "away" if Courage is the away team. Hint: use the `ifelse` logic from exercise 4.  Next, add another new column, `total_pts` that shows the sum total of points scored by both teams in a game. Finally add a third new column `opponent_pts` that shows the total points scored by the opposing team. Save your entire data frame as `courage3`.
+
+7. Using your `courage3` data frame from the previous exercise, create a scatter plot of `opponent_pts` (y) vs `courage_pts` (x). Color the scatter plot by whether the Courage are `home` or `away`. Add `geom_jitter` as well as the line $y=x$ using the code below. Finally, `facet` your plot by season. Be sure to include informative titles for the plot, axes and legend. What does the line represent? What does it mean for a point to fall above the line? Below the line? Write your answer in your lab narrative.
+
+```{r bigPlot, eval=F}
+# data-here %>%
+  ggplot(...code here...) + 
+  # insert faceting/labels code here +
+  geom_jitter(width = 0.1, height = 0.1) +
+  geom_abline(slope=1, intercept=0)
+```
+
+8. How many home games did Courage play in the 2017-2019 seasons? How many away games? Hint: use `courage3` to answer this question. Be sure to show your work (code) and answer the question (narrative).
+
+9. What proportion of **home** games do Courage win? What proportion of **away** games do Courage win/? Hint: use `courage3` and `count` as part of your solution. Do you think this is evidence of a home-field advantage? Why or why not?
+
+
+## A look at where we're headed...
+
+10. If we want to formally test whether or not the Courage have a home-field advantage, then we must first define what this means! In your own words, what do you think a home-field advantage means? (while there is a right answer, this part is graded for completion, so don't worry too much about answering this in *exactly* the right way.
+
+11. Now that you've defined what it means to have a home field advantage, define what it means to **not** have a home-field advantage.
+
+We'll pick-up here in the next class.
+
+## Formatting
+
+**Reminder**: For all assignments in this course there is a "formatting" component to the grade. To receive full points for "formatting", you must:
+
+\ 1. Have your name (and team name if appropriate) at the top of the knitted document
+
+\ 2. Pipes `%>%` and ggplot layers `+` should be followed by a newline (see formatting above)
+
+\ 3. Your code should be under the 80 character code limit. (You shouldn't have to scroll to see all your code on the knitted document).
+
+\ 4. All exercises and corresponding pages should be linked on gradescope.
+
+These necessary "tidyverse" style choices are good general practice and will help make your code more legible. For a more extensive list of recommended guidelines, [click here](https://style.tidyverse.org/).
+
+## Submitting to gradescope
+
+In this class, we will submit `.pdf` documents to Gradescope. Once you are fully satisfied with your lab, Knit to .pdf to create a .pdf document. You may notice that the formatting/theme of the report has changed – this is expected. Remember – you must turn in a .pdf file to the Gradescope page before the submission deadline for credit. To submit your assignment: 
+
+- Go to http://www.gradescope.com and click Log in in the top right corner. - Click `School Credentials`, `Duke NetID` and log in using your NetID credentials. 
+
+- Click on your STA 101 course. 
+
+- Click on the assignment, and you'll be prompted to submit it. 
+
+- Mark the pages associated with each exercise, 1 - 5. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”). - Select the first page of your .pdf submission to be associated with the "Formatting" section.
+
+Grading
+
+Total: 50 pts.
+
+    Exercise 1: 2pts
+
+    Exercise 2: 4pts
+
+    Exercise 3: 6pts
+
+    Exercise 4: 4pts
+
+    Exercise 5: 6pts
+    
+    Exercise 6: 6pts
+    
+    Exercise 7: 8pts
+    
+    Exercise 8: 3pts
+    
+    Exercise 9: 3pts
+    
+    Exercise 10: 1pt
+    
+    Exercise 11: 1pt
+    
+    Workflow and formatting:  6pts
+    

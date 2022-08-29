@@ -1,0 +1,45 @@
+---
+title: "Exam I"
+output:
+  html_document: default
+  pdf_document: default
+date: "Due Monday July 11 at 11:59pm"
+css: "../labs/labs.css"
+---
+
+
+# Find your exam 1 instructions on sakai:
+
+`resources` > `exams` > `exam01.pdf`
+
+## Rules
+
+-   This is an individual assignment.
+-   You may not collaborate or communicate anything about this exam to
+    **anyone** except the instructor. For example, you may not
+    communicate with other students, the TAs, or post/solicit help on
+    the internet, email or via any other method of communication.
+-   You may use `R`, as well as any notes, books, or existing internet
+    resources to answer exam questions. If you use a resource outside of those
+    we used for class, you should cite it.
+-   You must cite any code you use as inspiration. A failure to cite is
+    plagiarism. Cite any sources by providing a link to the original
+    source in your exam write-up.
+-   Do not email the TAs with questions.
+-   If you have questions email the instructor or message in slack. Questions should only be
+    about understanding the data or the exam’s instructions. You may not
+    ask questions on any topics from past assignments or material
+    related to the exam.
+-   The instructor will provide code debugging if needed, but this will
+    result in a **grade penalty**. Note: ask questions early. Questions asked between 6:00pm and 11:59pm Monday the 11th may not be answered. 
+    
+With the exception of **major emergencies**, late submissions will not be accepted. In the case of a major emergency, you should have your Dean send the instructor an excuse. Start and submit the exam early in
+order to **avoid any last-minute technical issues.**
+
+## Academic Integrity
+
+By taking this exam, you pledge to uphold the Duke Community Standard:
+
+-   I will not lie, cheat, or steal in my academic endeavors;
+-   I will conduct myself honorably in all my endeavors; and
+-   I will act if the Standard is compromised.

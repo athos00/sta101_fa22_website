@@ -1,0 +1,86 @@
+---
+title: "Peer review instructions"
+subtitle: "STA 101"
+date: "August 2, 2022"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer-2.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(rvest)
+```
+
+## Peer-review upload
+
+- Go to the [course sakai page](https://sakai.duke.edu/) and click discussions on the left-hand side navigate to `Discussions` > `Peer-review` > `Start a new conversation`
+
+- Make the title of your post "Team name -- project name" as in the example. Upload the most current draft  of your project report as a PDF.
+
+```{r echo = F}
+countdown::countdown(minutes = 5, seconds = 0)
+```
+
+---
+
+## Peer-review
+
+- Check the [team assignments page](https://duke.box.com/s/06n8tniiuroqg2ms0nkrbz79zsq73gpk) and click the `peer-review` tab at the bottom to access peer-review assignments. 
+
+- On the discussion forum, navigate to your assigned group's "Conversation" and click `Reply to initial message`. Answer the questions on the following slides and click `Post`. It might help to assign 1 group member to each slide of questions.
+
+---
+
+## Project motivation
+
+1. Is the research question clear and concisely stated? Be specific.
+
+2. Is the topic well motivated?
+
+3. Is enough context provided, or is anything unclear? E.g. variable names etc.
+
+4. Are the observations and relevant variables described?
+
+---
+
+## Methodology
+
+1. Do the methods proposed help answer the research question?
+
+2. Are any methods (regression, hypothesis testing etc.) adequately introduced and defended? E.g. if using regression, the full model equation should be listed here.
+
+3. Are the variables used pertinent to the question at hand? Are strengths and weaknesses of variables discussed?
+
+4. Include any additional comments, questions, or suggestions related to the choice of variables, statistical models, or general methods
+
+
+---
+
+## Cohesiveness of results
+
+1. Do the results match the methods? 
+
+2. If statistical methods are used, are relevant fitted equations and/or p-values, confidence intervals etc. reported?
+
+3. Do any included figures/plots help tell a story related to the initial research question? Are the plots useful? Note if any plots are unclear.
+
+4. Is the research question answered accurately and effectively? Is the answer to the research question summarized and supported by statistical arguments or effective visualizations?
+
+---
+
+## Formatting
+
+1. Is the paper professionally presented and generally free of distracting errors or other issues, including (but not limited to) insufficient organization or formatting; poor grammar, spelling, or punctuation; or too-small font? Is the overall paper easily readable for someone with your expert level of knowledge? Note any concerns here.
+
+2. Are all figures legible and appropriately labeled?
+
+3. Is the author name and team name printed at the top of the document?
+
+4. What questions and/or general feedback do you have for the authors?

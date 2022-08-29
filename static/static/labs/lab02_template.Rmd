@@ -1,0 +1,88 @@
+---
+title: "Lab 02 template"
+output: pdf_document
+date: 'Due Tuesday July 5 at 11:59pm'
+---
+
+- Reminder: add YAML to the top of this document (the "---" and all that goes between it) and update the title, author and date
+
+# Load Packages
+
+```{r load-packages, message = FALSE, warning = FALSE}
+library(tidyverse)
+``` 
+
+# Load data
+
+```{r load-data}
+courage = read_csv("https://sta101.github.io/static/labs/data/courage.csv")
+```
+
+
+# Exercise 1
+
+
+# Exercise 2
+
+```{r ex-2}
+
+```
+
+# Exercise 3
+
+```{r ex-3}
+# paste and edit code here
+```
+
+# Exercise 4 
+
+```{r ex-4}
+courage2 = courage %>%
+  mutate(courage_pts = ifelse(home_team == "NC", home_pts, away_pts))
+
+# paste and edit code here
+```
+
+# Exercise 5
+
+```{r ex-5-plot}
+# code here
+```
+
+# Exercise 6
+
+```{r ex-6}
+# code here
+```
+
+
+# Exercise 7
+
+Uncomment the code below 
+
+```{r ex-7}
+# data-here %>%
+ # ggplot(...code here...) + 
+  # insert faceting/labels code here +
+ # geom_jitter(width = 0.1, height = 0.1) +
+ # geom_abline(slope=1, intercept=0)
+```
+
+
+# Exercise 8
+
+```{r ex-8}
+
+```
+
+
+# Exercise 9
+
+```{r ex-9}
+
+```
+
+
+# Exercise 10
+
+# Exercise 11

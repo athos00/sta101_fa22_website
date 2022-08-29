@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STA101</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Alexander Fisher" />
+    <script src="day01_files/header-attrs-2.11/header-attrs.js"></script>
+    <link href="day01_files/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="day01_files/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer-2.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STA101
+## Data analysis and statistical inference
+### Prof. Alexander Fisher
+### Duke University
+
+---
+
+
+
+
+
+
+
+
+
+
+
+## Meet the professor
+
+.pull-left[
+
+- Alexander Fisher
+
+- [alexander.fisher@duke.edu](alexander.fisher@duke.edu)
+
+- [Office hours](https://sta101.github.io/)
+
+  - Monday/Wednesday 9:30-10:30am
+
+- A little bit about my research...
+]
+
+--
+
+.pull-right[
+
+&lt;img src="img/01/alignment_xaringan.png" width="60%" style="display: block; margin: auto;" /&gt;&lt;img src="img/01/basic_tree_xaringan.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Why data analysis and statistical inference?
+
+&lt;img src="img/01/prisonLetter.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+- `\(26 \times 25 \times 24 \times ... \times 2 \times 1 = 4 \times 10^{26}\)` possible combinations
+
+--
+
+- Check 100M per second
+
+- 120,000,000,000 years of computational time
+
+---
+## Why data analysis and statistical inference?
+
+- On January 28 1986 the Challenger space shuttle exploded 73 seconds after takeoff.
+
+- It was determined failed O rings were the cause: [https://en.wikipedia.org/wiki/O-ring](https://en.wikipedia.org/wiki/O-ring)
+
+- Could the Challenger disaster have been prevented?
+
+- [Challenger O-ring logistic regression](https://byuistats.github.io/Statistics-Notebook/Analyses/Logistic%20Regression/Examples/challengerLogisticReg.html)
+
+---
+## Why data analysis and statistical inference?
+
+- [Infectious disease tracker](https://nextstrain.org)
+
+- [José Ramirez is Baseball's Last-Appreciate Superstar](https://fivethirtyeight.com/features/jose-ramirez-is-baseballs-least-appreciated-superstar/)
+
+---
+## Course learning objectives
+
+By the end of this course you will:
+
+- explore, visualize and analyze real data in a reproducible manner
+
+- gain proficiency in the statistical computing language R and integrated development environment RStudio
+
+- work collaboratively to apply statistical analyses to a data set of your own choosing 
+
+- present and communicate statistical results effectively
+
+- be a critical consumer of statistics
+
+---
+
+## The course website
+
+[sta101.github.io](https://sta101.github.io)
+
+Here you'll find 
+
+- course schedule
+
+- syllabus
+
+- office hours
+
+and three important links: R containers, slack and the book.
+
+Let's take a look...
+
+---
+
+## Logistics
+
+- Prepare, participate, practice, perform
+
+- Policy: sharing / reusing code
+
+- Course community &amp; learning environment
+
+- Late policy and regrade requests
+
+- Resources
+
+---
+
+## Logistics
+
+- **Prepare, participate, practice, perform**
+
+  - prepare: watch preparatory videos or read from the book
+  - participate in lectures, labs, office hours and slack
+  - practice applying concepts on in-class application exercises
+  - perform on labs, exams and projects
+
+&lt;img src="img/01/assignments.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Logistics
+
+- **Policy: sharing / reusing code**
+
+  - you must always cite any code you copy or use as inspiration. Copied code without citation is plagiarism and will result in a 0 for the assignment
+
+  - copying and citing a large amount of code to satisfy a main objective of an assignment will result in a 0 for the assignment
+
+  - carefully read each assignment so you know what is permitted and what is not. If you are ever unsure what is allowed, please ask a member of the teaching team
+
+---
+
+## Logistics
+
+**Course community &amp; learning environment**
+
+
+Course community
+- Uphold the Duke Community Standard: 
+&gt; - I will not lie, cheat, or steal in my academic endeavors;
+&gt;- I will conduct myself honorably in all my endeavors; and
+&gt; - I will act if the Standard is compromised.
+
+--
+
+Learning environment
+
+  - Respect, honor, and celebrate our diverse community 
+  - Learning environment that is welcoming, inclusive, and accessible to everyone
+
+---
+
+## Logistics
+
+- **Late policy and regrade requests**
+
+  Late policy
+  - late work is not accepted
+  - to accommodate this strict policy, your lowest lab will be dropped
+  - missed lab or exams can only be excused under exceptional circumstances and requires a letter from the Dean
+  
+  Regrade requests
+  - must be submitted within 4 days of when the assignment is returned
+
+---
+## Logistics
+
+- **Resources**
+  
+  - Check the [syllabus](https://sta101.github.io/syllabus)
+  - Attend [office hours](https://duke.box.com/s/5d31hvs4jkwcn4qpwz827zkpiaic7177)
+  - Post on [slack](https://sta101-su22.slack.com/)
+  - Ask/email a member of the teaching team
+
+---
+
+## Additional resources
+
+**Academic Resource Center**
+
+The [Academic Resource Center (ARC)](https://arc.duke.edu/) offers free services to all students during their undergraduate careers at Duke. 
+
+Services include 
+  - Learning Consultations
+  - Peer Tutoring and Study Groups
+  - ADHD/LD Coaching, Outreach Workshops
+  - and more. 
+
+  
+Contact the ARC at [ARC@duke.edu](mailto:arc@duke.edu) or call 919-684-5917 to schedule an appointment. 
+
+---
+
+## Additional resources
+
+**CAPS**
+
+[Duke Counseling &amp; Psychological Services (CAPS)](https://studentaffairs.duke.edu/caps) helps Duke Students enhance strengths and develop abilities to successfully live, grow and learn in their personal and academic lives. 
+
+Services include 
+- brief individual and group counseling
+- couples counseling
+- outreach to student groups
+- and more...
+
+---
+
+## STA101 Strategy Guide
+
+**tl;dr**
+
+1. Bookmark the course webpage: [sta101.github.io](https://sta101.github.io)
+
+2. Check the schedule frequently
+
+3. Prepare (videos), Practice (in-class), Perform honorably (labs, exams, projects), Profit
+
+---
+
+## Your turn
+
+- Check your email / sakai announcements for slack invite.
+
+- Post on [slack](https://sta101-su22.slack.com/)
+
+- When you're done, fill out [this short questionnaire](https://forms.gle/UkBhKxZQvnh1mToRA)
+
+- **Notice**: Drop/Add ends Wednesday June 29 at 11:59pm
+
+<div class="countdown" id="timer_62d9bcc4" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+
+
+
+## Jump in
+
+- [Click here](https://cmgr.oit.duke.edu/containers) to go to the Duke containers website. Click "Reserve"
+
+- Onto today's application exercise: [ae1](https://sta101.github.io/static/appex/ae1.html)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

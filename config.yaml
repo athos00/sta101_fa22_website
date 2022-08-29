@@ -1,0 +1,65 @@
+baseURL: https://sta101.github.io
+languageCode: en-us
+defaultContentLanguage: en
+#title: STA101
+theme: hermit
+publishDir: 'public'
+pygmentsCodefences: yes
+pygmentsUseClasses: yes
+rssLimit: 10
+copyright: This work is licensed under a Creative Commons Attribution-NonCommercial
+  4.0 International License.
+enableEmoji: yes
+author:
+  name: Alexander Fisher
+blackfriday: {}
+taxonomies:
+  tag: tags
+params:
+  code_copy_button: yes
+  dateform: Jan 2, 2006
+  dateformNum: '2006-01-02'
+  dateformNumTime: 2006-01-02 15:04 -0700
+  dateformShort: Jan 2
+  footerCopyright: ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/"
+    target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+  homeSubtitle: Data analysis and statistical inference.
+  justifyContent: no
+  relatedPosts: no
+  social:
+    # - name: twitter
+    #   url: https://twitter.com/
+    # - name: instagram
+    #   url: https://instagram.com/
+    - name: R
+      url: https://cmgr.oit.duke.edu/containers
+       #<a class="inline-block" href="#"><img class="" src="{{ (default "Rlogo.svg" ) | relURL }}" alt="mysite" width="26"></a>
+    - name: slack
+      url: https://sta101-fa22.slack.com
+    #- name: github
+      #url: https://github.com/fisher-group/sta101
+    - name: book
+      url: https://openintro-ims.netlify.app/
+  themeColor: '#494f5c'
+  #themeColor: '#000000'
+  
+menu:
+  main:
+    - name: schedule
+      url: static/schedule/schedule.html
+      weight: 10
+    # - name: schedule
+    #   url: /schedule/schedule
+    #   weight: 10
+    - name: syllabus
+      url: /syllabus
+      weight: 20
+    - name: office hours
+      url: https://duke.box.com/
+      weight: 30
+    - name: practice
+      url: /practice
+      weight: 40
+    # - name: tutorials
+    # url: tutorials/
+    # weight: 40

@@ -1,0 +1,55 @@
+---
+title: "Project work day"
+output: html_document
+date: "August 1, 2022"
+---
+
+## Bulletin
+
+- lab 06 due tonight at 11:59pm
+
+- [Final project](/projects/final-project) proposal feedback in [gradescope](https://www.gradescope.com/)
+
+- Course evals open on [duke.evaluationkit.com](duke.evaluationkit.com). $>=16$ responses results in 1 pt on final project.
+
+- optional additional feedback open via "tests and quizzes" on sakai (also anonymous)
+
+
+
+
+## Today
+
+- Demo: peer-review report upload
+
+- Demo: presentation upload
+
+- Work on your methodology and results for peer-review in lab tomorrow!
+
+## Project guidelines
+
+For a **great** final project that earns the highest marks, you should focus on:
+
+1. **Why is your project interesting?** Be sure to motivate *why* you chose the research question you did.
+
+2. **Tell a cohesive story**. How do the methods help you answer your question? Do the results and methods match? Do you address limitations of your chosen methods in the discussion?
+
+3. **Defend your modeling choices**. E.g. Why do you use logistic regression instead of linear regression? Why is a hypothesis test appropriate in this context? Why do you examine the variables that you do to answer the question? 
+
+4. **Are there any useful insights you glean from the data?** E.g. some variables are input incorrectly, some observations are duplicated, etc.
+
+5. **Is your written report professionally formatted?** No code, nice `kable()` tables, labeled plots, describe any ambiguous terms from the data set, intuitive variable names used (not ill-formatted column names!), professional citation format (e.g. pasting APA, MLA, or using Bibtex like we talked about in class)
+
+## Presentation tips
+
+1. Be consistent. E.g. use one background color for all slides, try to re-use plot colors when possible, etc.
+
+2. Limit the text on each slide. If a slide can be all picture and no text, even better!
+
+3. Including slide number in the corner is a nice touch, but avoid keeping a running total (e.g. slide 3/6).
+
+4. Write a script of exactly what you want to say for your first two or three sentences.
+
+5. Allocate approximately 1-2 minutes per slide.
+
+6. Don't go over the presentation time limit (10 minutes!) There is no minimum presentation time, but there is a maximum.
+

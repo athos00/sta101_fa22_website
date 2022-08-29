@@ -1,0 +1,69 @@
+---
+title: "Exam 02 template"
+output: pdf_document
+date: 'Due Monday July 25 at 11:59pm'
+---
+
+- Reminder: add YAML to the top of this document (the "---" and all that goes between it) and update the title, author and date
+
+# Load Packages
+
+```{r load-packages, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(tidymodels)
+``` 
+
+# Load data
+
+```{r load-data}
+lemurs = read_csv("https://sta101.github.io/static/appex/data/lemurs.csv")
+```
+
+
+# Exercise 1
+
+```{r ex-1}
+
+```
+
+# Exercise 2
+
+```{r ex-2}
+
+```
+
+# Exercise 3
+
+```{r ex-3}
+
+```
+
+# Exercise 4
+
+```{r ex-4}
+
+```
+
+# Exercise 5
+
+```{r ex-5}
+
+```
+
+# Exercise 6
+
+```{r ex-6}
+
+```
+
+# Exercise 7
+
+```{r ex-7}
+
+```
+
+# Exercise 8
+
+```{r ex-8}
+set.seed(8)
+```

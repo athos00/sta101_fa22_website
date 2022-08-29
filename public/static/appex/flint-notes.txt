@@ -1,0 +1,5 @@
+Flint notes
+
+Summarized from [wikipedia](https://en.wikipedia.org/wiki/Flint_water_crisis):
+
+In April 2014, during a water crisis, Flint MI changed its water source from Detroit water and sewage to the Flint River. Officials failed to apply corrosion inhibitors to the water, which resulted in lead from aging pipes leaching into the water supply, exposing around 100,000 residents to elevated lead levels. It is estimated between 6,000 and 12,000 children were exposed to drinking water with high levels of lead. Children are particularly at risk from the long-term effects of lead poisoning, which can include a reduction in intellectual functioning and IQ, and an increased chance of Alzheimer's disease. A pair of scientific studies confirmed that lead contamination was present in the water supply. The city switched back to the Detroit water system on October 16, 2015.

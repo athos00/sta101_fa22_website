@@ -1,0 +1,41 @@
+body {
+    font-family: 'Muli';
+    font-size: 19px;
+}
+
+<style>
+  .flat-table {
+    display: block;
+    font-family: sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 115%;
+    overflow: auto;
+    width: auto;
+  }
+  thead {
+    background-color: rgb(112, 196, 105);
+    color: white;
+    font-weight: normal;
+    padding: 20px 30px;
+    text-align: center;
+  }
+  tbody {
+    background-color: rgb(238, 238, 238);
+    color: rgb(111, 111, 111);
+    padding: 20px 30px;
+  }
+</style>
+
+/* Tables */
+
+table tbody tr:nth-child(even){
+  background-color: {{ .Param "colors.table_row_even" }};
+}
+
+table tbody tr:nth-child(odd){
+  background-color: {{ .Param "colors.table_row_odd" }};
+}
+
+.latest {
+  border-top: .5em solid {{ .Param "colors.latest_border" }};
+}

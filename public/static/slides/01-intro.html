@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Welcome to STA 101!</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Alexander Fisher" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Welcome to STA 101!
+### Prof. Alexander Fisher
+
+---
+
+
+
+
+
+## About me
+
+####  Prof. Alexander Fisher
+
+.pull-left[
+&lt;img src="img/01/alignment_xaringan.png" width="75%" /&gt;
+]
+
+.pull-right[
+&lt;img src="img/01/basic_tree_xaringan.png" width="75%" /&gt;
+]
+
+---
+
+class: middle, center
+
+# Data Science
+
+---
+
+## What is data science?
+
+--
+
+- Data science is using data to understand the world.
+
+- We're going to learn to do this in a principled and `tidy` way -- more on that later!
+
+- This is a course on introduction to data science, with an emphasis on statistical thinking.
+
+---
+
+## Course FAQ
+
+**Q - What data science background does this course assume?**
+A - None.
+
+&lt;br&gt;
+
+**Q - Is this an intro stat course?**
+A - Not a traditional one. While statistics `\(\neq\)` data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get started with statistics.
+
+&lt;br&gt;
+
+**Q - Will we be doing computing?**
+A - Yes. We will use the computing language R.
+
+---
+
+## Course learning objectives
+
+- Learn to explore, visualize, and analyze data in a *reproducible* and *shareable* manner
+
+- Gain experience in data wrangling, exploratory data analysis, predictive modeling, and data visualization
+
+- develop your own question(s) about a data set of your choosing and use statistical techniques to answer the question(s)
+
+- effectively communicate results through written assignments and final project presentation
+
+---
+
+## Some of what you will learn
+
+.pull-left[
+- Fundamentals of `R`
+
+- Data visualization and wrangling with `ggplot2` and `dplyr` from the `tidyverse`
+
+- Web based applications with `RShiny`
+
+- Spatial data visualization
+
+]
+
+.pull-right[
+- Data types and functions
+
+- Version control with `GitHub`
+
+- Reproducible reports with `R Markdown`
+
+- Regression and classification
+
+- Statistical inference
+]
+
+---
+
+## Examples of data science in practice
+
+- [Apple Mobility Trends](https://covid19.apple.com/mobility)
+
+- [What redisctricting looks like in every state](https://projects.fivethirtyeight.com/redistricting-2022-maps/)
+
+- [Tracking their life via Fitbit](https://livefreeordichotomize.com/2017/12/27/a-year-as-told-by-fitbit/)
+
+- [Infectious disease tracker](https://nextstrain.org)
+
+---
+## Examples continued
+
+&lt;img src="img/01/prisonLetter.png" width="75%" /&gt;
+
+- `\(26 \times 25 \times 24 \times ... \times 2 \times 1 = 4 \times 10^{26}\)` possible combinations
+
+--
+
+- Check 100M per second
+
+- 120,000,000,000 years of computational time
+---
+
+class: middle, center
+
+# The Course
+
+---
+
+## Course Toolkit
+
+**Course Website:** [sta199-sp22-003.netlify.app](https://sta199-sp22-003.netlify.app/)
+  - Central hub for the course!
+  - Quick tour of the website
+
+**Sakai** [sakai.duke.edu](https://sakai.duke.edu)
+  - Gradebook, quizzes
+  
+**Slack**: [https://sta199-003-sp22.slack.com/](https://sta199-003-sp22.slack.com/)
+  - Questions and general discussion
+
+**GitHub:** [https://github.com/sta199-s22](https://github.com/sta199-s22)
+  - Distribute &amp; work on assignments -- more on this later!
+
+---
+
+## Activities: Prepare, Practice, Perform
+
+- **Prepare**: introduce new content and prepare for lectures
+  - Videos &amp; readings before lecture
+  - Low-stakes prep quizzes on basic definitions &amp; concepts from videos
+  - See *Prepare* column on course schedule 
+
+
+- **Practice**: practice applying statistical concepts and computing
+  - Application Exercises (AE) during lecture
+  - Graded for completion 
+
+---
+
+## Activities: Prepare, Practice, Perform
+
+- **Perform**: Put together what you've learned to analyze real-world data
+  -  Weekly team or individual lab assignments
+  -  Periodic individual homework assignments
+  -  Two take-home exams
+  -  Final team project presented during the final exam period.
+
+---
+
+## Where to find help
+
+--
+
+- Attend .vocab[Office hours] to meet with a member of the teaching team.
+
+  - Find office hour sheet on website: [sta199-sp22-003.netlify.app](https://sta199-sp22-003.netlify.app/)
+  - Full office hours begin next week
+
+--
+
+- Use **slack** for general questions about course content and/or assignments, since other students may benefit from the response.
+
+
+---
+
+## Academic Resource Center
+
+The [Academic Resource Center (ARC)](https://arc.duke.edu/) offers free services to all students during their undergraduate careers at Duke. 
+
+Services include 
+  - Learning Consultations
+  - Peer Tutoring and Study Groups
+  - ADHD/LD Coaching, Outreach Workshops
+  - and more. 
+
+  
+Contact the ARC at [ARC@duke.edu](mailto:arc@duke.edu) or call 919-684-5917 to schedule an appointment. 
+
+---
+
+## CAPS
+
+[Duke Counseling &amp; Psychological Services (CAPS)](https://studentaffairs.duke.edu/caps) helps Duke Students enhance strengths and develop abilities to successfully live, grow and learn in their personal and academic lives. 
+
+Services include 
+- brief individual and group counseling
+- couples counseling
+- outreach to student groups
+- and more...
+
+---
+
+## Course community &amp; Learning environment
+
+--
+
+- Uphold the Duke Community Standard: 
+&gt; - I will not lie, cheat, or steal in my academic endeavors;
+&gt;- I will conduct myself honorably in all my endeavors; and
+&gt; - I will act if the Standard is compromised.
+
+--
+
+- Respect, honor, and celebrate our diverse community 
+
+--
+
+- Learning environment that is welcoming, inclusive, and accessible to everyone
+
+---
+
+## Attending lectures and labs
+
+- You are expected to attend and participate lectures and labs
+
+- Please wear a mask to help protect your peers and others around you 😷
+
+- **Please do not come to class if you have symptoms related to COVID-19, have had a known exposure to COVID-19, or have tested positive for COVID-19.**
+  - You will still have access to AEs and labs to complete remotely 
+  - Online office hours and slack are available to ask questions
+  - Email Professor Fisher if further arrangements needed
+  
+---
+
+class: middle, center
+
+# Questions? 
+
+---
+
+class: middle, center
+
+# Your turn!
+
+---
+
+## Create a GitHub account
+
+Go to https://github.com/, and create an account (unless you already have one). 
+
+After you create your account, go to [https://forms.gle/iYLiid39R3ujMbmWA](https://forms.gle/iYLiid39R3ujMbmWA) and enter your Duke email address (NETID@duke.edu) and GitHub username. 
+
+&lt;small&gt;
+Some tips from [Happy Git with R](http://happygitwithr.com/github-acct.html#username-advice).
+&lt;/small&gt;
+
+- &lt;small&gt;Incorporate your actual name!&lt;/small&gt;
+- &lt;small&gt; Reuse your username from other contexts if you can, e.&lt;small&gt; g., Twitter or Slack.&lt;/small&gt;
+- &lt;small&gt; Pick a username you will be comfortable revealing to your future boss.&lt;/small&gt;
+- &lt;small&gt; Be as unique as possible in as few characters as possible. Shorter is better than longer.&lt;/small&gt;
+- &lt;small&gt; Make it timeless.&lt;/small&gt;
+- &lt;small&gt; Avoid words with special meaning in programming (e.g. `NA`).&lt;/small&gt;
+
+<div class="countdown" id="timer_62d9be48" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+# Let's look an example!
+
+- Let's look at a [sample roster data exercise](https://sta199-sp22-003.netlify.app/appex/ae01.html).
+
+- After setting up Git in RStudio (either today or in lab next week) you can clone the repo "ae01" here: [https://github.com/sta199-s22](https://github.com/sta199-s22)
+
+- Note: This application exercise does *NOT* need to be turned in!
+
+<div class="countdown" id="timer_62d9be0b" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+## For Next Tuesday
+
+- Watch videos for [Prepare: Week 02](https://sta199-sp22-003.netlify.app//prepare/week-02-sp22.html)
+
+-  Reserve an **STA198-199 RStudio container**. 
+  - Go to https://vm-manage.oit.duke.edu/containers
+  - Click **Reserve Container** for the STA198-199 container
+
+- Submit your [GitHub username](https://forms.gle/iYLiid39R3ujMbmWA)
+
+- Bring laptop/tablet/Chromebook to class 
+
+- Join slack [https://sta199-003-sp22.slack.com/](https://sta199-003-sp22.slack.com/)
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Schedules on </title>
+    <link>https://sta101.github.io/schedule/</link>
+    <description>Recent content in Schedules on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://sta101.github.io/schedule/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Schedule</title>
+      <link>https://sta101.github.io/schedule/schedule/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sta101.github.io/schedule/schedule/</guid>
+      <description>  Find all assignments and due dates here. This schedule updates frequently.
+    Week Date Topic Prepare AE Lab Exam Project    1 Mon Jun 27 Intro to R  ae 1      Tue Jun 28 Visualization I   lab 1     Thu Jun 30 Visualization II   lab 2    2 Mon Jul 04 NO CLASS: Independence Day        Tue Jul 05 Simple Linear Regression   lab 3     Thu Jul 07 Multiple linear regression   No lab: exam released exam 1   3 Mon Jul 11 Multiple linear regression II    exam 1 due    Tue Jul 12 Logistic regression   Regression project: workday     Thu Jul 14 Random variables + distributions   lab 4    4 Mon Jul 18 Simulation-based inference I        Tue Jul 19 Simulation-based inference II   lab 5     Thu Jul 21 Hypothesis testing I   No lab: exam released exam 2   5 Mon Jul 25 Hypothesis testing II    exam 2 due    Tue Jul 26 Central Limit Theorem (CLT)   lab 6     Thu Jul 28 Regression + inference   Final project: peer-review    6 Mon Aug 01 Data science ethics        Tue Aug 02 Special topic: xaringan   lab 7     Thu Aug 04 Special topic: Cryptanalysis   Final project: workday      </description>
+    </item>
+    
+  </channel>
+</rss>

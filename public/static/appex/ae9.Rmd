@@ -1,0 +1,225 @@
+---
+title: "Bootstrap sampling and confidence intervals"
+output: html_document
+date: 'July 18, 2022'
+---
+
+## Bulletin
+
+- Lab 4 due tonight
+- Regression project can be submitted until Wednesday 11:59p
+- Exam 2 Thursday
+- Check out [probability practice](https://sta101.github.io/practice/), exam 2 will also cover regression and EDA
+
+## Today
+
+By the end of today you will...
+
+- Understand how to draw a bootstrap sample and calculate a bootstrap statistic 
+- Use `infer` to obtain a bootstrap distribution 
+- Calculate a confidence interval from the bootstrap distribution
+- Interpret a confidence interval in context of the data 
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101.github.io/static/appex/ae9.Rmd",
+destfile = "ae9.rmd")
+```
+
+## Load packages
+
+```{r load-libraries, message = F, warning = F}
+library(tidyverse)
+library(tidymodels)
+```
+
+```{r load-survey}
+manhattan = read_csv("https://sta101.github.io/static/appex/data/manhattan.csv")
+```
+
+## Notes (for reference)
+
+**Bootstrapping** is a re-sampling technique. The key idea is you have already collected a **sample** of size $N$ from the **population**. To create a **bootstrap** sample, you sample with replacement from your original sample $N$ times.
+
+Let's say you measure the height of five Duke students in meters:
+
+```{r}
+heights = c(1.51, 1.62, 1.89, 2.01, 1.78)
+
+students = data.frame(heights)
+```
+
+There are many ways to perform a bootstrap sample in R.
+
+#### Method 1
+
+```{r method-1}
+set.seed(1)
+sample(heights, size = 5, replace = TRUE)
+```
+
+#### Method 2
+
+```{r method-2}
+set.seed(2)
+students %>%
+  specify(response = heights) %>%
+  generate(reps = 1, type = "bootstrap")
+```
+
+From here, we can compute a bootstrap statistic. E.g.
+
+```{r statistic-computation}
+set.seed(1)
+sample(heights, size = 5, replace = TRUE) %>%
+  median()
+
+set.seed(2)
+students %>%
+  specify(response = heights) %>%
+  generate(reps = 1, type = "bootstrap") %>%
+  calculate(stat = "median")
+
+```
+
+- take-away: `sample()` takes individual columns which can be handy for quick sampling while tidy syntax, `specify() %>% generate() %>% calculate()` plays nice with whole data frames and sets us up to easily implement future use-cases.
+
+- the tidy way uses the `infer` package (included as a part of `tidymodels`)
+
+
+## Example: rent in Manhattan
+
+On a given day in 2018, twenty one-bedroom apartments were randomly selected on Craigslist Manhattan from apartments listed as "by owner". The data are in the `manhattan` data frame.  We will use this sample to conduct inference on the typical rent of 1 bedroom apartments in Manhattan. 
+
+### Part 1: Drawing a bootstrap sample
+
+Let's start by using bootstrapping to estimate the **mean** rent of one-bedroom apartments in Manhattan. 
+
+#### Exercise 1
+
+What is a **point estimate** (i.e. single number summary) of the typical rent? 
+
+#### Exercise 2
+
+Let's bootstrap! 
+
+- To bootstrap we will sample with replacement by drawing a value from the box. 
+- How many draws do we need for our bootstrap sample? 
+
+Fill in  the values from the bootstrap sample conducted in class. Once the values are filled in, un-comment the code. 
+
+```{r boot-sample}
+# class_bootstrap = c()
+
+```
+
+#### Exercise 3
+
+- About what value do you expect the bootstrap statistic to take? 
+- Calculate the statistic from the bootstrap sample. 
+
+```{r calc-boot-stat}
+# add code
+
+```
+
+### Part 2: Bootstrap confidence interval
+
+**We will use the `infer` package, included as part of `tidymodels` to calculate a 95% confidence interval for the mean rent of one-bedroom apartments in Manhattan.**
+
+We start by setting a seed to ensure our analysis is reproducible. 
+
+#### Generating the bootstrap distribution
+
+We can use R to take many bootstrap samples, compute a statistic and then view the bootstrap distribution of that statistic.
+
+Un-comment the lines and fill in the blanks to create the bootstrap distribution of sample means and save the results in the data frame `boot_dist`.    
+
+Use **1000 reps** for the in-class activity. (You will use about 10,000 reps for assignments outside of class.)
+
+```{r create-bootstrap-dist}
+set.seed(7182022)
+
+boot_dist = manhattan #%>%
+  #specify(______) %>%
+  #generate(______) %>%
+  #calculate(______)
+```
+
+- How many rows are in `boot_dist`? 
+- What does each row represent? 
+- What are the variables in `boot_dist`? What do they mean?
+
+#### Visualize the bootstrap distribution 
+
+A **sample statistic is a random variable**, we can look at its distribution.
+
+Visualize the bootstrap distribution using a histogram. Describe the shape, center, and spread of this distribution. 
+
+```{r viz-bootstrap}
+# add code
+
+```
+
+#### Calculate the confidence interval
+
+Uncomment the lines and fill in the blanks to construct the 95% bootstrap confidence interval for the mean rent of one-bedroom apartments in Manhattan. 
+
+```{r confidence-interval-95}
+#___ %>%
+#  summarize(lower = quantile(______),
+  #          upper = quantile(______))
+```
+
+#### Interpret the interval
+
+Write the interpretation for the interval calculated above. 
+
+### Part 3: Changing the confidence level 
+
+- Modify the code used to calculate a 95% confidence interval to calculate a **90% confidence interval** for the mean rent of one-bedroom apartments in Manhattan. How does the width of this interval compare to the width of the 95% confidence interval? 
+
+```{r confidence-interval-90}
+#calculate a 90% confidence interval
+```
+
+- Now let's calculate a 99% confidence interval for the mean rent of one-bedroom apartments in Manhattan. How does the width of this interval compare to the width of the 95% confidence interval? 
+
+```{r confidence-interval-99}
+#calculate a 99% confidence interval
+```
+
+- Question: Does a confidence interval have to be symmetric?
+
+- What is one advantage to using a 90% confidence interval instead of a 95% confidence interval to estimate a parameter? - What is one advantage to using a 99% confidence interval instead of a 95% confidence interval to estimate a parameter? 
+
+### Part 4: Additional practice
+
+Next, use bootstrapping to estimate the median rent for one-bedroom apartments in Manhattan. 
+- Generate the bootstrap distribution of the sample medians. Use 100 reps. Save the results in `boot_dist_median`.
+
+```{r boot-dist-median}
+set.seed(100)
+## add code
+```
+
+- Visualize the distribution. What do you notice?
+
+```{r visualize-again}
+# code here
+```
+
+
+- Calculate a 92% confidence interval. 
+
+```{r confidence-interval-92}
+## add code
+```
+
+- Interpret the 92% confidence interval. 
+
+
+

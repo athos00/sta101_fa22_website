@@ -1,0 +1,333 @@
+---
+title: "Welcome to STA 101!"
+author: "Prof. Alexander Fisher"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(rvest)
+library(magick)
+library(pdftools)
+```
+
+
+## About me
+
+####  Prof. Alexander Fisher
+
+.pull-left[
+```{r, echo=FALSE,out.width = '75%'} 
+# knitr::include_graphics("img/01/MCC-WNV.pdf")
+knitr::include_graphics("img/01/alignment_xaringan.png")
+```
+]
+
+.pull-right[
+```{r, echo=FALSE,out.width = '75%'} 
+knitr::include_graphics("img/01/basic_tree_xaringan.png")
+# magick::image_read_pdf("img/01/alignment_xaringan.pdf",
+                       # pages = 1)
+# magick::image_read_pdf("img/01/MCC-WNV.pdf",
+#                        pages = 1)
+```
+]
+
+---
+
+class: middle, center
+
+# Data Science
+
+---
+
+## What is data science?
+
+--
+
+- Data science is using data to understand the world.
+
+- We're going to learn to do this in a principled and `tidy` way -- more on that later!
+
+- This is a course on introduction to data science, with an emphasis on statistical thinking.
+
+---
+
+## Course FAQ
+
+**Q - What data science background does this course assume?**
+A - None.
+
+<br>
+
+**Q - Is this an intro stat course?**
+A - Not a traditional one. While statistics $\neq$ data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get started with statistics.
+
+<br>
+
+**Q - Will we be doing computing?**
+A - Yes. We will use the computing language R.
+
+---
+
+## Course learning objectives
+
+- Learn to explore, visualize, and analyze data in a *reproducible* and *shareable* manner
+
+- Gain experience in data wrangling, exploratory data analysis, predictive modeling, and data visualization
+
+- develop your own question(s) about a data set of your choosing and use statistical techniques to answer the question(s)
+
+- effectively communicate results through written assignments and final project presentation
+
+---
+
+## Some of what you will learn
+
+.pull-left[
+- Fundamentals of `R`
+
+- Data visualization and wrangling with `ggplot2` and `dplyr` from the `tidyverse`
+
+- Web based applications with `RShiny`
+
+- Spatial data visualization
+
+]
+
+.pull-right[
+- Data types and functions
+
+- Version control with `GitHub`
+
+- Reproducible reports with `R Markdown`
+
+- Regression and classification
+
+- Statistical inference
+]
+
+---
+
+## Examples of data science in practice
+
+- [Apple Mobility Trends](https://covid19.apple.com/mobility)
+
+- [What redisctricting looks like in every state](https://projects.fivethirtyeight.com/redistricting-2022-maps/)
+
+- [Tracking their life via Fitbit](https://livefreeordichotomize.com/2017/12/27/a-year-as-told-by-fitbit/)
+
+- [Infectious disease tracker](https://nextstrain.org)
+
+---
+## Examples continued
+
+```{r, echo=FALSE,out.width = '75%'} 
+knitr::include_graphics("img/01/prisonLetter.png")
+```
+
+- $26 \times 25 \times 24 \times ... \times 2 \times 1 = 4 \times 10^{26}$ possible combinations
+
+--
+
+- Check 100M per second
+
+- 120,000,000,000 years of computational time
+---
+
+class: middle, center
+
+# The Course
+
+---
+
+## Course Toolkit
+
+**Course Website:** [sta199-sp22-003.netlify.app](https://sta199-sp22-003.netlify.app/)
+  - Central hub for the course!
+  - Quick tour of the website
+
+**Sakai** [sakai.duke.edu](https://sakai.duke.edu)
+  - Gradebook, quizzes
+  
+**Slack**: [https://sta199-003-sp22.slack.com/](https://sta199-003-sp22.slack.com/)
+  - Questions and general discussion
+
+**GitHub:** [https://github.com/sta199-s22](https://github.com/sta199-s22)
+  - Distribute & work on assignments -- more on this later!
+
+---
+
+## Activities: Prepare, Practice, Perform
+
+- **Prepare**: introduce new content and prepare for lectures
+  - Videos & readings before lecture
+  - Low-stakes prep quizzes on basic definitions & concepts from videos
+  - See *Prepare* column on course schedule 
+
+
+- **Practice**: practice applying statistical concepts and computing
+  - Application Exercises (AE) during lecture
+  - Graded for completion 
+
+---
+
+## Activities: Prepare, Practice, Perform
+
+- **Perform**: Put together what you've learned to analyze real-world data
+  -  Weekly team or individual lab assignments
+  -  Periodic individual homework assignments
+  -  Two take-home exams
+  -  Final team project presented during the final exam period.
+
+---
+
+## Where to find help
+
+--
+
+- Attend .vocab[Office hours] to meet with a member of the teaching team.
+
+  - Find office hour sheet on website: [sta199-sp22-003.netlify.app](https://sta199-sp22-003.netlify.app/)
+  - Full office hours begin next week
+
+--
+
+- Use **slack** for general questions about course content and/or assignments, since other students may benefit from the response.
+
+
+---
+
+## Academic Resource Center
+
+The [Academic Resource Center (ARC)](https://arc.duke.edu/) offers free services to all students during their undergraduate careers at Duke. 
+
+Services include 
+  - Learning Consultations
+  - Peer Tutoring and Study Groups
+  - ADHD/LD Coaching, Outreach Workshops
+  - and more. 
+
+  
+Contact the ARC at [ARC@duke.edu](mailto:arc@duke.edu) or call 919-684-5917 to schedule an appointment. 
+
+---
+
+## CAPS
+
+[Duke Counseling & Psychological Services (CAPS)](https://studentaffairs.duke.edu/caps) helps Duke Students enhance strengths and develop abilities to successfully live, grow and learn in their personal and academic lives. 
+
+Services include 
+- brief individual and group counseling
+- couples counseling
+- outreach to student groups
+- and more...
+
+---
+
+## Course community & Learning environment
+
+--
+
+- Uphold the Duke Community Standard: 
+> - I will not lie, cheat, or steal in my academic endeavors;
+>- I will conduct myself honorably in all my endeavors; and
+> - I will act if the Standard is compromised.
+
+--
+
+- Respect, honor, and celebrate our diverse community 
+
+--
+
+- Learning environment that is welcoming, inclusive, and accessible to everyone
+
+---
+
+## Attending lectures and labs
+
+- You are expected to attend and participate lectures and labs
+
+- Please wear a mask to help protect your peers and others around you `r emo::ji("mask")`
+
+- **Please do not come to class if you have symptoms related to COVID-19, have had a known exposure to COVID-19, or have tested positive for COVID-19.**
+  - You will still have access to AEs and labs to complete remotely 
+  - Online office hours and slack are available to ask questions
+  - Email Professor Fisher if further arrangements needed
+  
+---
+
+class: middle, center
+
+# Questions? 
+
+---
+
+class: middle, center
+
+# Your turn!
+
+---
+
+## Create a GitHub account
+
+Go to https://github.com/, and create an account (unless you already have one). 
+
+After you create your account, go to [https://forms.gle/iYLiid39R3ujMbmWA](https://forms.gle/iYLiid39R3ujMbmWA) and enter your Duke email address (NETID@duke.edu) and GitHub username. 
+
+<small>
+Some tips from [Happy Git with R](http://happygitwithr.com/github-acct.html#username-advice).
+</small>
+
+- <small>Incorporate your actual name!</small>
+- <small> Reuse your username from other contexts if you can, e.<small> g., Twitter or Slack.</small>
+- <small> Pick a username you will be comfortable revealing to your future boss.</small>
+- <small> Be as unique as possible in as few characters as possible. Shorter is better than longer.</small>
+- <small> Make it timeless.</small>
+- <small> Avoid words with special meaning in programming (e.g. `NA`).</small>
+
+```{r echo = F}
+countdown::countdown(minutes = 5, seconds = 0)
+```
+
+---
+
+# Let's look an example!
+
+- Let's look at a [sample roster data exercise](https://sta199-sp22-003.netlify.app/appex/ae01.html).
+
+- After setting up Git in RStudio (either today or in lab next week) you can clone the repo "ae01" here: [https://github.com/sta199-s22](https://github.com/sta199-s22)
+
+- Note: This application exercise does *NOT* need to be turned in!
+
+```{r echo = F}
+countdown::countdown(minutes = 5, seconds = 0)
+```
+
+---
+
+## For Next Tuesday
+
+- Watch videos for [Prepare: Week 02](https://sta199-sp22-003.netlify.app//prepare/week-02-sp22.html)
+
+-  Reserve an **STA198-199 RStudio container**. 
+  - Go to https://vm-manage.oit.duke.edu/containers
+  - Click **Reserve Container** for the STA198-199 container
+
+- Submit your [GitHub username](https://forms.gle/iYLiid39R3ujMbmWA)
+
+- Bring laptop/tablet/Chromebook to class 
+
+- Join slack [https://sta199-003-sp22.slack.com/](https://sta199-003-sp22.slack.com/)
+
+
+

@@ -1,0 +1,82 @@
+---
+title: "Welcome to STA 101 Labs!"
+date: "June 28, 2022"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer-2.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(rvest)
+```
+
+## Introductions
+
+- Meet your TA!
+- Introduce yourself!
+
+---
+
+## What to expect in lab 
+
+- Introduction to the lab assignment (~ 5 - 10 minutes, longer today)
+
+- Work on the lab assignment (you can work with others but your submission must be your own)
+
+- Lab instructions posted in the [schedule](https://sta101.github.io/static/schedule/schedule.html) on the course website.
+
+- Start each lab by opening RStudio and the today's lab on the schedule.
+  
+---
+
+## Tips
+
+- You do not have to finish the lab in class, they will always be due three to four days later (see the specific due date at the top of each lab assignment).
+
+- One work strategy is to get through portions that you think will be most challenging (which initially might be the coding component) during lab when I can help you on the spot and leave the narrative writing until later.
+
+- Do not pressure each other to finish early; use the time wisely to really learn the material and produce a quality report.
+
+---
+
+class: middle, center
+
+# Demo
+
+---
+
+## Demo
+
+**Follow along:** 
+
+- Open RStudio [via container](https://cmgr.oit.duke.edu/containers) or [download R](https://cran.r-project.org/ ) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download ) locally.
+
+- Download the lab template `.Rmd` by running 
+```
+download.file("https://sta101.github.io/static/labs/lab01_template.Rmd",
+destfile = "lab01.rmd")
+```
+in the console.
+
+- Knit document and produce PDF 
+
+- Update name and date in YAML and knit again.
+  
+---
+
+class: middle 
+
+## You're now ready to complete the rest of lab!
+
+<br>
+
+## Please raise your hand if you need help as you work on the lab.
+  
+

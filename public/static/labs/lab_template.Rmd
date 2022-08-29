@@ -1,0 +1,30 @@
+
+- Reminder: add YAML to the top of this document (the "---" and all that goes between it) and update the title, author and date
+
+# Load Packages
+
+```{r load-packages, message = FALSE, warning = FALSE}
+library(tidyverse)
+# load additional packages here with library()
+``` 
+
+# Load data
+
+```{r load-data, warning = F, message = F}
+# load data here with read_csv()
+```
+
+
+## Exercise 1
+
+## Exercise 2
+
+## Exercise 3
+
+## Exercise 4
+
+## Exercise 5
+
+- Add additional exercises using "##"
+
+- Insert code chunks with CMD + OPTION + I (Mac) or CTRL + ALT + I (Windows/Linux)

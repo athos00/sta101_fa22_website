@@ -1,0 +1,144 @@
+---
+title: "Lab 05: A Good Night's Rest"
+output:
+  html_document: default
+  pdf_document: default
+date: "Due Friday July 29 at 11:59pm"
+css: labs.css
+---
+
+By the end of this lab you will
+
+- report point estimates together with confidence intervals
+- conduct hypothesis tests to investigate several hypotheses
+
+## Getting started
+
+\ 1. Download the lab template by pasting the code below in your **console**:
+
+```
+download.file("https://sta101.github.io/static/labs/lab_template.Rmd",
+              destfile = "lab05.rmd")
+```
+
+\ 2. Under the "Files" tab on the right hand side, click on `lab05.rmd` to open the lab template.
+
+\ 3. Add code chunks and `## Exercises` as needed.
+
+\ 4. Complete the exercises below.
+
+## Warm up
+
+Be sure to update the YAML at the top of the document to include your name and the date.
+
+### Packages
+
+```{r load-packages, warning=F, message=F}
+library(tidyverse)
+library(tidymodels)
+```
+
+### Data
+
+Load the data:
+
+```{r load-data, warning=F, message=F}
+sleep = read_csv("https://sta101.github.io/static/labs/data/sleep.csv")
+```
+
+The data we are working with today comes from Herbie Lee. Please read information about the data set [here](https://stat.duke.edu/datasets/sleep), where you will also find a codebook.
+
+
+## Exercises
+
+### Written response
+
+1. You are interested in the average time it takes for the study participant to fall asleep. You hypothesize it takes them longer than 15 minutes each night. What is wrong with the following null hypothesis? 
+
+$$
+H_0: \hat{\mu} = 15
+$$
+
+2. Your friend computed the mean time it takes the participant to fall asleep and reports a confidence interval as well. Your friend states, "*There is a .95 probability that the mean time it takes the participant to fall asleep is between 10 and 25 minutes.*" Without running any code, what is wrong with your friend's statement? Please correct the statement as well.
+
+3. Which of the following affect the p-value and why?
+
+- Null hypothesis
+- Alternative hypothesis
+- Observed statistic 
+- Significance level ($\alpha$)
+
+### Practice in `R`
+
+4. Find the mean time it takes the participant to fall asleep. Check whether or not you can use central limit theorem to construct a 95% confidence interval to report with your estimate. For purposes of this exercise, you may consider samples of time to sleep as random. If you can use CLT, please do so to construct and report the confidence interval. Otherwise, construct a bootstrap confidence interval with `set.seed(4)` and `10000` reps. Interpret your interval in context.
+
+5. *Do calcium-magnesium supplements reduce median time to fall asleep?* Construct a hypothesis test to investigate. To begin, state the null and alternative hypothesis in words and in statistical notation. Use simulation-based inference to generate `5000` samples from the null distribution with `set.seed(5)`. Compute and state your observed statistic. Finally, compute the p-value and report it as well as significance at the alpha = 0.05 level and state your conclusion in context.
+
+- Hint: you will need to mutate to ensure that one of the variables is non-numeric.
+
+6. *How many miles does the participant typically run?* **Given the individual ran**, what is the median number of miles run? Can you use Central Limit Theorem (CLT) to construct a confidence interval about this estimate? Explain. Otherwise construct a 90% bootstrap confidence interval that bounds the median from below. Use `set.seed(6)` and `10000` reps. Interpret your interval in context.
+
+- Note: this is not a symmetric confidence interval!
+
+7. The more time the individual spent lying in bed, awake, and trying to sleep, the worse their overall quality of sleep. To begin investigating quality of sleep, create a new column `timeAwake` that shows the total number of minutes the individual spent in bed but not asleep. When `timeAwake` is large, sleep is awful and interrupted. Save your data frame with the new column as `sleep2`.
+
+Example: `TTS` is the time to fall asleep, `TBT` is total bed time, i.e. total time spent, lying in bed and trying to sleep.
+
+So if the participant gets into bed at 9:00pm and then falls asleep at 9:30pm and wakes up at 1:00am and lies awake for an hour only to finally sleep until 6:00am and gets out of bed then
+
+- `TTS` is 30 minutes,
+- `TBT` is 9 hours,
+- Total Sleep Time (`TST`) is 3.5h + 4h = 7.5 hours and the total time awake is 1.5 hours.
+
+8. *Hypothesis: Most nights, the participant spends over fifty minutes lying in bed awake.* Construct a hypothesis test to investigate. To begin, state the null and alternative hypothesis in words and in statistical notation. Use simulation-based inference to generate `5000` samples from the null distribution with `set.seed(8)`. Compute and state your observed statistic. Finally, compute the p-value and report it as well as significance at the alpha = 0.01 level and state your conclusion in context.
+
+- Hint: start with `sleep2` from the previous exercise. 
+
+## Formatting
+
+**Reminder**: For all assignments in this course there is a "formatting" component to the grade. To receive full points for "formatting", you must:
+
+\ 1. Have your name at the top of the knitted document
+
+\ 2. Pipes `%>%` and ggplot layers `+` should be followed by a newline (see formatting above)
+
+\ 3. Your code should be under the 80 character code limit. (You shouldn't have to scroll to see all your code on the knitted document).
+
+\ 4. All exercises and corresponding pages should be linked on gradescope.
+
+These necessary "tidyverse" style choices are good general practice and will help make your code more legible. For a more extensive list of recommended guidelines, [click here](https://style.tidyverse.org/).
+
+## Submitting to gradescope
+
+Once you are fully satisfied with your lab, Knit to .pdf to create a .pdf document. You may notice that the formatting/theme of the report has changed – this is expected. Remember – you must turn in a .pdf file to the Gradescope page before the submission deadline for credit. To submit your assignment: 
+
+- Go to [http://www.gradescope.com](http://www.gradescope.com) and click Log in in the top right corner. - Click `School Credentials`, `Duke NetID` and log in using your NetID credentials. 
+
+- Click on your STA 101 course. 
+
+- Click on the assignment, and you'll be prompted to submit it. 
+
+- Mark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”). Select the first page of your .pdf submission to be associated with the "Formatting" section.
+
+## Grading
+
+Total: 50 pts.
+
+    Exercise 1: 2pts
+
+    Exercise 2: 4pts
+
+    Exercise 3: 4pts
+
+    Exercise 4: 7pts
+
+    Exercise 5: 10pts
+    
+    Exercise 6: 6pts
+    
+    Exercise 7: 3pts
+    
+    Exercise 8: 10pts
+    
+    Workflow and formatting:  4pts
+    

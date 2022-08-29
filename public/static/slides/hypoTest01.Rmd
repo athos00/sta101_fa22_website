@@ -1,0 +1,266 @@
+---
+title: "Hypothesis testing"
+subtitle: "STA101"
+author: "Prof. Alexander Fisher"
+institute: "Duke University"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer-2.css", "slides.css"]
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      slideNumberFormat: "%current%"
+---
+
+```{r kakashi-theme, message=F, echo=F, warning=F}
+#htmltools::includeCSS("https://raw.githubusercontent.com/malcolmbarrett/kakashi/master/kakashi.css")
+```
+
+```{r load-packages, include = FALSE}
+# Add any additional packages you need to this chunk
+library(tidyverse)
+library(tidymodels)
+library(knitr)
+```
+
+```{r setup, include=FALSE}
+# For better figure resolution
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE, 
+                      echo = FALSE, 
+                      fig.retina = 3, 
+                      dpi = 300, fig.width = 6, 
+                      fig.asp = 0.618, 
+                      out.width = "75%",
+                      fig.align = "center")
+
+# set consistent theme
+theme_set(ggplot2::theme_minimal())
+
+color_palette <- list(gray = "#999999", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      purple = "#800080", 
+                      orange = "#ff8c00",
+                      cyan = "#008B8B"
+                      )
+```
+
+
+```{r load-data, include=FALSE}
+# Load your data here
+```
+
+
+## Introduction
+
+North Carolina Courage is a professional women's soccer team based in Cary, North Carolina (approximately 30 minutes from Duke). The team was founded in 2017. In 2019, the team became the first team to win the Championship on its home field. 
+
+--
+
+Here's a look at how the NC Courage performed in the 2017-2019 seasons.
+
+```{r echo = F}
+courage = read_csv("../labs/data/courage.csv")
+
+courage = courage %>%
+  mutate(location = ifelse(home_team == "NC", "Home", "Away")) %>%
+  mutate(opponent = ifelse(home_team == "NC", away_team, home_team)) %>%
+  select(game_date, location, opponent, result, season) %>%
+  filter(result != "tie")
+
+DT::datatable(
+  courage,
+  fillContainer = FALSE, options = list(pageLength = 3), rownames = FALSE
+)
+```
+
+---
+
+## Hypothesis
+
+We are interested in whether or not NC Courage have a home-field advantage.
+
+--
+
+Are the Courage more likely to win a game at **Home** than **Away**?
+
+--
+
+Mathematically: 
+
+Let $p_H$ be the probability the NC Courage win a home game and let $p_A$ be the probability the NC Courage win an away game
+
+$$
+p_H > p_A?
+$$
+
+<!-- -- -->
+
+$$
+H_A: p_H - p_A > 0
+$$
+
+<!-- This is our hypothesis of interest, formally called the **alternative hypothesis** or $H_A$. To perform a hypothesis test we need to define a **null hypothesis**. The null hypothesis is a default theory. The goal of hypothesis testing is to determine if the data give us enough evidence to reject the default theory. -->
+
+--
+
+A plausible default theory (null hypothesis) is that there is no home-field advantage,
+
+$$
+H_0: p_H - p_A = 0
+$$
+---
+## The observed statistic
+
+If the null is true, $p_H - p_A = 0$ and if the alternative is true $p_H - p_A > 0$.
+
+--
+
+<!-- Our observed statistic relates to our hypotheses-->
+**Observed statistic:** $\hat{p}_H - \hat{p}_A$
+
+--
+
+.panelset[
+.panel[.panel-name[Table]
+```{r ref.label = "table-1", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+
+.panel[.panel-name[Code]
+
+```{r table-1, echo = T}
+courage %>%
+  dplyr::count(location, result) %>%
+  group_by(location) %>%
+  mutate(total_games = sum(n)) %>%
+  filter(result == "win") %>%
+  summarize(location, prob_win = n / total_games) %>%
+  kable()
+```
+]
+]
+
+$$
+\hat{p}_H = 0.86\\
+\hat{p}_A = 0.71
+$$
+and 
+
+$$
+\hat{p}_H - \hat{p}_A = 0.15
+$$
+
+Is this strong enough evidence against our default hypothesis?
+
+---
+## Simulating under the null
+
+What could the observed statistic looked like if the null was true?
+
+--
+
+### Plan
+
+1. Simulate what the data could have looked like **if the null was true**
+2. Compute an **observed statistic** from our simulation
+3. Repeat (1) and (2) many times!
+
+---
+## Simulating under the null
+
+$$
+H_0: p_H - p_A = 0
+$$
+
+<!--Now that we have our null, we want to see what the data would have looked like if this was true. To do this, we will use simulation.-->
+
+<!--There's many different possible ways we might model how the Courage win and lose a game but it's important to make our simulation as similar to reality as possible -->
+
+<!--What do I mean?-->
+
+If the probability of winning at home is the same as winning away, then the game's label **Home** or **Away** should not be important.
+
+Looking at the data,
+<!-- The courage played 67 games, won 53 and lost 14, we're ignoring ties in this example -->
+
+```{r}
+courage %>%
+  count(result) %>%
+  kable(col.names = c("Result", "Number"))
+```
+
+**If the null is true** and the **Home** and **Away** labels don't matter, then they could have been randomly assigned.
+
+This is what we will do to **simulate under the null**.
+
+<!-- go to doc cam example or animated example...-->
+
+---
+## Shuffle
+
+What might our observed statistic looked like if the null was true?
+
+
+
+---
+## Shuffle labels
+
+.pull-left[
+We want to shuffle labels,
+
+```{r}
+random_location_1 = sample(courage$location, replace = FALSE)
+random_location_2 =  sample(courage$location, replace = FALSE)
+random_location_3 =  sample(courage$location, replace = FALSE)
+
+
+courage %>%
+  mutate(random_location = random_location_1,
+         random_loc_2 = random_location_2,
+         random_loc_3 = random_location_3) %>%
+  select(game_date, result, random_location)
+```
+
+and then find the relevant statistic.
+]
+
+.pull-right[
+$$
+H_0: p_H = p_A
+$$
+so
+
+$$
+H_0: p_H - p_A = 0
+$$
+
+and the statistic is the estimate from our data:
+
+$$
+\hat{p}_H - \hat{p}_A
+$$
+
+In `R`
+
+```{r, echo = T}
+null_dist = courage %>%
+specify(response = result, explanatory = location, success = "win") %>% 
+  hypothesize(null = "independence") %>%
+  generate(1000, type = "permute") %>%
+  calculate(stat = "diff in props")
+```
+]
+---
+
+## Visualize the null
+
+```{r}
+visualize(null_dist)
+```
+

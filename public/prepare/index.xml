@@ -2,67 +2,67 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Prepares on </title>
-    <link>https://sta101.github.io/prepare/</link>
+    <link>https://sta101-fa22.netlify.app/prepare/</link>
     <description>Recent content in Prepares on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://sta101.github.io/prepare/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://sta101-fa22.netlify.app/prepare/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prepare week 1</title>
-      <link>https://sta101.github.io/prepare/week-1/</link>
+      <link>https://sta101-fa22.netlify.app/prepare/week-1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/prepare/week-1/</guid>
+      <guid>https://sta101-fa22.netlify.app/prepare/week-1/</guid>
       <description>To complete by the beginning of class on the specified day:
 Monday June 27  Nothing to prepare  Tuesday June 28  Watch data and visualization Read (optional): sections 4.1, 5.4, 5.5  Thursday June 30  Watch visualizing data with ggplot2 Read (optional): sections 4.2, 5.3, 5.5  </description>
     </item>
     
     <item>
       <title>Prepare week 2</title>
-      <link>https://sta101.github.io/prepare/week-2/</link>
+      <link>https://sta101-fa22.netlify.app/prepare/week-2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/prepare/week-2/</guid>
+      <guid>https://sta101-fa22.netlify.app/prepare/week-2/</guid>
       <description>To complete by the beginning of class on the specified day:
 Monday July 4  No class, no prepare. Happy 4th of July!  Tuesday July 5  Watch The language of models Watch Fitting and interpreting models (you can split this video up between Tuesday and Thursday) Read (optional): chapter 7: linear regression with a single predictor  Thursday July 7  Watch Models with multiple predictors Read (optional): chapter 8: linear regression with multiple predictors  </description>
     </item>
     
     <item>
       <title>Prepare week 3</title>
-      <link>https://sta101.github.io/prepare/week-3/</link>
+      <link>https://sta101-fa22.netlify.app/prepare/week-3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/prepare/week-3/</guid>
+      <guid>https://sta101-fa22.netlify.app/prepare/week-3/</guid>
       <description>To complete by the beginning of class on the specified day:
 Monday July 11  Watch More models with multiple predictors  Tuesday July 12  Watch Logistic regression Watch stringR Read (optional): chapter 9: logistic regression  Thursday July 14  No preparation required  </description>
     </item>
     
     <item>
       <title>Prepare week 4</title>
-      <link>https://sta101.github.io/prepare/week-4/</link>
+      <link>https://sta101-fa22.netlify.app/prepare/week-4/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/prepare/week-4/</guid>
+      <guid>https://sta101-fa22.netlify.app/prepare/week-4/</guid>
       <description>To complete by the beginning of class on the specified day:
 Monday July 18  Watch Bootstrapping Read (optional): chapter 12: confidence intervals with bootstrapping  Tuesday July 19  Watch Central limit theorem Read (optional): chapter 13: inference with mathematical models  Thursday July 21  Watch Hypothesis testing Read (optional): chapter 11: hypothesis testing with randomization Read (optional): chapter 16: inference for a single proportion  </description>
     </item>
     
     <item>
       <title>Prepare week 5</title>
-      <link>https://sta101.github.io/prepare/week-5/</link>
+      <link>https://sta101-fa22.netlify.app/prepare/week-5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/prepare/week-5/</guid>
+      <guid>https://sta101-fa22.netlify.app/prepare/week-5/</guid>
       <description>To complete by the beginning of class on the specified day:
 Monday July 25  Watch Hypothesis testing if you did not previously. Read: chapter 16: inference for a single proportion Read: chapter 17: inference for a comparing two proportions  Tuesday July 26  Read: chapter 19: inference for a single mean Read (optional): chapter 20: inference for comparing two independent means  Thursday July 28  Read: chapter 24: inference for linear regression with a single predictor Read (optional): chapter 25: inference for linear regression with multiple predictors  </description>
     </item>
     
     <item>
       <title>Prepare week 6</title>
-      <link>https://sta101.github.io/prepare/week-6/</link>
+      <link>https://sta101-fa22.netlify.app/prepare/week-6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/prepare/week-6/</guid>
+      <guid>https://sta101-fa22.netlify.app/prepare/week-6/</guid>
       <description>To complete by the beginning of class on the specified day:
 Monday August 1  No prepare required  Tuesday August 2  Watch misrepresentation Watch data privacy Watch algorithmic bias  Thursday August 4 Genetic forensic analysis prepare
  Read this article from wired for motivation for today&amp;rsquo;s example.  Cryptanalysis prepare

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Projects on </title>
-    <link>https://sta101.github.io/projects/</link>
+    <link>https://sta101-fa22.netlify.app/projects/</link>
     <description>Recent content in Projects on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://sta101.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://sta101-fa22.netlify.app/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>STA 101 Final Project</title>
-      <link>https://sta101.github.io/projects/final-project/</link>
+      <link>https://sta101-fa22.netlify.app/projects/final-project/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/projects/final-project/</guid>
+      <guid>https://sta101-fa22.netlify.app/projects/final-project/</guid>
       <description>This final project has three deliverable items:
  a pre-project proposal due Friday July 29 at 11:59pm, a final presentation due Thursday August 4 at 11:59pm, final report due Friday August 5 at 11:59pm.  In addition to the above, a component of the grade will be peer-reviewing project report drafts during lab in the final week of class and commenting on the presentaitons on August 5th.
 View team assignments here</description>
@@ -20,10 +20,10 @@ View team assignments here</description>
     
     <item>
       <title>STA 101 Regression Project</title>
-      <link>https://sta101.github.io/projects/regression-project/</link>
+      <link>https://sta101-fa22.netlify.app/projects/regression-project/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/projects/regression-project/</guid>
+      <guid>https://sta101-fa22.netlify.app/projects/regression-project/</guid>
       <description>This regression project is due Tuesday July 19 at 11:59pm.
 View team assignments here
 The deliverable for this project (what you will turn in) is a written report. See below for more details.

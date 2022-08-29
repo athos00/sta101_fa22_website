@@ -2,99 +2,99 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on </title>
-    <link>https://sta101.github.io/tags/</link>
+    <link>https://sta101-fa22.netlify.app/tags/</link>
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 01 Dec 2020 21:13:14 -0500</lastBuildDate><atom:link href="https://sta101.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Dec 2020 21:13:14 -0500</lastBuildDate><atom:link href="https://sta101-fa22.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>plot</title>
-      <link>https://sta101.github.io/tags/plot/</link>
+      <link>https://sta101-fa22.netlify.app/tags/plot/</link>
       <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
       
-      <guid>https://sta101.github.io/tags/plot/</guid>
+      <guid>https://sta101-fa22.netlify.app/tags/plot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R Markdown</title>
-      <link>https://sta101.github.io/tags/r-markdown/</link>
+      <link>https://sta101-fa22.netlify.app/tags/r-markdown/</link>
       <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
       
-      <guid>https://sta101.github.io/tags/r-markdown/</guid>
+      <guid>https://sta101-fa22.netlify.app/tags/r-markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>regression</title>
-      <link>https://sta101.github.io/tags/regression/</link>
+      <link>https://sta101-fa22.netlify.app/tags/regression/</link>
       <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
       
-      <guid>https://sta101.github.io/tags/regression/</guid>
+      <guid>https://sta101-fa22.netlify.app/tags/regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Demo</title>
-      <link>https://sta101.github.io/tags/demo/</link>
+      <link>https://sta101-fa22.netlify.app/tags/demo/</link>
       <pubDate>Mon, 24 Dec 2018 12:29:41 +0800</pubDate>
       
-      <guid>https://sta101.github.io/tags/demo/</guid>
+      <guid>https://sta101-fa22.netlify.app/tags/demo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Image</title>
-      <link>https://sta101.github.io/tags/image/</link>
+      <link>https://sta101-fa22.netlify.app/tags/image/</link>
       <pubDate>Mon, 24 Dec 2018 12:29:41 +0800</pubDate>
       
-      <guid>https://sta101.github.io/tags/image/</guid>
+      <guid>https://sta101-fa22.netlify.app/tags/image/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Typography</title>
-      <link>https://sta101.github.io/tags/typography/</link>
+      <link>https://sta101-fa22.netlify.app/tags/typography/</link>
       <pubDate>Sat, 29 Sep 2018 11:36:33 +0800</pubDate>
       
-      <guid>https://sta101.github.io/tags/typography/</guid>
+      <guid>https://sta101-fa22.netlify.app/tags/typography/</guid>
       <description></description>
     </item>
     
     <item>
       <title>development</title>
-      <link>https://sta101.github.io/tags/development/</link>
+      <link>https://sta101-fa22.netlify.app/tags/development/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/tags/development/</guid>
+      <guid>https://sta101-fa22.netlify.app/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>https://sta101.github.io/tags/go/</link>
+      <link>https://sta101-fa22.netlify.app/tags/go/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/tags/go/</guid>
+      <guid>https://sta101-fa22.netlify.app/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>https://sta101.github.io/tags/golang/</link>
+      <link>https://sta101-fa22.netlify.app/tags/golang/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/tags/golang/</guid>
+      <guid>https://sta101-fa22.netlify.app/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
-      <link>https://sta101.github.io/tags/hugo/</link>
+      <link>https://sta101-fa22.netlify.app/tags/hugo/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://sta101.github.io/tags/hugo/</guid>
+      <guid>https://sta101-fa22.netlify.app/tags/hugo/</guid>
       <description></description>
     </item>
     

@@ -66,7 +66,8 @@ color_palette <- list(gray = "#999999",
 
 - [Office hours](https://sta101.github.io/)
 
-  - Monday/Wednesday 9:30-10:30am
+  - Monday: 10:00-11:00am
+  - Wednesday: 3:00-4:00pm
 
 - A little bit about my research...
 ]
@@ -137,7 +138,7 @@ By the end of this course you will:
 
 ## The course website
 
-[sta101.github.io](https://sta101.github.io)
+[sta101-fa22.netlify.app](https://sta101-fa22.netlify.app)
 
 Here you'll find 
 
@@ -231,9 +232,9 @@ Learning environment
 
 - **Resources**
   
-  - Check the [syllabus](https://sta101.github.io/syllabus)
-  - Attend [office hours](https://duke.box.com/s/5d31hvs4jkwcn4qpwz827zkpiaic7177)
-  - Post on [slack](https://sta101-su22.slack.com/)
+  - Check the [syllabus](https://sta101-fa22.netlify.app/syllabus/)
+  - Attend [office hours](https://duke.box.com/s/bfx0fkhlrss4fqguuf6fhrqhswgbsnqu)
+  - Post on [slack](https://sta101-fa22.slack.com/)
   - Ask/email a member of the teaching team
 
 ---
@@ -273,7 +274,7 @@ Services include
 
 **tl;dr**
 
-1. Bookmark the course webpage: [sta101.github.io](https://sta101.github.io)
+1. Bookmark the course webpage: [sta101-fa22.netlify.app](https://sta101-fa22.netlify.app)
 
 2. Check the schedule frequently
 
@@ -285,24 +286,27 @@ Services include
 
 - Check your email / sakai announcements for slack invite.
 
-- Post on [slack](https://sta101-su22.slack.com/)
+- Post on [slack](https://sta101-fa22.slack.com/)
 
 - When you're done, fill out [this short questionnaire](https://forms.gle/UkBhKxZQvnh1mToRA)
 
-- **Notice**: Drop/Add ends Wednesday June 29 at 11:59pm
+- **Notice**: Drop/Add ends Friday September 9th
 
 ```{r echo = F}
 countdown::countdown(minutes = 5, seconds = 0)
 ```
 
-```{r}
-
-```
-
-
 
 ## Jump in
 
-- [Click here](https://cmgr.oit.duke.edu/containers) to go to the Duke containers website. Click "Reserve"
+- Download and install R and RStudio locally on your computer:
+
+  - Go to [https://cran.r-project.org/](https://cran.r-project.org/) to download R
+
+  - Click [here](https://www.rstudio.com/products/rstudio/download/#download) to download the free version of RStudio Desktop.
+
+---
+
+## Jump in 
 
 - Onto today's application exercise: [ae1](https://sta101.github.io/static/appex/ae1.html)

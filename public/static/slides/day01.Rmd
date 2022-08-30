@@ -288,7 +288,7 @@ Services include
 
 - Post on [slack](https://sta101-fa22.slack.com/)
 
-- When you're done, fill out [this short questionnaire](https://forms.gle/UkBhKxZQvnh1mToRA)
+- When you're done, fill out [this short questionnaire](https://forms.gle/5uDT4Yf7yQM6qjps6)
 
 - **Notice**: Drop/Add ends Friday September 9th
 
@@ -309,4 +309,4 @@ countdown::countdown(minutes = 5, seconds = 0)
 
 ## Jump in 
 
-- Onto today's application exercise: [ae1](https://sta101.github.io/static/appex/ae1.html)
+- Onto today's application exercise: [ae1](https://sta101-fa22.netlify.app/static/appex/ae1.html)

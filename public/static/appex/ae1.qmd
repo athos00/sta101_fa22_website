@@ -1,8 +1,8 @@
 ---
 title: "Welcome to R"
 subtitle: "STA 101"
-output: html_document
-date: "August 30, 2022"
+format: html
+editor: visual
 ---
 
 ## Today
@@ -11,8 +11,7 @@ By the end of today you will...
 
 - begin to know your way around RStudio
 - be able to define package, data frame, variable, function, argument
-- use a few functions, including: `glimpse()`, `count()`, `group_by()` and `summarize()`
-- play with data
+- use the function `glimpse()`
 
 ## Getting started
 
@@ -92,24 +91,11 @@ Terminology: "columns" of a dataframe are called **variables** whereas "rows" ar
 
 **Question: How many variables are in the data frame `survey`? How many observations? What about the data frame `roster`?**
 
-Why must I input net-id email?
+
+Why must I input a specific email format?
 
 ```{r join-roster, eval=F}
 roster %>% 
   left_join(survey, by = "email")
-```
-
-Count the benders in the data
-
-```{r count-benders}
-count(survey, bender)
-```
-
-
-```{r count-cat-dog-by-group}
-survey %>%
-  mutate(pet = ifelse(cat_dog == "dog", 1, 0)) %>%
-  group_by(bender) %>%
-  summarize(proportion_dog = mean(pet))
 ```
 

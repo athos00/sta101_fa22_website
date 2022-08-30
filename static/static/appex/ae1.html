@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-08-30">
 
 <title>Welcome to R</title>
 <style>
@@ -113,12 +112,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">August 30, 2022</p>
-    </div>
-  </div>
     
   </div>
   
@@ -131,8 +124,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>begin to know your way around RStudio</li>
 <li>be able to define package, data frame, variable, function, argument</li>
-<li>use a few functions, including: <code>glimpse()</code>, <code>count()</code>, <code>group_by()</code> and <code>summarize()</code></li>
-<li>play with data</li>
+<li>use the function <code>glimpse()</code></li>
 </ul>
 </section>
 <section id="getting-started" class="level2">
@@ -200,40 +192,10 @@ $ cat_dog              &lt;chr&gt; "dog", "cat", "cat", "dog", "dog", "cat", "ca
 <p><strong>View the roster data in the console</strong></p>
 <p>Terminology: “columns” of a dataframe are called <strong>variables</strong> whereas “rows” are <strong>observations</strong>.</p>
 <p><strong>Question: How many variables are in the data frame <code>survey</code>? How many observations? What about the data frame <code>roster</code>?</strong></p>
-<p>Why must I input net-id email?</p>
+<p>Why must I input a specific email format?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">%&gt;%</span> </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(survey, <span class="at">by =</span> <span class="st">"email"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Count the benders in the data</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(survey, bender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 2
-  bender          n
-  &lt;chr&gt;       &lt;int&gt;
-1 Airbender       3
-2 Earthbender     3
-3 Firebender      4
-4 None            1
-5 Waterbender     1</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>survey <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pet =</span> <span class="fu">ifelse</span>(cat_dog <span class="sc">==</span> <span class="st">"dog"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bender) <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">proportion_dog =</span> <span class="fu">mean</span>(pet))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 2
-  bender      proportion_dog
-  &lt;chr&gt;                &lt;dbl&gt;
-1 Airbender            0.667
-2 Earthbender          0.333
-3 Firebender           0    
-4 None                 1    
-5 Waterbender          1    </code></pre>
-</div>
 </div>
 </section>
 

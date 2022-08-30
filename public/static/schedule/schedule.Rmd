@@ -52,9 +52,9 @@ schedule %>%
 Find all assignments and due dates here. This schedule updates frequently. 
 
 |Week |Date       |Topic    |Prepare |AE |Lab |Exam |Project |
-|:----|:----------|:--------|:-------|:--|:----------|:----|:-------|
-|  1   |Tue Aug 30 | Welcome to STA 101!        |        |   |           |     |        |
-|     |Thu Sep 01 | Intro to R       |        |   |           |     |        |
+|:----|:----------|:--------|:-------|:----|:--------|:----|:-------|
+|  1   |Tue Aug 30 | Welcome to STA 101!        |  [`r emo::ji("book")`](/prepare/week-1)      | [ae1](/static/appex/ae1.html), \ \ [`r emo::ji("computer")`](/static/slides/day01.html)   |           |     |        |
+|     |Thu Sep 01 | Intro to R       | [`r emo::ji("book")`](/prepare/week-1)        |   |         |     |        |
 |     |Fri Sep 02 | Hello R!      |        |   |  lab 1         |     |        |
 |  2   |Tue Sep 06 | Exploratory data analysis I         |        |   |           |     |        |
 |     |Thu Sep 08 |  Exploratory data analysis II       |        |   |           |     |        |

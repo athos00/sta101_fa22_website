@@ -5,6 +5,7 @@ format: html
 editor: visual
 ---
 
+
 ## Today
 
 By the end of today you will...
@@ -24,9 +25,11 @@ Download this application exercise by pasting the code below into your **console
 
 -   Use `R` as a calculator by typing the following into the console:
 
+
 ```{=html}
 <!-- -->
 ```
+
     5 * 5 + 10
 
     x = 3
@@ -47,16 +50,20 @@ We can "print" x to the screen by typing the name of the object ("x") in the con
 
 ## Load a package
 
+
 ```{r load-package, warning=F, message=F}
 library(tidyverse) 
 ```
 
+
 ## Load data
+
 
 ```{r load-data, warning=F, message=F}
 roster = read_csv("https://sta101.github.io/static/appex/data/sample-roster.csv")
 survey = read_csv("https://sta101.github.io/static/appex/data/sample-survey.csv")
 ```
+
 
 **Question**: What objects store the data in the code chunk above? Can you print them to the screen?
 
@@ -68,15 +75,19 @@ So far we've already seen two functions. `library` and `read_csv`. **Functions**
 
 Let's glimpse the data frame.
 
+
 ```{r glimpse-data}
 glimpse(survey)
 ```
 
+
 To look at all of it, we can use `view()`
+
 
 ```{r view-data}
 view(survey)
 ```
+
 
 **View the roster data in the console**
 
@@ -86,7 +97,9 @@ Terminology: "columns" of a dataframe are called **variables** whereas "rows" ar
 
 Why must I input a specific email format?
 
+
 ```{r join-roster, eval=F}
 roster %>% 
   left_join(survey, by = "email")
 ```
+

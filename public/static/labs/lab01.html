@@ -92,7 +92,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="lab01_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="lab01_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="labs.css">
 </head>
@@ -150,19 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="yaml">YAML</h3>
 <p>The top portion of your Quarto Markdown file (aka <code>.qmd</code>), you’ll find three dashed lines. Between the dashed lines is called YAML. YAML stands for “YAML Ain’t Markup Language”. It is a human friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.</p>
 <p>Change the <code>author</code> name to your name and update the <code>date</code> with today’s date. Click the <code>render button</code> to render the document. What do you notice?</p>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Notice in the YAML the output is set to “pdf”. In this course, all assignments <strong>must be submitted to gradescope as PDFs</strong>. To avoid issues that can occur while rendering, it is a good idea to render frequently. <strong>At least after every exercise</strong>.</p>
-</div>
-</div>
+<p>:::callout-note Notice in the YAML the output is set to “pdf”. In this course, all assignments <strong>must be submitted to gradescope as PDFs</strong>. To avoid issues that can occur while rendering, it is a good idea to render frequently. <strong>At least after every exercise</strong>. :::</p>
 </section>
 <section id="packages" class="level3">
 <h3 class="anchored" data-anchor-id="packages">Packages</h3>
@@ -171,23 +158,12 @@ Note
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasauRus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-warning callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you are using <code>R</code> on the container, packages we use should already be installed and only need to be <strong>loaded</strong> with the function <code>library()</code>. If you are using a local version of <code>R</code> you probably have to run the following code in the <strong>console</strong> to install the packages (one time only!)</p>
+<p>:::callout-warning If you are using <code>R</code> on the container, packages we use should already be installed and only need to be <strong>loaded</strong> with the function <code>library()</code>. If you are using a local version of <code>R</code> you probably have to run the following code in the <strong>console</strong> to install the packages (one time only!)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"datasauRus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
+<p>:::</p>
 </section>
 </section>
 <section id="exercises" class="level2">
@@ -224,19 +200,7 @@ Warning
 </div>
 </div>
 <p>The original Datasaurus (dino) data was created by Alberto Cairo. The other Dozen were generated using simulated annealing and the process is described in the paper <em>Same Stats, Different Graphs: Generating data sets with Varied Appearance and Identical Statistics through Simulated Annealing</em> by Justin Matejka and George Fitzmaurice. In the paper, the authors simulate a variety of data sets that have the same summary statistics as the original Datasaurus but have very different data.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can view the whole data frame by running the code <code>view(datasaurus_dozen)</code> in the console. This will open the data frame in a new tab. Try it out!</p>
-</div>
-</div>
+<p>:::callout-note You can view the whole data frame by running the code <code>view(datasaurus_dozen)</code> in the console. This will open the data frame in a new tab. Try it out! :::</p>
 <ol type="1">
 <li>Plot y vs.&nbsp;x for the dino data set. Then, calculate the correlation coefficient between x and y for this data set.</li>
 </ol>
@@ -257,7 +221,7 @@ Note
 <p><img src="lab01_files/figure-html/ggplot-dino-x-y-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>For the second part of this exercise, we need to calculate a summary statistic: the correlation coefficient. The correlation coefficient (<span class="math inline">\(r\)</span>) measures the strength and direction of the linear association between two variables. You will see that some of the pairs of variables we plot do not have a linear relationship between them. This is exactly why we want to visualize first: visualize to assess the form of the relationship, and calculate <span class="math inline">\(r\)</span> only if relevant.</p>
+<p>For the second part of this exercise, we need to calculate a summary statistic: the correlation coefficient. The correlation coefficient (<em>r</em>) measures the strength and direction of the linear association between two variables. You will see that some of the pairs of variables we plot do not have a linear relationship between them. This is exactly why we want to visualize first: visualize to assess the form of the relationship, and calculate <em>r</em> only if relevant.</p>
 <p>In this case, calculating a correlation coefficient really doesn’t make sense since the relationship between x and y is definitely not linear, but is instead more ‘dinosaur-esque’.</p>
 <p>For illustrative purposes only, let’s calculate the correlation coefficient between x and y.</p>
 <div class="cell">
@@ -271,7 +235,7 @@ Note
 </div>
 </div>
 <ol type="1">
-<li>Plot y vs.&nbsp;x for the star dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between x and y for this dataset. How does this value compare to the <span class="math inline">\(r\)</span> of dino?</li>
+<li>Plot y vs.&nbsp;x for the star dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between x and y for this dataset. How does this value compare to the <em>r</em> of dino?</li>
 </ol>
 <ul>
 <li>To begin, edit the name of the code chunks from <code>ex-3-1</code> and <code>ex-3-2</code> to something more meaningful, e.g: <code>plot-star</code> and <code>star-correlation</code> respectively.</li>

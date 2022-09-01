@@ -1,20 +1,20 @@
 ---
-title: "Exploratory data I: penguins"
+title: "Intro to R and EDA"
 subtitle: "STA 101"
-output: html_document
-date: "June 28, 2022"
+format: html
+editor: visual
 ---
 
 ## Bulletin
 
-- first lab today, due Friday at 11:59pm on Gradescope
+- first lab tomorrow, due following Thursday at 11:59pm on Gradescope
 - be sure to complete prepare material (on the [schedule](https://sta101.github.io/static/schedule/schedule.html)) before each class
 
 ## Today
 
 By the end of today you will...
 
-- gain familiarity with the 'big seven' functions of `dplyr`
+- practice using `glimpse()`, `names()`, `nrow()`, `ncol()`, `count()`
 - define and compute various statistics
 - begin to gain familiarity with `ggplot`
 
@@ -23,12 +23,15 @@ By the end of today you will...
 
 Download this application exercise by pasting the code below into your **console** (bottom left of screen)
 
-```{r download-rmd, eval=F}
-download.file("https://sta101.github.io/static/appex/ae2.Rmd",
-destfile = "ae2.rmd")
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae1.qmd",
+destfile = "ae1.qmd")
 ```
 
-- A note on YAML. Create a new `.rmd`
+- A note on navigating RStudio
+  - Source code vs visual editor
+  - code chunks and narrative
+  - file system
 
 ## Load packages and data
 

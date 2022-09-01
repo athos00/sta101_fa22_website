@@ -1,0 +1,238 @@
+---
+title: "Intro to R and EDA"
+subtitle: "STA 101"
+format: html
+editor: visual
+---
+
+## Bulletin
+
+- first lab tomorrow, due following Thursday at 11:59pm on Gradescope
+- be sure to complete prepare material (on the [schedule](https://sta101.github.io/static/schedule/schedule.html)) before each class
+
+## Today
+
+By the end of today you will...
+
+- practice using `glimpse()`, `names()`, `nrow()`, `ncol()`, `count()`
+- define and compute various statistics
+- begin to gain familiarity with `ggplot`
+
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console** (bottom left of screen)
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae1.qmd",
+destfile = "ae1.qmd")
+```
+
+- A note on navigating RStudio
+  - Source code vs visual editor
+  - code chunks and narrative
+  - file system
+
+## Load packages and data
+
+```{r load-libraries, message=F, warning=F}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Type `?palmerpenguins` to learn more about this package. Or better yet, check it out [here](https://allisonhorst.github.io/palmerpenguins/).
+
+```{r load-data, message=F, warning=F}
+data(penguins)
+```
+
+#### Exercise 1: 
+Look at the data, how many observations are there? How many variables?
+
+## A package within a package...
+
+When we load the `tidyverse` library, `dplyr` is packaged with it.
+
+[dplyr](https://dplyr.tidyverse.org/), a grammar of data manipulation offers intuitive 'verb' functions that describe actions we commonly want to perform with data. The big 7 we'll cover today are:
+
+- `mutate()` adds new variables that are functions of existing variables
+- `select()` picks variables based on their names.
+- `filter()` picks cases based on their values.
+- `group_by()` sets us up to summarize across groups
+- `summarize()` reduces multiple values down to a single summary.
+- `arrange()` changes the ordering of the rows.
+- `slice()` select, remove and duplicate rows based on their index
+
+(as described at [https://dplyr.tidyverse.org/](https://dplyr.tidyverse.org/))
+
+- Check out documentation with `?`
+
+### Mutate
+
+Approximate bill area (in $mm^2$) as bill length * bill depth:
+
+```{r approx-bill-area}
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm)
+```
+
+### Select
+
+It's hard to see bill length, depth and area in the same output, let's select a smaller subset of the variables to look at.
+
+```{r remove-year}
+# Example 1
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm) %>%
+  select(-year)
+
+# Example 2
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm) %>%
+  select(species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, bill_area_mm2)
+```
+
+- A note on pipes `%>%` and a note on style.
+
+## Filter
+
+Let's just examine penguins on Dream island
+
+```{r just-dream, eval=F}
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm) %>%
+  select(-year)
+# code here
+```
+
+
+## Group by + Summarize
+
+
+#### Exercise 2:
+
+Find mean bill area across sex. Fill in the blanks
+```{r bill-area-across-sex, eval=F}
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm) %>%
+  select(-year) %>%
+  # filter for Dream
+  group_by(___) %>%
+  summarize(mean_bill_area_mm2 = ___)
+```
+
+
+## Arrange + Slice
+
+Let's use `arrange()` and `slice()` to report the five penguins with the greatest bill area. 
+
+```{r splitting-the-bill}
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm) %>%
+  select(bill_area_mm2, bill_length_mm) %>%
+  arrange(desc(bill_area_mm2))
+```
+
+#### Exercise 3:
+
+Are these the same five penguins with the longest bills?
+
+Optional hint: if you want to be exactly precise about which penguins are which, you could add an ID column, e.g.
+
+```{r add-data-id}
+ penguins %>%
+  mutate(id = seq(1:nrow(penguins)))
+```
+
+This takes advantage of the `nrow()` function. Can you guess what it returns?
+
+#### Exercise 4:
+
+Compute the average bill length, bill depth, flipper length and body mass across all islands.
+
+#### Exercise 5:
+
+Is every species on every island?
+
+---
+
+## Summary statistics
+
+What is a statistic? It's **any mathematical function of the data**. Sometimes, a statistic is referred to as "sample statistic" since you compute it from a finite **sample** (the data) and not the entire **population**.
+
+For example, `penguins` is a sample of penguins in Antarctica, not an exhaustive list of the entire population.
+
+Examples of statistics:
+
+#### measure of central tendency:
+- mean
+- median
+- mode
+
+#### measures of spread:
+- standard deviation
+- variance
+- range
+- quartiles
+- inter-quartile range (IQR)
+
+#### order statistics:
+- quantiles
+- minimum (0 percentile)
+- median (50th percentile)
+- maximum (100 percentile)
+
+... and any other arbitrary function of the data you can come up with!
+
+#### Exercise 6: 
+
+Come up with your own statistic and write it in the narrative below.
+
+To access a column of the data, we'll use `data$column`.
+
+Let's write down the R function for each of the above. 
+
+#### Exercise 7:
+
+Try to compute the above statistics for the penguin bill length column.
+
+Do you receive an error? Why?
+
+```{r compute-statistics}
+# code here
+```
+
+Let's take a look at the **distribution** of bill length among all penguins.
+
+```{r bl-plot-1}
+penguins %>% # data
+  ggplot(aes(x = bill_length_mm)) + # columns we want to look at
+  geom_histogram() # geometry of the visualization
+```
+
+Let's visualize some of our summary statistics on the plot. 
+
+#### Exercise 8: 
+Uncomment the code below and fill in the blank with the mean.
+
+```{r visualize-summaries, eval=F}
+penguins %>% 
+  ggplot(aes(x = bill_length_mm)) + 
+  geom_histogram() #+ 
+  #geom_vline(xintercept = __, color = 'red')
+```
+
+#### Exercise 9
+
+Add another `geom_vline` with the median and mode. Use separate colors for each.
+
+
+#### Exercise 10
+
+Finally, let's try out another geometry `geom_density` and clean up our graph with some axes labels.
+
+```{r density-plot}
+# live coding here
+```
+
+

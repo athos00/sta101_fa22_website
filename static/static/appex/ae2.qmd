@@ -1,0 +1,218 @@
+---
+title: "Intro to R and EDA"
+subtitle: "STA 101"
+format: html
+editor: visual
+---
+
+## Bulletin
+
+-   first lab tomorrow, due following Thursday at 11:59pm on Gradescope
+-   be sure to complete prepare material (on the [schedule](https://sta101-fa22.netlify.app/static/schedule/schedule.html)) before each class
+
+## Today
+
+By the end of today you will...
+
+-   practice using `glimpse()`, `names()`, `nrow()`, `ncol()`, `count()`
+-   define and compute various statistics
+-   begin to gain familiarity with `ggplot`
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console** (bottom left of screen)
+
+    download.file("https://sta101-fa22.netlify.app/static/appex/ae2.qmd",
+    destfile = "ae2.qmd")
+
+-   A note on navigating RStudio
+    -   Source code vs visual editor
+    -   code chunks and narrative
+    -   file system
+
+## Load packages
+
+```{r load-libraries, message=F, warning=F}
+library(tidyverse)
+```
+
+-   A package within a package...
+
+The `tidyverse` package contains the `dplyr` and `ggplot` packages we will use today. `ggplot` contains functions for plotting data while `dplyr` contains tools to wrangle, manipulate and summarize data frames.
+
+## Load data
+
+```{r load-data, message=F, warning=F}
+flint = read_csv("https://sta101-fa22.netlify.app/static/appex/data/flint.csv")
+```
+
+### Data dictionary
+
+-   `id`: sample ID number (identifies the home)
+-   `zip`: ZIP code in Flint of the sample's location
+-   `ward`: ward in Flint of the sample's location
+-   `draw`: which time point the water was sampled from
+-   `lead`: lead content in parts per billion
+
+
+## Goal
+
+We want to learn about the **population** using a **sample**.
+
+In the case we want to learn about the lead content in all of Flint, MI homes but only have available water readings from a sample of homes (our data set).
+
+#### Exercise 1:
+
+Look at the data, how many observations are there? How many variables?
+
+\[answer here\]  
+  
+  
+## Count
+
+Let's `count()` to find the number of different time points water was sampled.
+
+```{r count-draws}
+count(flint, draw)
+```
+How many unique homes are in the data set?
+
+```{r count-homes}
+flint %>%
+  count(id)
+```
+
+- A note on pipes `%>%` 
+
+## Exercise 2 
+
+Fill in the code to see how many samples were taken from each zip code. Uncomment the lines (i.e. remove the `#` before running the code)
+
+```{r count-by-zip, echo = TRUE}
+# flint %>% 
+ # count(______)
+```
+
+Which ZIP code had the most samples drawn?
+
+
+## Statistics
+
+What is a statistic? It's **any mathematical function of the data**. Sometimes, a statistic is referred to as "sample statistic" since you compute it from a **sample** (the data) and not the entire **population**.
+
+#### measure of central tendency:
+
+-   mean
+-   median
+-   mode
+
+#### measures of spread:
+
+- variance
+- standard deviation
+- range
+- quartiles
+- inter-quartile range (IQR)
+
+#### order statistics:
+
+-   quantiles
+-   minimum (0 percentile)
+-   median (50th percentile)
+-   maximum (100 percentile)
+
+... and any other arbitrary function of the data you can come up with!
+
+#### Exercise 3:
+
+Come up with your own statistic and write it in the narrative here.
+
+To access a column of the data, we'll use `data$column`.
+
+Let's compute each of these statistics for `lead` ppb in `R`.
+
+```{r statistics}
+# code here
+```
+
+
+## Plotting
+
+Let's take a look at the **distribution** of lead content in homes in Flint, MI.
+
+```{r flint-histogram-1, warning = F}
+flint %>% # data
+  ggplot(aes(x = lead)) + # columns we want to look at
+  geom_histogram() # geometry of the visualization
+```
+
+
+We can make this plot look nicer by adjusting the number of bins and/or the x-axis.
+
+```{r flint-histogram-2, warning = F}
+flint %>% # data
+  ggplot(aes(x = lead)) + # columns we want to look at
+  geom_histogram(bins = 50) + # geometry of the visualization
+  xlim(0, 100) # limit the x-axis to a certain range
+```
+
+Let's visualize some of our summary statistics on the plot.
+
+#### Exercise 4:
+
+Un-comment the code below and fill in the blank with the mean.
+
+```{r visualize-summaries, eval=F}
+flint %>% 
+  ggplot(aes(x = lead)) + 
+  geom_histogram(bins = 50) + 
+  xlim(0,100) #+
+  #geom_vline(xintercept = __, color = 'red')
+```
+
+Add another `geom_vline` with the median. Use a separate color.
+
+
+## Box plots
+
+Let’s make some plots, where we will focus on zip codes 48503, 48504, 48505, 48506, and 48507. We will restrict our attention to samples with lead values less than 1,000 ppb.
+
+```{r, echo = TRUE}
+flint_focus <- flint %>% 
+  filter(zip %in% 48503:48507, lead < 1000)
+```
+
+Below are side-by-side box plots for the three flushing times in each of the five zip codes we considered. Add `x` and `y` labels; add a title by inserting `title = "title_name"` inside the `labs()` function.
+
+```{r}
+ggplot(data = flint_focus, aes(x = factor(zip), y = lead)) +
+  geom_boxplot(aes(fill = factor(draw))) +
+  labs(x = "--------", y = "--------", fill = "Flushing time") +
+  scale_fill_discrete(breaks = c("first", "second", "third"),
+                      labels = c("0 (sec)", "45 (sec)", "120 (sec)")) +
+  coord_flip() +
+  theme_bw()
+```
+
+Add labels for `x`, `y`, a `title`, and `subtitle` to the code below to update the corresponding plot.
+
+```{r}
+ggplot(data = flint_focus, aes(x = factor(zip), y = lead)) +
+  geom_boxplot(aes(fill = factor(draw))) + 
+  labs(x = "--------", y = "--------", fill = "Flushing time",
+       subtitle = "--------") +
+  scale_fill_discrete(breaks = c("first", "second", "third"),
+                      labels = c("0 (sec)", "45 (sec)", "120 (sec)")) +
+  coord_flip(ylim = c(0, 50)) +
+  theme_bw()
+```
+
+What is the difference between the two plots? What are the advantages and disadvantages to each plot? 
+
+## References
+
+1. Langkjaer-Bain, R. (2017). The murky tale of Flint’s deceptive water data. Significance, 14: 16-21.
+
+2. Kelsey J. Pieper, Rebekah Martin, Min Tang, LeeAnne Walters, Jeffrey Parks, Siddhartha Roy, Christina Devine, and Marc A. Edwards
+Environmental Science & Technology 2018 52 (15), 8124-8132
+DOI: 10.1021/acs.est.8b00791 

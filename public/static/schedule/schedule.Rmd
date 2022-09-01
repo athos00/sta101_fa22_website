@@ -54,10 +54,10 @@ Find all assignments and due dates here. This schedule updates frequently.
 |Week |Date       |Topic    |Prepare |AE |Lab |Exam |Project |
 |:----|:----------|:--------|:-------|:----|:--------|:----|:-------|
 |  1   |Tue Aug 30 | Welcome to STA 101!        |  [`r emo::ji("book")`](/prepare/week-1)      | [ae1](/static/appex/ae1.html), \ \ [`r emo::ji("computer")`](/static/slides/day01.html)   |           |     |        |
-|     |Thu Sep 01 | Intro to R       | [`r emo::ji("book")`](/prepare/week-1)        |   |         |     |        |
+|     |Thu Sep 01 | Intro to R       | [`r emo::ji("book")`](/prepare/week-1)        | [ae2](/static/appex/ae2.html)  |         |     |        |
 |     |Fri Sep 02 | Hello R!      |        |   |  [lab 1](/static/labs/lab01.html), \ \ [`r emo::ji("computer")`](/static/slides/lab-01-slides.html)        |     |        |
-|  2   |Tue Sep 06 | Exploratory data analysis I         |        |   |           |     |        |
-|     |Thu Sep 08 |  Exploratory data analysis II       |        |   |           |     |        |
+|  2   |Tue Sep 06 | Exploratory data analysis I         | [`r emo::ji("book")`](/prepare/week-2)        |   |           |     |        |
+|     |Thu Sep 08 |  Exploratory data analysis II       | [`r emo::ji("book")`](/prepare/week-2)        |   |           |     |        |
 |     |Fri Sep 09 |   EDA      |        |   | lab 2          |     |        |
 | 3    |Tue Sep 13 | Exploratory data analysis III         |        |   |           |     |        |
 |     |Thu Sep 15 | Simple regression        |        |   |           |     |        |

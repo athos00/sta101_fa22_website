@@ -18,6 +18,12 @@ If you prefer, you can download and install `R` and `RStudio` locally on your co
 
 -   Go to <https://www.rstudio.com/products/rstudio/download/#download> to download the free version of RStudio Desktop.
 
+There is one additional piece of software needed for complete functionality:
+
+- Go to [https://www.latex-project.org/get/](https://www.latex-project.org/get/) and scroll down to download the LaTeX package for your device. [MacTeX](https://tug.org/mactex/) for macs or [MiKTeX](https://miktex.org/) for Windows.
+
+
+
 ## Getting started
 
  1. Download the lab template by pasting the code below into your **console**:

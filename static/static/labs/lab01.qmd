@@ -42,7 +42,7 @@ The top portion of your Quarto Markdown file (aka `.qmd`), you'll find three das
 Change the `author` name to your name and update the `date` with today's date. Click the `render button` to render the document. What do you notice?
 
 :::{.callout-note}
-Notice in the YAML the output is set to "pdf". In this course, all assignments **must be submitted to gradescope as PDFs**. To avoid issues that can occur while rendering, it is a good idea to render frequently. **At least after every exercise**.
+To avoid issues that can occur while rendering, it is a good idea to render frequently. **At least after every exercise**.
 :::
 
 ### Packages
@@ -188,7 +188,13 @@ Adding new lines after pipes and layers is a "tidyverse" styling. Tidyverse styl
 
 ## Submitting to gradescope
 
-In this class, we will submit `.pdf` documents to Gradescope. Once you are fully satisfied with your lab, render to .pdf to create a .pdf document. You may notice that the formatting/theme of the report differs when you render as pdf vs html -- this is expected. Remember -- you must turn in a .pdf file to the Gradescope page before the submission deadline for credit. To submit your assignment:
+In this class, we will submit `.pdf` documents to Gradescope. Once you are fully satisfied with your lab, render to create a .html document. Next open your `lab01.html` in the file system in the bottom right and "print to PDF". Ask your TA if you get stuck. Remember -- you must turn in a .pdf file to the Gradescope page before the submission deadline for credit. 
+
+:::{.callout-note}
+In future labs, we will render to pdf directly but currently, RStudio containers are not setup with the tools to render to PDF directly.
+:::
+
+To submit your assignment:
 
 -   Go to <http://www.gradescope.com> and click Log in in the top right corner. - Click `School Credentials`, `Duke NetID` and log in using your NetID credentials.
 

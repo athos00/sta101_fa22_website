@@ -42,6 +42,8 @@ library(viridis) # we'll use to customize colors
 data(penguins)
 ```
 
+Type `?palmerpenguins` to learn more about this package. Or better yet, check it out [here](https://allisonhorst.github.io/palmerpenguins/).
+
 ## Logic in R
 
 The table of logical operators below will be helpful as you work with filtering.

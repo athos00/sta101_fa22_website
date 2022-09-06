@@ -1,20 +1,34 @@
 ---
-title: "Exploratory data II: penguins"
+title: "Exploratory Data Analysis I"
 subtitle: "STA 101"
-output: html_document
-date: "June 30, 2022"
+format: html
 ---
 
 ## Bulletin
 
-- **Lab** today is remote. See email / announcement on sakai
-- No class/office hours Monday. Happy 4th of July! Next week only, my usual Monday office hours will be held on Tuesday July 5th directly after class
-- [Lab 1](https://sta101.github.io/static/labs/lab01.html) due tomorrow July 1st at 11:59pm on gradescope
-- [Lab 2](https://sta101.github.io/static/labs/lab02.html) due Tuesday July 5th at 11:59pm
-- Reminder: Exam 1 will be released next Thursday
+- [Lab 1](https://sta101-fa22.netlify.app/static/labs/lab01.html) due Thursday at 11:59pm on gradescope
+- How to render to pdf directly
+
+## Today
+
+We'll begin today by visiting the last figure of [ae2](https://sta101-fa22.netlify.app/static/appex/ae2.html).
+
+By the end of today you will...
+
+- harness the power of `filter()` using logic
+- create and interpret scatter plots, bar plots, stacked bar plots, facet plots and be able to look up and use other `ggplot` geometries
 
 
-### Packages
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae3.qmd",
+destfile = "ae3.qmd")
+```
+
+## Load packages
 
 ```{r load-library, message = F, warning = F}
 library(tidyverse)
@@ -22,24 +36,13 @@ library(palmerpenguins)
 library(viridis) # we'll use to customize colors
 ```
 
-### Data
+## Load data
 
 ```{r load-data, message = F, warning = F}
 data(penguins)
 ```
 
-
-## Today
-
-We'll begin today by completing [ae2](https://sta101.github.io/static/appex/ae2.html).
-
-By the end of today you will...
-
-- harness the power of `filter()`,
-- understand the basics of the grammar of graphics and create plots with `ggplot`
-
-
-## Filtering revisited
+## Logic in R
 
 The table of logical operators below will be helpful as you work with filtering.
 
@@ -58,6 +61,8 @@ The table of logical operators below will be helpful as you work with filtering.
 | `x & y` |   is x AND y? |
 | `x \| y` |   is x OR y? |
 | `!x` |   is not x? |
+
+The above operations return `TRUE` (1) or `FALSE` (0).
 
 ### Examples
 
@@ -84,21 +89,46 @@ penguins %>%
   filter(is.na(flipper_length_mm))
 ```
 
-What proportion of penguins are from each island?
+How many penguins are of species Adelie *or* Chinstrap?
 
-```{r penguin-filter-4}
+```{r}
 penguins %>%
-  count(island) %>%
-  mutate(proportion = n / sum(n))
+  filter(species %in% c("Adelie", "Chinstrap"))
 ```
 
-#### Exercise:
-What proportion of penguins are from each species?
+#### Exercise 1:
 
-```{r prop-species}
+Double check the *Adelie* and *Chinstrap* total using `count()`.
+
+```{r}
 # code here
 ```
 
+
+#### Exercise 2:
+
+What is the mean bill length of *Adelie* penguins? Hint: filter and then use `summarize()` as seen in lab 1.
+
+```{r}
+# code here
+```
+
+
+#### Exercise 3:
+
+How many penguins have a bill length greater than 40 mm *or* a bill depth less than 15 mm?
+
+```{r}
+# code here
+```
+
+#### Exercise 4: 
+
+What proportion of penguins are from the island `Torgersen`?
+
+```{r}
+# code here
+```
 
 
 ## Plots
@@ -106,7 +136,7 @@ What proportion of penguins are from each species?
 The procedure used to construct plots can be summarized using the code below.
 
 ```{r eval = FALSE}
-ggplot(data = [dataset], 
+ggplot(data = [data set], 
        mapping = aes(x = [x-variable], y = [y-variable])) +
    geom_xxx() +
    geom_xxx() + 
@@ -143,7 +173,7 @@ An aesthetic is a visual property in your plot that is derived from the data.
 - size
 - alpha (transparency)
 
-We can map a variable in our dataset to a color, a size, a transparency, and so on. The aesthetics that can be used with each `geom_` can be found in the documentation.
+We can map a variable in our data set to a color, a size, a transparency, and so on. The aesthetics that can be used with each `geom_` can be found in the documentation.
 
 Here we are going to use the viridis package, which has more color-blind accessible colors. `scale_color_viridis` specifies which colors you want to use. You can learn more about the options [here](https://www.rdocumentation.org/packages/viridis/versions/0.5.1/topics/scale_color_viridis).
 
@@ -161,7 +191,7 @@ ggplot(data = penguins,
         scale_color_viridis(discrete=TRUE, option = "D", name="Sex")
 ```
 
-#### Exercise:
+#### Exercise 5:
 Can you remove the NAs from the above visualization?
 
 **Question:** What will the visualization look like below? Write your answer 
@@ -176,6 +206,7 @@ ggplot(data = penguins,
         x = "Bill length (mm)", y = "Flipper length (mm)") + 
         scale_color_viridis(discrete=TRUE, option = "D", name="Sex")
 ```
+
 ### Faceting
 
 We can use smaller plots to display different subsets of the data using faceting. This is helpful to examine conditional relationships.

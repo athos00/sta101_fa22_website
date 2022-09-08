@@ -1,0 +1,160 @@
+---
+title: "Exploratory Data Analysis II"
+subtitle: "STA 101"
+format: html
+---
+
+## Bulletin
+
+-   lab 1 due tonight at 11:59pm on Gradescope
+-   be sure to complete prepare material (on the [schedule](https://sta101-fa22.netlify.app/static/schedule/schedule.html)) before each class
+
+## Today
+
+By the end of today you will...
+
+-   Learn and practice the big 7 `dplyr` verbs
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console** (bottom left of screen)
+
+    download.file("https://sta101-fa22.netlify.app/static/appex/ae4.qmd",
+      destfile = "ae4.qmd")
+
+## Load packages and data
+
+```{r load-libraries, message=F, warning=F}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Type `?palmerpenguins` to learn more about this package. Or better yet, check it out [here](https://allisonhorst.github.io/palmerpenguins/).
+
+```{r load-data, message=F, warning=F}
+data(penguins)
+```
+
+## A package within a package...
+
+When we load the `tidyverse` library, `dplyr` is packaged with it.
+
+[dplyr](https://dplyr.tidyverse.org/), a grammar of data manipulation offers intuitive 'verb' functions that describe actions we commonly want to perform with data. The big 7 we'll cover today are:
+
+-   `mutate()` adds new variables (columns) that are functions of existing variables
+-   `select()` picks variables based on their names.
+-   `filter()` picks rows based on their values in specific columns.
+-   `group_by()` sets us up to summarize across groups
+-   `summarize()` reduces multiple values down to a single summary.
+-   `arrange()` changes the ordering of the rows.
+-   `slice()` select, remove and duplicate rows based on their index
+
+(as described at <https://dplyr.tidyverse.org/>)
+
+-   Check out documentation with `?`
+
+### Mutate
+
+- `mutate()` adds new variables (columns) that are functions of existing variables
+
+Approximate bill area (in $m^2$) as bill length \* bill depth:
+
+```{r approx-bill-area}
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm)
+```
+
+### Select
+
+- `select()` picks variables (columns) based on their names.
+
+It's hard to see bill length, depth and area in the same output, let's select a smaller subset of the variables to look at.
+
+```{r remove-year}
+# Example 1
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm) %>%
+  select(-c(year, species, island, flipper_length_mm, body_mass_g, sex))
+
+# Example 2
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm) %>%
+  select(bill_length_mm, bill_depth_mm, bill_area_mm2)
+```
+
+
+## Filter
+
+- `filter()` picks rows based on their values in specific columns.
+
+Let's just examine penguins on Dream island
+
+```{r just-dream, eval=F}
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm) %>%
+  select(-year)
+# code here
+```
+
+## Group by + Summarize
+
+- `group_by()` sets us up to summarize across groups
+- `summarize()` reduces multiple values down to a single summary.
+
+#### Exercise 2:
+
+Find mean bill area across sex. Fill in the blanks
+
+```{r bill-area-across-sex, eval=F}
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm) %>%
+  select(-year) %>%
+  # filter for Dream
+  group_by(___) %>%
+  summarize(mean_bill_area_mm2 = ___)
+```
+
+## Arrange + Slice
+
+- `arrange()` changes the ordering of the rows.
+- `slice()` select, remove and duplicate rows based on their index
+
+Let's use `arrange()` and `slice()` to report the five penguins with the greatest bill area.
+
+```{r splitting-the-bill}
+penguins %>%
+  mutate(bill_area_mm2 = bill_length_mm * bill_depth_mm) %>%
+  select(bill_area_mm2, bill_length_mm) %>%
+  arrange(desc(bill_area_mm2))
+```
+
+#### Exercise 3:
+
+Are these the same five penguins with the longest bills?
+
+Optional hint: if you want to be exactly precise about which penguins are which, you could add an ID column, e.g.
+
+```{r add-data-id}
+ penguins %>%
+  mutate(id = seq(1:nrow(penguins)))
+```
+
+This takes advantage of the `nrow()` function. Can you guess what it returns?
+
+#### Exercise 4:
+
+Compute the average bill length, bill depth, flipper length and body mass across all islands.
+
+```{r ex-4}
+# code here
+```
+
+
+#### Optional bonus:
+
+Is every species on every island?
+
+```{r bonus}
+# code here
+```
+

@@ -1,0 +1,261 @@
+---
+title: "CLT Continued and Intro to Hypothesis Testing"
+output: html_document
+date: "July 21, 2022"
+---
+
+
+## Bulletin
+
+- Exam 2 due Monday July 25 at 11:59pm
+- No lab today
+
+## Today
+
+By the end of today you will...
+
+- Construct a CLT CI
+- Be familiar with the terms "p-value", "null-distribution", "null hypothesis", "alternative hypothesis"
+- Compute a p-value
+
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101.github.io/static/appex/ae11.Rmd",
+destfile = "ae11.rmd")
+```
+
+## Load packages and data
+
+```{r load-libraries, message = F, warning = F}
+library(tidyverse)
+library(tidymodels)
+```
+
+
+```{r load-data, message = F, warning = F}
+pokemon = read_csv("https://sta101.github.io/static/appex/data/pokemon.csv")
+```
+
+
+## Notes
+
+### The standard normal
+
+The standard normal distribution is a normal distribution with mean 0 and standard deviation 1. Often, the character "Z" is used to denote a standard normal random variable.
+
+$$
+Z \sim N(0,1)
+$$
+
+
+```{r standard-normal}
+ggplot(data = data.frame(x = c(0 - 1*3, 0 + 1*3)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1),
+                color = "black") +
+  labs(x = "Z", y = "Density", title = "The standard normal") +
+  theme_bw()
+```
+
+We can write any normal distribution as a linear combination of a standard normal. For example,
+
+If $X \sim N(10,4)$, then $X = 4Z + 10$. *Note that the second term inside of the parentheses is the standard deviation. In some textbooks the second term is variance.
+
+Example:
+We draw 1000 samples of x (gold) and 1000 samples of z (blue). If we multiply each z by the standard deviation (4) and add the mean (10), we equivalently obtain samples from x; this is shown in red.
+
+```{r ex-linear-combo, warning = F, message = F}
+set.seed(1)
+normal_df = data.frame(z = rnorm(1000, mean = 0, sd = 1),
+                 x = rnorm(1000, mean = 10, sd = 4))
+
+sample_mean = normal_df %>%
+  summarize(sample_mean = mean(x)) %>%
+  pull()
+
+normal_df %>%
+  ggplot(aes(x = x)) +
+  geom_histogram(aes(y = ..density..), fill = 'gold3', alpha = 0.5) +
+  geom_histogram(aes(x = z, y = ..density..), fill = 'steelblue', alpha = 0.7) +
+  # geom_density(aes(x = z), color = 'steelblue') +
+  geom_density(aes(x = z*4 + 10), color = 'red') + 
+  theme_bw() +
+  labs(x = "", y = "", title = "Sampling from two normals")
+
+```
+
+Similarly, we can find confidence intervals using either the true distribution or by transforming Z. Our `sample_mean` (computed above) is `r sample_mean`. We can look at the associated 95% confidence interval:
+
+
+```{r}
+# lower bound
+qnorm(0.025, mean = sample_mean, sd = 4)
+qnorm(0.025, mean = 0, sd = 1) * 4 + sample_mean
+
+# upper bound
+qnorm(0.975, mean = sample_mean, sd = 4)
+qnorm(0.975, mean = 0, sd = 1) * 4 + sample_mean
+```
+
+More generally, we construct a confidence interval
+
+$$
+\bar{x} \pm z^* \times \frac{\sigma}{\sqrt{n}}
+$$
+
+where $z^*$ denotes the z-score associated with the quantiles of interest for a given confidence level.
+
+### Practical confidence intervals
+
+We don't know the true population mean $\mu$ and standard deviation $\sigma$, how do we use CLT to construct a confidence interval?
+
+We approximate $\mu$ by $\bar{x}$ and $\sigma$ by $s$. However $s$ may be smaller than $\sigma$ and our confidence interval could be too narrow, for example, run the code below:
+
+```{r ex-sd}
+set.seed(6)
+samples = rnorm(10, mean = 0, sd = 1)
+sd(samples)
+```
+
+This was just for 1 random seed. If you repeat with no seed, you will find that sometimes $s$ is above and sometimes $s$ is below the true standard deviation.
+
+To account for this uncertainty, we will use a distribution with thicker tails. This sampling distribution is called a **t-distribution**.
+
+```{r t-versus-normal}
+ggplot(data = data.frame(x = c(0 - 1*3, 0 + 1*3)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1),
+                color = "black") +
+  stat_function(fun = dt, args = list(df = 3),
+                color = "red",lty = 2) + theme_bw() +
+  labs(title = "Black solid line = normal, Red dotted line = t-distribution")
+```
+
+The t-distribution has a bell shape but the extra thick tails help us correct for the variability introduced by using $s$ instead of $\sigma$.
+
+The t-distribution is always centered at zero and has a single parameter: degrees of freedom. The degrees of freedom describes the precise form of the bell-shaped t-distribution. In general, we'll use a t-distribution with $df=n−1$ to model the sample mean when the sample size is $n$.
+
+We can use `qt` and `pt` to find quantiles and probabilities respectively under the t-distribution.
+
+### Confidence interval
+To construct our 
+practical confidence interval (where we don't know $\sigma$) we use the t-distribution:
+
+$$
+\bar{x} \pm t^*_{n-1} \times \frac{s}{\sqrt{n}}
+$$
+
+#### Exercise 1
+
+- Calculate the 95% confidence interval for pokemon height using the t-distribution.
+
+```{r clt-ci}
+# code here
+```
+
+How does this compare to a 95% bootstrap confidence interval?
+
+```{r bootstrap-ci}
+# code here
+```
+
+
+---
+
+## Introduction to hypothesis testing
+
+
+### Is this a fair coin?
+
+We'll record 1 if the coin is "Heads" and 0 if the coin lands "Tails".
+
+```{r fair-coin}
+# coin_flips = c()
+```
+
+If the coin is fair, what is the probability of seeing the outcome we saw? To answer this question we'll setup a statistical model:
+
+$$
+\text{# heads} \sim Binomial(n, p)
+$$
+
+where $p$ is the probability of a heads and $n$ is the total number of coin flips. 
+
+#### Exercise 2
+
+- If the coin is fair, what would $p$ be?
+
+- Using `R`, flip a fair coin 6 times and count the number of heads. Next, repeat this experiment 1000 times and count the proportion of times you observe 6 heads.
+
+```{r compute-probability}
+# code here
+```
+
+- What is the probability of observing 6 heads in 6 coin flips?
+
+
+## Hypothesis testing framework
+
+You may not have realized it but you just performed a hypothesis test!
+
+You setup a null hypothesis: $H_0$. The null hypothesis is a hypothesis you set up and then try and knock down. Conceptually, it's the "nothing special is going on" hypothesis. Formally, the null hypothesis makes a **claim** or **assumption** about a population parameter. 
+
+In this case, it was the assumption that the coin is fair. Mathematically, we write this:
+
+$$
+H_0: p = 0.5
+$$
+
+Conceptually, $p$ is the probability of flipping a head if we flipped the coin infinitely many times.
+
+Since we computed the probability of observing **all heads**, we were fundamentally interested in if $p > 0.5$. This is our alternative hypothesis, $H_A$. In mathematical notation, we write
+
+$$
+H_A: p > 0.5
+$$
+
+Next, we **simulated under the null**. This means that we simulated what the coin flips would have looked like **if the null was true**. In this context, this means we simulated as **if the coin was fair**.
+
+Finally, we check to see where our actual observed data places under the null distribution. If it's **way out in the tail**, we reject the null. If its not way out in the tail, we **fail to reject the null**.
+
+How can we make "way out in the tail" more precise? Well, it's arbitrary and context-dependent. In some contexts it is popular to use a cut-off of $0.05$.
+
+#### Exercise 3
+ 
+Assume we continue flipping our coin for a total of 30 coin flips and observe 26 heads and 4 tails. What is the probability of seeing 26 **or more** heads if the coin is fair?
+
+```{r ex-3}
+# code here
+```
+
+
+## p-values
+
+You might not realize it, but you just computed a p-value... again!
+
+A p-value is a probability. It's the **tail** probability associated with your alternative hypothesis.
+
+The alternative hypothesis must always relate to the null. Here we had three options:
+
+- $H_A: p < 0.5$, the coin is biased to land tails
+- $H_A: p > 0.5$, the coin is biased to land heads
+- $H_A: p \neq 0.5$, the coin is biased
+
+Let's look offline at what each one would like here.
+
+#### Exercise 4
+
+Compute the p-value associated with each of the alternative hypotheses above.
+
+```{r}
+# code here
+```
+
+Make a conclusion based on a significance level of 0.05. In other words, 
+
+- if p < 0.05, reject the null.
+- if p > 0.05, we fail to reject the null.
+
+As you can see our conclusion depends on our alternative hypothesis. For this reason, it is important to set up an alternative hypothesis **before** looking at the data.

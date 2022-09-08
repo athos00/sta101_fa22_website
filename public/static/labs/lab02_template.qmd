@@ -1,5 +1,5 @@
 ---
-title: "Lab 02: Take Courage with data visualization!"
+title: "Lab 02: Take Courage with Data Visualization"
 author: "Your name"
 date: "Due September 15, 2022 at 11:59pm"
 format: pdf

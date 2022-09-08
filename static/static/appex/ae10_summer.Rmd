@@ -1,0 +1,263 @@
+---
+title: "Central limit theorem"
+output: html_document
+date: "July 19, 2022"
+---
+
+
+## Bulletin
+
+- Regression project due Wednesday (tomorrow) 11:59p
+- No lab today
+- Exam 2 Thursday
+- Review session tomorrow 4-5p in this room
+
+## Today
+
+By the end of today you will...
+
+
+- Use Central Limit Theorem to define distribution of sample means
+- Calculate probabilities from the normal distribution
+- Use Central Limit Theorem (CLT) to conduct inference on a population mean
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101.github.io/static/appex/ae10.Rmd",
+destfile = "ae10.rmd")
+```
+
+## Load packages
+
+```{r load-libraries, message = F, warning = F}
+library(tidyverse)
+library(tidymodels)
+```
+
+
+```{r load-data, message = F, warning = F}
+manhattan = read_csv("https://sta101.github.io/static/appex/data/manhattan.csv")
+```
+
+
+## Notes
+
+How do we know when to expect a normal distribution to show up?
+
+Last time we saw an example where the distribution of **sample means** was normal while the distribution of **sample medians** was not.
+
+Example:
+
+```{r}
+set.seed(1)
+boot_dist = manhattan %>%
+  specify(response = rent) %>% 
+  generate(reps = 1000, type = "bootstrap")
+
+boot_dist %>%
+  calculate(stat = "mean") %>%
+  visualize() +
+  labs(x = "Sample mean", 
+       title = "Simulated distribution of the sample mean")
+
+boot_dist %>%
+  calculate(stat = "median") %>%
+  visualize() + 
+  labs(x = "Sample median",
+       title = "Simulated distribution of the sample median")
+```
+
+Are there times when the sample mean will not look normal?
+
+Returning to our binomial example from `ae8`: you ask `numPeople` if they prefer dogs or cats. You repeat this 1000 times and plot the distribution of the proportion of who prefer dogs.
+
+#### Exercise 1 
+
+How does the shape of the distribution change as you increase the number of people per sample?
+
+```{r}
+set.seed(714)
+numPeople = 1
+numDog = rbinom(n = 1000, size = numPeople, prob = 0.85)
+sample = data.frame(numDog) # new data frame called sample
+sample %>%
+mutate(propDog = numDog / numPeople) %>%
+ggplot(aes(x = propDog)) +
+geom_histogram(binwidth = .01)
+```
+
+## What is the central limit theorem?
+
+The central limit theorem is a statement about the distribution of the sample mean, $\bar{x}$
+
+The central limit theorem guarantees that, when certain criteria are satisfied, the sample mean ($\bar{x}$) is normally distributed.
+
+Specifically,
+
+If 
+
+1. Observations in the sample are independent. Two rules of thumb to check this:
+
+	- completely random sampling
+	- if sampling without replacement, sample should be less than 10% of the population size
+
+and
+
+2. The sample is large enough. The required size varies in different contexts, but some good rules of thumb are: 
+
+	- if the population itself is normal, sample size does not matter.
+	- if numerical require, >30 observations
+	- if binary outcome, at least 10 successes and 10 failures.
+
+then 
+
+$\bar{x} \sim N(\mu, \sigma / \sqrt{n})$
+
+i.e. $\bar{x}$ is normally distributed (unimodal and symmetric with bell shape) with mean $\mu$ and standard deviation $\sigma / \sqrt{n}$. The standard deviation of the sampling distribution is called the **standard error**.
+
+Note the standard deviation depends on the number of samples, $n$.
+
+
+## Practice using CLT & Normal distribution
+
+Suppose the bone density for 65-year-old women is normally 
+distributed with mean $809 mg/cm^3$ and standard deviation of $140 mg/cm^3$.
+
+Let $x$ be the bone density of 65-year-old women. We can write this distribution of $x$ in mathematical notation as 
+
+$$x \sim N(809, 140)$$
+
+## Visualize the population distribution
+
+```{r visualize-normal}
+ggplot(data = data.frame(x = c(809 - 140*3, 809 + 140*3)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = 809, sd = 140),
+                color = "black") +
+  stat_function(fun = dnorm, args = list(mean = 809, sd = 140/sqrt(10)),
+                color = "red",lty = 2) + theme_bw() +
+  labs(title = "Black solid line = population dist., Red dotted line = sampling dist.")
+```
+
+
+
+#### Exercise 2
+
+Before typing any code, based on what you know about the normal distribution, what do you expect the median bone density to be?
+
+What bone densities correspond to $Q_1$ (25th percentile), $Q_2$ (50th percentile), and $Q_3$ (the 75th percentile) of this distribution? Use the `qnorm()` function to calculate these values. 
+
+#### Exercise 3
+
+The densities of three woods are below:
+
+- Plywood: 540 mg/cubic centimeter
+- Pine: 600 mg/cubic centimeter
+- Mahogany: 710 mg/cubic centimeter
+
+- What is the probability that a randomly selected 65-year-old woman has bones less dense than Pine?
+
+- Would you be surprised if a randomly selected 65-year-old  woman had bone density less than Mahogany? What if she had bone density less than Plywood? Use the respective probabilities to support your response. 
+
+#### Exercise 4
+
+Suppose you want to analyze the mean bone density for a group of 10 randomly selected 65-year-old women. 
+
+- Are the conditions for the Central Limit Theorem met?
+
+  - Independence? 
+  - Sample size/distribution? 
+  
+- What is the shape, center, and spread of the distribution of $\bar{x}$, the mean bone density for a group of 10 randomly selected 65-year-old women?
+
+- Write the distribution of $\bar{x}$ using mathematical notation. 
+
+#### Exercise 5
+
+- What is the probability that the mean bone density for the group of 10 randomly-selected 65-year-old women is less dense than Pine?
+
+- Would you be surprised if a group of 10 randomly-selected 65-year old women had a mean bone density less than Mahogany? What the group had a mean bone density less than Plywood? Use the respective probabilities to support your response. 
+
+#### Exercise 6
+
+Explain how your answers differ in Exercises 2 and 4.
+
+## On your own
+
+Suppose the distribution of the number of minutes users engage with apps on an iPad has a mean of 8.2 minutes and standard deviation of 1 minute. Let $x$ be the number of minutes users engage with apps on an iPad, $\mu$ be the population mean and $\sigma$ the population standard deviation. Then,
+
+$$x \sim N(8.2, 1)$$
+
+Suppose you take a sample of 60 randomly selected app users and calculate the mean number of minutes they engage with apps on an iPad, $\bar{x}$. The conditions (independence & sample size/distribution) to apply the Central Limit Theorem are met. Then by the Central Limit Theorem
+
+$$\bar{x} \sim N(8.2, 1/\sqrt{60})$$
+
+-   What is the probability a randomly selected user engages with iPad apps for more than 8.3 minutes? Use `pnorm` for calculations.
+
+    ```{r review-1}
+    #add code
+    ```
+
+-   What is the probability the mean minutes of app engagement for a group of 60 randomly selected iPad users is more than 8.3 minutes? Use `pnorm` for calculations.
+
+    ```{r review-2}
+    #add code
+    ```
+
+-   What is the probability the mean minutes of app engagement for a group of 60 randomly selected iPad users is between 8.3 and 8.4 minutes? Use `pnorm` for calculations. 
+
+```{r review-3}
+    #add code
+```
+
+## Data: Pokemon
+
+We will be using the `pokemon` data set, which contains information about 42 randomly selected Pokemon (from all generations). You may load in the data set with the following code:
+
+```{r load-data-2, warning = FALSE, message = FALSE}
+pokemon = read_csv("https://sta101.github.io/static/appex/data/pokemon.csv")
+```
+
+In this analysis, we will use CLT-based inference to draw conclusions about the mean height among all Pokemon species.
+
+#### Exercise 7
+
+Let's start by looking at the distribution of `height_m`, the typical height in meters for a Pokemon species, using a visualization and summary statistics.
+
+```{r height-histogram}
+ggplot(data = pokemon, aes(x = height_m)) +
+  geom_histogram(binwidth = 0.25, fill = "steelblue", color = "black") + 
+  labs(x = "Height (in meters)", 
+       y = "Distributon of Pokemon heights")
+```
+
+```{r height-stats}
+pokemon %>%
+  summarise(mean_height = mean(height_m), 
+            sd_height = sd(height_m), 
+            n_pokemon = n())
+```
+
+In the previous lecture (and in the review questions), we were given the mean, $\mu$, and standard deviation, $\sigma$, of the population. That is unrealistic in practice (if we knew $\mu$ and $\sigma$, we wouldn't need to do statistical inference!).
+
+Today we will start on using the Central Limit Theorem to draw conclusions about the $\mu$, the mean height in the population of Pokemon.
+
+-   What is the point estimate for $\mu$, i.e., the "best guess" for the mean height of all Pokemon?
+
+-   What is the point estimate for $\sigma$, i.e., the "best guess" for the standard deviation of the distribution of Pokemon heights?
+
+#### Exercise 8
+
+Before moving forward, let's check the conditions required to apply the Central Limit Theorem. Are the following conditions met:
+
+-   Independence?
+-   Sample size/distribution?
+
+## Idea: confidence intervals using CLT
+
+```{r}
+
+```
+

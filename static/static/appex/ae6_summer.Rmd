@@ -1,0 +1,340 @@
+---
+title: "Multiple Regression II"
+subtitle: "STA 101"
+output: html_document
+date: "July 11, 2022"
+---
+
+## Bulletin
+
+- reminder: exam 1 due tonight at 11:59pm
+- complete the [group assignment survey](https://forms.gle/dsaBz1wct8shnmz99) in class
+
+
+## Today
+
+By the end of today you will...
+
+- fit and interpret models with categorical predictors
+- fit and interpret models with interactive effects
+- understand and articulate the importance of additional, possibly confounding variables
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101.github.io/static/appex/ae6.Rmd",
+destfile = "ae6.rmd")
+```
+
+## Recap (warmup)
+
+Answer the following from last time...
+
+1. To "fit" a linear model means...[fill in the blank]
+
+2. If model A has two predictors and model B has the same predictors as model A plus 1 more. Which of the following is true?
+    (a) $R^2$ of model A is higher
+    (b) $R^2$ of model B is higher
+    (c) There's not enough information to determine which model has the higher $R^2$
+  
+3. To select between model A and B, you should...[fill in the blank]
+
+4. Is $y = \beta_0 + \beta_1 \log(x_1)+ \beta_2 x_2^2 + \epsilon$ a linear model? Why or why not?
+
+## Load packages and data
+
+```{r load-libraroies, warning = F, message = F}
+library(tidyverse)
+library(tidymodels)
+library(palmerpenguins)
+```
+
+Today we will use two data sets. First we will return to our Palmer penguins data set
+
+```{r load-penguins, warning = F, message = F}
+data(penguins)
+```
+
+Use `?penguins` or [click here](https://github.com/allisonhorst/palmerpenguins) for more info.
+
+Later we will practice the concepts by looking at mercury content in bass fish in North Carolina.
+
+
+## Notes
+
+## Main effects
+
+Up until now, we've seen models that look like this:
+
+$$
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \epsilon
+$$
+
+Here's an example:
+
+$y$: body mass (g)
+
+$x_1$: bill length (mm)
+
+$x_2$: 1 if island Dream, 0 otherwise
+
+$x_3$: 1 if island Torgersen, 0 otherwise
+
+$$
+y = \beta_0 + {\beta_1} x_1 + {\beta_2} x_2 + {\beta_3} x_3 + \epsilon
+$$
+
+Notice that 
+
+- We have a categorical predictor `island` that takes three values: Dream, Torgersen, and Biscoe.
+
+- Despite taking three values, there are only two island variables in the model. One for `Dream`  and one for `Torgersen`. Biscoe island is considered the default. This always occurs when we have a categorical variable -- one category is considered the default.
+
+- Bill length only impacts body mass via the term $\beta_1 x_1$. 
+
+- $x_2$ and $x_3$ can be thought of as turning on or off a constant.
+
+Let's visualize the main effects model below.
+
+```{r main, echo = F, message = F, warning = F}
+# main_fit = linear_reg() %>%
+#   set_engine("lm") %>%
+#   fit(body_mass_g ~ bill_length_mm + island, data = penguins)
+#   main_fit %>%
+#   tidy()
+
+b0 = 1225.79107
+bD = -919.07448
+bT = -523.29201
+bBill = 77.11933
+
+# show_col(hue_pal()(3))  
+
+penguins %>%
+ggplot(aes(x = bill_length_mm, y = body_mass_g, color = island)) +
+  geom_point() +
+  theme_bw() +
+  geom_abline(intercept = b0, slope = 77.11933, color = "#F8766D", lwd = 1) +
+  geom_abline(intercept = b0 + bD, slope = 77.11933, color = "#00BA38", lwd = 1) +
+  geom_abline(intercept = b0 + bT, slope = 77.11933, color = "#619CFF", lwd = 1) +
+  labs(x = "Bill length (mm)",
+       y = "Body mass (g)",
+       title = "Island main effect")
+```
+
+
+We can fit the "main effects" model above with our standard procedure:
+
+```{r main-effects-1}
+main_fit = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_g ~ bill_length_mm + island, data = penguins)
+
+  main_fit %>%
+  tidy()
+```
+
+If we want to know how bill length relates to body mass for penguins on island Biscoe, we plug in $0$ for $x_2$ and $x_3$ and write the resulting model. If we repeat as appropriate for each island, the result is 3 separate fitted models:
+
+Biscoe:
+
+$$
+\hat{y} = 1225.8 + 77.1 x_1 
+$$
+
+Dream:
+
+$$
+\hat{y} = 1225.8 + 77.1 x_1 - 919.1
+$$
+
+
+Torgersen:
+
+$$
+\hat{y} = 1225.8 + 77.1 x_1 -523.3
+$$
+
+Notice that in each case, the slope associated with bill length ($x_1$) is the same.
+
+### Interaction effects
+
+Interaction effect models contain products of predictors, e.g.
+
+$$
+y = {\beta_0} + {\beta_1} x_1 + {\beta_2} x_2 + {\beta_3} x_3 +  {\beta_4} x_1 x_2 + {\beta_5} x_1 x_3 + \epsilon
+$$
+
+Here we have an interaction between bill length and island ($\beta_4 x_1 x_2$ and $\beta_5 x_1 x_3$).
+
+Take-away idea: $x_1$ is related to $y$ but the relationship changes depending on $x_2$ and $x_3$.
+
+The simplest scenario is one of "group membership". In other words, knowing the group your measurement $x_1$ belongs to affects its relationship with $y$.
+
+Here, we see bill length ($x_1$) show up multiple times in our linear model paired with islands. In other words, the relationship between bill length and body mass depends on the island a penguin is from.
+
+We fit this interaction model using the code below:
+
+```{r interaction-fit}
+interaction_fit = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_g ~ bill_length_mm * island, data = penguins)
+
+  interaction_fit %>%
+  tidy()
+```
+
+
+```{r interaction, echo = F, warning = F, message = F}
+penguins %>%
+ggplot(aes(x = bill_length_mm, y = body_mass_g, color = island)) +
+geom_point() +
+theme_bw() +
+geom_smooth(method = 'lm', se = F) +
+labs(x = "Bill length (mm)",
+     y = "Body mass (g)",
+     title = "Island interaction effect")
+```
+
+Interpreting interactions can be difficult, especially without writing things down. To make it easier, we will compare the implied linear models:
+
+Plug in 0 for `islandDream` ($x_2$) and 0 for `islandTorgersen` ($x_3$) to get the linear model for `islandBiscoe` penguins
+
+Plug in 1 for `islandDream` ($x_2$) and 0 for `islandTorgersen` ($x_3$) to get the linear model for `islandDream` penguins
+
+Plug in 0 for `islandDream` ($x_2$) and 1 for `islandTorgersen` ($x_3$) to get the linear model for `islandTorgersen` penguins
+
+- Biscoe fitted model:
+
+$$
+\hat{y} = -1726.0+ 142.3 x_1
+$$
+
+- Dream fitted model:
+
+$$
+\hat{y} = -1726.0 + 142.3 x_1 + 4478.7 -120.6 x_1
+$$
+
+Combine terms:
+
+$$
+\hat{y} = 2752.7 + 21.7 x_1 
+$$
+
+#### Exercise 1 
+
+Write out the fitted model for Torgersen island below.
+
+- Torgersen model:
+$$
+\hat{y} = [\text{write here}]
+$$
+
+### Interpreting
+
+Now we can interpret the interaction model by comparing bill length slopes between islands.
+
+- For a unit increase in bill length of a penguin from the island Dream, how much do we expect the body mass to increase?
+
+#### Exercise 2
+
+- You measured the bill length of a penguin from island Biscoe and a penguin from island Torgersen a year ago. You re-measure them today and find the bill length of each one grew by exactly 2 mm. How much mass do you expect each penguin to have gained?
+
+#### Exercise 3
+
+Are the intercepts meaningful?
+
+
+#### Exercise 4
+
+Is the relationship between Body mass (g) and Bill depth (mm) positive or negative? Create a convincing argument from the data.
+
+#### Exercise 5
+
+Build a linear model of body mass using bill depth and one other predictor of your choosing (hint: see previous exercise!)
+
+- Write out a linear model with both predictors and fit the model.
+
+- Fit the linear model
+
+- Do you prefer this model to the interaction effects model from a previous exercise? Why?
+
+## Practice
+
+### Data
+
+Mercury, is a naturally occurring element that can have toxic effects on the nervous, digestive and immune systems of humans [(see WHO for more details)](https://www.who.int/news-room/fact-sheets/detail/mercury-and-health).
+
+In local rivers (and other bodies of water), microbes transform mercury into the highly toxic methyl mercury. Fish accumulate methyl mercury (since they are unable to excrete it) in their tissue over the course of their life. 
+
+Bass from the Waccamaw and Lumber Rivers were caught, weighed, and measured. In addition, a filet from each fish caught was sent to the lab so that the tissue concentration of mercury could be determined for each fish. Each fish caught corresponds to a single row of the data frame.
+
+A code book is provided below ([copied from here](https://stat.duke.edu/datasets/mercury-in-bass)).
+
+- `river`: 0=Lumber, 1=Waccamaw
+- `station` that the fish was collected at
+- `length` of the fish in centimeters
+- `weight` of the fish in grams
+- `mercury`: concentration of mercury in parts per million (ppm)
+
+The data come from Craig Stowe, Nicholas School of the Environment circa 1990s
+
+```{r load-data-2, warning = F, message = F}
+bass = read_csv("https://sta101.github.io/static/appex/data/bass.csv")
+```
+
+
+#### Exercise 6
+
+According to [the FDA report on mercury levels in commercial fish](https://www.fda.gov/food/metals-and-your-food/mercury-levels-commercial-fish-and-shellfish-1990-2012) fresh or frozen yellowfin tuna contains up to 1.478 ppm mercury.
+
+- If you don't want to eat a fish with more mercury than tuna, what's the maximum size fish you should eat from each of these rivers? Follow-up: What if you don't know which river the fish came from? Create an effective visualization to illustrate your findings.
+
+
+```{r ex-6-1}
+# code here
+```
+
+
+```{r ex-6-2}
+# code here
+```
+
+
+#### Exercise 7
+
+The Environmental Protection Agency (EPA) recommends [children and pregnant/breastfeeding women avoid eating fish with mercury ppm greater than 0.46 ppm](https://www.epa.gov/fish-tech/epa-fda-fish-advice-technical-information) due to adverse neuro-developmental effects that result from mercury exposure.
+
+We are concerned that the average mercury level in local bass may be too high for this subset of the population to eat.
+
+- If a bass was caught in the Waccamaw river and is 25.5 centimeters long, would you recommend this population eat the fish? What if it came from the Lumber river? Creat an effective visualizaiton to illustrate your findings.
+
+```{r ex-7-1}
+# code here
+```
+
+```{r ex-7-2}
+# code here
+```
+
+
+#### Exercise 8 
+
+In the data there is one fish that is 25.5cm long. Would you have recommended this fish as safe for consumption in the previous exercise using your linear model?
+
+```{r ex-8}
+# code here
+```
+
+
+#### Exercise 9 
+
+The scale used to weigh the fish broke. Is it OK for people to make dietary decisions (with regard to mercury consumption) based on the length but not the weight of the fish? Why?
+
+```{r ex-9}
+# code here
+```
+

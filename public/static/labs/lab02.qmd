@@ -1,5 +1,5 @@
 ---
-title: "Lab 02: "
+title: "Lab 02: Take Courage with Data Visualization"
 subtitle: "Due Thursday September 15 at 11:59pm"
 format: html
 css: "labs.css"
@@ -28,7 +28,7 @@ Be sure to update the YAML at the top of the document to include your name and t
 
 ### Packages
 
-Today we will use our standard 
+We will use our standard 
 ```{r load-packages, warning=F, message=F}
 library(tidyverse)
 ```
@@ -115,7 +115,7 @@ We'll pick-up here in a future class.
 
 \ 2. Pipes `%>%` and ggplot layers `+` should be followed by a newline (see formatting above)
 
-\ 3. Your code should be under the 80 character code limit. (You shouldn't have to scroll to see all your code on the knitted document).
+\ 3. Your code should be under the 80 character code limit. (You shouldn't have to scroll to see all your code on the rendered document).
 
 \ 4. All exercises and corresponding pages should be linked on gradescope.
 

@@ -14,7 +14,7 @@ library(tidyverse)
 # Load data
 
 ```{r load-data}
-courage = read_csv("https://sta101.github.io/static/labs/data/courage.csv")
+courage = read_csv("https://sta101-fa22.netlify.app/static/labs/data/courage.csv")
 ```
 
 

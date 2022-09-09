@@ -13,7 +13,7 @@ By the end of this lab you will effectively visualize numeric and categorical da
 \ 1. Download the lab template by pasting the code below in your **console**:
 
 ```{r download-file, eval=F}
-download.file("https://sta101.github.io/static/labs/lab02_template.qmd",
+download.file("https://sta101-fa22.netlify.app/static/labs/lab02_template.qmd",
               destfile = "lab02.qmd")
 ```
 

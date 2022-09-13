@@ -1,21 +1,21 @@
 ---
 title: "Practice questions: exploratory data analysis"
-output: html_document
-css: ../labs/labs.css
-date: 'July 1 2022'
+format: html
+css: "labs.css"
+date: "September, 2022"
 ---
 
 ## About
 
-Below are some practice exam questions based on week 1 material which covered exploratory data analysis. Please note that the exam will also cover material introduced in week 2.
+Below are some practice exam questions on exploratory data analysis. Please note that the exam will also cover linear regression introduced in weeks 3 and 4.
 
 ## Getting started
 
 Paste the code below to download a template file to answer the exercises.
 
 ```{r download-template, eval=F}
-download.file("https://sta101.github.io/static/practice/eda_practice_template.Rmd",
-              destfile = "eda-practice.rmd")
+download.file("https://sta101-fa22.netlify.app/static/practice/eda_practice_template.qmd",
+              destfile = "eda-practice.qmd")
 ```
 
 

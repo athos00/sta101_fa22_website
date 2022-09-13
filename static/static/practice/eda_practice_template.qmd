@@ -1,0 +1,56 @@
+---
+title: "EDA Practice Template"
+author: "Your name"
+format: html
+---
+
+
+```{r load-library, message = F, warning = F}
+library(tidyverse)
+library(viridis) # for plotting colors
+```
+
+```{r load-data, message = F, warning = F}
+data(mpg)
+```
+
+## Exercise 1
+
+(answer here)
+
+## Exercise 2
+
+```{r ex-2}
+# code here
+```
+
+## Exercise 3
+
+```{r ex-3}
+# code here
+```
+
+## Exercise 4
+
+```{r ex-4}
+# code here
+```
+
+## Exercise 5
+
+```{r ex-5}
+# code here
+```
+
+## Exercise 6
+
+```{r ex-6}
+# code here
+```
+
+## Exercise 7
+
+```{r ex-7}
+# code here
+```
+

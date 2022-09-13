@@ -106,7 +106,7 @@ anti_join(y)
 ```
 
 :::{.callout-note}
-The columns we *join by* must match the names of columns in each data frame. However the columns do not have to have the same name.
+We can manually specify which columns to **join by** and the columns do not have to have the same name! See the example below.
 :::
 
 Check out the new data frame `x2`:
@@ -138,9 +138,8 @@ This data is a subset of the data set provided by the `nycflights13` package.
 
 - `year`: departure year
 - `time_hour`: departure time
-- `sched_dep_time`: scheduled departure time
-- `arr_time`: arrival time
-- `arr_delay`: arrival
+- `dep_delay`: departure delay in minutes
+- `arr_delay`: arrival delay in minutes
 - `origin`: origin
 - `dest`: destination
 - `carrier` two letter carrier abbreviation
@@ -158,27 +157,23 @@ This data is a subset of the data set provided by the `nycflights13` package.
 - `lon`: longitude
 
 ```{r load-data}
-set.seed(10)
-flights2 = slice_sample(flights, n = 10000) %>%
-    select(year, time_hour, dep_delay, arr_delay, origin, dest, tailnum, carrier)
-flights2
-
-airlines
-airports
+flights = read_csv("https://sta101-fa22.netlify.app/static/appex/data/flights.csv")
+airlines = read_csv("https://sta101-fa22.netlify.app/static/appex/data/airlines.csv")
+airports = read_csv("https://sta101-fa22.netlify.app/static/appex/data/airports.csv")
 ```
 
 #### Exercise 1
 
 `flights` contains the two letter carrier abbreviations and `airlines` contains a dictionary. It would be nice if this information was in one data frame so we could read off easily e.g. which airlines are most likely to have arrival delays.
 
-Join `flights` and `airlines` and save the resulting data frame as `flights2`.
+Use an appropriate join to add the column of `airlines` to `flights` and save the resulting data frame as `flights2`.
 
 ```{r}
 # code here
 ```
 #### Exercise 2
 
-Create a new data set `airline_delays` that reports the average arrival delay for each carrier. Show only the 5 carrier airline with the worst arrival delays on average. No joins required here.
+Using `flights2`, report the average arrival delay for each carrier. Print only the 5 carrier airline with the worst arrival delays on average. No joins required here.
 
 ```{r}
 # code here
@@ -186,7 +181,7 @@ Create a new data set `airline_delays` that reports the average arrival delay fo
 
 #### Exercise 3
 
-Create a new data set called `dest_delays` that reports the median arrival delay at each airport.
+Create a new data set called `dest_delays` that reports the median arrival delay at each destination airport.
 
 ```{r}
 # code here
@@ -200,4 +195,8 @@ Which destination has the worst arrival delay? (Note: you will need to join `des
 ```{r}
 # code here
 ```
+
+#### Optional bonus
+
+- Is there anything else you might want to learn from the data before declaring one airport is most likely to have delayed arrival or one carrier is most likely to result in a delayed flight?
 

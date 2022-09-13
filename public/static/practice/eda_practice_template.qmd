@@ -1,9 +1,9 @@
 ---
 title: "EDA Practice Template"
-output: html_document
+author: "Your name"
+format: html
 ---
 
-- Update your document with appropriate YAML at the top.
 
 ```{r load-library, message = F, warning = F}
 library(tidyverse)
@@ -48,7 +48,7 @@ data(mpg)
 # code here
 ```
 
-# Exercise 7
+## Exercise 7
 
 ```{r ex-7}
 # code here

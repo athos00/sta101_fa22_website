@@ -1,10 +1,9 @@
 ---
-title: "Lab 03 template"
-output: pdf_document
-date: 'Due Friday July 9 at 11:59pm'
+title: "Lab 03: Do you even lift?"
+author: "Your name"
+date: "Due September 22, 2022 at 11:59pm"
+format: pdf
 ---
-
-- Reminder: add YAML to the top of this document (the "---" and all that goes between it) and update the title, author and date
 
 # Load Packages
 
@@ -15,7 +14,7 @@ library(tidyverse)
 # Load data
 
 ```{r load-data}
-ipf = read_csv("https://sta101.github.io/static/labs/data/ipf_lifts.csv")
+ipf = read_csv("https://sta101-fa22.netlify.app/static/labs/data/ipf_lifts.csv")
 ```
 
 

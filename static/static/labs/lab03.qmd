@@ -1,27 +1,28 @@
 ---
 title: "Lab 03: Do you even lift?"
-output: html_document
-date: "Due Friday July 8 at 11:59pm"
+author: "Your name"
+subtitle: "Due Thursday September 22 at 11:59pm"
+format: html
 css: "labs.css"
 ---
 
 
 By the end of this lab you will
 
+- make a ridge plot
 - create and fit univariate regression models
-- compare the fit of different models
-- visualize regression models
+- visualize a simple regression model
 
 ## Getting started
 
 \ 1. Download the lab template by pasting the code below in your **console**:
 
 ```{r download-file, eval=F}
-download.file("https://sta101.github.io/static/labs/lab03_template.Rmd",
-              destfile = "lab03.rmd")
+download.file("https://sta101-fa22.netlify.app/static/labs/lab03_template.qmd",
+              destfile = "lab03.qmd")
 ```
 
-\ 2. Under the "Files" tab on the right hand side, click on `lab03.rmd` to open the lab template.
+\ 2. Under the "Files" tab on the right hand side, click on `lab03.qmd` to open the lab template.
 
 
 \ 3. Complete the exercises below using the space provided.
@@ -73,15 +74,15 @@ Today, we will be working with data from [www.openpowerlifting.org](https://www.
 
 For all of the following exercises, you should include units on axes labels, e.g. "Bench press (lbs)" or "Bench press (kg)". "Age (years)" etc. This is good practice.
 
-1. Let's begin by taking a look at the bench press powerlifting records. To begin, remove any observations that are negative for bench press. Next, create a new column called `bench3bench_lbs` that converts the record from kg to lbs (you may have to google the conversion). Save your data frame as `ipf_bench`.
+1. Let's begin by taking a look at the squat powerlifting records. To begin, remove any observations that are negative for squat. Next, create a new column called `best3_squat_lbs` that converts the record from kg to lbs (you may have to google the conversion). Save your data frame as `ipf_squat`.
 
-2. Using `ipf_bench` from the previous exercise, create a scatter plot to investigate the relationship between bench press (in lbs) and age. Age should be on the x-axis. Add a linear trend-line. Be sure to label all axes and give the plot a title. Comment on what you observe.
+2. Using `ipf_squat` from the previous exercise, create a scatter plot to investigate the relationship between squat (in lbs) and age. Age should be on the x-axis. Add a linear trend-line. Be sure to label all axes and give the plot a title. Comment on what you observe.
 
-3. Write down a linear model to predict lift bench press in lbs from age in $x$, $y$, $\beta$ notation. What is $x$? What is $y$?
+3. Write down a linear model to predict lift squat lbs from age in $x$, $y$, $\beta$ notation. What is $x$? What is $y$?
 
 4. Fit the linear model. Next, re-write your previous equation replacing $\beta$ with the numeric estimates. This is called the "fitted" linear model. Interpret each estimate of $\beta$. Are the interpretations reasonable?
 
-5. Building on your `ipf_bench` data frame, create a new column called `age2` that takes the age of each lifter and squares it. Plot bench press in lbs vs `age2` and add a linear best fit line. Does this model look like it fits the data better?
+5. Building on your `ipf_squat` data frame, create a new column called `age2` that takes the age of each lifter and squares it. Plot squat in lbs vs `age2` and add a linear best fit line. Does this model look like it fits the data better?
 
 6. Fit the model from exercise 5 and compare the $R^2$ to the model from exercise 4. Which model do you prefer? Overall, is age a meaningful predictor of the weight lifted?
 

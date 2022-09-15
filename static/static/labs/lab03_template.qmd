@@ -9,6 +9,7 @@ format: pdf
 
 ```{r load-packages, message = FALSE, warning = FALSE}
 library(tidyverse)
+library(tidymodels)
 ``` 
 
 # Load data
@@ -31,6 +32,11 @@ ipf = read_csv("https://sta101-fa22.netlify.app/static/labs/data/ipf_lifts.csv")
 ```
 
 # Exercise 3
+
+```{r ex-3}
+
+```
+
 
 # Exercise 4
 
@@ -70,11 +76,5 @@ ipf = read_csv("https://sta101-fa22.netlify.app/static/labs/data/ipf_lifts.csv")
 # Exercise 10 
 
 ```{r ex-10}
-
-```
-
-# Exercise 11
-
-```{r ex-11}
 
 ```

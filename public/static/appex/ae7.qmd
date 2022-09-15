@@ -1,0 +1,66 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+
+## $R^2$ and checking model fit
+
+### Conceptual introduction
+
+$R^2$, aka "the coefficient of determination" is a way to see how well a given model fits the data. Formally,
+
+$$
+R^2 = 1 - \frac{\sum_i r_i^2}{\sum_i (y_i - \bar{y})^2}
+$$ 
+
+where $\bar{y}$ is the **mean** of all $y$ values.
+
+In words,
+
+$$
+R^2 = 1 - \frac{\text{sum of squared residuals}}{\text{sum of outcome squared distance from the mean}}
+$$
+
+Let's focus on the word version to build intuition.
+
+- The sum  of squared residuals is a measure of how wrong our model is (how much our model **doesn't** explain)
+
+- The denominator is proportional to the average square distance from the mean, i.e. the variance, i.e. the amount of variability in the data.
+
+- Together, the fraction represents the proportion of variability that is not explained by the model.
+
+If the sum of squared residuals is $0$, then the model explains all variability and $R^2=1−0=1$.
+
+Similarly if the sum of squared residuals is the same as all the variability in the data, then model does not explain any variability and $R^2=1−1=0$.
+
+Final take-away: $R^2$ is a measure of the proportion of variability the model explains. An $R^2$ of 0 is a poor fit and $R^2$ of 1 is a perfect fit.
+
+### How to find $R^2$
+
+To find $R^2$, simply call the function `glance()` on your `modelFit`, e.g.
+
+```
+glance(modelFit)
+```
+
+#### Exercise 8
+
+Try it!
+
+```{r get-r2-with-glance}
+# code here
+```
+
+Is the coefficient of determination close to 1? Is `MSFT` open price a good predictor of `AAPL` open price in January 2020?
+
+
+## Extra practice
+
+- Plot all the open prices (not just from January 2020 but the entire `stocks` data frame). Add the OLS linear trendline. What do you observe?
+
+- Fit the model on the full data set. Write down the fitted model and $R^2$. Is MSFT a better or worse predictor AAPL stock price when you consider the full dataset? Why?
+
+
+

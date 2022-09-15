@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p>By the end of this lab you will</p>
 <ul>
-<li>make a ridge plot</li>
 <li>create and fit univariate regression models</li>
 <li>visualize a simple regression model</li>
 </ul>
@@ -268,40 +267,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol type="1">
 <li><p>Let’s begin by taking a look at the squat powerlifting records. To begin, remove any observations that are negative for squat. Next, create a new column called <code>best3_squat_lbs</code> that converts the record from kg to lbs (you may have to google the conversion). Save your data frame as <code>ipf_squat</code>.</p></li>
 <li><p>Using <code>ipf_squat</code> from the previous exercise, create a scatter plot to investigate the relationship between squat (in lbs) and age. Age should be on the x-axis. Add a linear trend-line. Be sure to label all axes and give the plot a title. Comment on what you observe.</p></li>
-<li><p>Write down a linear model to predict lift squat lbs from age in <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, <span class="math inline">\(\beta\)</span> notation. What is <span class="math inline">\(x\)</span>? What is <span class="math inline">\(y\)</span>?</p></li>
-<li><p>Fit the linear model. Next, re-write your previous equation replacing <span class="math inline">\(\beta\)</span> with the numeric estimates. This is called the “fitted” linear model. Interpret each estimate of <span class="math inline">\(\beta\)</span>. Are the interpretations reasonable?</p></li>
-<li><p>Building on your <code>ipf_squat</code> data frame, create a new column called <code>age2</code> that takes the age of each lifter and squares it. Plot squat in lbs vs <code>age2</code> and add a linear best fit line. Does this model look like it fits the data better?</p></li>
-<li><p>Fit the model from exercise 5 and compare the <span class="math inline">\(R^2\)</span> to the model from exercise 4. Which model do you prefer? Overall, is age a meaningful predictor of the weight lifted?</p></li>
-<li><p>Recreate the plot below. Make sure axes and title labels are exactly matching, including spelling, capitalization, etc. Based on the plot below, which impacts squat weight more, age or sex?</p></li>
+<li><p>Write down the full linear model to predict lift squat lbs from age in <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, <span class="math inline">\(\beta\)</span> notation. What is <span class="math inline">\(x\)</span>? What is <span class="math inline">\(y\)</span>? Next, fit the linear model. Re-write your previous equation replacing <span class="math inline">\(\beta\)</span> with the numeric estimates. This is called the “fitted” linear model. Interpret each estimate of <span class="math inline">\(\beta\)</span>. Are the interpretations reasonable?</p></li>
+<li><p>Building on your <code>ipf_squat</code> data frame, create a new column called <code>age2</code> that takes the age of each lifter and squares it. Save your data frame with an appropriate name. Next, plot squat in lbs vs <code>age2</code> and add a linear best fit line. Does this model look like it fits the data better?</p></li>
+<li><p>One metric to assess the fit of a model is the correlation squared, also known as <span class="math inline">\(R^2\)</span>. Fit the age<span class="math inline">\(^2\)</span> model and save the object as <code>age2Fit</code>. Subsequently run</p></li>
 </ol>
-<ul>
-<li>Hint: You will need to create a couple new columns. One to classify age appropriately and one to convert squats to the plotted units. Notice that there are no negative squat values on the x-axis.</li>
-</ul>
-<p><img src="img/squat-plot.png" class="img-fluid"></p>
-<ol start="8" type="1">
-<li><p>Create a scatter plot to investigate the relationship between best deadlift (in lbs) and the lifter’s bodyweight (in lbs). Bodyweight should be on the x-axis. Add a linear trend-line. Be sure to label all axes and give the plot a title. Comment on what you observe.</p></li>
-<li><p>Fit the linear model displayed in the previous exercise and write down the <strong>fitted model equation</strong>, replacing <span class="math inline">\(\hat{\beta}\)</span> with the fitted estimate. Interpret the <span class="math inline">\(\beta\)</span>. Report <span class="math inline">\(R^2\)</span>. Is body weight an important predictor of deadlifting ability? Why or why not?</p></li>
-<li><p>Do lifters who fail a drug test perform better or worse at squats than other lifters? Does this vary across sexes? We’ll answer this question in two parts. First, remove all observations from the data frame that have <code>NA</code> listed under squat. Next, create a new column called <code>doping_status</code> that takes value <code>doping</code> if the lifter failed a drug test and <code>not doping</code> otherwise. Save this data frame as <code>ipf_dope</code>.</p></li>
-<li><p>Using <code>ipf_dope</code> from the previous exercise, compute the 5%, 50%, 95% quantiles for squats across both <code>sex</code> and <code>doping_status</code>. You can use either squats in kg or lbs here. With this information, answer the question “Do lifters who fail a drug test perform better or worse at squats than other lifters?”</p></li>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(age2Fit)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>to examine the <span class="math inline">\(R^2\)</span>. Compare <span class="math inline">\(R^2\)</span> of the age<span class="math inline">\(^2\)</span> model to the model from exercise 4. Which has a higher <span class="math inline">\(R^2\)</span>?</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(R^2\)</span> values range from 0 to 1. Values close to 0 means weak correlation between the variables whereas <span class="math inline">\(R^2 = 1\)</span> implies perfect correlation. You can (optionally) read more about <span class="math inline">\(R^2\)</span> in section <a href="https://openintro-ims.netlify.app/model-slr.html#r-squared">7.2.5 of the book</a>. We’ll pick up here in the next class.</p>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Recreate the plot below. Make sure axes and title labels are exactly matching, including spelling, capitalization, etc. Based on the plot below, which impacts deadlift weight more, age category or sex?</li>
+</ol>
+<div class="callout-hint callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You will need to create a couple new columns. One to classify age appropriately and one to convert deadlift to the plotted units. Notice that there are no negative deadlift values on the x-axis.</p>
+</div>
+</div>
+<p><img src="img/deadlift-plot.png" class="img-fluid"></p>
+<ol start="7" type="1">
+<li><p>Create a scatter plot to investigate the relationship between best bench press (in lbs) and the lifter’s bodyweight (in lbs). Bodyweight should be on the x-axis. Add a linear trend-line. Be sure to label all axes and give the plot a title. Comment on what you observe.</p></li>
+<li><p>Fit the linear model displayed in the previous exercise and write down the <strong>fitted model equation</strong> only, replacing <span class="math inline">\(\hat{\beta}\)</span> with the fitted estimate. Interpret the <span class="math inline">\(\hat{\beta}\)</span>. Report <span class="math inline">\(R^2\)</span>. Is body weight an important predictor of bench press ability? Why or why not?</p></li>
+<li><p>Do lifters who fail a drug test perform better or worse at bench press than other lifters? Does this vary across sexes? We’ll answer this question in two parts. First, remove all observations from the data frame that have <code>NA</code> listed under bench press. Next, create a new column called <code>doping_status</code> that takes value <code>doping</code> if the lifter failed a drug test and <code>not doping</code> otherwise. Save this data frame as <code>ipf_dope</code>.</p></li>
+</ol>
+<div class="callout-hint callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Check the data dictionary at the top to figure out what variables will help you build the <code>doping_status</code> column.</p>
+</div>
+</div>
+<ol start="10" type="1">
+<li>Using <code>ipf_dope</code> from the previous exercise, compute the 5%, 50%, 95% quantiles for bench press across both <code>sex</code> and <code>doping_status</code>. You can use either bench press in kg or lbs here. With this information, answer the question “Do lifters who fail a drug test perform better or worse at squats than other lifters?”</li>
 </ol>
 </section>
 <section id="formatting" class="level2">
 <h2 class="anchored" data-anchor-id="formatting">Formatting</h2>
 <p><strong>Reminder</strong>: For all assignments in this course there is a “formatting” component to the grade. To receive full points for “formatting”, you must:</p>
-<p>&nbsp;1. Have your name at the top of the knitted document</p>
+<p>&nbsp;1. Have your name at the top of the rendered document</p>
 <p>&nbsp;2. Pipes <code>%&gt;%</code> and ggplot layers <code>+</code> should be followed by a newline (see formatting above)</p>
-<p>&nbsp;3. Your code should be under the 80 character code limit. (You shouldn’t have to scroll to see all your code on the knitted document).</p>
+<p>&nbsp;3. Your code should be under the 80 character code limit. (You shouldn’t have to scroll to see all your code on the rendered document).</p>
 <p>&nbsp;4. All exercises and corresponding pages should be linked on gradescope.</p>
 <p>These necessary “tidyverse” style choices are good general practice and will help make your code more legible. For a more extensive list of recommended guidelines, <a href="https://style.tidyverse.org/">click here</a>.</p>
 </section>
 <section id="submitting-to-gradescope" class="level2">
 <h2 class="anchored" data-anchor-id="submitting-to-gradescope">Submitting to gradescope</h2>
-<p>In this class, we will submit <code>.pdf</code> documents to Gradescope. Once you are fully satisfied with your lab, Knit to .pdf to create a .pdf document. You may notice that the formatting/theme of the report has changed – this is expected. Remember – you must turn in a .pdf file to the Gradescope page before the submission deadline for credit. To submit your assignment:</p>
+<p>In this class, we will submit <code>.pdf</code> documents to Gradescope. Once you are fully satisfied with your lab, render to to create a .pdf document. You may notice that the formatting/theme of the report has changed – this is expected. Remember – you must turn in a .pdf file to the Gradescope page before the submission deadline for credit. To submit your assignment:</p>
 <ul>
 <li><p>Go to <a href="http://www.gradescope.com">http://www.gradescope.com</a> and click Log in in the top right corner. - Click <code>School Credentials</code>, <code>Duke NetID</code> and log in using your NetID credentials.</p></li>
 <li><p>Click on your STA 101 course.</p></li>
 <li><p>Click on the assignment, and you’ll be prompted to submit it.</p></li>
-<li><p>Mark the pages associated with each exercise, 1 - 5. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”). - Select the first page of your .pdf submission to be associated with the “Formatting” section.</p></li>
+<li><p>Mark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”). - Select the first page of your .pdf submission to be associated with the “Formatting” section.</p></li>
 </ul>
 </section>
 <section id="grading" class="level2">
@@ -311,25 +353,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 Exercise 2: 6pts
 
-Exercise 3: 4pts
+Exercise 3: 6pts
 
 Exercise 4: 4pts
 
 Exercise 5: 4pts
 
-Exercise 6: 4pts
+Exercise 6: 6pts
 
-Exercise 7: 6pts
+Exercise 7: 5pts
 
-Exercise 8: 5pts
+Exercise 8: 6pts
 
-Exercise 9: 6pts
+Exercise 9: 3pts
 
 Exercise 10: 3pts
 
-Exercise 11: 3pts
-
-Workflow and formatting:  2pts</code></pre>
+Workflow and formatting:  4pts</code></pre>
 </section>
 
 </main>

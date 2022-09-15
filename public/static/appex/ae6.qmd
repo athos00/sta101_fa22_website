@@ -1,16 +1,13 @@
 ---
 title: "Simple Regression"
 subtitle: "STA 101"
-output: html_document
-date: "July 5, 2022"
+format: html
 ---
 
 ## Bulletin
 
-- exam 1 Thursday
-- check out the [practice](https://sta101.github.io/static/practice/eda_practice.html) for exam 1 if you haven't already
-- reminder: office hours after class today
-- lab 01 grades posted
+- lab 02 due tonight
+- exam 01 next week
 
 ## Today
 
@@ -26,8 +23,8 @@ By the end of today you will...
 Download this application exercise by pasting the code below into your **console** (bottom left of screen)
 
 ```
-download.file("https://sta101.github.io/static/appex/ae4.Rmd",
-destfile = "ae4.rmd")
+download.file("https://sta101-fa22.netlify.app/static/appex/ae6.qmd",
+destfile = "ae6.qmd")
 ```
 
 ## Load packages and data
@@ -253,62 +250,3 @@ Re-write the fitted equation replacing $\beta_0$ and $\beta_1$ with the OLS fitt
 $$
 \text{[your equation here]}
 $$
-
-## $R^2$ and checking model fit
-
-### Conceptual introduction
-
-$R^2$, aka "the coefficient of determination" is a way to see how well a given model fits the data. Formally,
-
-$$
-R^2 = 1 - \frac{\sum_i r_i^2}{\sum_i (y_i - \bar{y})^2}
-$$ 
-
-where $\bar{y}$ is the **mean** of all $y$ values.
-
-In words,
-
-$$
-R^2 = 1 - \frac{\text{sum of squared residuals}}{\text{sum of outcome squared distance from the mean}}
-$$
-
-Let's focus on the word version to build intuition.
-
-- The sum  of squared residuals is a measure of how wrong our model is (how much our model **doesn't** explain)
-
-- The denominator is proportional to the average square distance from the mean, i.e. the variance, i.e. the amount of variability in the data.
-
-- Together, the fraction represents the proportion of variability that is not explained by the model.
-
-If the sum of squared residuals is $0$, then the model explains all variability and $R^2=1−0=1$.
-
-Similarly if the sum of squared residuals is the same as all the variability in the data, then model does not explain any variability and $R^2=1−1=0$.
-
-Final take-away: $R^2$ is a measure of the proportion of variability the model explains. An $R^2$ of 0 is a poor fit and $R^2$ of 1 is a perfect fit.
-
-### How to find $R^2$
-
-To find $R^2$, simply call the function `glance()` on your `modelFit`, e.g.
-
-```
-glance(modelFit)
-```
-
-#### Exercise 8
-
-Try it!
-
-```{r get-r2-with-glance}
-# code here
-```
-
-Is the coefficient of determination close to 1? Is `MSFT` open price a good predictor of `AAPL` open price in January 2020?
-
-
-## Extra practice
-
-- Plot all the open prices (not just from January 2020 but the entire `stocks` data frame). Add the OLS linear trendline. What do you observe?
-
-- Fit the model on the full data set. Write down the fitted model and $R^2$. Is MSFT a better or worse predictor AAPL stock price when you consider the full dataset? Why?
-
-

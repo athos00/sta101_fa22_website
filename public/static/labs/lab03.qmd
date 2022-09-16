@@ -87,7 +87,7 @@ For all of the following exercises, you should include units on axes labels, e.g
 glance(age2Fit)$r.squared
 ```
 
-to examine the $R^2$. Compare $R^2$ of the age$^2$ model to the model from exercise 4. Which has a higher $R^2$?
+to examine the $R^2$. Compare $R^2$ of the age$^2$ model to the model from exercise 3. Which has a higher $R^2$?
 
 :::{.callout-note}
 $R^2$ values range from 0 to 1. Values close to 0 means weak correlation between the variables whereas $R^2 = 1$ implies perfect correlation. You can (optionally) read more about $R^2$ in section [7.2.5 of the book](https://openintro-ims.netlify.app/model-slr.html#r-squared). We'll pick up here in the next class.

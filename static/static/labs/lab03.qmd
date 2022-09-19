@@ -112,7 +112,7 @@ You will need to create a couple new columns. One to classify age appropriately 
 Check the data dictionary at the top to figure out what variables will help you build the `doping_status` column.
 :::
 
-10. Using `ipf_dope` from the previous exercise, compute the 5%, 50%, 95% quantiles for bench press across both `sex` and `doping_status`. You can use either bench press in kg or lbs here. With this information, answer the question "Do lifters who fail a drug test perform better or worse at squats than other lifters?"
+10. Using `ipf_dope` from the previous exercise, compute the 5%, 50%, 95% quantiles for bench press across both `sex` and `doping_status`. You can use either bench press in kg or lbs here. With this information, answer the question "Do lifters who fail a drug test perform better or worse at bench press than other lifters?"
 
 ## Formatting
 

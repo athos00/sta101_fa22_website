@@ -13,7 +13,7 @@ format: html
 
 By the end of today you will...
 
-- understand the grammar of linear modeling, including $y$, $x$, $\beta$, $\epsilon$, fitted estimates, residuals and $R^2$
+- understand the grammar of linear modeling, including $y$, $x$, $\beta$, $\epsilon$, fitted estimates and residuals
 - add linear regression plots to your 2D graphs
 - be able to write a simple linear regression model mathematically and 
 - fit the model to data in R in a `tidy` way

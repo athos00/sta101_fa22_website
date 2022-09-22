@@ -10,13 +10,13 @@ format: pdf
 ```{r load-packages, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(tidymodels)
-library(viridis)
 ``` 
 
 # Load data
 
 ```{r load-data}
-passwords = read_csv("https://sta101.github.io/static/appex/data/passwords.csv")
+coffee_ratings = read_csv(
+  "https://sta101-fa22.netlify.app/static/appex/data/coffee_ratings.csv")
 ```
 
 

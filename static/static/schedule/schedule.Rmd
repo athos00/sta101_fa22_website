@@ -63,7 +63,7 @@ Find all assignments and due dates here. This schedule updates frequently.
 |     |Thu Sep 15 | Simple regression        |  [`r emo::ji("book")`](/prepare/week-3)      | [ae6](/static/appex/ae6.html)   |           |     |        |
 |     |Fri Sep 16 | EDA and simple regression   |        |   |  [lab 3](/static/labs/lab03.html)         |     |        |
 |  4   |Tue Sep 20 |  Multiple regression I       |  [`r emo::ji("book")`](/prepare/week-4)      | [ae7](/static/appex/ae7.html)  |           |     |        |
-|     |Thu Sep 22 |  Multiple regression II       |  [`r emo::ji("book")`](/prepare/week-4)      |   |           | exam 1    |        |
+|     |Thu Sep 22 |  Multiple regression II       |  [`r emo::ji("book")`](/prepare/week-4)      |   |           | [exam 1](/static/exams/exam01.html)    |        |
 |     |Fri Sep 23 |   No lab: exam      |        |   |           |     |        |
 |  5   |Mon Sep 26 |        |        |   |           | exam 1 due    |        |
 |     |Tue Sep 27 |  Multiple regression III, Prediction       |        |   |           |     |  Regression project      |

@@ -31,7 +31,7 @@ css: "../labs/labs.css"
     ask questions on any topics from past assignments or material
     related to the exam.
 -   The instructor will provide code debugging if needed, but this will
-    result in a **grade penalty**. Note: ask questions early. Questions asked between 6:00pm and 11:59pm Monday the 11th may not be answered. 
+    result in a **grade penalty**. Note: ask questions early. Questions asked between 6:00pm and 11:59pm Monday the 26th may not be answered. 
     
 With the exception of **major emergencies**, late submissions will not be accepted. In the case of a major emergency, you should have your Dean send the instructor an excuse. Start and submit the exam early in
 order to **avoid any last-minute technical issues.**

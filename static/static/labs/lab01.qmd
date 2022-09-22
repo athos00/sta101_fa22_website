@@ -2,7 +2,7 @@
 title: "Lab 01: Hello R!"
 subtitle: "STA 101"
 format: html
-editor: visual
+editor: source
 css: "labs.css"
 ---
 
@@ -20,9 +20,7 @@ If you prefer, you can download and install `R` and `RStudio` locally on your co
 
 There is one additional piece of software needed for complete functionality:
 
-- Go to [https://www.latex-project.org/get/](https://www.latex-project.org/get/) and scroll down to download the LaTeX package for your device. [MacTeX](https://tug.org/mactex/) for macs or [MiKTeX](https://miktex.org/) for Windows.
-
-
+-   Go to <https://www.latex-project.org/get/> and scroll down to download the LaTeX package for your device. [MacTeX](https://tug.org/mactex/) for macs or [MiKTeX](https://miktex.org/) for Windows.
 
 ## Getting started
 
@@ -47,9 +45,7 @@ The top portion of your Quarto Markdown file (aka `.qmd`), you'll find three das
 
 Change the `author` name to your name and update the `date` with today's date. Click the `render button` to render the document. What do you notice?
 
-:::{.callout-note}
-To avoid issues that can occur while rendering, it is a good idea to render frequently. **At least after every exercise**.
-:::
+:::{.callout-note} To avoid issues that can occur while rendering, it is a good idea to render frequently. **At least after every exercise**. :::
 
 ### Packages
 
@@ -60,13 +56,13 @@ library(tidyverse)
 library(datasauRus)
 ```
 
-:::{.callout-warning}
-If you are using `R` on the container, packages we use should already be installed and only need to be **loaded** with the function `library()`. If you are using a local version of `R` you probably have to run the following code in the **console** to install the packages (one time only!)
+:::{.callout-warning} If you are using `R` on the container, packages we use should already be installed and only need to be **loaded** with the function `library()`. If you are using a local version of `R` you probably have to run the following code in the **console** to install the packages (one time only!)
 
 ```{r install-packages, eval=F}
 install.packages("tidyverse")
 install.packages("datasauRus")
 ```
+
 :::
 
 ## Exercises
@@ -90,9 +86,7 @@ datasaurus_dozen %>%
 
 The original Datasaurus (dino) data was created by Alberto Cairo. The other Dozen were generated using simulated annealing and the process is described in the paper *Same Stats, Different Graphs: Generating data sets with Varied Appearance and Identical Statistics through Simulated Annealing* by Justin Matejka and George Fitzmaurice. In the paper, the authors simulate a variety of data sets that have the same summary statistics as the original Datasaurus but have very different data.
 
-:::{.callout-note}
-You can view the whole data frame by running the code `view(datasaurus_dozen)` in the console. This will open the data frame in a new tab. Try it out!
-:::
+:::{.callout-note} You can view the whole data frame by running the code `view(datasaurus_dozen)` in the console. This will open the data frame in a new tab. Try it out! :::
 
 1.  Plot y vs. x for the dino data set. Then, calculate the correlation coefficient between x and y for this data set.
 
@@ -194,11 +188,9 @@ Adding new lines after pipes and layers is a "tidyverse" styling. Tidyverse styl
 
 ## Submitting to gradescope
 
-In this class, we will submit `.pdf` documents to Gradescope. Once you are fully satisfied with your lab, render to create a .html document. Next open your `lab01.html` in the file system in the bottom right and "print to PDF". Ask your TA if you get stuck. Remember -- you must turn in a .pdf file to the Gradescope page before the submission deadline for credit. 
+In this class, we will submit `.pdf` documents to Gradescope. Once you are fully satisfied with your lab, render to create a .html document. Next open your `lab01.html` in the file system in the bottom right and "print to PDF". Ask your TA if you get stuck. Remember -- you must turn in a .pdf file to the Gradescope page before the submission deadline for credit.
 
-:::{.callout-note}
-In future labs, we will render to pdf directly but currently, RStudio containers are not setup with the tools to render to PDF directly.
-:::
+:::{.callout-note} In future labs, we will render to pdf directly but currently, RStudio containers are not setup with the tools to render to PDF directly. :::
 
 To submit your assignment:
 

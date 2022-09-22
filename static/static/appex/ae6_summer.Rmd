@@ -310,7 +310,7 @@ The Environmental Protection Agency (EPA) recommends [children and pregnant/brea
 
 We are concerned that the average mercury level in local bass may be too high for this subset of the population to eat.
 
-- If a bass was caught in the Waccamaw river and is 25.5 centimeters long, would you recommend this population eat the fish? What if it came from the Lumber river? Creat an effective visualizaiton to illustrate your findings.
+- If a bass was caught in the Waccamaw river and is 25.5 centimeters long, would you recommend this population eat the fish? What if it came from the Lumber river? Create an effective visualization to illustrate your findings.
 
 ```{r ex-7-1}
 # code here

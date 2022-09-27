@@ -1,0 +1,122 @@
+---
+title: "Model Selection"
+subtitle: "STA 101"
+format: html
+---
+
+
+## Bulletin
+
+- Please take the first five minutes of class to fill out [this survey](https://duke.qualtrics.com/jfe/form/SV_0oIT7pdlmr1FKJM)
+
+- 
+
+## Today
+
+By the end of today you will...
+
+- select between linear models with different numbers of predictors
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console** (bottom left of screen)
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae9.qmd",
+destfile = "ae9.qmd")
+```
+
+## Load packages and data
+
+```{r load-libraroies, warning = F, message = F}
+library(tidyverse)
+library(tidymodels)
+```
+
+## Notes
+
+### The problem with $R^2$
+
+$R^2$ tell us the proportion of variability in the data our model explains. If we add predictors to our model, we will *always* improve $R^2$ (regardless of whether the predictor is good or not). 
+
+To see this...
+
+- offline example
+
+- take away: a line can go through any two points, a plane can go through any three points, etc. In general an $n$ dimensional object can go through $n$ points.
+
+For this reason, $R^2$ is not a good way to select between two models that have a different number of predictors. Instead, we prefer to use Akaike Information Criterion (AIC). 
+
+### AIC 
+
+$$
+\text{AIC} = 2k - 2 \log (\text{likelihood})
+$$
+
+where $k$ is the number of estimated parameters ($\beta$s) in the model. Notice this will be 1 + the number of predictors. and $\hat{L}$ is "likelihood" of the data given the fitted model. 
+
+We'll return to the idea of a likelihood later in the semester. For now, it suffices to know that the likelihood is a measure of how well a given model fits the data. Specifically, higher likelihoods imply better fits. Since the AIC score has a negative in front of the log likelihood, lower scores are better fits. However, $k$ penalizes adding new predictors to the model.
+
+Take-away: lower AIC is better fit.
+
+You can find AIC using `glance(fitted-model)`. (Assuming you named your fitted model `fitted-model`)
+
+## Building a model
+
+Scenario: you have an outcome $y$ you want to predict. You have several variables you've measured that you *could* use as predictors in your linear model. Each predictor is expensive to collect future measurements of. You want your model to only include the most useful predictors. 
+
+### Backward elimination 
+
+Backawrd elimination starts with the full model (the model that includes all potential predictor variables. Variables are eliminated one-at-a-time from the model until we cannot improve the model any further.^[1](https://openintro-ims.netlify.app/model-mlr.html?q=selection#stepwise-selection)
+
+Procedure:
+
+1. Start with a model that has no predictors.
+2. Next fit every possible model with 1 predictor.
+3. Compare AIC to select the best model with 1 predictor.
+4. Add another predictor to your model
+5. Compare AIC to select the best model among those with an additional predictor. 
+6. Repeat steps 4 and 5 until you score the model with all predictors.
+7. Select the model with the best score.
+
+
+### Forward selection
+
+Forward selection is the reverse of the backward elimination technique. Instead, of eliminating variables one-at-a-time, we add variables one-at-a-time until we cannot find any variables that improve the model any further.^[2](https://openintro-ims.netlify.app/model-mlr.html?q=selection#stepwise-selection)
+
+Procedure:
+
+1. Start with a model that has no predictors.
+2. Next fit every possible model with 1 predictor.
+3. Compare AIC to select the best model with 1 predictor.
+4. Add another predictor to your model
+5. Compare AIC to select the best model among those with an additional predictor. 
+6. Repeat steps 4 and 5 until you score the model with all predictors.
+7. Select the model with the best score.
+
+
+## Example
+
+### Exercise 
+
+- Will forward selection and backward elimination always yield the same model? Type your answer below before running any code.
+
+- Next, see if you are right in using the data set below.
+
+```{r load-data}
+test_df = read_csv("https://sta101-fa22.netlify.app/static/appex/data/test_df.csv")
+```
+
+Perform 1 step of forward selection. What variable will be **in** the final *forward selection* model?
+
+```{r}
+# code here
+```
+
+Next, perform 1 step of backward elimination. Which variable will **not** be in the final *backward elimination* model?
+
+```{r}
+# code here
+```
+
+

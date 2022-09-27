@@ -66,11 +66,11 @@ Find all assignments and due dates here. This schedule updates frequently.
 |     |Thu Sep 22 |  Multiple regression II       |  [`r emo::ji("book")`](/prepare/week-4)      | [ae8](/static/appex/ae8.html)  |           | [exam 1](/static/exams/exam01.html)    |        |
 |     |Fri Sep 23 |   No lab: exam      |        |   |           |     |        |
 |  5   |Mon Sep 26 |        |        |   |           | exam 1 due    |        |
-|     |Tue Sep 27 |  Multiple regression III, Prediction       |        |   |           |     |  Regression project      |
-|     |Thu Sep 29 |  Logistic regression       |        |   |           |     |        |
+|     |Tue Sep 27 |  Model selection      | [`r emo::ji("book")`](/prepare/week-5)         |   |           |     |  Regression project      |
+|     |Thu Sep 29 |  Logistic regression       | [`r emo::ji("book")`](/prepare/week-5)         |   |           |     |        |
 |     |Fri Sep 30 | All about regression   |        |   |  lab 4         |     |        |
-|  6   |Tue Oct 04 |  Random variables      |        |   |           |     |        |
-|     |Thu Oct 06 |   Probability    |        |   |           |     |        |
+|  6   |Tue Oct 04 |  Prediction     |        |   |           |     |        |
+|     |Thu Oct 06 |   Random variables and probability    |        |   |           |     |        |
 |     |Fri Oct 07 |  Project workday    |        |   |         |     |        |
 |  7   |Tue Oct 11 |NO CLASS: Fall break |        |   |           |     |        |
 |     |Thu Oct 13 |  Distributions I     |        |   |           |     |  Final project      |

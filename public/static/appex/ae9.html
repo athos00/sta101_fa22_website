@@ -122,14 +122,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="bulletin" class="level2">
 <h2 class="anchored" data-anchor-id="bulletin">Bulletin</h2>
 <ul>
-<li>Please take the first five minutes of class to fill out <a href="">this survey</a></li>
+<li><p>Please take the first five minutes of class to fill out <a href="https://duke.qualtrics.com/jfe/form/SV_0oIT7pdlmr1FKJM">this survey</a></p></li>
+<li><p>My Wednesday office hours are now zoom only for the rest of the semester. Monday will remain hybrid.</p></li>
 </ul>
 </section>
 <section id="today" class="level2">
 <h2 class="anchored" data-anchor-id="today">Today</h2>
 <p>By the end of today you will…</p>
 <ul>
-<li>select between linear models with different number of predictors</li>
+<li>select between linear models with different numbers of predictors</li>
 </ul>
 </section>
 <section id="getting-started" class="level2">
@@ -142,14 +143,13 @@ destfile = "ae9.qmd")</code></pre>
 <h2 class="anchored" data-anchor-id="load-packages-and-data">Load packages and data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <section id="the-problem-with-r2" class="level3">
-<h3 class="anchored" data-anchor-id="the-problem-with-r2">The problem with R2</h3>
+<h3 class="anchored" data-anchor-id="the-problem-with-r2">The problem with <span class="math inline">\(R^2\)</span></h3>
 <p><span class="math inline">\(R^2\)</span> tell us the proportion of variability in the data our model explains. If we add predictors to our model, we will <em>always</em> improve <span class="math inline">\(R^2\)</span> (regardless of whether the predictor is good or not).</p>
 <p>To see this…</p>
 <ul>
@@ -169,8 +169,73 @@ destfile = "ae9.qmd")</code></pre>
 <p>You can find AIC using <code>glance(fitted-model)</code>. (Assuming you named your fitted model <code>fitted-model</code>)</p>
 </section>
 </section>
+<section id="building-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="building-a-model">Building a model</h2>
+<p>Scenario: you have an outcome <span class="math inline">\(y\)</span> you want to predict. You have several variables you’ve measured that you <em>could</em> use as predictors in your linear model. Each predictor is expensive to collect future measurements of. You want your model to only include the most useful predictors.</p>
+<section id="backward-elimination" class="level3">
+<h3 class="anchored" data-anchor-id="backward-elimination">Backward elimination</h3>
+<p>Backawrd elimination starts with the full model (the model that includes all potential predictor variables. Variables are eliminated one-at-a-time from the model until we cannot improve the model any further.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Procedure:</p>
+<ol type="1">
+<li>Start with a model that has all predictors we consider and compute the AIC.</li>
+<li>Next fit every possible model with 1 less predictor.</li>
+<li>Compare AIC scores to select the best model with 1 less predictor.</li>
+<li>Repeat steps 2 and 3 until you score the model with no predictors.</li>
+<li>Compare AIC among all tested models to select the best model.</li>
+</ol>
+</section>
+<section id="forward-selection" class="level3">
+<h3 class="anchored" data-anchor-id="forward-selection">Forward selection</h3>
+<p>Forward selection is the reverse of the backward elimination technique. Instead, of eliminating variables one-at-a-time, we add variables one-at-a-time until we cannot find any variables that improve the model any further.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Procedure:</p>
+<ol type="1">
+<li>Start with a model that has no predictors.</li>
+<li>Next fit every possible model with 1 additional predictor.</li>
+<li>Compare AIC scores to select the best model with 1 additional predictor.</li>
+<li>Repeat steps 2 and 3 until you score the model with all available predictors.</li>
+<li>Compare AIC among all tested models to select the best model.</li>
+</ol>
+</section>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<section id="exercise" class="level3">
+<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
+<ul>
+<li><p>Will forward selection and backward elimination always yield the same model? Type your answer below before running any code.</p></li>
+<li><p>Next, see if you are right in using the data set below.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://sta101-fa22.netlify.app/static/appex/data/test_df.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 20 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (4): y, x1, x2, x3
 
-</main>
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Perform 1 step of forward selection. What variable will be <strong>in</strong> the final <em>forward selection</em> model?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, perform 1 step of backward elimination. Which variable will <strong>not</strong> be in the final <em>backward elimination</em> model?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p>this definition is from <a href="https://openintro-ims.netlify.app/model-mlr.html?q=selection#stepwise-selection">Introduction to Modern Statistics</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>this definition is from <a href="https://openintro-ims.netlify.app/model-mlr.html?q=selection#stepwise-selection">Introduction to Modern Statistics</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

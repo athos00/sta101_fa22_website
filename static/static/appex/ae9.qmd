@@ -9,7 +9,7 @@ format: html
 
 - Please take the first five minutes of class to fill out [this survey](https://duke.qualtrics.com/jfe/form/SV_0oIT7pdlmr1FKJM)
 
-- 
+- My Wednesday office hours are now zoom only for the rest of the semester. Monday will remain hybrid.
 
 ## Today
 
@@ -67,32 +67,30 @@ Scenario: you have an outcome $y$ you want to predict. You have several variable
 
 ### Backward elimination 
 
-Backawrd elimination starts with the full model (the model that includes all potential predictor variables. Variables are eliminated one-at-a-time from the model until we cannot improve the model any further.^[1](https://openintro-ims.netlify.app/model-mlr.html?q=selection#stepwise-selection)
+Backawrd elimination starts with the full model (the model that includes all potential predictor variables. Variables are eliminated one-at-a-time from the model until we cannot improve the model any further.[^1]
 
 Procedure:
 
-1. Start with a model that has no predictors.
-2. Next fit every possible model with 1 predictor.
-3. Compare AIC to select the best model with 1 predictor.
-4. Add another predictor to your model
-5. Compare AIC to select the best model among those with an additional predictor. 
-6. Repeat steps 4 and 5 until you score the model with all predictors.
-7. Select the model with the best score.
+1. Start with a model that has all predictors we consider and compute the AIC.
+2. Next fit every possible model with 1 less predictor.
+3. Compare AIC scores to select the best model with 1 less predictor.
+4. Repeat steps 2 and 3 until you score the model with no predictors.
+5. Compare AIC among all tested models to select the best model.
 
 
 ### Forward selection
 
-Forward selection is the reverse of the backward elimination technique. Instead, of eliminating variables one-at-a-time, we add variables one-at-a-time until we cannot find any variables that improve the model any further.^[2](https://openintro-ims.netlify.app/model-mlr.html?q=selection#stepwise-selection)
+Forward selection is the reverse of the backward elimination technique. Instead, of eliminating variables one-at-a-time, we add variables one-at-a-time until we cannot find any variables that improve the model any further.[^1]
+
+[^1]: this definition is from [Introduction to Modern Statistics](https://openintro-ims.netlify.app/model-mlr.html?q=selection#stepwise-selection).
 
 Procedure:
 
 1. Start with a model that has no predictors.
-2. Next fit every possible model with 1 predictor.
-3. Compare AIC to select the best model with 1 predictor.
-4. Add another predictor to your model
-5. Compare AIC to select the best model among those with an additional predictor. 
-6. Repeat steps 4 and 5 until you score the model with all predictors.
-7. Select the model with the best score.
+2. Next fit every possible model with 1 additional predictor.
+3. Compare AIC scores to select the best model with 1 additional predictor.
+4. Repeat steps 2 and 3 until you score the model with all available predictors.
+5. Compare AIC among all tested models to select the best model.
 
 
 ## Example

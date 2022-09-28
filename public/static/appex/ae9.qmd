@@ -67,7 +67,7 @@ Scenario: you have an outcome $y$ you want to predict. You have several variable
 
 ### Backward elimination 
 
-Backawrd elimination starts with the full model (the model that includes all potential predictor variables. Variables are eliminated one-at-a-time from the model until we cannot improve the model any further.[^1]
+Backward elimination starts with the full model (the model that includes all potential predictor variables). Variables are eliminated one-at-a-time from the model until we cannot improve the model any further.[^1]
 
 Procedure:
 
@@ -80,14 +80,14 @@ Procedure:
 
 ### Forward selection
 
-Forward selection is the reverse of the backward elimination technique. Instead, of eliminating variables one-at-a-time, we add variables one-at-a-time until we cannot find any variables that improve the model any further.[^1]
+Forward selection is the reverse of the backward elimination technique. Instead, of eliminating variables one-at-a-time, we add variables one-at-a-time until we cannot find any variables that improve the model any further.
 
 [^1]: this definition is from [Introduction to Modern Statistics](https://openintro-ims.netlify.app/model-mlr.html?q=selection#stepwise-selection).
 
 Procedure:
 
 1. Start with a model that has no predictors.
-2. Next fit every possible model with 1 additional predictor.
+2. Next fit every possible model with 1 additional predictor and score each model.
 3. Compare AIC scores to select the best model with 1 additional predictor.
 4. Repeat steps 2 and 3 until you score the model with all available predictors.
 5. Compare AIC among all tested models to select the best model.
@@ -101,20 +101,60 @@ Procedure:
 
 - Next, see if you are right in using the data set below.
 
+**Solution below**
+
 ```{r load-data}
 test_df = read_csv("https://sta101-fa22.netlify.app/static/appex/data/test_df.csv")
 ```
 
+In the following two examples, we will use stepwise selection to build a **main effects** model.
+
 Perform 1 step of forward selection. What variable will be **in** the final *forward selection* model?
 
+- Answer: $x_1$
+
 ```{r}
-# code here
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(y ~ x1, data = test_df) %>%
+  glance() %>%
+  pull(AIC)
+
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(y ~ x2, data = test_df) %>%
+  glance() %>%
+  pull(AIC)
+
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(y ~ x3, data = test_df) %>%
+  glance() %>%
+  pull(AIC)
 ```
 
 Next, perform 1 step of backward elimination. Which variable will **not** be in the final *backward elimination* model?
 
+- Answer: $x_1$
+
 ```{r}
-# code here
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(y ~ x2 + x3, data = test_df) %>%
+  glance() %>%
+  pull(AIC)
+
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(y ~ x1 + x3, data = test_df) %>%
+  glance() %>%
+  pull(AIC)
+
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(y ~ x1 + x2, data = test_df) %>%
+  glance() %>%
+  pull(AIC)
 ```
 
 

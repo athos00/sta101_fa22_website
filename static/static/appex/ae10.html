@@ -290,7 +290,7 @@ p(y_i = 1) = \frac{1}{1+\text{exp}({- \sum  \hat{\beta}_i x_i})},
 <h4 class="anchored" data-anchor-id="exercise-4">Exercise 4</h4>
 <ul>
 <li><p>What is the probability the email is spam if the frequency of <code>you</code> is 5% in the email and there are 2500 capital letters. Use the model equation above.</p></li>
-<li><p>What is the log-odds? (Recall from the prep that log-odds <span class="math inline">\(= \frac{p}{1-p}\)</span>). Use the code below to check your work.</p></li>
+<li><p>What is the log-odds? (Recall from the prep that log-odds <span class="math inline">\(= \log \frac{p}{1-p}\)</span>). Use the code below to check your work.</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">you =</span> <span class="dv">5</span>, <span class="at">capitalTotal =</span> <span class="dv">2500</span>)</span>

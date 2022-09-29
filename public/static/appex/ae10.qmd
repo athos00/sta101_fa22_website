@@ -113,7 +113,7 @@ fit_1 %>%
 
 - What is the probability the email is spam if the frequency of `you` is 5% in the email and there are 2500 capital letters. Use the model equation above.
 
-- What is the log-odds? (Recall from the prep that log-odds $= \frac{p}{1-p}$). Use the code below to check your work.
+- What is the log-odds? (Recall from the prep that log-odds $= \log \frac{p}{1-p}$). Use the code below to check your work.
 ```{r probability}
 newdata = data.frame(you = 5, capitalTotal = 2500)
 

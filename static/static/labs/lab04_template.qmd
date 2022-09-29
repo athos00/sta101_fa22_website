@@ -1,0 +1,137 @@
+---
+title: "Lab 04: Seoul Bicycle Share"
+author: "Your name"
+date: "Due October 6, 2022 at 11:59pm"
+format: pdf
+---
+
+# Load Packages
+
+```{r load-packages, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(tidymodels)
+``` 
+
+# Load data
+
+```{r load-data, warning=F, message=F}
+Seoul_Bikes = read_csv(
+  "https://sta101-fa22.netlify.app/static/appex/data/Seoul_Bikes.csv"
+  ) 
+Seoul_Calendar = read_csv(
+  "https://sta101-fa22.netlify.app/static/appex/data/Seoul_Calendar.csv"
+  )
+```
+
+
+# Exercise 1
+
+```{r}
+
+```
+
+# Exercise 2
+
+```{r}
+
+```
+
+# Exercise 3
+
+#### Step 1 of forward selection
+
+```{r}
+bike_fit_1_1 = bike_fit = linear_reg() %>%
+  set_engine('lm') %>%
+  fit(rented_bikes ~ temp_c, data = bikes)
+
+bike_fit_1_2 = bike_fit = linear_reg() %>%
+  set_engine('lm') %>%
+  fit(rented_bikes ~ humidity_pct, data = bikes)
+
+bike_fit_1_3 = bike_fit = linear_reg() %>%
+  set_engine('lm') %>%
+  fit(rented_bikes ~ wind_speed, data = bikes)
+
+bike_fit_1_4 = bike_fit = linear_reg() %>%
+  set_engine('lm') %>%
+  fit(rented_bikes ~ snowfall_cm, data = bikes)
+```
+
+#### Step 2 of forward selection 
+
+```{r step-2}
+bike_fit_2_1 = bike_fit = linear_reg() %>%
+  set_engine('lm') %>%
+  fit(rented_bikes ~ temp_c + snowfall_cm, data = bikes)
+
+bike_fit_2_2 = bike_fit = linear_reg() %>%
+  set_engine('lm') %>%
+  fit(rented_bikes ~ temp_c + humidity_pct, data = bikes)
+
+bike_fit_2_3 = bike_fit = linear_reg() %>%
+  set_engine('lm') %>%
+  fit(rented_bikes ~ temp_c + wind_speed, data = bikes)
+```
+
+
+#### Step 3 of forward selection
+
+```{r step-3}
+bike_fit_3_1 = bike_fit = 
+  linear_reg() %>%
+  set_engine('lm') %>%
+  fit(rented_bikes ~ temp_c + wind_speed + snowfall_cm, data = bikes)
+
+bike_fit_3_2 = bike_fit = linear_reg() %>%
+  set_engine('lm') %>%
+  fit(rented_bikes ~ temp_c + wind_speed + humidity_pct, data = bikes)
+```
+
+#### Step 4 of forward selection 
+
+```{r}
+bike_fit_full = bike_fit = linear_reg() %>%
+  set_engine('lm') %>%
+  fit(rented_bikes ~ temp_c + humidity_pct + wind_speed + snowfall_cm, data = bikes)
+```
+
+
+# Exercise 4
+
+```{r}
+
+```
+
+# Exercise 5
+
+```{r}
+
+```
+
+# Exercise 6
+
+```{r}
+
+```
+
+# Exercise 7
+
+```{r}
+set.seed(7)
+sampleIndices = sample.int(n = nrow(bikes2), size = 180, replace = F)
+train = bikes2[sampleIndices, ]
+test  = bikes2[-sampleIndices, ] %>%
+  slice_sample(n = 180)
+```
+
+```{r}
+
+```
+
+
+# Exercise 8
+
+```{r}
+
+```

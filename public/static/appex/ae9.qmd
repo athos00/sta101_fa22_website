@@ -4,7 +4,6 @@ subtitle: "STA 101"
 format: html
 ---
 
-
 ## Bulletin
 
 - Please take the first five minutes of class to fill out [this survey](https://duke.qualtrics.com/jfe/form/SV_0oIT7pdlmr1FKJM)

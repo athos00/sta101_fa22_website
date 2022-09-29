@@ -68,7 +68,7 @@ Find all assignments and due dates here. This schedule updates frequently.
 |  5   |Mon Sep 26 |        |        |   |           | exam 1 due    |        |
 |     |Tue Sep 27 |  Model selection      | [`r emo::ji("book")`](/prepare/week-5)         | [ae9](/static/appex/ae9.html)  |           |     |       |
 |     |Thu Sep 29 |  Logistic regression       | [`r emo::ji("book")`](/prepare/week-5)         |   |           |     |   Regression project      |
-|     |Fri Sep 30 | All about regression   |        |   |  lab 4         |     |        |
+|     |Fri Sep 30 | All about regression   |        |   |  [lab 4](/static/labs/lab04.html)            |     |        |
 |  6   |Tue Oct 04 |  Prediction     |        |   |           |     |        |
 |     |Thu Oct 06 |   Random variables and probability    |        |   |           |     |        |
 |     |Fri Oct 07 |  Project workday    |        |   |         |     |        |

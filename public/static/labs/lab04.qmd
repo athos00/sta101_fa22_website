@@ -18,7 +18,7 @@ By the end of this lab you will
 \ 1. Download the lab template by pasting the code below in your **console**:
 
 ```
-download.file("https://sta101-fa22.netlify.app/static/labs/lab04_template.Rmd",
+download.file("https://sta101-fa22.netlify.app/static/labs/lab04_template.qmd",
               destfile = "lab04.qmd")
 ```
 

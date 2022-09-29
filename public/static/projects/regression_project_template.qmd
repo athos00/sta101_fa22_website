@@ -1,6 +1,7 @@
 ---
 title: "Regression project template"
-output: html_document
+author: "STA 101"
+format: pdf
 ---
 
 ```{r setup, echo = F}
@@ -13,7 +14,7 @@ library(tidyverse)
 ```
 
 ```{r load-data, warning = F, message = F}
-births = read_csv("https://sta101.github.io/static/appex/data/trainUSbirth.csv")
+births = read_csv("https://sta101-fa22.netlify.app/static/appex/data/trainUSbirth.csv")
 ```
 
 ## Introduction

@@ -8,14 +8,14 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="STA 101 Regression Project">
-<meta itemprop="description" content="This regression project is due Tuesday July 19 at 11:59pm.
+<meta itemprop="description" content="This regression project is due Friday October 14 at 11:59pm.
 View team assignments here
 The deliverable for this project (what you will turn in) is a written report. See below for more details.
 About the project For this project you will create a linear model (of your choosing) to predict newborn birth weights (or some transformation of the variable) using a sample of 3000 observations from 2020 US birth data originally sourced from the CDC.">
 
-<meta itemprop="wordCount" content="1005">
+<meta itemprop="wordCount" content="1023">
 <meta itemprop="keywords" content="" /><meta property="og:title" content="STA 101 Regression Project" />
-<meta property="og:description" content="This regression project is due Tuesday July 19 at 11:59pm.
+<meta property="og:description" content="This regression project is due Friday October 14 at 11:59pm.
 View team assignments here
 The deliverable for this project (what you will turn in) is a written report. See below for more details.
 About the project For this project you will create a linear model (of your choosing) to predict newborn birth weights (or some transformation of the variable) using a sample of 3000 observations from 2020 US birth data originally sourced from the CDC." />
@@ -26,7 +26,7 @@ About the project For this project you will create a linear model (of your choos
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="STA 101 Regression Project"/>
-<meta name="twitter:description" content="This regression project is due Tuesday July 19 at 11:59pm.
+<meta name="twitter:description" content="This regression project is due Friday October 14 at 11:59pm.
 View team assignments here
 The deliverable for this project (what you will turn in) is a written report. See below for more details.
 About the project For this project you will create a linear model (of your choosing) to predict newborn birth weights (or some transformation of the variable) using a sample of 3000 observations from 2020 US birth data originally sourced from the CDC."/>
@@ -234,13 +234,13 @@ About the project For this project you will create a linear model (of your choos
 	<main class="site-main section-inner thin animated fadeIn faster">
 		<h1>STA 101 Regression Project</h1>
 		<div class="content">
-			<p>This regression project is <strong>due Tuesday July 19 at 11:59pm.</strong></p>
-<p>View <a href="https://duke.box.com/s/06n8tniiuroqg2ms0nkrbz79zsq73gpk">team assignments here</a></p>
+			<p>This regression project is <strong>due Friday October 14 at 11:59pm.</strong></p>
+<p>View <a href="https://duke.box.com/s/gigjvdrogsh8nur2tag78n6gmb4ey0hk">team assignments here</a></p>
 <p>The deliverable for this project (what you will turn in) is a written report. See below for more details.</p>
 <h2 id="about-the-project">About the project<a href="#about-the-project" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>For this project you will create a linear model (of your choosing) to predict newborn birth weights (or some transformation of the variable) using a sample of 3000 observations from 2020 US birth data originally sourced from <a href="https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm">the CDC</a>.</p>
 <p>Download the data using the code below.</p>
-<pre tabindex="0"><code>births = read_csv(&quot;https://sta101.github.io/static/appex/data/trainUSbirth.csv&quot;)
+<pre tabindex="0"><code>births = read_csv(&quot;https://sta101-fa22.netlify.app/static/appex/data/trainUSbirth.csv&quot;)
 </code></pre><p>Here&rsquo;s a code book for the data set:</p>
 <ul>
 <li><code>newborn_birth_weight</code>: newborn birth weight in grams (response)</li>
@@ -261,11 +261,11 @@ About the project For this project you will create a linear model (of your choos
 <li><code>mother_risk_factors</code>: whether the mother had any risk factor (diabetes, hypertension, previous preterm birth, previous cesarean, infertility treatment used, etc)</li>
 </ul>
 <p>If you wish, you can optionally evaluate the predictive ability of your model, using 1000 observations contained in the test data set below.</p>
-<pre tabindex="0"><code>test_data = read_csv(&quot;https://sta101.github.io/static/appex/data/testUSbirth.csv&quot;)
+<pre tabindex="0"><code>test_data = read_csv(&quot;https://sta101-fa22.netlify.app/static/appex/data/testUSbirth.csv&quot;)
 </code></pre><p>Here is an example of exactly how to evaluate your predictive ability in a typical linear regression model:</p>
 <pre tabindex="0"><code># load data
-births = read_csv(&quot;https://sta101.github.io/static/appex/data/trainUSbirth.csv&quot;)
-test_data = read_csv(&quot;https://sta101.github.io/static/appex/data/testUSbirth.csv&quot;)
+births = read_csv(&quot;https://sta101-fa22.netlify.app/static/appex/data/trainUSbirth.csv&quot;)
+test_data = read_csv(&quot;https://sta101-fa22.netlify.app/static/appex/data/testUSbirth.csv&quot;)
 
 # fit a model with mother_age as a predictor of newborn_birth_weight
 myPredictiveModel = linear_reg() %&gt;%
@@ -281,15 +281,16 @@ predict_test %&gt;%
   mutate(squared_error = (newborn_birth_weight - myPrediction)^2) %&gt;%
   summarize(sse = sum(squared_error))
 
-</code></pre><p>See <a href="">ae7</a> for an example of how to do this in a logistic regression setting.</p>
+</code></pre><p>See <a href="">ae10</a> for an example of how to do this in a logistic regression setting.</p>
 <h2 id="written-report">Written report<a href="#written-report" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Your report must be written using R Markdown. Your written report should not exceed five pages inclusive of all tables and figures. Use the code below to download a template file for the project.</p>
-<pre tabindex="0"><code>download.file(&quot;https://sta101.github.io/static/projects/regression_project_template.Rmd&quot;,
-destfile = &quot;regressionProject.rmd&quot;)
-</code></pre><p>To begin, add YAML to the top and specify a project name, a team name (optional) and the names of each group member. You can use the YAML posted below as a template.</p>
+<pre tabindex="0"><code>download.file(&quot;https://sta101-fa22.netlify.app/static/projects/regression_project_template.qmd&quot;,
+destfile = &quot;regressionProject.qmd&quot;)
+</code></pre><p>To begin, edit the YAML at the top to specify a project name, a team name (optional) and the names of each group member. You can use the YAML posted below as a template.</p>
 <pre tabindex="0"><code>---
 title: &quot;Regression project&quot;
 author: &quot;The Last Rbenders: Aang, Katara, Sokka, Momo&quot;
+format: pdf
 ---
 </code></pre><p>All team members must contribute to the report. Before you finalize your report, make sure the printing of code chunks is turned off by including the following code chunk at the top of your RMD:</p>
 <pre><code>```{r setup, include=FALSE}
@@ -300,7 +301,7 @@ author: &quot;The Last Rbenders: Aang, Katara, Sokka, Momo&quot;
 <p>The written report is worth 50 points, broken down as follows:</p>
 <h3 id="introduction-7pts">Introduction <code>7pts</code><a href="#introduction-7pts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>The introduction provides motivation and context for your research.</p>
-<p>To begin, introduce the data set in a few short sentences. Next, create a code book (aka a &ldquo;data dictionary&rdquo;) of the variables in the data set. Although a code book is provided above, you should include one in your report as well so that your report is self-contained.</p>
+<p>To begin, introduce the data set in a few short sentences. Next, create a code book (aka a &ldquo;data dictionary&rdquo;) of the variables in the data set. Although a code book is provided above, you should include one in your report as well so that your report is self-contained. Specifically, only include in your report a code book of the variables that you use.</p>
 <p>Complete the introduction by providing a concise, clear statement of your research question and hypotheses. Be sure to motivate why the research question is interesting / useful.</p>
 <p>Example research question and hypotheses:</p>
 <p><em>Can we predict body mass with bill depth? We hypothesize that penguins with deeper bills will also have more mass.</em></p>

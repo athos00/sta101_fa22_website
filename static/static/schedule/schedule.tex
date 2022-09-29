@@ -33,13 +33,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={STA101 Schedule},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
@@ -71,6 +64,13 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={STA101 Schedule},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{STA101 Schedule}
 \usepackage{etoolbox}
@@ -79,7 +79,7 @@
   \apptocmd{\@title}{\par {\large #1 \par}}{}{}
 }
 \makeatother
-\subtitle{Summer II, 2022}
+\subtitle{Fall, 2022}
 \author{}
 \date{\vspace{-2.5em}}
 
@@ -90,16 +90,16 @@ Find all assignments and due dates here. This schedule updates
 frequently.
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0678}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1017}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.2542}}
-  >{\centering\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0847}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0847}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1864}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0847}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1356}}@{}}
-\toprule
-\begin{minipage}[b]{\linewidth}\centering
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.2333}}
+  >{\centering\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0667}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1667}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
 Week
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Date
@@ -116,47 +116,73 @@ Exam
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Project
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
-1 & Mon Jun 27 & Intro to R & \href{/prepare/week-1}{📖} &
-\href{/static/appex/ae1.html}{ae 1},
+1 & Tue Aug 30 & Welcome to STA 101! & \href{/prepare/week-1}{📖} &
+\href{/static/appex/ae1.html}{ae1},
 ~~\href{/static/slides/day01.html}{💻} & & & \\
-& Tue Jun 28 & Exploratory data analysis I & \href{/prepare/week-1}{📖}
-& \href{/static/appex/ae2.html}{ae2} &
-\href{/static/labs/lab01.html}{lab 1},
+& Thu Sep 01 & Intro to R & \href{/prepare/week-1}{📖} &
+\href{/static/appex/ae2.html}{ae2} & & & \\
+& Fri Sep 02 & Hello R! & & & \href{/static/labs/lab01.html}{lab 1},
 ~~\href{/static/slides/lab-01-slides.html}{💻} & & \\
-& Thu Jun 30 & Exploratory data analysis II & \href{/prepare/week-1}{📖}
-& \href{/static/appex/ae3.html}{ae3} &
-\href{/static/labs/lab02.html}{lab 2} & & \\
-2 & Mon Jul 04 & NO CLASS: Independence Day & & & & & \\
-& Tue Jul 05 & Simple regression & \href{/prepare/week-2}{📖} &
-\href{/static/appex/ae4.html}{ae4} & \href{/static/labs/lab03.html}{lab
-3} & & \\
-& Thu Jul 07 & Multiple regression I & \href{/prepare/week-2}{📖} &
-\href{/static/appex/ae5.html}{ae5} & No lab: exam released &
+2 & Tue Sep 06 & Exploratory data analysis I &
+\href{/prepare/week-2}{📖} & \href{/static/appex/ae3.html}{ae3} & & & \\
+& Thu Sep 08 & Exploratory data analysis II & \href{/prepare/week-2}{📖}
+& \href{/static/appex/ae4.html}{ae4} & & & \\
+& Fri Sep 09 & EDA & & & \href{/static/labs/lab02.html}{lab 2} & & \\
+3 & Tue Sep 13 & Exploratory data analysis III &
+\href{/prepare/week-3}{📖} & \href{/static/appex/ae5.html}{ae5} & & & \\
+& Thu Sep 15 & Simple regression & \href{/prepare/week-3}{📖} &
+\href{/static/appex/ae6.html}{ae6} & & & \\
+& Fri Sep 16 & EDA and simple regression & & &
+\href{/static/labs/lab03.html}{lab 3} & & \\
+4 & Tue Sep 20 & Multiple regression I & \href{/prepare/week-4}{📖} &
+\href{/static/appex/ae7.html}{ae7} & & & \\
+& Thu Sep 22 & Multiple regression II & \href{/prepare/week-4}{📖} &
+\href{/static/appex/ae8.html}{ae8} & &
 \href{/static/exams/exam01.html}{exam 1} & \\
-3 & Mon Jul 11 & Multiple regression II & \href{/prepare/week-3}{📖} &
-\href{/static/appex/ae6.html}{ae6} & & exam 1 due & \\
-& Tue Jul 12 & Logistic regression & \href{/prepare/week-3}{📖} &
-\href{/static/appex/ae7.html}{ae7} & Regression project: workday & &
+& Fri Sep 23 & No lab: exam & & & & & \\
+5 & Mon Sep 26 & & & & & exam 1 due & \\
+& Tue Sep 27 & Model selection & \href{/prepare/week-5}{📖} &
+\href{/static/appex/ae9.html}{ae9} & & & \\
+& Thu Sep 29 & Logistic regression & \href{/prepare/week-5}{📖} &
+\href{/static/appex/ae10.html}{ae10} & & &
 \href{/projects/regression-project}{Regression project} \\
-& Thu Jul 14 & Random variables + distributions &
-\href{/prepare/week-3}{📖} & & \href{/static/labs/lab04.html}{lab 4} &
-& \\
-4 & Mon Jul 18 & Simulation-based inference I & & & & & \\
-& Tue Jul 19 & Simulation-based inference II & & & Lab cancelled: work
-on project & & \\
-& Thu Jul 21 & Hypothesis testing I & & & No lab: exam released &
-\href{}{exam 2} & \\
-5 & Mon Jul 25 & Hypothesis testing II & & & & exam 2 due & \\
-& Tue Jul 26 & Central limit theorem (CLT) & & & \href{}{lab 5} & & \\
-& Thu Jul 28 & Regression + inference & & & \href{}{lab 6} & & \\
-6 & Mon Aug 01 & Data science ethics & & & & & \\
-& Tue Aug 02 & Special topic: xaringan & & & Final project: peer-review
-& & \\
-& Thu Aug 04 & Special topic: Cryptanalysis & & & Final project: workday
-& & \\
-\bottomrule
+& Fri Sep 30 & All about regression & & &
+\href{/static/labs/lab04.html}{lab 4} & & \\
+6 & Tue Oct 04 & Prediction & \href{/prepare/week-6}{📖} & & & & \\
+& Thu Oct 06 & Random variables and probability &
+\href{/prepare/week-6}{📖} & & & & \\
+& Fri Oct 07 & Project workday & & & & & \\
+7 & Tue Oct 11 & NO CLASS: Fall break & & & & & \\
+& Thu Oct 13 & Distributions I & & & & & Final project \\
+& Fri Oct 14 & Probability and distributions & & & lab 5 & & \\
+8 & Tue Oct 18 & Distributions II & & & & & \\
+& Thu Oct 20 & Sampling and the bootstrap & & & & & \\
+& Fri Oct 21 & The bootstrap & & & lab 6 & & \\
+9 & Tue Oct 25 & Central limit theorem I & & & & & \\
+& Thu Oct 27 & Central limit theorem II & & & & & \\
+& Fri Oct 28 & CLT and CI & & & lab 7 & & \\
+10 & Tue Nov 01 & Hypothesis testing I & & & & & \\
+& Thu Nov 03 & Hypothesis testing II & & & & & \\
+& Fri Nov 04 & Hypothesis tests & & & lab 8 & & \\
+11 & Tue Nov 08 & Hypothesis testing III & & & & & \\
+& Thu Nov 10 & Hypothesis testing recap & & & & exam 2 & \\
+& Fri Nov 11 & No lab: exam released & & & & & \\
+12 & Mon Nov 14 & & & & & exam 2 due & \\
+& Tue Nov 15 & Data science ethics & & & & & \\
+& Thu Nov 17 & Project report tips & & & & & \\
+& Fri Nov 18 & New packages & & & lab 9 & & \\
+13 & Tue Nov 22 & Project presentation tips & & & & & \\
+& Thu Nov 24 & NO CLASS: Thanksgiving & & & & & \\
+& Fri Nov 25 & NO CLASS: Thanksgiving & & & & & \\
+14 & Tue Nov 29 & Special topic: genetic forensic analysis & & & & & \\
+& Thu Dec 01 & Special topic: cryptanalysis & & & & & \\
+& Fri Dec 02 & Final project peer review & & & & & \\
+15 & Tue Dec 06 & Special topic & & & & & \\
+& Thu Dec 08 & Special topic & & & & & \\
+& Fri Dec 09 & Project workday & & & & & \\
+\bottomrule()
 \end{longtable}
 
 \end{document}

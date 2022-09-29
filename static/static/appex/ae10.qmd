@@ -1,0 +1,238 @@
+---
+title: "Logistic Regression"
+subtitle: "STA 101"
+format: html
+---
+
+## Bulletin
+
+- [Regression project released](https://sta101-fa22.netlify.app/projects/regression-project/)
+
+## Today
+
+By the end of today you will...
+
+- understand logistic regression as a linear model of binary outcomes
+- be able to fit logistic regression in R
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae10.qmd",
+destfile = "ae10.qmd")
+```
+
+## Load packages and data
+
+```{r load-libraroies, warning = F, message = F}
+library(tidyverse)
+library(tidymodels)
+library(boot) # contains inv.logit() function
+```
+
+To illustrate logistic regression, we will build a spam filter from email data. Today's data consists of 4601 emails that are classified as `spam` or `non-spam`. The data was collected at Hewlett-Packard labs and contains 58 variables. The first 48 variables are specific keywords and each observation is the percentage of appearance **(frequency)** of that word in the message. Click [here](https://rdrr.io/cran/kernlab/man/spam.html) to read more. 
+
+- `type` $= 1$ is spam
+- `type` $= 0$ is non-spam
+
+```{r load-pokemon, message=F}
+spam = read_csv("https://sta101.github.io/static/appex/data/spam.csv")
+glimpse(spam)
+```
+
+The basic logic of our model is that the frequency of certain words can help us determine whether or not an email is spam.
+
+For example, these emails came from George's inbox. If the word "george" is not present in the message and the dollar symbol (`charDollar`) is, you might expect the email to be spam.
+
+Using this data, we want to build a model that **predicts** whether a new email is spam or not. How do we build a model that can do this?
+
+#### Exercise 1 
+
+Start by examining 1 predictor.
+
+- Visualize a **linear model** where the outcome is `type` (spam or not) and `george` is the predictor.
+
+- Discuss your visualization with your neighbor. Is this a good model? Why or why not?
+
+```{r bad-model}
+# code here
+```
+
+
+# Logistic regression
+
+*How do you build a model to fit a binary outcome?*
+
+Linear logistic regression (also simply called "logistic regression") takes in a number of predictors and outputs the probability of a "success" (an outcome of 1) in a binary outcome variable. The probability is related to the predictors via a **sigmoid link function**,
+$$
+p(y_i = 1) = \frac{1}{1+\text{exp}({- \sum \beta_i x_i })},
+$$
+whose output is in $(0,1)$ (a probability). In this modeling scheme, one typically finds $\hat{\beta}$ by maximizing the **likelihood function**, (another objective function, different than our previous "least squares" objective).
+
+```{r sigmoid-function, message=F}
+sigmoid = function(x) 1 / (1 + exp(-x + 10))
+plot.function(sigmoid, from = 0, to = 20, n = 101, ylab="p(yi = 1)", xlab="input", main="Sigmoid link function", lwd = 3)
+box()
+```
+
+To proceed with building our email classifier, we will, as usual, use our data (outcome $y_i$ and predictor $x_i$ pairs), to estimate $\beta$ (find $\hat{\beta}$) and obtain the model:
+$$
+p(y_i = 1) = \frac{1}{1+\text{exp}({- \sum  \hat{\beta}_i x_i})},
+$$
+
+## Example
+
+Let's build a model centered around just two predictor variables. 
+
+The first will be the word `you` and the second will be `capitalTotal` (the total number of capital letters in the message).
+
+#### Exercise 2 
+
+Create a visualization with `you` on the x-axis and `capitalTotal` on the y-axis. Color data points by whether or not they are spam.
+
+```{r two-explanatory-plot}
+# code here
+```
+
+Let's fit the model!
+```{r logistic-fit-1}
+fit_1 = logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(as.factor(type) ~ you + capitalTotal, data = spam, family = "binomial")
+  
+fit_1 %>%
+  tidy()
+```
+#### Exercise 3 
+
+- What is different in the code above from previous linear models we fit? 
+
+#### Exercise 4 
+
+- What is the probability the email is spam if the frequency of `you` is 5% in the email and there are 2500 capital letters. Use the model equation above.
+
+- What is the log-odds? (Recall from the prep that log-odds $= \frac{p}{1-p}$). Use the code below to check your work.
+```{r probability}
+newdata = data.frame(you = 5, capitalTotal = 2500)
+
+# code here
+
+# check work
+checkLogOdds = predict(fit_1$fit, newdata)
+checkLogOdds
+checkP = inv.logit(checkLogOdds)
+checkP
+```
+
+## Visualize logistic regression
+
+```{r find-hyperplane}
+
+beta = fit_1$fit$coefficients
+hyperplane = function(x){
+    decisionBoundary = 0.5
+    c = logit(decisionBoundary)
+    const = c - beta[1]
+    return((-beta[2]*x + const) / beta[3])
+}
+
+spam %>%
+  ggplot(aes(x = you, y = capitalTotal, color = as.factor(type))) + 
+  geom_point(alpha = 0.3) +
+  geom_function(fun = hyperplane) +
+  scale_colour_manual(values = c("orange", "steelblue")) +
+  theme_minimal()
+
+```
+
+- Just because there's greater than 50% probability an email is spam doesn't mean we have to label it as such. We can adjust our **threshold** or **critical probability**, a.k.a. **decision boundary** to be more or less sensitive to spam emails.
+
+In other words we get to select a number $p^*$ such that 
+
+if $p > p^*$, then label the email as spam.
+
+#### Exercise 5 
+
+- What would you set your decision boundary to and why?
+
+- Change `decisionBoundary` in the code above to 0.01 and 0.999999. Do the results surprise you? Why or why not?
+
+- lower boundary means that we label more emails as spam, high boundary means fewer emails as spam. We can adjust the boundary depending on how much we value receiving important emails vs how much we dislike spam.
+
+- 0 means all emails are spam, 1 means no emails are spam. Note you cannot set decision boundary to 0 or 1 because of logit function (would evaluate to inf or negative inf)
+
+## Classify a new email
+
+```{r read-email}
+email = readLines("https://sta101.github.io/static/appex/data/test-email.txt")
+email
+
+totalWord = sum(str_count(email, " "))
+totalYou = sum(str_count(tolower(email), "you"))
+capitalTotal = sum(str_count(email, "[A-Z]"))
+
+youFreq = 100 * totalYou / totalWord
+newemail = data.frame(you = youFreq, capitalTotal = capitalTotal)
+
+logOdds = predict(fit_1$fit, newemail)
+logOdds
+
+inv.logit(logOdds)
+```
+
+
+#### Exercise 6
+
+- Does the code above count the correct number of "you"? Why or why not?
+
+- Do you believe the predicted odds of the email being spam? Why or why not?
+
+- What is the **probability** the test email is spam?
+
+## Assessing predictive ability
+
+We will divide the data into a training set and testing set.
+
+```{r sample-data-random}
+set.seed(6)
+sampleIndices = sample.int(n = nrow(spam), size = 2000, replace = F)
+train = spam[sampleIndices, ]
+test  = spam[-sampleIndices, ] %>%
+  slice_sample(n = 2000)
+```
+
+#### Exercise 7
+
+Next, let's train your model on the training set.
+Build a predictive model using any combination of predictors from `spam`. Save your fitted model as `myModel`
+
+```{r ex-7}
+# code here
+
+#example (delete this):
+myModel = logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(as.factor(type) ~ you + address, data = train, family = "binomial")
+```
+
+and test it on the testing set,
+
+```{r test-eval}
+prediction = test %>%
+  mutate(myModelPrediction = predict(myModel, test)$.pred_class) 
+
+prediction
+```
+
+
+#### Exercise 8
+What is the proportion of false positives (i.e. classified as spam but was not)? False negatives?
+
+```{r}
+# code here
+```
+
+
+

@@ -1,0 +1,30 @@
+---
+title: "Regression project template"
+author: "STA 101"
+format: pdf
+---
+
+```{r setup, echo = F}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r load-packages, warning = F, message = F}
+library(tidyverse)
+# load any other packages you use here
+```
+
+```{r load-data, warning = F, message = F}
+births = read_csv("https://sta101-fa22.netlify.app/static/appex/data/trainUSbirth.csv")
+```
+
+## Introduction
+
+### optional subheading
+
+## Methodology
+
+## Results
+
+## Discussion
+
+- Aang built the models, Katara implemented them in R, and Sokka wrote the introduction and discussion.

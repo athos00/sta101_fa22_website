@@ -2,12 +2,11 @@
 title: STA 101 Regression Project
 ---
 
-This regression project is **due Tuesday July 19 at 11:59pm.**
+This regression project is **due Friday October 14 at 11:59pm.**
 
-View [team assignments here](https://duke.box.com/s/06n8tniiuroqg2ms0nkrbz79zsq73gpk)
+View [team assignments here](https://duke.box.com/s/gigjvdrogsh8nur2tag78n6gmb4ey0hk)
 
 The deliverable for this project (what you will turn in) is a written report. See below for more details.
-
 
 ## About the project
 
@@ -16,7 +15,7 @@ For this project you will create a linear model (of your choosing) to predict ne
 Download the data using the code below.
 
 ```
-births = read_csv("https://sta101.github.io/static/appex/data/trainUSbirth.csv")
+births = read_csv("https://sta101-fa22.netlify.app/static/appex/data/trainUSbirth.csv")
 ```
 
 Here's a code book for the data set:
@@ -39,20 +38,18 @@ Here's a code book for the data set:
 - `gestation_week`: number of gestational weeks
 - `mother_risk_factors`: whether the mother had any risk factor (diabetes, hypertension, previous preterm birth, previous cesarean, infertility treatment used, etc)
 
-
-
 If you wish, you can optionally evaluate the predictive ability of your model, using 1000 observations contained in the test data set below.
 
 ```
-test_data = read_csv("https://sta101.github.io/static/appex/data/testUSbirth.csv")
+test_data = read_csv("https://sta101-fa22.netlify.app/static/appex/data/testUSbirth.csv")
 ```
 
 Here is an example of exactly how to evaluate your predictive ability in a typical linear regression model:
 
 ```
 # load data
-births = read_csv("https://sta101.github.io/static/appex/data/trainUSbirth.csv")
-test_data = read_csv("https://sta101.github.io/static/appex/data/testUSbirth.csv")
+births = read_csv("https://sta101-fa22.netlify.app/static/appex/data/trainUSbirth.csv")
+test_data = read_csv("https://sta101-fa22.netlify.app/static/appex/data/testUSbirth.csv")
 
 # fit a model with mother_age as a predictor of newborn_birth_weight
 myPredictiveModel = linear_reg() %>%
@@ -70,23 +67,24 @@ predict_test %>%
 
 ```
 
-See [ae7]() for an example of how to do this in a logistic regression setting.
+See [ae10]() for an example of how to do this in a logistic regression setting.
 
 ## Written report
 
 Your report must be written using R Markdown. Your written report should not exceed five pages inclusive of all tables and figures. Use the code below to download a template file for the project.
 
 ```
-download.file("https://sta101.github.io/static/projects/regression_project_template.Rmd",
-destfile = "regressionProject.rmd")
+download.file("https://sta101-fa22.netlify.app/static/projects/regression_project_template.qmd",
+destfile = "regressionProject.qmd")
 ```
 
-To begin, add YAML to the top and specify a project name, a team name (optional) and the names of each group member. You can use the YAML posted below as a template.
+To begin, edit the YAML at the top to specify a project name, a team name (optional) and the names of each group member. You can use the YAML posted below as a template.
 
 ```
 ---
 title: "Regression project"
 author: "The Last Rbenders: Aang, Katara, Sokka, Momo"
+format: pdf
 ---
 ```
 
@@ -105,7 +103,7 @@ The written report is worth 50 points, broken down as follows:
 
 The introduction provides motivation and context for your research.
 
-To begin, introduce the data set in a few short sentences. Next, create a code book (aka a "data dictionary") of the variables in the data set. Although a code book is provided above, you should include one in your report as well so that your report is self-contained.
+To begin, introduce the data set in a few short sentences. Next, create a code book (aka a "data dictionary") of the variables in the data set. Although a code book is provided above, you should include one in your report as well so that your report is self-contained. Specifically, only include in your report a code book of the variables that you use.
 
 Complete the introduction by providing a concise, clear statement of your research question and hypotheses. Be sure to motivate why the research question is interesting / useful.
 

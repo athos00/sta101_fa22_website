@@ -1,0 +1,175 @@
+---
+title: "Prediction"
+subtitle: "STA 101"
+format: html
+---
+
+## Bulletin
+
+- Lab 04 due Thursday
+- Friday is last day for project group swaps
+
+## Today
+
+By the end of today you will...
+
+- be able to make new predictions from your fitted linear models
+- visualize the fit of your model
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae11.qmd",
+destfile = "ae11.qmd")
+```
+
+## Load packages and data
+
+```{r load-libraries, warning = F, message = F}
+library(tidyverse)
+library(tidymodels)
+```
+
+## Notes
+
+### Prediction
+
+`predict()` is a powerful function that takes two arguments:
+
+1. your model fit
+2. new data you want to make predictions from
+
+There are several ways you can use the `predict()` function. 
+
+For standard linear regression,
+
+```
+predict(model_fit, test_data) # returns predicted outcome
+```
+
+For logistic regression you can use the code above to obtain the predicted outcome (0 or 1) or alternatively use one of the formulations below to quickly grab the log-odds or the probability of the outcome "1".
+
+```
+predict(model_fit$fit, test_data) # returns log-odds
+```
+
+```
+predict(model_fit, test_data, type = "prob") # returns probability of a 1.
+```
+
+## Practice
+
+Load data:
+```{r load-data}
+parkinsons_train = read_csv("https://sta101-fa22.netlify.app/static/appex/data/parkinsons_train.csv")
+parkinsons_test = read_csv("https://sta101-fa22.netlify.app/static/appex/data/parkinsons_test.csv")
+```
+
+
+This dataset comes from [Little et al. (2008)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3051371/). The data includes various measurements of dysphonia from 32 people, 24 with Parkinson's disease (PD). Multiple measurements were taken per individual. The measurements we examine in this subset of the data include: 
+
+- `name`: patient ID
+- `jitter`: a measure of relative variation in fundamental frequency
+- `shimmer`: a measure of variation in amplitude (dB)
+- `PPE`: pitch period entropy
+- `HNR`: a ratio of total components vs. noise in the voice recording
+- `status`: health status (1 for PD, 0 for healthy)
+
+
+#### Exercise 1 
+
+Write down a main effects model to predict Parkinson's `status` from `HNR`, `shimmer`, `jitter` and `PPE`. 
+
+
+#### Exercise 2 
+
+Fit your model from the previous exercise using the `parkinsons_train` data set.
+
+```{r ex-2}
+# code here
+```
+
+#### Exercise 3 
+
+Use your model to predict PD status in the `parkinsons_test` data set with a decision boundary of `p = 0.5`. How many false positives do you observe? How many false negatives?
+
+Next change the decision boundary to 0.25. How many false positives and false negatives do you observe?
+
+Which decision boundary do you prefer?
+
+```{r ex-3}
+# code here
+```
+
+### Visualizing model fits
+
+There are many ways you can visualize a fitted model. Plotting the hyperplane is limited to simple two-variable (predictor, outcome) and three-variable (predictor, predictor, outcome) plots. Here we explore some useful visualizations for high-dimensional multivariate models.
+
+
+#### Example: logistic regression
+
+- Create a stacked bar plot with `status` on the x-axis and fill by whether or not the predicted status is correct or incorrect.
+
+```{r ex-stacked-bar-plot}
+# code here
+```
+
+#### Example: ordinary least squares regression:
+
+Scenario: we are trying to predict vocal amplitude variation (`shimmer`) from `jitter` and pitch period entropy (`PPE`).
+
+$$
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2
+$$
+where 
+
+$y$: `shimmer`
+$x_1$: `jitter`
+$x_2$: `PPE`
+
+
+```{r ex-ols-regression}
+myPredictiveModel = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(shimmer ~ jitter + PPE, data = parkinsons_train)
+```
+
+Even if we don't have a test data set, we could still create a new column of predictions like before:
+
+```{r}
+# predict based on new data
+predict_train = parkinsons_train %>%
+  mutate(myPrediction = predict(myPredictiveModel, parkinsons_train)$.pred)
+```
+
+From here we could plot $\hat{y} vs y$:
+
+```{r}
+predict_train %>%
+  ggplot(aes(x = shimmer, y = myPrediction)) +
+  geom_point() +
+  labs(x = "True Shimmer (dB)", y = "Predicted shimmer (dB)", title = "Predicted vs true shimmer values") +
+  geom_abline(slope = 1, intercept = 0, color = "steelblue")
+```
+
+Alternatively, we could create a **residual plot**. Residual plots can be used to assess whether a linear model is appropriate.
+
+#### Exercise 4
+
+Create a new column `residuals` in `predict_train` and save your data frame as `predict_train_2`
+
+```{r ex4-1}
+# code here
+```
+
+
+```{r ex4-2, eval = F}
+predict_train_2 %>%
+  ggplot(aes(x = myPrediction, y = residuals)) + 
+  geom_point() +
+  geom_hline(yintercept = 0) +
+  labs(x = "Predicted shimmer (dB)", y = "Residual")
+```
+

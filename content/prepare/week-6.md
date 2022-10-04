@@ -12,4 +12,4 @@ To complete by the beginning of class on the specified day:
 
 ## Thursday October 6
 
-- TBD
+- Read through [prepare for probability notes](/static/appex/prepareProbability.html)

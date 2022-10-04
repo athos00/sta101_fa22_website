@@ -92,6 +92,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="ae11_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="ae11_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -148,15 +149,128 @@ destfile = "ae11.qmd")</code></pre>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<section id="prediction" class="level3">
+<h3 class="anchored" data-anchor-id="prediction">Prediction</h3>
 <p><code>predict()</code> is a powerful function that takes two arguments:</p>
 <ol type="1">
 <li>your model fit</li>
 <li>new data you want to make predictions from</li>
 </ol>
-<p>There are several ways you can use the <code>predict()</code> function:</p>
-<pre><code>predict(model_fit, test_data) # returns predicted outcome (0 or 1)</code></pre>
+<p>There are several ways you can use the <code>predict()</code> function.</p>
+<p>For standard linear regression,</p>
+<pre><code>predict(model_fit, test_data) # returns predicted outcome</code></pre>
+<p>For logistic regression you can use the code above to obtain the predicted outcome (0 or 1) or alternatively use one of the formulations below to quickly grab the log-odds or the probability of the outcome “1”.</p>
 <pre><code>predict(model_fit$fit, test_data) # returns log-odds</code></pre>
 <pre><code>predict(model_fit, test_data, type = "prob") # returns probability of a 1.</code></pre>
+</section>
+</section>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">Practice</h2>
+<p>Load data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>parkinsons_train <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://sta101-fa22.netlify.app/static/appex/data/parkinsons_train.csv"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>parkinsons_test <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://sta101-fa22.netlify.app/static/appex/data/parkinsons_test.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This dataset comes from <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3051371/">Little et al.&nbsp;(2008)</a>. The data includes various measurements of dysphonia (disorders of the voice) from 32 people, 24 with Parkinson’s disease (PD). Multiple measurements were taken per individual. The measurements we examine in this subset of the data include:</p>
+<ul>
+<li><code>name</code>: patient ID</li>
+<li><code>jitter</code>: a measure of relative variation in fundamental frequency</li>
+<li><code>shimmer</code>: a measure of variation in amplitude (dB)</li>
+<li><code>PPE</code>: pitch period entropy</li>
+<li><code>HNR</code>: a ratio of total components vs.&nbsp;noise in the voice recording</li>
+<li><code>status</code>: health status (1 for PD, 0 for healthy)</li>
+</ul>
+<section id="exercise-1" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-1">Exercise 1</h4>
+<p>Write down a main effects model to predict Parkinson’s <code>status</code> from <code>HNR</code>, <code>shimmer</code>, <code>jitter</code> and <code>PPE</code>.</p>
+</section>
+<section id="exercise-2" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-2">Exercise 2</h4>
+<p>Fit your model from the previous exercise using the <code>parkinsons_train</code> data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-3" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-3">Exercise 3</h4>
+<p>Use your model to predict PD status in the <code>parkinsons_test</code> data set with a decision boundary of <code>p = 0.5</code>. How many false positives do you observe? How many false negatives?</p>
+<p>Next change the decision boundary to 0.25. How many false positives and false negatives do you observe?</p>
+<p>Which decision boundary do you prefer?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="visualizing-model-fits" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-model-fits">Visualizing model fits</h3>
+<p>There are many ways you can visualize a fitted model. Plotting the hyperplane is limited to simple two-variable (predictor, outcome) and three-variable (predictor, predictor, outcome) plots. Here we explore some useful visualizations for high-dimensional multivariate models.</p>
+<section id="example-logistic-regression" class="level4">
+<h4 class="anchored" data-anchor-id="example-logistic-regression">Example: logistic regression</h4>
+<ul>
+<li>Create a stacked bar plot with <code>status</code> on the x-axis and fill by whether or not the predicted status is correct or incorrect.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-ordinary-least-squares-regression" class="level4">
+<h4 class="anchored" data-anchor-id="example-ordinary-least-squares-regression">Example: ordinary least squares regression:</h4>
+<p>Scenario: we are trying to predict vocal amplitude variation (<code>shimmer</code>) from <code>jitter</code> and pitch period entropy (<code>PPE</code>).</p>
+<p><span class="math display">\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
+\]</span></p>
+<p>where</p>
+<p><span class="math inline">\(y\)</span>: <code>shimmer</code> <span class="math inline">\(x_1\)</span>: <code>jitter</code> <span class="math inline">\(x_2\)</span>: <code>PPE</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>myPredictiveModel <span class="ot">=</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(shimmer <span class="sc">~</span> jitter <span class="sc">+</span> PPE, <span class="at">data =</span> parkinsons_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Even if we don’t have a test data set, we could still create a new column of predictions like before:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># predict based on new data</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>predict_train <span class="ot">=</span> parkinsons_train <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">myPrediction =</span> <span class="fu">predict</span>(myPredictiveModel, parkinsons_train)<span class="sc">$</span>.pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>From here we can plot <span class="math inline">\(\hat{y}\)</span> vs <span class="math inline">\(y\)</span>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>predict_train <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> shimmer, <span class="at">y =</span> myPrediction)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"True Shimmer (dB)"</span>, <span class="at">y =</span> <span class="st">"Predicted shimmer (dB)"</span>, <span class="at">title =</span> <span class="st">"Predicted vs true shimmer values"</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ae11_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Alternatively, we could create a <strong>residual plot</strong>. Residual plots can be used to assess whether a linear model is appropriate.</p>
+<p>A common assumption of linear regression models is that the error term, <span class="math inline">\(\epsilon\)</span>, has constant variance everywhere.</p>
+<ul>
+<li>If the linear model is appropriate, a residual plot should show this.</li>
+</ul>
+</section>
+<section id="exercise-4" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-4">Exercise 4</h4>
+<p>Create a new column <code>residuals</code> in <code>predict_train</code> and save your data frame as <code>predict_train_2</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>predict_train_2 <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> myPrediction, <span class="at">y =</span> residuals)) <span class="sc">+</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predicted shimmer (dB)"</span>, <span class="at">y =</span> <span class="st">"Residual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-5" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-5">Exercise 5</h4>
+<p>Patterned or nonconstant residual spread may sometimes be indicative a model is missing predictors or missing interactions.</p>
+<p>Re-create the model above as an interaction-effects model and examine the residual plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
 </section>
 
 </main>

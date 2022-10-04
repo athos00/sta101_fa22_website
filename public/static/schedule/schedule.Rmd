@@ -69,7 +69,7 @@ Find all assignments and due dates here. This schedule updates frequently.
 |     |Tue Sep 27 |  Model selection      | [`r emo::ji("book")`](/prepare/week-5)         | [ae9](/static/appex/ae9.html)  |           |     |       |
 |     |Thu Sep 29 |  Logistic regression       | [`r emo::ji("book")`](/prepare/week-5)         | [ae10](/static/appex/ae10.html)  |           |     |   [Regression project](/projects/regression-project)      |
 |     |Fri Sep 30 | All about regression   |        |   |  [lab 4](/static/labs/lab04.html)            |     |        |
-|  6   |Tue Oct 04 |  Prediction     | [`r emo::ji("book")`](/prepare/week-6)       |   |           |     |        |
+|  6   |Tue Oct 04 |  Prediction     | [`r emo::ji("book")`](/prepare/week-6)       | [ae11](/static/appex/ae11.html)  |           |     |        |
 |     |Thu Oct 06 |   Random variables and probability    |  [`r emo::ji("book")`](/prepare/week-6)      |   |           |     |        |
 |     |Fri Oct 07 |  Project workday    |        |   |         |     |        |
 |  7   |Tue Oct 11 |NO CLASS: Fall break |        |   |           |     |        |

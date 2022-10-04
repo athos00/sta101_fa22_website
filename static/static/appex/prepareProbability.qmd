@@ -1,7 +1,7 @@
 ---
 title: "Probability prepare"
 subtitle: "STA 101"
-format: html
+format: pdf
 ---
 
 ## Getting started
@@ -76,12 +76,27 @@ bob_ross %>%
   head(10)
 ```
 
+One often writes indicator random variables as a bold "1",
+
+$$
+\mathbf{1}_{\text{clouds}} = 
+\begin{cases}
+1 \text{ if there are clouds},\\
+0 \text{ if not}
+\end{cases}
+$$
 
 ### Probability
 
 A **probability** is the long-run frequency of an *event*. In other words, the proportion of times we would see an event occur if we could repeat an experiment an infinite number of times. Probabilities take values between 0 and 1 inclusive.
 
-If *A* and *B* are two disjoint events, then the probability of *A* or *B* occurring is equal to the probability of *A* plus the probability of *B*. More concisely, Pr(*A* or *B*) = Pr(*A*) + Pr(*B*).
+- We can often compute probabilities practically as the mean of an indicator random variable. For example, 
+
+$$
+P(\text{clouds}) = \text{mean}(\mathbf{1}_{\text{clouds}})
+$$
+
+- If *A* and *B* are two disjoint events, then the probability of *A* or *B* occurring is equal to the probability of *A* plus the probability of *B*. More concisely, Pr(*A* or *B*) = Pr(*A*) + Pr(*B*).
 
 #### More definitions
 

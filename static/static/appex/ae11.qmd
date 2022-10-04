@@ -62,13 +62,13 @@ predict(model_fit, test_data, type = "prob") # returns probability of a 1.
 ## Practice
 
 Load data:
-```{r load-data}
+```{r load-data, warning = F, message = F}
 parkinsons_train = read_csv("https://sta101-fa22.netlify.app/static/appex/data/parkinsons_train.csv")
 parkinsons_test = read_csv("https://sta101-fa22.netlify.app/static/appex/data/parkinsons_test.csv")
 ```
 
 
-This dataset comes from [Little et al. (2008)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3051371/). The data includes various measurements of dysphonia from 32 people, 24 with Parkinson's disease (PD). Multiple measurements were taken per individual. The measurements we examine in this subset of the data include: 
+This dataset comes from [Little et al. (2008)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3051371/). The data includes various measurements of dysphonia (disorders of the voice) from 32 people, 24 with Parkinson's disease (PD). Multiple measurements were taken per individual. The measurements we examine in this subset of the data include: 
 
 - `name`: patient ID
 - `jitter`: a measure of relative variation in fundamental frequency
@@ -121,7 +121,7 @@ There are many ways you can visualize a fitted model. Plotting the hyperplane is
 Scenario: we are trying to predict vocal amplitude variation (`shimmer`) from `jitter` and pitch period entropy (`PPE`).
 
 $$
-y = \beta_0 + \beta_1 x_1 + \beta_2 x_2
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
 $$
 where 
 
@@ -144,7 +144,7 @@ predict_train = parkinsons_train %>%
   mutate(myPrediction = predict(myPredictiveModel, parkinsons_train)$.pred)
 ```
 
-From here we could plot $\hat{y} vs y$:
+From here we can plot $\hat{y}$ vs $y$:
 
 ```{r}
 predict_train %>%
@@ -155,6 +155,10 @@ predict_train %>%
 ```
 
 Alternatively, we could create a **residual plot**. Residual plots can be used to assess whether a linear model is appropriate.
+
+A common assumption of linear regression models is that the error term, $\epsilon$, has constant variance everywhere.
+
+- If the linear model is appropriate, a residual plot should show this.
 
 #### Exercise 4
 
@@ -171,5 +175,15 @@ predict_train_2 %>%
   geom_point() +
   geom_hline(yintercept = 0) +
   labs(x = "Predicted shimmer (dB)", y = "Residual")
+```
+
+#### Exercise 5
+
+Patterned or nonconstant residual spread may sometimes be indicative a model is missing predictors or missing interactions.
+
+Re-create the model above as an interaction-effects model and examine the residual plot.
+
+```{r}
+# code here
 ```
 

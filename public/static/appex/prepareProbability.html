@@ -210,11 +210,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #   half_oval_frame &lt;int&gt;, hills &lt;int&gt;, lake &lt;int&gt;, lakes &lt;int&gt;, …</code></pre>
 </div>
 </div>
+<p>One often writes indicator random variables as a bold “1”,</p>
+<p><span class="math display">\[
+\mathbf{1}_{\text{clouds}} =
+\begin{cases}
+1 \text{ if there are clouds},\\
+0 \text{ if not}
+\end{cases}
+\]</span></p>
 </section>
 <section id="probability" class="level3">
 <h3 class="anchored" data-anchor-id="probability">Probability</h3>
 <p>A <strong>probability</strong> is the long-run frequency of an <em>event</em>. In other words, the proportion of times we would see an event occur if we could repeat an experiment an infinite number of times. Probabilities take values between 0 and 1 inclusive.</p>
-<p>If <em>A</em> and <em>B</em> are two disjoint events, then the probability of <em>A</em> or <em>B</em> occurring is equal to the probability of <em>A</em> plus the probability of <em>B</em>. More concisely, Pr(<em>A</em> or <em>B</em>) = Pr(<em>A</em>) + Pr(<em>B</em>).</p>
+<ul>
+<li>We can often compute probabilities practically as the mean of an indicator random variable. For example,</li>
+</ul>
+<p><span class="math display">\[
+P(\text{clouds}) = \text{mean}(\mathbf{1}_{\text{clouds}})
+\]</span></p>
+<ul>
+<li>If <em>A</em> and <em>B</em> are two disjoint events, then the probability of <em>A</em> or <em>B</em> occurring is equal to the probability of <em>A</em> plus the probability of <em>B</em>. More concisely, Pr(<em>A</em> or <em>B</em>) = Pr(<em>A</em>) + Pr(<em>B</em>).</li>
+</ul>
 <section id="more-definitions" class="level4">
 <h4 class="anchored" data-anchor-id="more-definitions">More definitions</h4>
 <p>Let <em>A</em> and <em>B</em> be two events.</p>

@@ -10,4 +10,4 @@ To complete by the beginning of class on the specified day:
 
 ## Thursday October 13
 
-- 
+- No prepare.

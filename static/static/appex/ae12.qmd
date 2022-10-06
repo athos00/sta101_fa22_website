@@ -1,0 +1,209 @@
+---
+title: "Probability I"
+subtitle: "STA 101"
+format: html
+---
+
+## Bulletin
+
+- Lab 04 **due Friday October 7**
+- Regression project due **Friday October 14**
+
+## Today
+
+By the end of today you will...
+
+- be able to make new predictions from your fitted linear models
+- visualize the fit of your model
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae12.qmd",
+destfile = "ae12.qmd")
+```
+
+## Load packages and data
+
+```{r load-libraries, warning = F, message = F}
+library(tidyverse)
+library(tidymodels)
+library(fivethirtyeight)
+```
+
+```{r}
+data(bob_ross)
+glimpse(bob_ross)
+```
+
+
+## Re-cap from prepare
+
+### Warm-up
+
+- There are 403 episodes of Bob Ross. Assume exactly 1 painting is painted in each episode. Pretend that before each episode, Bob Ross flips a coin to decide whether or not to paint a sunrise. If it lands heads, a sunrise is in the painting and if it's tails then he does not paint a sunrise. Let $X$ be the number of episodes a sunrise is featured in the painting. What is the **sample space** of this random experiment?
+
+- What is an **event**?
+
+- Let *A* be the event $X>10$ and let *B* be the event $X<3$. Are *A* and *B* disjoint?
+
+### Probability
+
+A **probability** is the long-run frequency of an *event*. In other words, the proportion of times we would see an event occur if we could repeat an experiment an infinite number of times. Probabilities take values between 0 and 1 inclusive.
+
+:::{.callout-note}
+If *A* and *B* are two disjoint events, then the probability of *A* or *B* occurring is equal to the probability of *A* plus the probability of *B*. More concisely, Pr(*A* or *B*) = Pr(*A*) + Pr(*B*).
+:::
+
+#### More definitions
+
+Let *A* and *B* be two events.
+
+- Marginal probability: The probability an event occurs regardless of values of the other event
+  - P(*A*)
+  - Example: What's the probability that, in a randomly selected episode of Bob Ross, the painting features clouds?
+- Joint probability: The probability two or more events simultaneously occur
+  - Example: What's the probability that, in a randomly selected episode of Bob Ross, the painting features clouds and mountains?
+  - P(*A* and *B*)
+- Conditional probability: The probability an event occurs given the other has occurred
+  - P(*A*|*B*) or P(*B*|*A*)
+  - Example: What is the probability that a Bob Ross painting features clouds if it was randomly selected from season 1?
+  - P(*A*|*B*) = P(*A* and *B*) / P(*B*)
+- Independent events: Knowing one event has occurred does not lead to any change in the probability we assign to another event.
+  - P(*A*|*B*) = P(*A*) or P(*B*|*A*) = P(*B*)
+  - Example: The probability a painting features lakes is independent of whether or not it features rivers. More concisely, P(lakes | rivers) = P(lakes)
+  
+#### Exercise 1
+
+Approximate the probability of each example above using the `bob_ross` data set. For the last example (independence) validate or refute the claim using the data set.
+
+```{r}
+# code here
+```
+
+## Data generative processes
+
+As statisticians, we often want to model the process that generates data. For example, although Bob Ross probably does not flip a coin to decide what to paint, it might be a useful model for describing the data.
+
+To formalize this concept, we will embrace two new concepts: **random variables** and **distributions**.
+
+### Random variables
+
+You may not have realized it, but we've already seen random variables. A random variable is a function that maps an observed outcome to a number.
+
+For example, when Bob Ross paints a tree and we label it "1" or does not paint a tree and we label it "0", we are defining a random variable!
+
+:::{.callout-note}
+Random variables that only take the values **0** and **1** have a special name. They are called **indicator random variables** because they are thought of as *indicating* whether or not an event occurs.
+:::
+
+Random variables have distributions…
+
+## Distributions
+
+### Binomial distribution
+
+The **binomial distribution** models the number of success in a series of independent and identical binary trials and is defined by two parameters:
+
+- $k$, the total number of trials,
+- $p$, the probability of a success in an individual trial.
+
+The sample space of a binomial random variable is $\{0, 1, \ldots, k \}$. In words, there could be up to $k$ success in an binomial experiment.
+
+#### Example
+
+You toss a fair coin 10 times. Let *A* be the event there is at least one head. What is the probability of *A*?
+
+Here $k$ is _ and $p$ is _.
+
+`rbinom()` arguments:
+
+- size is the number of trials, aka the number of coin flips in 1 experiment
+- prob is the probability of a success
+- n defines how many times to repeat the entire experiment
+
+```{r coin-1}
+set.seed(100) # sets random seed to ensure we get same result
+
+N = 1000 # total number of experiments of 10 coin flips
+
+coin_flips = data.frame(num_heads = rbinom(n = N, size = 10, prob = 0.5))
+
+coin_flips %>%
+  filter(num_heads >=1) %>%
+  nrow() / N
+```
+
+```{r visualize-binomial}
+coin_flips %>%
+  ggplot(aes(x = num_heads)) +
+  geom_histogram(bins = 35) +
+  theme_bw() +
+  labs(x = "Number of heads",
+       y  = "Count",
+       title = "Distribution of the total # heads in 10 fair coin flips") +
+  scale_x_continuous(breaks = 0:10)
+```
+
+#### Exercise 2
+
+Suppose Bob Ross paintings feature a `mountain` with probability $0.7$. (You might imagine that before Bob Ross paints, he flips an unfair coin that has a 70% chance of landing heads. If the coin lands on heads, he paints a mountain if it lands on tails he does not.) Given that there are 403 episodes of Bob Ross, what is the probability that at least 150 paintings feature a `mountain`?
+
+To help you setup your simulation, set $N = 2000$. What is $k$? What is $p$?
+
+To ensure we get the same answer, use the `seed` provided below.
+
+```{r}
+set.seed(100)
+# code here
+```
+
+- As a follow-up question, what is the probability that at least 100 paintings but not more than 200 feature a `mountain`?
+
+### Mathematics of the binomial distribution
+
+
+$$
+X \sim \text{Binomial}(k, p)
+$$
+
+"X has a binomial distribution with parameters k and p"
+
+What this means to us is:
+
+1. we can simulate the distribution of X using the `rbinom` code from above
+
+2. we can compute the probability X equals any specific value explicitly with the equation below
+
+$$
+P(X = m) = {k \choose m} (p)^{m}(1-p)^{k-m}
+$$
+If we want to know, for example, the exact probability Bob Ross paints at least 150 paintings with a mountain, we would need to add up $P(X = 150) + P(X = 151) + P(X = 152) + \ldots + P(X = 402) + P(X = 403)$.
+
+#### Example
+
+What's the probability that exactly 1 coin lands heads when we flip a fair coin 10 times?
+
+```{r}
+# P(X = m) 
+
+# k choose m
+# k = 10, m = 1
+# fair coin means p = 0.5
+
+choose(10, 1) * (0.5)^1 * (1 - 0.5)^(10 - 1)
+```
+
+#### Exercise 3
+
+What's the probability at least 1 coin lands heads? Use the equation above to compute. Hint: $P(X >= 1) = 1 - P(X = 0)$.
+
+```{r}
+# code here
+```
+
+#### Exercise 4 (before next class)
+
+Play with the "random variables" lesson [here](https://seeing-theory.brown.edu/#secondPage/chapter3). Describe what you observe.

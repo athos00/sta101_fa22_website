@@ -6,7 +6,7 @@ format: html
 
 ## Bulletin
 
-- Lab 04 due Thursday
+- Lab 04 **now due Friday October 7**
 - Friday is last day for project group swaps
 
 ## Today
@@ -160,6 +160,8 @@ A common assumption of linear regression models is that the error term, $\epsilo
 
 - If the linear model is appropriate, a residual plot should show this.
 
+- Patterned or nonconstant residual spread may sometimes be indicative a model is missing predictors or missing interactions.
+
 #### Exercise 4
 
 Create a new column `residuals` in `predict_train` and save your data frame as `predict_train_2`
@@ -177,13 +179,4 @@ predict_train_2 %>%
   labs(x = "Predicted shimmer (dB)", y = "Residual")
 ```
 
-#### Exercise 5
-
-Patterned or nonconstant residual spread may sometimes be indicative a model is missing predictors or missing interactions.
-
-Re-create the model above as an interaction-effects model and examine the residual plot.
-
-```{r}
-# code here
-```
 

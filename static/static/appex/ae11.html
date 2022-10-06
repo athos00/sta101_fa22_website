@@ -122,7 +122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="bulletin" class="level2">
 <h2 class="anchored" data-anchor-id="bulletin">Bulletin</h2>
 <ul>
-<li>Lab 04 due Thursday</li>
+<li>Lab 04 <strong>now due Friday October 7</strong></li>
 <li>Friday is last day for project group swaps</li>
 </ul>
 </section>
@@ -245,7 +245,8 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
 <p>Alternatively, we could create a <strong>residual plot</strong>. Residual plots can be used to assess whether a linear model is appropriate.</p>
 <p>A common assumption of linear regression models is that the error term, <span class="math inline">\(\epsilon\)</span>, has constant variance everywhere.</p>
 <ul>
-<li>If the linear model is appropriate, a residual plot should show this.</li>
+<li><p>If the linear model is appropriate, a residual plot should show this.</p></li>
+<li><p>Patterned or nonconstant residual spread may sometimes be indicative a model is missing predictors or missing interactions.</p></li>
 </ul>
 </section>
 <section id="exercise-4" class="level4">
@@ -260,14 +261,6 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predicted shimmer (dB)"</span>, <span class="at">y =</span> <span class="st">"Residual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exercise-5" class="level4">
-<h4 class="anchored" data-anchor-id="exercise-5">Exercise 5</h4>
-<p>Patterned or nonconstant residual spread may sometimes be indicative a model is missing predictors or missing interactions.</p>
-<p>Re-create the model above as an interaction-effects model and examine the residual plot.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>

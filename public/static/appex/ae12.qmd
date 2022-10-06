@@ -13,8 +13,9 @@ format: html
 
 By the end of today you will...
 
-- be able to make new predictions from your fitted linear models
-- visualize the fit of your model
+- be able to define random variables, probability, and distributions
+- be able to estimate probabilites from data
+- simulate from a binomial distribution
 
 ## Getting started
 

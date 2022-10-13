@@ -1,0 +1,65 @@
+---
+title: "Lab 05"
+author: "Your name"
+date: "Due October 20, 2022 at 11:59pm"
+format: pdf
+---
+
+## Load Packages
+
+```{r load-packages, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(tidymodels)
+library(fivethirtyeight)
+``` 
+
+## Load data
+
+```{r load-data, warning=F, message=F}
+# code here
+```
+
+
+## Exercise 1
+
+```{r}
+
+```
+
+## Exercise 2
+
+```{r}
+
+```
+
+## Exercise 3
+```{r}
+
+```
+
+## Exercise 4
+```{r}
+
+```
+
+## Exercise 5
+```{r}
+
+```
+
+
+## Exercise 6
+```{r}
+
+```
+
+
+## Exercise 7
+```{r}
+
+```
+
+## Exercise 8
+```{r}
+
+```

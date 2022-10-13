@@ -73,7 +73,7 @@ Find all assignments and due dates here. This schedule updates frequently.
 |     |Thu Oct 06 |   Random variables and probability    |  [`r emo::ji("book")`](/prepare/week-6)      | [ae12](/static/appex/ae12.html)  |           |     |        |
 |     |Fri Oct 07 |  Project workday    |        |   |         |     |        |
 |  7   |Tue Oct 11 |NO CLASS: Fall break | [`r emo::ji("book")`](/prepare/week-7)       |   |           |     |        |
-|     |Thu Oct 13 |  The Normal Distribution     | [`r emo::ji("book")`](/prepare/week-7)       |   |           |     |       |
+|     |Thu Oct 13 |  The normal distribution     | [`r emo::ji("book")`](/prepare/week-7)       | [ae13](/static/appex/ae13.html)  |           |     |       |
 |     |Fri Oct 14 |   Probability and distributions    |        |   |  [lab 5](/static/labs/lab05.html)          |     |        |
 |  8   |Tue Oct 18 |  Likelihoods   | [`r emo::ji("book")`](/prepare/week-8)       |   |           |     |  Final project       |
 |     |Thu Oct 20 |   Sampling and the bootstrap    | [`r emo::ji("book")`](/prepare/week-8)       |   |           |     |        |

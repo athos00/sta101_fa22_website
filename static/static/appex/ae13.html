@@ -122,6 +122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="bulletin" class="level2">
 <h2 class="anchored" data-anchor-id="bulletin">Bulletin</h2>
 <ul>
+<li>Mid-semester grades posted</li>
 <li>Regression project <strong>due Friday October 14</strong></li>
 </ul>
 </section>
@@ -149,13 +150,14 @@ destfile = "ae13.qmd")</code></pre>
 <p>The <strong>normal distribution</strong>, also known as “Gaussian distribution” is a distribution of a continuous random variable. The sample space of a normal random variable is <span class="math inline">\(\{- \infty, + \infty \}\)</span> and is defined by two parameters: a mean <span class="math inline">\(\mu\)</span> and a standard deviation <span class="math inline">\(\sigma\)</span>. The mean is known as the <strong>location</strong> parameter while the standard deviation is the <strong>scale</strong>.</p>
 <p>We can sample <code>N</code> times from a normal with mean <code>mu</code> and standard deviation <code>sigma</code> using <code>rnorm(n = N, mean = mu, sd = sigma)</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sample)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sample)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># example</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sample)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sample)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s visualize the normal function curve using the code below.</p>
 <div class="cell">
@@ -182,10 +184,16 @@ destfile = "ae13.qmd")</code></pre>
 </section>
 <section id="exercise-2" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-2">Exercise 2</h4>
-<p>Start with the code below of a histogram from but change your geometry to <code>geom_histogram(aes(y = ..density..))</code>. This will re-scale your histogram so that the area under the curve is 1. Next, use the <code>stat_function</code> code above as a template to superimpose a normal distribution on top of your histogram. Adjust the mean and standard deviation until you obtain a good looking fit. What do you notice?</p>
+<p>Start with the code below of a histogram but change your geometry to <code>geom_histogram(aes(y = ..density..))</code>. This will re-scale your histogram so that the area under the curve is 1. Next, use the <code>stat_function</code> code above as a template to superimpose a normal distribution on top of your histogram. Adjust the mean and standard deviation until you obtain a good looking fit. What do you notice?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1013</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># todo: code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">prob =</span> <span class="fl">0.8</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(x) </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">35</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"X"</span>, <span class="at">title =</span> <span class="st">"Distribution of heads in 100 biased coin flips"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -271,12 +279,16 @@ X \sim N(\mu, \sigma)
 <p>0.08 or about 8% chance. In picture, the probability is the proportion of area under the curve shaded:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="ae13_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="ae13_files/figure-html/proportion-shaded-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<ul>
-<li>todo: fix exercise 2</li>
-</ul>
+<section id="exercise-4" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-4">Exercise 4</h4>
+<p>What is the probability a randomly selected student in the class has a heart beat greater than 75 bpm?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 
 </main>

@@ -1,0 +1,199 @@
+---
+title: "The Normal Distribution"
+subtitle: "STA 101"
+format: html
+---
+
+## Bulletin
+
+- Regression project **due Friday October 14**
+
+## Today
+
+By the end of today you will...
+
+- define **stable distribution**, **normal distribution**, **location** and **scale** parameters
+- plot normal distributions and calculate probabilities
+- 
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae13.qmd",
+destfile = "ae13.qmd")
+```
+
+## Load packages
+
+```{r load-libraries, warning = F, message = F}
+library(tidyverse)
+library(tidymodels)
+```
+
+## Normal distribution
+
+The **normal distribution**, also known as "Gaussian distribution" is a distribution of a continuous random variable. The sample space of a normal random variable is $\{- \infty, + \infty \}$ and is defined by two parameters: a mean $\mu$ and a standard deviation $\sigma$. The mean is known as the **location** parameter while the standard deviation is the **scale**.
+
+We can sample `N` times from a normal with mean `mu` and standard deviation `sigma` using `rnorm(n = N, mean = mu, sd = sigma)`.
+
+```{r, eval = F}
+# example
+sample = rnorm(1000, mean = 0, sd = 1)
+
+mean(sample)
+sd(sample)
+
+hist(sample)
+```
+
+
+Let's visualize the normal function curve using the code below.
+
+```{r visualize-normal}
+
+mu1 = 100
+s1 = 6
+
+mu2 = 105
+s2 = 3
+
+ggplot(data = data.frame(x = c(mu1 - s1*3, mu1 + s1*3)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = mu1, sd = s1),
+                color = "steelblue") +
+  stat_function(fun = dnorm, args = list(mean = mu2, sd = s2),
+                color = "orange") + 
+  theme_bw() +
+  labs(title = "Two normal curves")
+```
+
+#### Exercise 1
+
+Try setting `mu2` to 99 and `s2` to 4. What do you notice? Play with a few more settings and describe what the mean and standard deviation do to the shape of the curve.
+
+#### Exercise 2
+
+Start with the code below of a histogram from but change your geometry to `geom_histogram(aes(y = ..density..))`. This will re-scale your histogram so that the area under the curve is 1. Next, use the `stat_function` code above as a template to superimpose a normal distribution on top of your histogram. Adjust the mean and standard deviation until you obtain a good looking fit. What do you notice?
+
+```{r eval=F}
+set.seed(1013)
+# todo: code here
+```
+
+
+## Properties of a Gaussian
+
+If $X$ is a random variable, and $X$ is normally distributed, then it the distribution of $X$ is fully specified by the **location** (mean) and **scale** (standard deviation) parameters, $\mu$ and $\sigma$ respectively. In mathematical notation we write
+
+$$
+X \sim N(\mu, \sigma)
+$$
+and this reads: "X is normally distributed with mean mu and standard deviation sigma." It is worth noting that in **some contexts** (see e.g. "notation" on [wikipedia](https://en.wikipedia.org/wiki/Normal_distribution)) the second term of a Normal distribution refers to the variance or $\sigma^2$. 
+
+A very useful property of Normal distribution is that it is **stable**. What this means is that linear combinations of normal random variables are themselves normal. In other words, if $X$ and $Y$ are normal random variables then $aX + bY$ is normal for all $a$ and $b$. The two properties to remember when adding random variables are:
+
+- mean(X + Y) = mean(X) + mean(Y)
+- variance(X + Y) = variance(X + Y) when X and Y are independent
+
+We can see this in an example.
+
+Let $X \sim N(5, 3)$ and let $Y \sim N(-5, 1)$
+
+According to our rules above $X + Y \sim N(0, \sqrt{10})$. Let's check ourselves with code:
+
+```{r}
+set.seed(1)
+normal_df = data.frame(X = rnorm(1000, mean = 5, sd = 3),
+                 Y = rnorm(1000, mean = -5, sd = 1))
+
+
+
+normal_df = normal_df %>%
+  mutate(Z = X + Y)
+
+normal_df %>%
+  ggplot(aes(x = Z)) +
+  geom_histogram(aes(y = ..density..), fill = 'gold3', alpha = 0.5) +
+  theme_bw() +
+  labs(y = "Density", title = "Matching densities") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = sqrt(10)),
+                color = "darkblue")
+```
+
+#### Exercise 3
+
+Let $Z \sim N(0, 1)$ and $X \sim N(10, 4)$
+
+$aZ + b \sim X$ for some $a$ and $b$. What are $a$ and $b$? Fill them in for the `?` in the code below and the uncomment the code.
+
+```{r, eval = F}
+set.seed(1)
+normal_df = data.frame(z = rnorm(1000, mean = 0, sd = 1),
+                 x = rnorm(1000, mean = 10, sd = 4))
+
+sample_mean = normal_df %>%
+  summarize(sample_mean = mean(x)) %>%
+  pull()
+
+normal_df %>%
+  ggplot(aes(x = x)) +
+  geom_histogram(aes(y = ..density..), fill = 'gold3', alpha = 0.5) +
+  geom_histogram(aes(x = z, y = ..density..), fill = 'steelblue', alpha = 0.7) +
+  #geom_density(aes(x = z*? + ?), color = 'red') + 
+  theme_bw() +
+  labs(x = "", y = "", title = "Sampling from two normals")
+```
+
+## Computing probabilities
+
+`pnorm` "probability normal" takes three arguments:
+
+- `q`, `mean` and `sd`
+
+and answers the question:
+
+If $X \sim N(\mu, \sigma)$, what is $p(X < q)$?
+
+For example, imagine that the resting heart rates in the classroom are normally distributed with mean 70 beats per minute (bpm) and standard deviation 5 bpm. What's the probably a randomly selected individual has a heart rate less than 63 bpm?
+
+In math: let $X$ be the bpm of an individual in this class $X \sim N(70, 5)$. What is $p(X < 63)$? Given heartbeats are normally distributed, randomly selecting an individual from the classroom is called "drawing from a normal distribution".
+
+We can compute this easily:
+
+```{r}
+pnorm(63, 70, 5)
+```
+
+0.08 or about 8% chance. In picture, the probability is the proportion of area under the curve shaded:
+
+```{r echo=F, message = F}
+x=seq(50,90,length=200)
+y=dnorm(x,mean=70,sd=5)
+plot(x,y,type="l")
+x=seq(30,63,length=100)
+y=dnorm(x,mean=70,sd=5)
+polygon(c(30,x,63),c(0,y,0),col="steelblue")
+
+# mu1 = 70
+# s1 = 5
+# 
+# shadeFrom = 50
+# shadeLeft = shadeFrom - 0.0125
+# 
+# dnorm_limit <- function(x) {
+#   y <- dnorm(x)
+#   y[x < shadeLeft  |  x > 63] <- NA
+#   return(y)
+# }
+# 
+# 
+# ggplot(data = data.frame(x = c(mu1 - s1*3, mu1 + s1*3)), aes(x = x)) +
+#   stat_function(fun = dnorm, args = list(mean = mu1, sd = s1),
+#                 color = "orange") +
+#     geom_segment(x = shadeFrom, y = 0, xend = shadeFrom, yend = dnorm(shadeFrom, mu1, s1), color = "steelblue") +
+#   theme_bw() +
+#   labs(title = "Two normal curves")
+```
+
+
+- todo: fix exercise 2

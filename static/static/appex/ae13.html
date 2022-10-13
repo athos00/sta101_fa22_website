@@ -189,11 +189,12 @@ destfile = "ae13.qmd")</code></pre>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1013</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">prob =</span> <span class="fl">0.8</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(x) </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">35</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"X"</span>, <span class="at">title =</span> <span class="st">"Distribution of heads in 100 biased coin flips"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">35</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"X"</span>, <span class="at">title =</span> <span class="st">"Distribution of heads in 100 biased coin flips"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -204,7 +205,7 @@ destfile = "ae13.qmd")</code></pre>
 X \sim N(\mu, \sigma)
 \]</span></p>
 <p>and this reads: “X is normally distributed with mean mu and standard deviation sigma.” It is worth noting that in <strong>some contexts</strong> (see e.g.&nbsp;“notation” on <a href="https://en.wikipedia.org/wiki/Normal_distribution">wikipedia</a>) the second term of a Normal distribution refers to the variance or <span class="math inline">\(\sigma^2\)</span>.</p>
-<p>A very useful property of Normal distribution is that it is <strong>stable</strong>. What this means is that linear combinations of normal random variables are themselves normal. In other words, if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are normal random variables then <span class="math inline">\(aX + bY\)</span> is normal for all <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. The two properties to remember when adding random variables are:</p>
+<p>A very useful property of Normal distribution is that it is <strong>stable</strong>. What this means is that linear combinations of normal random variables are themselves normal. In other words, if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are normal random variables then <span class="math inline">\(aX + bY\)</span> is normal for all <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. The two properties to remember when adding Gaussian random variables are:</p>
 <ul>
 <li>mean(X + Y) = mean(X) + mean(Y)</li>
 <li>variance(X + Y) = variance(X + Y) when X and Y are independent</li>
@@ -239,7 +240,7 @@ X \sim N(\mu, \sigma)
 <section id="exercise-3" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-3">Exercise 3</h4>
 <p>Let <span class="math inline">\(Z \sim N(0, 1)\)</span> and <span class="math inline">\(X \sim N(10, 4)\)</span></p>
-<p><span class="math inline">\(aZ + b \sim X\)</span> for some <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. What are <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>? Fill them in for the <code>?</code> in the code below and the uncomment the code.</p>
+<p><span class="math inline">\(aZ + b \stackrel{d}{=} X\)</span> for some <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. What are <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>? Fill them in for the <code>?</code> in the code below and the uncomment the code. Here “<span class="math inline">\(\stackrel{d}{=}\)</span> means”equal in distribution”.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>normal_df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">z =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
@@ -265,10 +266,10 @@ X \sim N(\mu, \sigma)
 <ul>
 <li><code>q</code>, <code>mean</code> and <code>sd</code></li>
 </ul>
-<p>and answers the question:</p>
+<p>and <code>pnorm(q = q, mean = mu, sd = sigma)</code> answers the question:</p>
 <p>If <span class="math inline">\(X \sim N(\mu, \sigma)\)</span>, what is <span class="math inline">\(p(X &lt; q)\)</span>?</p>
-<p>For example, imagine that the resting heart rates in the classroom are normally distributed with mean 70 beats per minute (bpm) and standard deviation 5 bpm. What’s the probably a randomly selected individual has a heart rate less than 63 bpm?</p>
-<p>In math: let <span class="math inline">\(X\)</span> be the bpm of an individual in this class <span class="math inline">\(X \sim N(70, 5)\)</span>. What is <span class="math inline">\(p(X &lt; 63)\)</span>? Given heartbeats are normally distributed, randomly selecting an individual from the classroom is called “drawing from a normal distribution”.</p>
+<p>For example, imagine that the resting heart rates in the classroom are normally distributed with mean 70 beats per minute (bpm) and standard deviation 5 bpm. What’s the probability a randomly selected individual has a heart rate less than 63 bpm?</p>
+<p>In math: let <span class="math inline">\(X\)</span> be the bpm of an individual in this class. Assume <span class="math inline">\(X \sim N(70, 5)\)</span>. What is <span class="math inline">\(p(X &lt; 63)\)</span>? Given heartbeats are normally distributed, randomly selecting an individual from the classroom is called “drawing from a normal distribution”.</p>
 <p>We can compute this easily:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">63</span>, <span class="dv">70</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

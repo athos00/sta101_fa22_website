@@ -81,6 +81,7 @@ Start with the code below of a histogram but change your geometry to `geom_histo
 set.seed(1013)
 x = rbinom(n = 10000, size = 100, prob = 0.8)
 df = data.frame(x) 
+
 df %>%
   ggplot(aes(x = x)) + 
   geom_histogram(bins = 35) +
@@ -98,7 +99,7 @@ X \sim N(\mu, \sigma)
 $$
 and this reads: "X is normally distributed with mean mu and standard deviation sigma." It is worth noting that in **some contexts** (see e.g. "notation" on [wikipedia](https://en.wikipedia.org/wiki/Normal_distribution)) the second term of a Normal distribution refers to the variance or $\sigma^2$. 
 
-A very useful property of Normal distribution is that it is **stable**. What this means is that linear combinations of normal random variables are themselves normal. In other words, if $X$ and $Y$ are normal random variables then $aX + bY$ is normal for all $a$ and $b$. The two properties to remember when adding random variables are:
+A very useful property of Normal distribution is that it is **stable**. What this means is that linear combinations of normal random variables are themselves normal. In other words, if $X$ and $Y$ are normal random variables then $aX + bY$ is normal for all $a$ and $b$. The two properties to remember when adding Gaussian random variables are:
 
 - mean(X + Y) = mean(X) + mean(Y)
 - variance(X + Y) = variance(X + Y) when X and Y are independent
@@ -132,7 +133,7 @@ normal_df %>%
 
 Let $Z \sim N(0, 1)$ and $X \sim N(10, 4)$
 
-$aZ + b \sim X$ for some $a$ and $b$. What are $a$ and $b$? Fill them in for the `?` in the code below and the uncomment the code.
+$aZ + b \stackrel{d}{=} X$ for some $a$ and $b$. What are $a$ and $b$? Fill them in for the `?` in the code below and the uncomment the code. Here "$\stackrel{d}{=}$ means "equal in distribution".
 
 ```{r, eval = F}
 set.seed(1)
@@ -158,13 +159,13 @@ normal_df %>%
 
 - `q`, `mean` and `sd`
 
-and answers the question:
+and `pnorm(q = q, mean = mu, sd = sigma)` answers the question:
 
 If $X \sim N(\mu, \sigma)$, what is $p(X < q)$?
 
-For example, imagine that the resting heart rates in the classroom are normally distributed with mean 70 beats per minute (bpm) and standard deviation 5 bpm. What's the probably a randomly selected individual has a heart rate less than 63 bpm?
+For example, imagine that the resting heart rates in the classroom are normally distributed with mean 70 beats per minute (bpm) and standard deviation 5 bpm. What's the probability a randomly selected individual has a heart rate less than 63 bpm?
 
-In math: let $X$ be the bpm of an individual in this class $X \sim N(70, 5)$. What is $p(X < 63)$? Given heartbeats are normally distributed, randomly selecting an individual from the classroom is called "drawing from a normal distribution".
+In math: let $X$ be the bpm of an individual in this class. Assume $X \sim N(70, 5)$. What is $p(X < 63)$? Given heartbeats are normally distributed, randomly selecting an individual from the classroom is called "drawing from a normal distribution".
 
 We can compute this easily:
 

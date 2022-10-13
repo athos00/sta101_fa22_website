@@ -113,7 +113,7 @@ Using the data set and the model described above, report your best guess of the 
 6. Your turn! Use this data to explore a question of your choice about paintings created in the TV show *The Joy of Painting*. Your question should explore the relationship between 3 variables in the data set; at least one of the variables must be one that hasn't been used in exercises 1 - 5. You may use the entire data set or focus the analysis on paintings made by Bob Ross.
 
 - Clearly state the question you’re exploring.
-- Create 1 - 2 visualizations that can be used to explore the question. Customize the colors of your visualization using some of the colors commonly used in Bob Ross paintings.[Click here](https://sites.radford.edu/~cdc/seansevillair.html) for a list of common Bob Ross hex codes.
+- Create 1 - 2 visualizations that can be used to explore the question. Customize the colors of your visualization using some of the colors commonly used in Bob Ross paintings. [Click here](https://sites.radford.edu/~cdc/seansevillair.html) for a list of common Bob Ross hex codes.
 
 :::{.callout-hint}
 [Click here for functions to manually create color palettes in ggplot2.](https://ggplot2.tidyverse.org/reference/scale_manual.html)
@@ -124,12 +124,15 @@ Using the data set and the model described above, report your best guess of the 
 
 *"Anything that you're willing to practice, you can do."*
 
-7. Let $X \sim N(0, 3)$ and $Y \sim N(1, 2)$ where $X \sim N(\mu, \sigma)$ means "X is normally distributed with mean $\mu$ and standard deviation $\sigma$".
+7. What does it mean that the "Normal distribution is **stable**"? Let $X \sim N(0, 3)$ and $Y \sim N(1, 2)$ where $X \sim N(\mu, \sigma)$ means "X is normally distributed with mean $\mu$ and standard deviation $\sigma$". Write down the distributions of the following (including location and scale parameters):
 
-- What is the distribution of $X + Y$? 
-- What is the distribution of $\frac{1}{2}X - Y$? 
+- $X + Y$
+- $\frac{1}{2}X - 2Y$
+- $X - 2X + Y$
 
-8. Plot a histogram of the `num_lakes` from exercise 3. Overlay the plot with a normal distribution with  appropriate mean $\mu$ and standard deviation $\sigma$ to approximate the histogram. If $X \sim N(\mu, \sigma)$, what is $p(X \leq x)$? Recall that we define lower-case $x$ in exercise 3.
+Note: no code is required for exercise 7.
+
+8. Plot a histogram of the `num_lakes` from exercise 3. Overlay the plot with a normal distribution with  appropriate mean $\mu$ and standard deviation $\sigma$ to approximate the histogram. If $X \sim N(\mu, \sigma)$, what is $p(X \leq x)$? Recall that we define lower-case $x$ in exercise 3. How does this probability compare to your result from exercise 3?
 
 
 ## Formatting
@@ -162,21 +165,21 @@ Once you are fully satisfied with your lab, render to .pdf to create a .pdf docu
 
 Total: 50 pts.
 
-    Exercise 1: 2pts
+    Exercise 1: 5pts
 
-    Exercise 2: 5pts
+    Exercise 2: 3pts
 
-    Exercise 3: 7pts
+    Exercise 3: 5pts
 
     Exercise 4: 7pts
 
-    Exercise 5: 9pts
+    Exercise 5: 4pts
     
-    Exercise 6: 3pts
+    Exercise 6: 8pts
     
     Exercise 7: 6pts
     
-    Exercise 8: 7pts
+    Exercise 8: 8pts
     
     Workflow and formatting:  4pts
     

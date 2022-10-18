@@ -15,7 +15,7 @@ By the end of today you will...
 
 - define **stable distribution**, **normal distribution**, **location** and **scale** parameters
 - plot normal distributions and calculate probabilities
-- 
+
 ## Getting started
 
 Download this application exercise by pasting the code below into your **console**

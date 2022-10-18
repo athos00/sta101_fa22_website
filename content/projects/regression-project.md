@@ -88,7 +88,7 @@ format: pdf
 ---
 ```
 
-All team members must contribute to the report. Before you finalize your report, make sure the printing of code chunks is turned off by including the following code chunk at the top of your RMD:
+All team members must contribute to the report. Before you finalize your report, make sure the printing of code chunks is turned off by including the following code chunk at the top of your `qmd`:
 
     ```{r setup, include=FALSE}
         knitr::opts_chunk$set(echo = FALSE)

@@ -4,13 +4,13 @@ title: "STA 101 Final Project"
 
 This final project has three deliverable items:
 
-- a pre-project proposal **due Friday July 29 at 11:59pm**,
-- a final presentation **due Thursday August 4 at 11:59pm**,
-- final report **due Friday August 5 at 11:59pm**.
+- a pre-project proposal **due Friday October 28 at 11:59pm**,
+- a final presentation **due Friday December 9 at 11:59pm**,
+- final report **due Friday December 9 at 11:59pm**.
 
-In addition to the above, a component of the grade will be peer-reviewing project report drafts during lab in the final week of class and commenting on the presentaitons on August 5th.
+In addition to the above, a component of the grade will be comprised of: peer-reviewing project report drafts during lab on December 2, commenting on the presentations during exam period and evaluating group members via survey by exam period.
 
-View [team assignments here](https://duke.box.com/s/06n8tniiuroqg2ms0nkrbz79zsq73gpk)
+View [team assignments here](https://duke.box.com/s/gigjvdrogsh8nur2tag78n6gmb4ey0hk)
 
 
 ## About the project
@@ -58,11 +58,11 @@ Some example resources you might use to find a data set are below. You may not u
 Your report must be written using R Markdown. Your written report should not exceed ten pages inclusive of all tables and figures. Use the code below to download a template file for the project.
 
 ```
-download.file("https://sta101.github.io/static/projects/final_project_template.Rmd",
-destfile = "finalProject.rmd")
+download.file("https://sta101-fa22.netlify.app//static/projects/final_project_template.qmd",
+destfile = "finalProject.qmd")
 ```
 
-To begin, add YAML to the top and specify a project name, a team name (optional) and the names of each group member. You can use the YAML posted below as a template.
+To begin, edit YAML at the top and specify a project name, a team name (optional) and the names of each group member. You can use the YAML posted below as a template.
 
 ```
 ---
@@ -71,7 +71,7 @@ author: "The Last Rbenders: Aang, Katara, Sokka, Momo"
 ---
 ```
 
-All team members must contribute to the report. Before you finalize your report, make sure the printing of code chunks is turned off by including the following code chunk at the top of your RMD:
+All team members must contribute to the report. Before you finalize your report, make sure the printing of code chunks is turned off by including the following code chunk at the top of your `qmd`:
 
     ```{r setup, include=FALSE}
         knitr::opts_chunk$set(echo = FALSE)
@@ -120,7 +120,7 @@ This section is a conclusion and discussion. You should
 
 ### Formatting `5pts`
 
-Your written report should be professionally formatted. This means complete sentences, labeling graphs and figures, turning off code chunks, and using typical style guidelines. The only sections your reportm ay contain are **Introduction**, **Methodology**, **Results** and **Discussion**. You should include a citation of your data set and the citation should be formatted in any style of your choosing (e.g. MLA, APA etc.) It is important that your citations (should you include multiple) be consistent in their formatting.
+Your written report should be professionally formatted. This means complete sentences, labeling graphs and figures, turning off code chunks, and using typical style guidelines. The only sections your report may contain are **Introduction**, **Methodology**, **Results** and **Discussion**. You should include a citation of your data set and the citation should be formatted in any style of your choosing (e.g. MLA, APA etc.) It is important that your citations (should you include multiple) be consistent in their formatting.
 
 ### Peer review `2.5pts`
 
@@ -147,7 +147,7 @@ The slide deck should have no more than 6 content slides + 1 title slide. Here i
 
 - Video presentation
 
-- Sometime by August 4th, you/your group will upload a link to your video presentation in sakai discussions. Note that all members must present, and that a ten-minute time limit is strictly enforced.
+- Sometime by December 9th, you/your group will upload a link to your video presentation in sakai discussions. Note that all members must present, and that a ten-minute time limit is strictly enforced.
 
 For the presentation, you can speak over your slide deck, similar to the lecture content videos. I recommend using Zoom to record your presentation; however, you can use whatever platform works best for your group. Below are a few resources to help you record video presentations:
 
@@ -195,9 +195,9 @@ Each student will be assigned 2 presentations to watch.
 
 Watch the group’s video, then click “Reply” to post a question for the group. You may not post a question that’s already been asked on the discussion thread. Additionally, the question should be (i) substantive (i.e. it shouldn’t be “Why did you use a bar plot instead of a pie chart”?), (ii) demonstrate your understanding of the content from the course, and (iii) relevant to that group’s specific presentation, i.e demonstrating that you’ve watched the presentation.
 
-Questions must be posted by Friday August 5.
+Questions must be posted by Thursday December 15.
 
-This portion of the project will be assessed individually
+This portion of the project will be assessed individually.
 
 ## Tip
 

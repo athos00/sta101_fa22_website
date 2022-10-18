@@ -7,6 +7,7 @@ format: html
 ## Bulletin
 
 - Lab 05 due Thursday
+- [Final project](https://sta101-fa22.netlify.app/projects/final-project/) released
 
 ## Today
 
@@ -68,7 +69,6 @@ num_success = coin_flips %>%
   summarize(total = sum(result)) %>%
   pull(total)
 
-# log_likelihood <- function(theta, x) sum(log(dpois(x, theta)))
 likelihood = function(p) {
   return(dbinom(x = num_success, size = 10, prob = p))
 }
@@ -148,6 +148,8 @@ xlim(50, 90) +
        y = "Likelihood",
        title = "Likelihood of mu given 3 data points")
 ```
+
+What do you notice about the shape of the function as the number of data points increases?
 
 :::{.callout-note}
 As the number of data points increases, the product of several likelihood functions gets very small very quickly. For this reason we often work with the log-likelihood. It is a fact that if $x < y$ then $\log(x) < \log(y)$. This property is known as *monotonicity*. Because of this, the maximum of the log-likelihood will be the same as the maximum of the likelihood function. 

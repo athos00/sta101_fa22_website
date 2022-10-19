@@ -102,7 +102,7 @@ and this reads: "X is normally distributed with mean mu and standard deviation s
 A very useful property of Normal distribution is that it is **stable**. What this means is that linear combinations of normal random variables are themselves normal. In other words, if $X$ and $Y$ are normal random variables then $aX + bY$ is normal for all $a$ and $b$. The two properties to remember when adding Gaussian random variables are:
 
 - mean(X + Y) = mean(X) + mean(Y)
-- variance(X + Y) = variance(X + Y) when X and Y are independent
+- variance(X + Y) = variance(X) + variance(Y) when X and Y are independent
 
 We can see this in an example.
 

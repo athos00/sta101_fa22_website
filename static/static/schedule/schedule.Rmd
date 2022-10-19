@@ -76,10 +76,10 @@ Find all assignments and due dates here. This schedule updates frequently.
 |     |Thu Oct 13 |  The normal distribution     | [`r emo::ji("book")`](/prepare/week-7)       | [ae13](/static/appex/ae13.html)  |           |     |       |
 |     |Fri Oct 14 |   Probability and distributions    |        |   |  [lab 5](/static/labs/lab05.html)          |     |        |
 |  8   |Tue Oct 18 |  Likelihoods   | [`r emo::ji("book")`](/prepare/week-8)       | [ae14](/static/appex/ae14.html)  |           |     |  [Final project](/projects/final-project)       |
-|     |Thu Oct 20 |   Sampling and the bootstrap    | [`r emo::ji("book")`](/prepare/week-8)       |   |           |     |        |
+|     |Thu Oct 20 |   The bootstrap    | [`r emo::ji("book")`](/prepare/week-8)       | [ae15](/static/appex/ae15.html)  |           |     |        |
 |     |Fri Oct 21 |    The bootstrap     |        |  |   lab 6         |     |        |
-|  9   |Tue Oct 25 |  Central limit theorem I     |        |   |           |     |        |
-|     |Thu Oct 27 |  Central limit theorem II    |        |   |           |     |        |
+|  9   |Tue Oct 25 |  Central limit theorem I     |  [`r emo::ji("book")`](/prepare/week-9)      |   |           |     |        |
+|     |Thu Oct 27 |  Central limit theorem II    | [`r emo::ji("book")`](/prepare/week-9)       |   |           |     |        |
 |     |Fri Oct 28 |   CLT and CI      |        |   |  lab 7         |     |        |
 |  10   |Tue Nov 01 |  Hypothesis testing I       |        |   |           |     |        |
 |     |Thu Nov 03 |  Hypothesis testing II      |        |   |           |     |        |

@@ -29,7 +29,9 @@ destfile = "ae14.qmd")
 
 ```{r load-libraries-and-data, warning = F, message = F}
 library(tidyverse)
-coin_flips = read_csv("https://sta101-fa22.netlify.app/static/appex/data/coin_flips_LE.csv")
+coin_flips = read_csv(
+  "https://sta101-fa22.netlify.app/static/appex/data/coin_flips_LE.csv"
+  )
 ```
 
 ## The likelihood function
@@ -95,7 +97,7 @@ where $\mu$ is the mean (location) and $\sigma$ is the standard deviation (scale
 
 #### Exercise 2
 
-Imagine resting heart rates in this class are randomly distributed with unknown mean $\mu$ and a standard deviation of 5 beats per minute. You randomly sample 1 person in the class and find their heart rate is 72 beats per minute. What is your best guess for the mean, $\hat{\mu}$?
+Imagine resting heart rates in this class are normally distributed with unknown mean $\mu$ and a standard deviation of 5 beats per minute. You randomly sample 1 person in the class and find their heart rate is 72 beats per minute. What is your best guess for the mean, $\hat{\mu}$?
 
 [answer here]
 
@@ -179,7 +181,7 @@ $$
 
 #### Exercise 3
 
-Assume $\sigma = 2$ is known and $\beta_0 = 3$. You observe the data point, $(x,y) = (1, 6.5)$. What is your best estimate $\hat{\beta_1}$?
+Assume $\sigma = 2$ is known and $\beta_0 = 1$. You observe the data point, $(x,y) = (1, 6.5)$. What is your best estimate $\hat{\beta_1}$?
 
 ```{r}
 regLikelihood = function(beta1) {

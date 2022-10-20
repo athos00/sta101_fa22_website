@@ -1,5 +1,5 @@
 ---
-title: "Lab 06"
+title: "Lab 06: Bootstrap"
 author: "STA 101"
 subtitle: "Due Thursday October 27 at 11:59pm"
 format: html
@@ -121,28 +121,25 @@ where $h_0$ is the height the ball starts at, $v_0$ is the initial velocity of t
 
 3. What is the median weight of ring-tailed lemurs? What is the median weight of mongoose lemurs? Report a 95% bootstrap confidence interval together with your point estimates. Use `set.seed(123)` and `reps = 10000` to create your bootstrap confidence interval.
 
-4. Your friend has never taken a statistics course. Describe to your friend the process of "bootstrap sampling" in the previous exercise in your own words. You may find it helpful to describe it as drawing pieces of paper from a box like we did in class. Hint: what would you write on the slips of paper? How many pieces of paper would be in the box? How many boxes would you need for the above exercise?
+4. Your friend has never taken a statistics course. Describe to your friend the process of "bootstrap sampling" in the previous exercise to create a bootstrap confidence interval in your own words. Walk your friend through the process of collecting a bootstrap sample, computing a statistic and then repeating). You may find it helpful to describe it as drawing pieces of paper from a box like we did in class. Hint: what would you write on the slips of paper? How many pieces of paper would be in the box(es)? How many boxes would you need for the above exercise?
 
 5. Do female lemurs differ in weight from male lemurs? Report the difference in mean weights between groups. Next, construct a bootstrap distribution for **the difference in means between groups**. To do this, use the code below as a template:
 
 ```{r, eval = F}
-# data %>%
-#   specify(response = ___, explanatory = sex) %>%
-#   generate(reps = __, type = "bootstrap") %>%
-#   calculate(stat = "diff in means", order = c("F", "M"))
-
-boot_dist = lemurs %>%
-  specify(response = weight_g, explanatory = sex) %>%
+set.seed(5)
+data %>%
+  specify(response = ___, explanatory = sex) %>%
   generate(reps = 10000, type = "bootstrap") %>%
   calculate(stat = "diff in means", order = c("F", "M"))
 ```
 
+- Report the 99% bootstrap confidence interval
+- Interpret the confidence interval within context
+- If the interval covers 0, you might think there is no difference between groups. Does the interval cover 0?
 
-- Interpret the confidence interval within context.
+6. Create a new column that tells you whether or not a lemur was born in the first or second half of the year (January through June vs July through December). Create a meaningful plot to illustrate the weights of each group of lemurs. Use `theme_bw()` to replace the default gray plot background. Based on your figure, which group of lemurs weighs more? Is the distribution of one or both groups skewed or symmetric? See [here](https://openintro-ims.netlify.app/explore-numerical.html?q=skew#boxplots) for more information about skew vs symmetric distributions.
 
-6. Create a new column that tells you whether or not a lemur was born in the first or second half of the year (January through June vs July through December). Create a meaningful plot to illustrate the weights of each group of lemurs. Use `theme_bw()` to replace the default gray plot background.
-
-7. Is there more variability in weight for lemurs born in the first half or second half of the year? Report the estimated standard deviation of each group. Report a 90% bootstrap confidence interval of s.d. for each group. Visualize the bootstrap distribution of standard deviation. Interpret the confidence interval in context.
+7. Is there more variability in weight for lemurs born in the first half or second half of the year? Report the estimated standard deviation of each group. Report a 90% bootstrap confidence interval of s.d. for each group. Interpret the confidence intervals in context. Here, use `set.seed(1020)` and remember to set `reps = 10000`.
 
 ## Formatting
 
@@ -176,17 +173,17 @@ Total: 50 pts.
 
     Exercise 1: 5pts
 
-    Exercise 2: 3pts
+    Exercise 2: 9pts
 
-    Exercise 3: 5pts
+    Exercise 3: 7pts
 
-    Exercise 4: 7pts
+    Exercise 4: 5pts
 
-    Exercise 5: 4pts
+    Exercise 5: 5pts
     
-    Exercise 6: 8pts
+    Exercise 6: 7pts
     
-    Exercise 7: 6pts
+    Exercise 7: 8pts
     
     Workflow and formatting:  4pts
     

@@ -8,7 +8,7 @@
 
 <meta name="author" content="STA 101">
 
-<title>Lab 06</title>
+<title>Lab 06: Bootstrap</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,7 +106,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 06</h1>
+<h1 class="title">Lab 06: Bootstrap</h1>
 <p class="subtitle lead">Due Thursday October 27 at 11:59pm</p>
 </div>
 
@@ -154,8 +154,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="data">Data</h3>
 <p>Load the data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>snapshot <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"~/Desktop/snapshot.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lemurs <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"~/Desktop/lemur_subset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>snapshot <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://sta101-fa22.netlify.app/static/labs/data/snapshot.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lemurs <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://sta101-fa22.netlify.app/static/labs/data/lemur_subset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>The <code>snapshot</code> data set used/introduced in exercise 2.</p></li>
@@ -219,26 +219,24 @@ y = h_0 + v_0 t -  \frac{9.8}{2} t^2
 <h4 class="anchored" data-anchor-id="lemur-questions">Lemur questions</h4>
 <ol start="3" type="1">
 <li><p>What is the median weight of ring-tailed lemurs? What is the median weight of mongoose lemurs? Report a 95% bootstrap confidence interval together with your point estimates. Use <code>set.seed(123)</code> and <code>reps = 10000</code> to create your bootstrap confidence interval.</p></li>
-<li><p>Your friend has never taken a statistics course. Describe to your friend the process of “bootstrap sampling” in the previous exercise in your own words. You may find it helpful to describe it as drawing pieces of paper from a box like we did in class. Hint: what would you write on the slips of paper? How many pieces of paper would be in the box? How many boxes would you need for the above exercise?</p></li>
+<li><p>Your friend has never taken a statistics course. Describe to your friend the process of “bootstrap sampling” in the previous exercise to create a bootstrap confidence interval in your own words. Walk your friend through the process of collecting a bootstrap sample, computing a statistic and then repeating). You may find it helpful to describe it as drawing pieces of paper from a box like we did in class. Hint: what would you write on the slips of paper? How many pieces of paper would be in the box(es)? How many boxes would you need for the above exercise?</p></li>
 <li><p>Do female lemurs differ in weight from male lemurs? Report the difference in mean weights between groups. Next, construct a bootstrap distribution for <strong>the difference in means between groups</strong>. To do this, use the code below as a template:</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data %&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   specify(response = ___, explanatory = sex) %&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   generate(reps = __, type = "bootstrap") %&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   calculate(stat = "diff in means", order = c("F", "M"))</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>boot_dist <span class="ot">=</span> lemurs <span class="sc">%&gt;%</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> weight_g, <span class="at">explanatory =</span> sex) <span class="sc">%&gt;%</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"F"</span>, <span class="st">"M"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ___, <span class="at">explanatory =</span> sex) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"F"</span>, <span class="st">"M"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Interpret the confidence interval within context.</li>
+<li>Report the 99% bootstrap confidence interval</li>
+<li>Interpret the confidence interval within context</li>
+<li>If the interval covers 0, you might think there is no difference between groups. Does the interval cover 0?</li>
 </ul>
 <ol start="6" type="1">
-<li><p>Create a new column that tells you whether or not a lemur was born in the first or second half of the year (January through June vs July through December). Create a meaningful plot to illustrate the weights of each group of lemurs. Use <code>theme_bw()</code> to replace the default gray plot background.</p></li>
-<li><p>Is there more variability in weight for lemurs born in the first half or second half of the year? Report the estimated standard deviation of each group. Report a 90% bootstrap confidence interval of s.d. for each group. Visualize the bootstrap distribution of standard deviation. Interpret the confidence interval in context.</p></li>
+<li><p>Create a new column that tells you whether or not a lemur was born in the first or second half of the year (January through June vs July through December). Create a meaningful plot to illustrate the weights of each group of lemurs. Use <code>theme_bw()</code> to replace the default gray plot background. Based on your figure, which group of lemurs weighs more? Is the distribution of one or both groups skewed or symmetric? See <a href="https://openintro-ims.netlify.app/explore-numerical.html?q=skew#boxplots">here</a> for more information about skew vs symmetric distributions.</p></li>
+<li><p>Is there more variability in weight for lemurs born in the first half or second half of the year? Report the estimated standard deviation of each group. Report a 90% bootstrap confidence interval of s.d. for each group. Interpret the confidence intervals in context. Here, use <code>set.seed(1020)</code> and remember to set <code>reps = 10000</code>.</p></li>
 </ol>
 </section>
 </section>
@@ -266,19 +264,17 @@ y = h_0 + v_0 t -  \frac{9.8}{2} t^2
 <p>Total: 50 pts.</p>
 <pre><code>Exercise 1: 5pts
 
-Exercise 2: 3pts
+Exercise 2: 9pts
 
-Exercise 3: 5pts
+Exercise 3: 7pts
 
-Exercise 4: 7pts
+Exercise 4: 5pts
 
-Exercise 5: 4pts
+Exercise 5: 5pts
 
-Exercise 6: 8pts
+Exercise 6: 7pts
 
-Exercise 7: 6pts
-
-Exercise 8: 8pts
+Exercise 7: 8pts
 
 Workflow and formatting:  4pts</code></pre>
 </section>

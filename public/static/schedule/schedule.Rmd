@@ -77,7 +77,7 @@ Find all assignments and due dates here. This schedule updates frequently.
 |     |Fri Oct 14 |   Probability and distributions    |        |   |  [lab 5](/static/labs/lab05.html)          |     |        |
 |  8   |Tue Oct 18 |  Likelihoods   | [`r emo::ji("book")`](/prepare/week-8)       | [ae14](/static/appex/ae14.html)  |           |     |  [Final project](/projects/final-project)       |
 |     |Thu Oct 20 |   The bootstrap    | [`r emo::ji("book")`](/prepare/week-8)       | [ae15](/static/appex/ae15.html)  |           |     |        |
-|     |Fri Oct 21 |    The bootstrap     |        |  |   lab 6         |     |        |
+|     |Fri Oct 21 |    The bootstrap     |        |  |   [lab 6](/static/labs/lab06.html)         |     |        |
 |  9   |Tue Oct 25 |  Central limit theorem I     |  [`r emo::ji("book")`](/prepare/week-9)      |   |           |     |        |
 |     |Thu Oct 27 |  Central limit theorem II    | [`r emo::ji("book")`](/prepare/week-9)       |   |           |     |        |
 |     |Fri Oct 28 |   CLT and CI      |        |   |  lab 7         |     |        |

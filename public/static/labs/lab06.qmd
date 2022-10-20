@@ -8,6 +8,8 @@ css: "labs2.css"
 
 By the end of this lab you will
 
+- practice manipulating Normal random variables
+- compute and interpret bootstrap confidence intervals
 
 
 ## Getting started
@@ -32,7 +34,6 @@ Be sure to update the YAML at the top of the document to include your name and t
 
 ```{r load-packages, warning=F, message=F}
 library(tidyverse)
-library(openintro)
 library(tidymodels)
 ```
 
@@ -41,27 +42,15 @@ library(tidymodels)
 Load the data:
 
 ```{r load-data, warning=F, message=F}
-data(bob_ross)
+snapshot = read_csv("~/Desktop/snapshot.csv")
+lemurs = read_csv("~/Desktop/lemur_subset.csv")
 ```
 
-Bob Ross was a painter who was most famous for his PBS television show The Joy of Painting. In each episode, Ross created a new oil painting and provided instructions and commentary as he painted it. Ambitious viewers could paint along but viewers also simply enjoyed watching and listening to Ross's soothing voice as he painted an outdoor scene in 30 minutes.
 
-In 2014, Walt Hickey wrote an article for FiveThirtyEight using statistics to analyze the paintings created on the show. The article focused on features that were often seen in Ross’s paintings, such as trees, clouds, cabins, among others. [Click here to see the article](https://fivethirtyeight.com/features/a-statistical-analysis-of-the-work-of-bob-ross/)
+- The `snapshot` data set used/introduced in exercise 2. 
 
-In this assignment, you will analyze the data that was used for the article. The data is in the `bob_ross` data set in the fivethirtyeight R package. Each observation represents an episode of the TV show. One painting was created in an episode. To access the full codebook of variables, explore the documentation using `?bob_ross`.
+- The `lemurs` data set is used in questions 3 through 6. The lemurs data set is a subset of data from the Duke lemur center. More info about the data set and a codebook can be found [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-08-24/readme.md).
 
-We'll focus on the following variables in this assignment:
-
-- `cabin`: Whether the painting contains a cabin
-- `cirrus`: Whether the painting contains cirrus clouds
-- `conifer`: Whether or not a conifer tree is present
-- `cumulus`: Whether the painting contains cumulus clouds
-- `guest`: Whether or not the episode featured a guest painter
-- `lake`: Whether the painting contains a lake
-- `season`: Season the painting is from
-- `snowy_mountain`: Whether or not the a snowy mountain is present
-- `steve_ross`: Whether or not Steve Ross was the featured guest
-- `tree`: Whether or not the painting contains at least 1 tree
 
 :::{.callout-important}
 Render as you work! Render at least before and after each exercise to avoid last minute rendering issues.
@@ -69,69 +58,91 @@ Render as you work! Render at least before and after each exercise to avoid last
 
 ## Exercises
 
-*"There’s nothing wrong with having a tree as a friend."*
+1. Let $Z \sim N(0, 1)$, $X \sim N(0,3)$, $Y \sim N(1, 3)$. Compute the following probabilities:
 
-1. How many episodes are there of the show *The Joy of Painting*? In how many episodes was at least one tree painted? What is the probability that a randomly selected episode features at least one tree? Given that an episode feature a tree, what is the probability the episode features a `conifer`?
+- $P(Z < -1.2)$
+- $P(X < -3.6)$
+- $P(Y < -2.6)$
 
-*"Let's build us a happy, little cloud that floats around the sky."*
+Do the results surprise you? Why or why not?
 
-2. Are events **A** and **B** disjoint? Why or why not?
+2. You take pictures of a tennis ball your friend drops from the top of Duke Chapel. Your camera takes 25 pictures in 3.5 seconds. Looking back through the images you approximate the height of the ball at each time point. This data is summarized in the `snapshot` data frame where `time` records the time since the ball was launched and `height` records height of the ball from the ground. You plot the data:
 
-- **A**: A guest paints a `cirrus` cloud
-- **B**: A guest paints a `cumulus` cloud
+```{r echo=F, message=F,eval=F}
+set.seed(1019)
+g <- 9.8 ##meters per second
+n <- 25
+tt <- seq(0,3.5,len=n) ##time in secs, t is a base function
+f <- 64  - 0.5*g*tt^2
+y <-  f + rnorm(n,sd=1)
 
-3. In the FiveThirtyEight article, Walt Hickey calculates various probabilities to describe the combination of features typically found in Bob Ross paintings. He states the following about the presence of cabins and lakes in Ross's paintings: "About 18 percent of his paintings feature a cabin. Given that **Bob Ross painted** a cabin, there's a 35 percent chance that it's on a lake..."
+trajectory = data.frame(time = tt, 
+                        height = y)
 
-- How many of **Bob Ross's paintings** feature a cabin? Call this number "$k$"
+# trajectory %>%
+#   ggplot(aes(x = time, y = height)) +
+#   geom_point()
 
-- How many of those that feature a cabin also feature a lake? Call this number "$x$".
-
-- Imagine the following: every time Bob Ross paints a cabin, he flips a **fair coin** to decide whether or not to paint a lake. Given a collection of $k$ Bob Ross paintings with cabins, what is the probability Bob Ross painted $x$ or fewer lakes? Hint: simulate this scenario using the code below as a template.
-
-```{r simulation-code, eval = F}
-set.seed(10142022) # don't change the seed
-num_lakes = rbinom(10000, k, prob = ?)
-cabin_lakes = data.frame(num_lakes)
+write_csv(trajectory, "~/Desktop/snapshot.csv")
 ```
 
-4. Are events **C** and **D** independent? Why or why not?
+```{r, message = F, echo = F}
+snapshot %>%
+  ggplot(aes(x = time, y = height)) +
+  geom_point() +
+  labs(x = "Time (seconds)", y = "Height (m)",
+       title = "Height of a ball dropped from a cliff") +
+  theme_bw()
+```
 
-- **C**: A painting features a snowy mountain
-- **D**: A painting is from season 1
+You notice distance seems to be a parabolic function of time and hypothesize:
 
-5. The **Joy of Painting** occasionally featured a guest painter other than Bob Ross. One guest painter was Bob's son Steve Ross. Imagine that before each episode, Bob Ross flips a coin to decide whether or not to invite his son Steve to be a guest painter. If the coin lands heads, Bob invites Steve. If Steve is available, he agrees to paint for an episode, but if he's busy, then Bob finds another guest painter.
+$$
+y = \beta_0 + \beta_1 t + \beta_2 t^2 + \epsilon
+$$
 
-Using the data set and the model described above, report your best guess of the following quantities:
+where $y$ is the distance of the ball, $t$ is the time since the ball was dropped and $\epsilon$ is some measurement error.
 
-- p(Steve is busy | Bob invites Steve)
-- p(the coin Bob flips lands "Heads")
+- If you assume $\epsilon \sim N(0, 1)$, what is the distribution of $y$?
 
-*"However you think it should be, that’s exactly how it should be."*
+- Fit the linear model and write down the fitted model equation. 
 
-6. Your turn! Use this data to explore a question of your choice about paintings created in the TV show *The Joy of Painting*. Your question should explore the relationship between 3 variables in the data set; at least one of the variables must be one that hasn't been used in exercises 1 - 5. You may use the entire data set or focus the analysis on paintings made by Bob Ross.
+- The physical formula to compute the height of a falling object is:
 
-- Clearly state the question you’re exploring.
-- Create 1 - 2 visualizations that can be used to explore the question. Customize the colors of your visualization using some of the colors commonly used in Bob Ross paintings. [Click here](https://sites.radford.edu/~cdc/seansevillair.html) for a list of common Bob Ross hex codes.
+$$
+y = h_0 + v_0 t -  \frac{9.8}{2} t^2
+$$
 
-:::{.callout-hint}
-[Click here for functions to manually create color palettes in ggplot2.](https://ggplot2.tidyverse.org/reference/scale_manual.html)
-:::
-    
-- Calculate the relevant probabilities needed to answer your question.
-- Write a short narrative, about 2 - 4 sentences, answering the research question based on the visualization and probabilities. Note: The narrative should not exceed 4 sentences.
+where $h_0$ is the height the ball starts at, $v_0$ is the initial velocity of the ball and $9.8$ m/s^2 is the acceleration due to Earth's gravity. Given this knowledge, what are your estimates for the height of Duke chapel (note this estimate is in meters)?  What is your estimate of the initial velocity? What is your estimate of the acceleration of gravity? How close is it to 9.8?
 
-*"Anything that you're willing to practice, you can do."*
+- Assume another ball is dropped with exactly 0 velocity from the top of a building with a height of 100 meters What is the probability the ball has a height greater than 80 meters 2 seconds after being dropped? (You can use 9.8 m/s^2 for gravity here)
 
-7. What does it mean that the "Normal distribution is **stable**"? Let $X \sim N(0, 3)$ and $Y \sim N(1, 2)$ where $X \sim N(\mu, \sigma)$ means "X is normally distributed with mean $\mu$ and standard deviation $\sigma$". Write down the distributions of the following (including location and scale parameters):
+#### Lemur questions
 
-- $X + Y$
-- $\frac{1}{2}X - 2Y$
-- $X - 2X + Y$
+3. What is the median weight of ring-tailed lemurs? What is the median weight of mongoose lemurs? Report a 95% bootstrap confidence interval together with your point estimates. Use `set.seed(123)` and `reps = 10000` to create your bootstrap confidence interval.
 
-Note: no code is required for exercise 7.
+4. Your friend has never taken a statistics course. Describe to your friend the process of "bootstrap sampling" in the previous exercise in your own words. You may find it helpful to describe it as drawing pieces of paper from a box like we did in class. Hint: what would you write on the slips of paper? How many pieces of paper would be in the box? How many boxes would you need for the above exercise?
 
-8. Plot a histogram of the `num_lakes` from exercise 3. Overlay the plot with a normal distribution with  appropriate mean $\mu$ and standard deviation $\sigma$ to approximate the histogram. If $X \sim N(\mu, \sigma)$, what is $p(X \leq x)$? Recall that we define lower-case $x$ in exercise 3. How does this probability compare to your result from exercise 3?
+5. Do female lemurs differ in weight from male lemurs? Report the difference in mean weights between groups. Next, construct a bootstrap distribution for **the difference in means between groups**. To do this, use the code below as a template:
 
+```{r, eval = F}
+# data %>%
+#   specify(response = ___, explanatory = sex) %>%
+#   generate(reps = __, type = "bootstrap") %>%
+#   calculate(stat = "diff in means", order = c("F", "M"))
+
+boot_dist = lemurs %>%
+  specify(response = weight_g, explanatory = sex) %>%
+  generate(reps = 10000, type = "bootstrap") %>%
+  calculate(stat = "diff in means", order = c("F", "M"))
+```
+
+
+- Interpret the confidence interval within context.
+
+6. Create a new column that tells you whether or not a lemur was born in the first or second half of the year (January through June vs July through December). Create a meaningful plot to illustrate the weights of each group of lemurs. Use `theme_bw()` to replace the default gray plot background.
+
+7. Is there more variability in weight for lemurs born in the first half or second half of the year? Report the estimated standard deviation of each group. Report a 90% bootstrap confidence interval of s.d. for each group. Visualize the bootstrap distribution of standard deviation. Interpret the confidence interval in context.
 
 ## Formatting
 
@@ -176,8 +187,6 @@ Total: 50 pts.
     Exercise 6: 8pts
     
     Exercise 7: 6pts
-    
-    Exercise 8: 8pts
     
     Workflow and formatting:  4pts
     

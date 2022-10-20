@@ -1,0 +1,61 @@
+---
+title: "Project Proposal"
+date: "Fall 2022"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer-2.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(rvest)
+courage = read_csv("../labs/data/courage.csv")
+```
+
+## Project proposal steps
+
+1. Find a data set that satisfies the guidelines. [Click here for guidelines and some sites with data](https://sta101-fa22.netlify.app/projects/final-project/)
+
+2. Write about:
+
+  - the source of data
+  - when and how it was originally collected (by the curator, not necessarily how you found the data)
+  - a brief description of the observations
+
+3. Choose 1-2 research questions
+
+4. `glimpse` the data
+
+---
+
+## Ex: Introduction and Data
+
+Data set #1: NC Courage Homefield Advantage 
+Our first data set comes from the [National Women's Soccer League (NSWL) Github](https://github.com/adror1/nwslR) and was sourced from [nwslsoccer.com](https://www.nwslsoccer.com/).
+
+The data set contains 78 observations (soccer games) played by the NC courage spanning three seasons: 2017, 2018, 2019. There are 10 variables in this data set. Some of the variables we care about are `home_team`, `away_team`, and `result` (of the game).
+
+---
+## Ex: Research question(s):
+
+Does NC Courage have a home-field advantage? We hypothesize that NC Courage is more likely to win on their home field than another team's field.
+
+- To answer this question we will use information about the `home_team`, and the `result` of the game.
+
+Does winning propagate winning? When NC Courage win a game, does it increase the probability of winning the very next game?
+
+- To answer this question we will use information about the `result` of the game and the `game_number`.
+
+---
+## Ex: Glimpse
+```{r glimpse-courage}
+glimpse(courage)
+```
+
+

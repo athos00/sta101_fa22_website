@@ -42,8 +42,8 @@ library(tidymodels)
 Load the data:
 
 ```{r load-data, warning=F, message=F}
-snapshot = read_csv("~/Desktop/snapshot.csv")
-lemurs = read_csv("~/Desktop/lemur_subset.csv")
+snapshot = read_csv("https://sta101-fa22.netlify.app/static/labs/data/snapshot.csv")
+lemurs = read_csv("https://sta101-fa22.netlify.app/static/labs/data/lemur_subset.csv")
 ```
 
 

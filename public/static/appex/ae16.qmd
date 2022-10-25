@@ -113,7 +113,9 @@ and
 
 then 
 
-$\bar{x} \sim N(\mu, \sigma / \sqrt{n})$
+$$
+\bar{x} \sim N(\mu, \sigma / \sqrt{n})
+$$
 
 i.e. $\bar{x}$ is normally distributed (unimodal and symmetric with bell shape) with mean $\mu$ and standard deviation $\sigma / \sqrt{n}$. The standard deviation of the sampling distribution is called the **standard error**.
 
@@ -181,7 +183,7 @@ Suppose you want to analyze the mean bone density for a group of 10 randomly sel
 
 #### Exercise 6
 
-Explain how your answers differ in Exercises 2 and 4.
+Explain how your answers differ in Exercises 3 and 5.
 
 ## On your own
 

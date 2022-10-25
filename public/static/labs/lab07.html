@@ -107,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Lab 07: Journey to the center of the limit</h1>
-<p class="subtitle lead">Due Thursday October 27 at 11:59pm</p>
+<p class="subtitle lead">Due Thursday November 3 at 11:59pm</p>
 </div>
 
 
@@ -129,8 +129,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p>By the end of this lab you will</p>
 <ul>
-<li></li>
-<li></li>
+<li>perform CLT based inference</li>
+<li>practice Bayes theorem</li>
+<li>construct confidence intervals</li>
 </ul>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
@@ -148,14 +149,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">Data</h3>
-<p>Load the data:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>snapshot <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://sta101-fa22.netlify.app/static/labs/data/snapshot.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lemurs <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://sta101-fa22.netlify.app/static/labs/data/lemur_subset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout-important callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -196,7 +189,7 @@ P(\text{50 cartons weigh more than 212 lbs})
 <p><span class="math display">\[
 P(A|B) = \frac{P(B|A)P(A)}{P(B)}.
 \]</span></p>
-<p>We will define the following events:</p>
+<p><strong>Scenario</strong>: An individual takes a COVID test. Using Bayes theorem above, what is the probability they have COVID given the test is positive? We will define the following events:</p>
 <ul>
 <li><strong>Pos</strong>: The event the test returns positive.</li>
 <li><strong>Neg</strong>: The event the test returns negative.</li>
@@ -205,7 +198,39 @@ P(A|B) = \frac{P(B|A)P(A)}{P(B)}.
 </ul>
 <p>Assume the test has an estimated sensitivity of 100%, <em>P(Pos | Covid) = 1</em>, and specificity of 99%, <em>P(Neg | No Covid) = 0.99</em>.</p>
 <p>Suppose the prevalence of COVID-19 in the general population is about 2%, <em>P(Covid) = 0.02</em>.</p>
-<p>Calculate <em>P(Covid|Pos)</em>.</p>
+<div class="callout-hint callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For any event <span class="math inline">\(A\)</span>, <em>P(A) + P(not A) = 1</em> Similarly, <em>P(B) = P(B|A) + P(B | not A)</em></p>
+</div>
+</div>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>For the following questions, use the data sets below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ultra_rankings <span class="ot">=</span> <span class="fu">read_csv</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"~/Desktop/ultra_rankings.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>race <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://sta101-fa22.netlify.app/static/labs/data/race.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The data for this lab is from the Ultra Trail Running data set featured in Tidy Tuesday. You can find the codebook with variable definitions in the Tidy Tuesday repo <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-10-26/readme.md">here</a>.</p>
+<ol start="4" type="1">
+<li>To begin, join the data frames. Save your result as <code>ultra</code>. Next, drop all rows without an observed race <code>time_in_seconds</code>. Your final data frame should have 60914 rows and 20 columns.</li>
+</ol>
+<div class="cell">
+
+</div>
+<ol start="5" type="1">
+<li><p>Your friend computes the mean time in seconds it takes participants of 170+ km races to finish. Your friend also constructs a 90% confidence interval and states, “There is a .9 probability that the mean race time for races over 170 km is between 130000 and 160000 seconds.” Without running any code, what is wrong with your friend’s statement? Please correct the statement as well (without running any code).</p></li>
+<li></li>
+</ol>
+</section>
 </section>
 <section id="formatting" class="level2">
 <h2 class="anchored" data-anchor-id="formatting">Formatting</h2>

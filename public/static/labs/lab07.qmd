@@ -1,16 +1,16 @@
 ---
 title: "Lab 07: Journey to the center of the limit"
 author: "STA 101"
-subtitle: "Due Thursday October 27 at 11:59pm"
+subtitle: "Due Thursday November 3 at 11:59pm"
 format: html
 css: "labs2.css"
 ---
 
 By the end of this lab you will
 
--
--
-
+- perform CLT based inference
+- practice Bayes theorem
+- construct confidence intervals
 
 ## Getting started
 
@@ -63,7 +63,7 @@ Assume the weight of an individual carton is normally distributed. Compute the a
 $$
 P(A|B) = \frac{P(B|A)P(A)}{P(B)}.
 $$
-We will define the following events:
+**Scenario**: An individual takes a COVID test. Using Bayes theorem above, what is the probability they have COVID given the test is positive? We will define the following events:
 
 -   **Pos**: The event the test returns positive.
 -   **Neg**: The event the test returns negative.
@@ -74,21 +74,35 @@ Assume the test has an estimated sensitivity of 100%, *P(Pos \| Covid) = 1*, and
 
 Suppose the prevalence of COVID-19 in the general population is about 2%, *P(Covid) = 0.02*.
 
-Calculate *P(Covid|Pos)*.
-
+:::{.callout-hint}
+For any event $A$, *P(A) + P(not A) = 1* Similarly, *P(B) = P(B|A) + P(B \| not A)*
+:::
 
 ### Data
 
-For the following questions, use the data set.
+For the following questions, use the data sets below.
 
 ```{r load-data, warning=F, message=F}
-snapshot = read_csv("https://sta101-fa22.netlify.app/static/labs/data/snapshot.csv")
-lemurs = read_csv("https://sta101-fa22.netlify.app/static/labs/data/lemur_subset.csv")
+ultra_rankings = read_csv(
+  "~/Desktop/ultra_rankings.csv")
+race = read_csv("https://sta101-fa22.netlify.app/static/labs/data/race.csv")
 ```
 
-4. Your friend computed the mean time it takes the participant to fall asleep and reports a confidence interval as well. Your friend states, “There is a .95 probability that the mean time it takes the participant to fall asleep is between 10 and 25 minutes.” Without running any code, what is wrong with your friend’s statement? Please correct the statement as well.
+The data for this lab is from the Ultra Trail Running data set featured in Tidy Tuesday. You can find the codebook with variable definitions in the Tidy Tuesday repo [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-10-26/readme.md).
 
-5. 
+4. To begin, join the data frames. Save your result as `ultra`. Next, drop all rows without an observed race `time_in_seconds`. Your final data frame should have 60914 rows and 20 columns.
+
+```{r, echo = F, eval = F, message = F}
+ultra = ultra_rankings %>%
+  left_join(race) %>%
+  # distinct(runner, .keep_all = TRUE) %>%
+  filter(!is.na(time_in_seconds))
+```
+
+
+5. Your friend computes the mean time in seconds it takes participants of 170+ km races to finish. Your friend also constructs a 90% confidence interval and states, "There is a .9 probability that the mean race time for races over 170 km is between 130000 and 160000 seconds." Without running any code, what is wrong with your friend’s statement? Please correct the statement as well (without running any code).
+
+6.
 
 
 ## Formatting

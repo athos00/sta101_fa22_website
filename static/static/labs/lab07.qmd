@@ -1,0 +1,139 @@
+---
+title: "Lab 07: Journey to the center of the limit"
+author: "STA 101"
+subtitle: "Due Thursday October 27 at 11:59pm"
+format: html
+css: "labs2.css"
+---
+
+By the end of this lab you will
+
+-
+-
+
+
+## Getting started
+
+\ 1. Download the lab template by pasting the code below in your **console**:
+
+```
+download.file("https://sta101-fa22.netlify.app/static/labs/lab07_template.qmd",
+              destfile = "lab07.qmd")
+```
+
+\ 2. Under the "Files" tab on the right hand side, click on `lab07.qmd` to open the lab template.
+
+
+\ 3. Complete the exercises below using the space provided.
+
+## Warm up
+
+Be sure to update the YAML at the top of the document to include your name and the date.
+
+### Packages
+
+```{r load-packages, warning=F, message=F}
+library(tidyverse)
+library(tidymodels)
+```
+
+:::{.callout-important}
+Render as you work! Render at least before and after each exercise to avoid last minute rendering issues.
+:::
+
+## Exercises
+
+1. Students in a previous semester of STA101 scored an average midterm score of 32 (out of 50) with a standard deviation of 4. Assume normality.
+
+- What is the probability an individual student scored less than 28?
+- What score did only 10 percent of the class exceed?
+- I pick 10 students at random. What is the standard error of their average score? What is the probability that their average score exceeds 33?
+- I pick 15 students at random. What is the probability that exactly 4 were in the top 20% of the class? Hint: how would you model this? Please answer exactly *and* use simulation to approximate the solution.
+
+2. A manufacturer ships orange juice from Florida to North Carolina in containers of 50 cartons. The mean weight of a carton is 4.23 lbs with 0.02 standard deviation. The manufacturer is interested in
+
+$$
+P(\text{50 cartons weigh more than 212 lbs})
+$$
+
+Assume the weight of an individual carton is normally distributed. Compute the above probability. 
+
+3. Bayes theorem states that for two events, $A$ and $B$,
+
+$$
+P(A|B) = \frac{P(B|A)P(A)}{P(B)}.
+$$
+We will define the following events:
+
+-   **Pos**: The event the test returns positive.
+-   **Neg**: The event the test returns negative.
+-   **Covid**: The event a person has COVID
+-   **No Covid**: The event a person does not have COVID
+
+Assume the test has an estimated sensitivity of 100%, *P(Pos \| Covid) = 1*, and specificity of 99%, *P(Neg \| No Covid) = 0.99*.
+
+Suppose the prevalence of COVID-19 in the general population is about 2%, *P(Covid) = 0.02*.
+
+Calculate *P(Covid|Pos)*.
+
+
+### Data
+
+For the following questions, use the data set.
+
+```{r load-data, warning=F, message=F}
+snapshot = read_csv("https://sta101-fa22.netlify.app/static/labs/data/snapshot.csv")
+lemurs = read_csv("https://sta101-fa22.netlify.app/static/labs/data/lemur_subset.csv")
+```
+
+4. Your friend computed the mean time it takes the participant to fall asleep and reports a confidence interval as well. Your friend states, “There is a .95 probability that the mean time it takes the participant to fall asleep is between 10 and 25 minutes.” Without running any code, what is wrong with your friend’s statement? Please correct the statement as well.
+
+5. 
+
+
+## Formatting
+
+**Reminder**: For all assignments in this course there is a "formatting" component to the grade. To receive full points for "formatting", you must:
+
+\ 1. Have your name at the top of the rendered document
+
+\ 2. Pipes `%>%` and ggplot layers `+` should be followed by a newline (see formatting above)
+
+\ 3. Your code should be under the 80 character code limit. (You shouldn't have to scroll to see all your code on the rendered document).
+
+\ 4. All exercises and corresponding pages should be linked on gradescope.
+
+These necessary "tidyverse" style choices are good general practice and will help make your code more legible. For a more extensive list of recommended guidelines, [click here](https://style.tidyverse.org/).
+
+## Submitting to gradescope
+
+Once you are fully satisfied with your lab, render to .pdf to create a .pdf document. You may notice that the formatting/theme of the report has changed – this is expected. Remember – you must turn in a .pdf file to the Gradescope page before the submission deadline for credit. To submit your assignment: 
+
+- Go to [http://www.gradescope.com](http://www.gradescope.com) and click Log in in the top right corner. - Click `School Credentials`, `Duke NetID` and log in using your NetID credentials. 
+
+- Click on your STA 101 course. 
+
+- Click on the assignment, and you'll be prompted to submit it. 
+
+- Mark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”). Select the first page of your .pdf submission to be associated with the "Formatting" section.
+
+## Grading
+
+Total: 50 pts.
+
+    Exercise 1: 5pts
+
+    Exercise 2: 9pts
+
+    Exercise 3: 7pts
+
+    Exercise 4: 5pts
+
+    Exercise 5: 5pts
+    
+    Exercise 6: 7pts
+    
+    Exercise 7: 8pts
+    
+    Workflow and formatting:  4pts
+    

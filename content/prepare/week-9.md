@@ -1,5 +1,5 @@
 ---
-title: Prepare week 8
+title: Prepare week 9
 ---
 
 To complete by the beginning of class on the specified day:
@@ -12,3 +12,4 @@ To complete by the beginning of class on the specified day:
 ## Thursday October 27
 
 - Read [13.6 Case Study (interval): Stents](https://openintro-ims.netlify.app/index.html)
+- Read [19.2 Mathematical model for a mean](https://openintro-ims.netlify.app/index.html)

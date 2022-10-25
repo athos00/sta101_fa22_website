@@ -78,11 +78,11 @@ Find all assignments and due dates here. This schedule updates frequently.
 |  8   |Tue Oct 18 |  Likelihoods   | [`r emo::ji("book")`](/prepare/week-8)       | [ae14](/static/appex/ae14.html)  |           |     |  [Final project](/projects/final-project)       |
 |     |Thu Oct 20 |   The bootstrap    | [`r emo::ji("book")`](/prepare/week-8)       | [ae15](/static/appex/ae15.html)  |           |     |        |
 |     |Fri Oct 21 |    The bootstrap     |        |  |   [lab 6](/static/labs/lab06.html), \ \ [`r emo::ji("computer")`](/static/slides/lab-project-proposal.html)          |     |        |
-|  9   |Tue Oct 25 |  Central limit theorem I     |  [`r emo::ji("book")`](/prepare/week-9)      |   |           |     |        |
-|     |Thu Oct 27 |  Central limit theorem II    | [`r emo::ji("book")`](/prepare/week-9)       |   |           |     |        |
+|  9   |Tue Oct 25 |  Central limit theorem I     |  [`r emo::ji("book")`](/prepare/week-9)      | [ae16](/static/appex/ae16.html)  |           |     |        |
+|     |Thu Oct 27 |  Central limit theorem II    | [`r emo::ji("book")`](/prepare/week-9)       | [ae17](/static/appex/ae17.html)   |           |     |        |
 |     |Fri Oct 28 |   CLT and CI      |        |   |  lab 7         |     |        |
-|  10   |Tue Nov 01 |  Hypothesis testing I       |        |   |           |     |        |
-|     |Thu Nov 03 |  Hypothesis testing II      |        |   |           |     |        |
+|  10   |Tue Nov 01 |  Hypothesis testing I       | [`r emo::ji("book")`](/prepare/week-10)       |   |           |     |        |
+|     |Thu Nov 03 |  Hypothesis testing II      |  [`r emo::ji("book")`](/prepare/week-10)       |   |           |     |        |
 |     |Fri Nov 04 |    Hypothesis tests     |        |   |   lab 8         |     |        |
 |  11   |Tue Nov 08 | Hypothesis testing III       |        |   |           |     |        |
 |     |Thu Nov 10 | Hypothesis testing recap      |        |   |           | exam 2    |        |

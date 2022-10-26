@@ -76,7 +76,7 @@ Assume the test has an estimated sensitivity of 100%, *P(Pos \| Covid) = 1*, and
 
 
 :::{.callout-hint}
-For any event $A$, *P(A) + P(not A) = 1* Similarly, *P(B) = P(B|A) + P(B \| not A)*
+For any event $A$, *P(A) + P(not A) = 1*. Similarly, *P(B) = P(B|A)P(A) + P(B \| not A) P(not A)*.
 :::
 
 ### Data

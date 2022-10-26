@@ -180,24 +180,26 @@ Important
 <li>A manufacturer ships orange juice from Florida to North Carolina in containers of 50 cartons. The mean weight of a carton is 4.23 lbs with 0.02 standard deviation. The manufacturer is interested in</li>
 </ol>
 <p><span class="math display">\[
-P(\text{50 cartons weigh more than 212 lbs})
+P(\text{50 cartons weigh more than 211.8 lbs})
 \]</span></p>
-<p>Assume the weight of an individual carton is normally distributed. Compute the above probability.</p>
+<p>Assume the weight of an individual carton is normally distributed. Compute the above probability. Explain your method.</p>
 <ol start="3" type="1">
 <li>Bayes theorem states that for two events, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>,</li>
 </ol>
 <p><span class="math display">\[
 P(A|B) = \frac{P(B|A)P(A)}{P(B)}.
 \]</span></p>
-<p><strong>Scenario</strong>: An individual takes a COVID test. Using Bayes theorem above, what is the probability they have COVID given the test is positive? We will define the following events:</p>
+<p><strong>Scenario</strong>: An individual takes a COVID test. Using Bayes theorem above, what is the probability they have COVID given the test is positive? In math, what’s <em>P(Covid | Pos)</em>? We will define the following events:</p>
 <ul>
 <li><strong>Pos</strong>: The event the test returns positive.</li>
 <li><strong>Neg</strong>: The event the test returns negative.</li>
 <li><strong>Covid</strong>: The event a person has COVID</li>
 <li><strong>No Covid</strong>: The event a person does not have COVID</li>
 </ul>
-<p>Assume the test has an estimated sensitivity of 100%, <em>P(Pos | Covid) = 1</em>, and specificity of 99%, <em>P(Neg | No Covid) = 0.99</em>.</p>
-<p>Suppose the prevalence of COVID-19 in the general population is about 2%, <em>P(Covid) = 0.02</em>.</p>
+<p>Assume the test has an estimated sensitivity of 100%, <em>P(Pos | Covid) = 1</em>, and specificity of 99%, <em>P(Neg | No Covid) = 0.99</em>. Suppose the prevalence of COVID-19 in the general population is about 2%, <em>P(Covid) = 0.02</em>.</p>
+<ul>
+<li>Use R as a calculator within a code chunk to show all your work.</li>
+</ul>
 <div class="callout-hint callout callout-style-default no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -221,15 +223,20 @@ Hint
 </div>
 <p>The data for this lab is from the Ultra Trail Running data set featured in Tidy Tuesday. You can find the codebook with variable definitions in the Tidy Tuesday repo <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-10-26/readme.md">here</a>.</p>
 <ol start="4" type="1">
-<li>To begin, join the data frames. Save your result as <code>ultra</code>. Next, drop all rows without an observed race <code>time_in_seconds</code>. Your final data frame should have 60914 rows and 20 columns.</li>
+<li>To begin, join the data frames. Save your result as <code>ultra</code>. Next, drop all rows <strong>without</strong> an observed race <code>time_in_seconds</code>. Your final data frame should have 60914 rows and 20 columns. Print the number of rows of <code>ultra</code> to the screen.</li>
 </ol>
 <div class="cell">
 
 </div>
 <ol start="5" type="1">
-<li><p>Your friend computes the mean time in seconds it takes participants of 170+ km races to finish. Your friend also constructs a 90% confidence interval and states, “There is a .9 probability that the mean race time for races over 170 km is between 130000 and 160000 seconds.” Without running any code, what is wrong with your friend’s statement? Please correct the statement as well (without running any code).</p></li>
-<li></li>
+<li><p>Your friend computes the mean time in seconds it takes participants of 170+ km races to finish. Your friend also constructs a 90% confidence interval and states, “There is a .9 probability that the sample mean race time for races over 170 km is between 130000 and 160000 seconds.” Without running any code, what is wrong with your friend’s statement? Please correct the statement as well (without running any code).</p></li>
+<li><p>Report the mean race time for races 170 km or longer. Construct a 99% bootstrap confidence interval for the mean race time using <code>set.seed(6)</code> and 5000 reps. Check that central limit theorem holds, do you need to make any assumptions? Use CLT to construct a 99% confidence interval. Compare your result to your bootstrap interval. Interpret the interval.</p></li>
+<li><p>Identify at least two anomalies in the data set. For example, if the same runner ran a race in two different countries on the same day, that would be an anomaly. While this example is false, there are indeed real anomalies in the data. For full credit, display your anomaly either via code (printing to screen) or via a visualization. Discuss your findings.</p></li>
+<li><p>Given the race was in Argentina, what is the median age of runners? Can you use Central Limit Theorem (CLT) to construct a confidence interval about this estimate? Explain. If not, construct a 90% bootstrap confidence interval that bounds the median from below. Use <code>set.seed(8)</code> and 10000 reps. Interpret your interval in context.</p></li>
 </ol>
+<ul>
+<li>Note, this is not a symmetric confidence interval!</li>
+</ul>
 </section>
 </section>
 <section id="formatting" class="level2">
@@ -254,21 +261,15 @@ Hint
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
 <p>Total: 50 pts.</p>
-<pre><code>Exercise 1: 5pts
-
-Exercise 2: 9pts
-
-Exercise 3: 7pts
-
-Exercise 4: 5pts
-
-Exercise 5: 5pts
-
-Exercise 6: 7pts
-
-Exercise 7: 8pts
-
-Workflow and formatting:  4pts</code></pre>
+<pre><code>Workflow and formatting - 4pts
+Ex 1 - 7pts
+Ex 2 - 5pts
+Ex 3 - 4pts
+Ex 4 - 5pts
+Ex 5 - 4pts
+Ex 6 - 8pts
+Ex 7 - 6pts
+Ex 8 - 7pts</code></pre>
 </section>
 
 </main>

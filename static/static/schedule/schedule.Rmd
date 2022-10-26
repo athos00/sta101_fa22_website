@@ -80,7 +80,7 @@ Find all assignments and due dates here. This schedule updates frequently.
 |     |Fri Oct 21 |    The bootstrap     |        |  |   [lab 6](/static/labs/lab06.html), \ \ [`r emo::ji("computer")`](/static/slides/lab-project-proposal.html)          |     |        |
 |  9   |Tue Oct 25 |  Central limit theorem I     |  [`r emo::ji("book")`](/prepare/week-9)      | [ae16](/static/appex/ae16.html)  |           |     |        |
 |     |Thu Oct 27 |  Central limit theorem II    | [`r emo::ji("book")`](/prepare/week-9)       | [ae17](/static/appex/ae17.html)   |           |     |        |
-|     |Fri Oct 28 |   CLT and CI      |        |   |  lab 7         |     |        |
+|     |Fri Oct 28 |   CLT and CI      |        |   |  [lab 7](/static/labs/lab07.html)         |     |        |
 |  10   |Tue Nov 01 |  Hypothesis testing I       | [`r emo::ji("book")`](/prepare/week-10)       |   |           |     |        |
 |     |Thu Nov 03 |  Hypothesis testing II      |  [`r emo::ji("book")`](/prepare/week-10)       |   |           |     |        |
 |     |Fri Nov 04 |    Hypothesis tests     |        |   |   lab 8         |     |        |

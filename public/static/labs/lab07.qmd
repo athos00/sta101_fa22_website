@@ -53,26 +53,27 @@ Render as you work! Render at least before and after each exercise to avoid last
 2. A manufacturer ships orange juice from Florida to North Carolina in containers of 50 cartons. The mean weight of a carton is 4.23 lbs with 0.02 standard deviation. The manufacturer is interested in
 
 $$
-P(\text{50 cartons weigh more than 212 lbs})
+P(\text{50 cartons weigh more than 211.8 lbs})
 $$
 
-Assume the weight of an individual carton is normally distributed. Compute the above probability. 
+Assume the weight of an individual carton is normally distributed. Compute the above probability. Explain your method.
 
 3. Bayes theorem states that for two events, $A$ and $B$,
 
 $$
 P(A|B) = \frac{P(B|A)P(A)}{P(B)}.
 $$
-**Scenario**: An individual takes a COVID test. Using Bayes theorem above, what is the probability they have COVID given the test is positive? We will define the following events:
+**Scenario**: An individual takes a COVID test. Using Bayes theorem above, what is the probability they have COVID given the test is positive? In math, what's *P(Covid \| Pos)*? We will define the following events:
 
 -   **Pos**: The event the test returns positive.
 -   **Neg**: The event the test returns negative.
 -   **Covid**: The event a person has COVID
 -   **No Covid**: The event a person does not have COVID
 
-Assume the test has an estimated sensitivity of 100%, *P(Pos \| Covid) = 1*, and specificity of 99%, *P(Neg \| No Covid) = 0.99*.
+Assume the test has an estimated sensitivity of 100%, *P(Pos \| Covid) = 1*, and specificity of 99%, *P(Neg \| No Covid) = 0.99*. Suppose the prevalence of COVID-19 in the general population is about 2%, *P(Covid) = 0.02*.
 
-Suppose the prevalence of COVID-19 in the general population is about 2%, *P(Covid) = 0.02*.
+- Use R as a calculator within a code chunk to show all your work.
+
 
 :::{.callout-hint}
 For any event $A$, *P(A) + P(not A) = 1* Similarly, *P(B) = P(B|A) + P(B \| not A)*
@@ -90,7 +91,7 @@ race = read_csv("https://sta101-fa22.netlify.app/static/labs/data/race.csv")
 
 The data for this lab is from the Ultra Trail Running data set featured in Tidy Tuesday. You can find the codebook with variable definitions in the Tidy Tuesday repo [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-10-26/readme.md).
 
-4. To begin, join the data frames. Save your result as `ultra`. Next, drop all rows without an observed race `time_in_seconds`. Your final data frame should have 60914 rows and 20 columns.
+4. To begin, join the data frames. Save your result as `ultra`. Next, drop all rows **without** an observed race `time_in_seconds`. Your final data frame should have 60914 rows and 20 columns. Print the number of rows of `ultra` to the screen.
 
 ```{r, echo = F, eval = F, message = F}
 ultra = ultra_rankings %>%
@@ -100,10 +101,15 @@ ultra = ultra_rankings %>%
 ```
 
 
-5. Your friend computes the mean time in seconds it takes participants of 170+ km races to finish. Your friend also constructs a 90% confidence interval and states, "There is a .9 probability that the mean race time for races over 170 km is between 130000 and 160000 seconds." Without running any code, what is wrong with your friend’s statement? Please correct the statement as well (without running any code).
+5. Your friend computes the mean time in seconds it takes participants of 170+ km races to finish. Your friend also constructs a 90% confidence interval and states, "There is a .9 probability that the sample mean race time for races over 170 km is between 130000 and 160000 seconds." Without running any code, what is wrong with your friend’s statement? Please correct the statement as well (without running any code).
 
-6.
+6. Report the mean race time for races 170 km or longer. Construct a 99% bootstrap confidence interval for the mean race time using `set.seed(6)` and 5000 reps. Check that central limit theorem holds, do you need to make any assumptions? Use CLT to construct a 99% confidence interval. Compare your result to your bootstrap interval. Interpret the interval.
 
+7. Identify at least two anomalies in the data set. For example, if the same runner ran a race in two different countries on the same day, that would be an anomaly. While this example is false, there are indeed real anomalies in the data. For full credit, display your anomaly either via code (printing to screen) or via a visualization. Discuss your findings.
+
+8. Given the race was in Argentina, what is the median age of runners? Can you use Central Limit Theorem (CLT) to construct a confidence interval about this estimate? Explain. If not, construct a 90% bootstrap confidence interval that bounds the median from below. Use `set.seed(8)` and 10000 reps. Interpret your interval in context.
+
+- Note, this is not a symmetric confidence interval!
 
 ## Formatting
 
@@ -135,19 +141,15 @@ Once you are fully satisfied with your lab, render to .pdf to create a .pdf docu
 
 Total: 50 pts.
 
-    Exercise 1: 5pts
-
-    Exercise 2: 9pts
-
-    Exercise 3: 7pts
-
-    Exercise 4: 5pts
-
-    Exercise 5: 5pts
-    
-    Exercise 6: 7pts
-    
-    Exercise 7: 8pts
-    
-    Workflow and formatting:  4pts
+```
+Workflow and formatting - 4pts
+Ex 1 - 7pts
+Ex 2 - 5pts
+Ex 3 - 4pts
+Ex 4 - 5pts
+Ex 5 - 4pts
+Ex 6 - 8pts
+Ex 7 - 6pts
+Ex 8 - 7pts
+```
     

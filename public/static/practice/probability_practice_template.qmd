@@ -1,15 +1,17 @@
 ---
 title: "Probability Practice Template"
-output: html_document
+format: html
 ---
 
-- Update your document with appropriate YAML at the top.
+## Load libraries
 
 ```{r load-library, message = F, warning = F}
 library(tidyverse)
 library(openintro)
 library(tidymodels)
 ```
+
+## Load data
 
 ```{r load-data, message = F, warning = F}
 data(fastfood)
@@ -51,8 +53,3 @@ subwaySample
 ```
 
 ## Exercise 5
-
-```{r ex-5}
-# code here
-```
-

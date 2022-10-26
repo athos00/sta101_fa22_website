@@ -2,7 +2,7 @@
 title: "Practice questions: probability and bootstrap confidence intervals"
 output: html_document
 css: ../labs/labs.css
-date: 'July 17 2022'
+date: "October 2022"
 ---
 
 ## About
@@ -14,8 +14,8 @@ Below are some practice questions on computing probabilities and constructing a 
 Paste the code below to download a template file to answer the exercises.
 
 ```{r download-template, eval=F}
-download.file("https://sta101.github.io/static/practice/probability_practice_template.Rmd",
-              destfile = "probability_practice.rmd")
+download.file("https://sta101-fa22.netlify.app/static/practice/probability_practice_template.qmd",
+              destfile = "probability_practice.qmd")
 ```
 
 

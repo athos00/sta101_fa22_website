@@ -1,0 +1,55 @@
+---
+title: "Probability Practice Template"
+format: html
+---
+
+## Load libraries
+
+```{r load-library, message = F, warning = F}
+library(tidyverse)
+library(openintro)
+library(tidymodels)
+```
+
+## Load data
+
+```{r load-data, message = F, warning = F}
+data(fastfood)
+```
+
+## Exercise 1
+
+```{r ex-1}
+# code here
+```
+
+
+## Exercise 2
+
+```{r ex-2}
+# code here
+```
+
+## Exercise 3
+
+```{r ex-3}
+# code here
+```
+
+## Exercise 4
+
+
+```{r ex-4-1}
+set.seed(4)
+subwaySample = fastfood %>%
+  filter(restaurant == "Subway") %>%
+  slice_sample(n = 12)
+
+subwaySample
+```
+
+```{r ex-4-2}
+# code here
+```
+
+## Exercise 5

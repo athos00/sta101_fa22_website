@@ -234,13 +234,13 @@ destfile = "ae16.qmd")</code></pre>
 <section id="practical-confidence-intervals" class="level3">
 <h3 class="anchored" data-anchor-id="practical-confidence-intervals">Practical confidence intervals</h3>
 <p>We don’t know the true population mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, how do we use CLT to construct a confidence interval?</p>
-<p>We approximate <span class="math inline">\(\mu\)</span> by <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\sigma\)</span> by the same standard deviation <span class="math inline">\(s\)</span>. However <span class="math inline">\(s\)</span> may be smaller than <span class="math inline">\(\sigma\)</span> and our confidence interval could be too narrow, for example, run the code below:</p>
+<p>We approximate <span class="math inline">\(\mu\)</span> by <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\sigma\)</span> by the same standard deviation <span class="math inline">\(s\)</span>. However <span class="math inline">\(s\)</span> may be smaller than <span class="math inline">\(\sigma\)</span> and our confidence interval could be too narrow, for example, run the code below to compute the standard deviation of three draws from a standard normal.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">3</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9185191</code></pre>
+<pre><code>[1] 0.7543284</code></pre>
 </div>
 </div>
 <p>This was just for 1 random seed. If you remove the seed and repeat the simulation, you will find that <span class="math inline">\(s\)</span> is sometimes above and sometimes below the true standard deviation.</p>

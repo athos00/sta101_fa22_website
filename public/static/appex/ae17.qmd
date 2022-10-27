@@ -20,8 +20,8 @@ By the end of today you will...
 Download this application exercise by pasting the code below into your **console**
 
 ```
-download.file("https://sta101-fa22.netlify.app/static/appex/ae16.qmd",
-destfile = "ae16.qmd")
+download.file("https://sta101-fa22.netlify.app/static/appex/ae17.qmd",
+destfile = "ae17.qmd")
 ```
 
 ## Load packages

@@ -85,7 +85,7 @@ For the following questions, use the data sets below.
 
 ```{r load-data, warning=F, message=F}
 ultra_rankings = read_csv(
-  "~/Desktop/ultra_rankings.csv")
+  "https://sta101-fa22.netlify.app/static/labs/data/ultra_rankings.csv")
 race = read_csv("https://sta101-fa22.netlify.app/static/labs/data/race.csv")
 ```
 

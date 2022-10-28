@@ -91,7 +91,7 @@ race = read_csv("https://sta101-fa22.netlify.app/static/labs/data/race.csv")
 
 The data for this lab is from the Ultra Trail Running data set featured in Tidy Tuesday. You can find the codebook with variable definitions in the Tidy Tuesday repo [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-10-26/readme.md).
 
-4. To begin, join the data frames. Save your result as `ultra`. Next, drop all rows **without** an observed race `time_in_seconds`. Your final data frame should have 60914 rows and 20 columns. Print the number of rows of `ultra` to the screen.
+4. To begin, join the data frames. Save your result as `ultra`. Next, drop all rows **without** an observed race `time_in_seconds`. Your final data frame should have 60924 rows and 20 columns. Print the number of rows of `ultra` to the screen.
 
 ```{r, echo = F, eval = F, message = F}
 ultra = ultra_rankings %>%

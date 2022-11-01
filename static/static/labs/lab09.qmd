@@ -1,0 +1,151 @@
+---
+title: "Lab 09: Beyond this class"
+author: "STA 101"
+subtitle: "Due Thursday November 17 at 11:59pm"
+format: html
+css: "labs2.css"
+---
+
+By the end of this lab you will
+
+- have a statistical experience
+- learn and describe a new distribution
+
+
+## Getting started
+
+\ 1. Download the lab template by pasting the code below in your **console**:
+
+```
+download.file("https://sta101-fa22.netlify.app/static/labs/lab09_template.qmd",
+              destfile = "lab09.qmd")
+```
+
+\ 2. Under the "Files" tab on the right hand side, click on `lab09.qmd` to open the lab template.
+
+
+\ 3. Complete the exercises below using the space provided.
+
+## Warm up
+
+Be sure to update the YAML at the top of the document to include your name and the date.
+
+### Packages
+
+```{r load-packages, warning=F, message=F}
+library(tidyverse)
+library(tidymodels)
+```
+
+## Exercises
+
+### 1. Statistical Experience
+
+The goal of this exercise is to experience the world of statistics *outside the classroom*. For this exercise you can 
+
+- Attend a talk related to statistics or data science. To count, the talk must be at least 30 minutes or longer. 
+
+- Talk with someone who uses statistics in their daily work. This could include a professor, professional in industry, graduate student, etc.
+
+- Listen to a statistics podcast, e.g. check out [causal inference podcast](https://casualinfer.libsyn.com/), RStudio [global talks](https://www.rstudio.com/resources/rstudioglobal-2021/), or [conference talks](https://www.rstudio.com/resources/rstudioconf-2020/)
+
+Next, write 4-6 sentences summarizing your experience. Include the following:
+
+- Name/brief description of the event/podcast/chat.
+- Something you found new, interesting, or unexpected.
+- How the event connects to something we've done in class.
+- Citation or link to web page for event if applicable.
+
+### 2. Distribution Deep Dive
+
+Throughout this course, we've covered `Bernoulli`, `binomial`, `normal` and `t` distributions extensively. In this exercise you will learn about additional distributions of your choosing. Some options:
+
+- [Poisson](https://en.wikipedia.org/wiki/Poisson_distribution)
+- [Exponential](https://en.wikipedia.org/wiki/Exponential_distribution)
+- [Geometric](https://en.wikipedia.org/wiki/Geometric_distribution)
+- [Negative binomial](https://en.wikipedia.org/wiki/Negative_binomial_distribution)
+- [Beta binomial](https://en.wikipedia.org/wiki/Beta-binomial_distribution)
+- [Beta](https://en.wikipedia.org/wiki/Beta_distribution)
+- [Uniform (continuous)](https://en.wikipedia.org/wiki/Continuous_uniform_distribution)
+- [Log-normal](https://en.wikipedia.org/wiki/Log-normal_distribution)
+- [Cauchy](https://en.wikipedia.org/wiki/Cauchy_distribution)
+- [Gamma](https://en.wikipedia.org/wiki/Gamma_distribution)
+
+Pick **two** distributions from the above list or elsewhere. For each, describe the distribution and its parameters. Next, give a real-world example of the distribution as a data generative process. Here's an example: 
+
+- The binomial distribution counts the number of "successes" in a series of independent experiments. Two parameters characterize the binomial distribution: $n$, the total number of trials and $p$ the probability of an individual success. Example: A season of Duke basketball games can be modeled as a binomial distribution where $n$ is the total number of games in the season and $p$ is the probability of Duke winning and individual game. Here we assume that Duke has the same probability of winning regardless of the team they play.
+
+Next, create a question that you can answer via simulation and/or direct probability estimation. Here's an example:
+
+- In a 33 game season, what is the probability that Duke wins at least 25 games, given that Duke typically wins 80% of the games they play?
+
+```{r example-coins}
+set.seed(1)
+game_outcomes = data.frame(num_wins = 
+                             rbinom(n = 5000, size = 33, prob = 0.8))
+
+game_outcomes %>%
+  filter(num_wins >= 25) %>%
+  nrow() / nrow(game_outcomes)
+
+1 - pbinom(24, size = 33, prob = 0.8) # 1 - P(x<=24) = P(x>25)
+```
+
+The probability of Duke basketball winning at least 25 wins in a 33 game season is approximately .790 (simulation). Using `pbinom`, the precise probability is closer to .800.
+
+Next, visualize the distribution. For example:
+
+```{r}
+game_outcomes %>%
+  ggplot(aes(x = num_wins)) +
+  geom_histogram(bins = 16) +
+  labs(x = "Number of wins", y = "Count",
+       title = "Distribution of wins in a 33 game season") + 
+  theme_bw()
+```
+
+In summary:
+
+- Pick and describe **two** distributions. For each:
+  - Describe a real-world application of the distribution.
+  - Propose a question related to a real-world scenario.
+  - Answer your question in R
+  - Create a visualization
+
+
+## Formatting
+
+**Reminder**: For all assignments in this course there is a "formatting" component to the grade. To receive full points for "formatting", you must:
+
+\ 1. Have your name at the top of the knitted document
+
+\ 2. Pipes `%>%` and ggplot layers `+` should be followed by a newline (see formatting above)
+
+\ 3. Your code should be under the 80 character code limit. (You shouldn't have to scroll to see all your code on the knitted document).
+
+\ 4. All exercises and corresponding pages should be linked on gradescope.
+
+These necessary "tidyverse" style choices are good general practice and will help make your code more legible. For a more extensive list of recommended guidelines, [click here](https://style.tidyverse.org/).
+
+## Submitting to gradescope
+
+Once you are fully satisfied with your lab, Knit to .pdf to create a .pdf document. You may notice that the formatting/theme of the report has changed – this is expected. Remember – you must turn in a .pdf file to the Gradescope page before the submission deadline for credit. To submit your assignment: 
+
+- Go to [http://www.gradescope.com](http://www.gradescope.com) and click Log in in the top right corner. - Click `School Credentials`, `Duke NetID` and log in using your NetID credentials. 
+
+- Click on your STA 101 course. 
+
+- Click on the assignment, and you'll be prompted to submit it. 
+
+- Mark the pages associated with each exercise. All of the papers of your lab should be associated with at least one question (i.e., should be “checked”). Select the first page of your .pdf submission to be associated with the "Formatting" section.
+
+## Grading
+
+Total: 50 pts 
+
+    Exercise 1: 20pts
+
+    Exercise 2: 26pts
+    
+    Workflow and formatting:  4pts
+    

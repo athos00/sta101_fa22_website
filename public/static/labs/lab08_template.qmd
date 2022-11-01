@@ -1,0 +1,59 @@
+---
+title: "Lab 08"
+author: "Your name"
+date: "Due November 10, 2022 at 11:59pm"
+format: pdf
+---
+
+## Load Packages
+
+```{r load-packages, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(tidymodels)
+``` 
+
+## Load data
+
+```{r load-data, warning=F, message=F}
+# code here
+```
+
+
+## Exercise 1
+
+
+## Exercise 2
+
+
+## Exercise 3
+
+
+## Exercise 4
+
+
+## Exercise 5
+```{r}
+
+```
+
+## Exercise 6
+```{r}
+
+```
+
+
+## Exercise 7
+```{r}
+
+```
+
+## Exercise 8
+```{r}
+
+```
+
+## Exercise 9
+```{r}
+
+```
+

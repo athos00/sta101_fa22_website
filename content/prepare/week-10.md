@@ -11,4 +11,4 @@ To complete by the beginning of class on the specified day:
 
 ## Thursday November 3
 
-- Read: [chapter 16: inference for a single proportion](https://openintro-ims.netlify.app/index.html)
+- Read: [chapter 16.1, 17.1](https://openintro-ims.netlify.app/index.html)

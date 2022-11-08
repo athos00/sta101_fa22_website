@@ -1,0 +1,198 @@
+---
+title: "Hypothesis tests and confidence intervals"
+subtitle: "STA 101"
+format: html
+---
+
+## Bulletin
+
+- Exam 2 Thursday
+  - no lab Friday, no TA office hours Friday/Monday
+
+## Today
+
+By the end of today you will...
+
+- define type I and type II error
+- compare hypothesis tests with confidence intervals
+- practice conducting hypothesis tests
+
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae20.qmd",
+destfile = "ae20.qmd")
+```
+
+## Load packages
+
+```{r load-libraries, warning = F, message = F}
+library(tidyverse)
+library(tidymodels)
+library(openintro)
+```
+
+
+
+## Practice
+
+### Load data
+
+The `stent30` data set comes from the `openintro` package and is from a study conducted in 2011 on the effects of arterial stents as a therapy for stroke patients. See the original publication:
+
+Chimowitz MI, Lynn MJ, Derdeyn CP, et al. 2011. Stenting versus Aggressive Med- ical Therapy for Intracranial Arterial Stenosis. New England Journal of Medicine 365:993- 1003. doi: 10.1056/NEJMoa1105335.
+
+or check `?stent30` for more information.
+
+```{r}
+data(stent30)
+```
+
+```{r}
+glimpse(stent30)
+```
+
+#### Exercise 1
+
+Do stents affect stroke outcome in patients?
+
+-   Write the null and alternative hypothesis. Report the observed statistic.
+
+-   Simulate under the null and visualize the null distribution.
+
+-   Compute and report the p-value, compare to $\alpha = 0.05$ and make a conclusion with appropriate context
+
+
+## Confidence intervals and hypothesis tests
+
+Here we revisit the data from the first three seasons of NC Courage games (2017-2019).
+
+```{r message = F, warning = F}
+courage = read_csv("https://sta101-fa22.netlify.app/static/labs/data/courage.csv")
+```
+
+```{r}
+glimpse(courage)
+```
+
+Do National Women's Soccer League (NWSL) teams have a home-field advantage? We'll answer this question in a few separate ways.
+
+Hypothesis testing framework: does NC Courage score a significantly different number of points (on average) away than at home?
+
+#### Exercise 2 
+
+- Create a new column `location` that tells you whether the courage are "home" or "away"
+- Create a new column `pts` that always reports the Courage points scored in a game.
+- Save your result as a new data frame titled `courage2`.
+
+```{r}
+# code here
+```
+
+#### Exercise 3
+
+To answer the question *does NC Courage score a significantly different number of points (on average) away than at home?*
+
+- Write the null and alternative hypothesis. Report the observed statistic.
+
+- Simulate under the null and visualize the null distribution.
+
+- Compute and report the p-value, compare to $\alpha = 0.05$ and make a conclusion with appropriate context
+
+
+```{r}
+# code here
+```
+
+
+#### Exercise 4
+
+- Report the mean difference between away and home games and report a 95% bootstrap confidence interval. Use `set.seed(3)` and `reps=5000` Interpret your interval in context.
+
+```{r}
+# code here
+```
+
+
+#### Exercise 5
+
+Is there a better way we could investigate whether or not the Courage have a home-field advantage? Why?
+
+## Notes
+
+### Type 1 and Type 2 Errors
+
+| Truth         | Reject the null | Fail to reject the null |
+|---------------|-----------------|-------------------------|
+| $H_0$ is true | Type 1 error    | ✔️                      |
+| $H_A$ is true | ✔️              | Type 2 error            |
+
+The significance level, $\alpha$, is the probability of a type 1 error. In some contexts, a type 1 error may be referred to as a "false positive" and a type 2 error as a "false negative".
+
+Intuitively, by considering extremes, one can see a trade-off exists between type 1 and type 2 error. \
+\
+If $\alpha = 0$, then the p-value stands no chance of being smaller than $\alpha$ and we always fail to reject the null. This makes type 1 errors impossible.\
+\
+Similarly, if $\alpha = 1$, then all p-values will be smaller than $\alpha$ and type 2 errors will become impossible, because we will always reject the null.
+
+$\beta$ is used to denote the probability of a type 2 error.
+
+The power of a test is $1 - \beta$, which is the probability that your test rejects the null hypothesis when the null hypothesis is false.
+
+## Why it's important to be careful with interpretation
+
+#### (And why hypothesis tests don't tell the whole story)
+
+The data for this example comes from Confounding and Simpson’s paradox^[Julious, S A, and M A Mullee. “Confounding and Simpson’s paradox.” BMJ (Clinical research ed.) vol. 309,6967 (1994): 1480-1. doi:10.1136/bmj.309.6967.1480] by Julious and Mullee.
+
+The data examines 901 individuals with diabetes and includes the following variables
+
+- `insulin_dep`: whether or not the patient has insulin dependent or non-insulin dependent diabetes
+- `age`: whether or not the individual is less than 40 years old
+- `survival`: whether or not the individual survived the length of the study
+
+```{r load-diabetes, warning = F, message = F}
+diabetes = read_csv("https://sta101.github.io/static/appex/data/diabetes.csv")
+```
+
+Flex Aisher thinks people with insulin dependent diabetes actually survive longer than those without insulin dependence. Flex wants to formally test his hypothesis.
+
+Let $p_{d}$ be the probability of insulin *dependent* survival and $p_{i}$ be the probability of insulin independent survival.
+
+$$
+H_0: p_{d} - p_{i} = 0
+$$
+
+$$
+H_A: p_{d} - p_{i} > 0
+$$
+
+At first glance the data seem to back up his claim...
+
+#### Exercise 6
+
+Compute the probability of survival and death for diabetic individuals with and without insulin dependence.
+
+```{r}
+#  code here
+```
+
+#### Exercise 7
+
+Is Flex's claim significant at the $\alpha = 0.05$ level? Perform a hypothesis test and report your results.
+
+```{r}
+# code here
+```
+
+#### Exercise 8
+
+Is the aggregate data misleading? Use the code chunk below to investigate further.
+
+```{r}
+# code here
+```
+

@@ -84,13 +84,13 @@ Find all assignments and due dates here. This schedule updates frequently.
 |  10   |Tue Nov 01 |  Hypothesis testing I       | [`r emo::ji("book")`](/prepare/week-10)       | [ae18](/static/appex/ae18.html)   |           |     |        |
 |     |Thu Nov 03 |  Hypothesis testing II      |  [`r emo::ji("book")`](/prepare/week-10)       | [ae19](/static/appex/ae19.html)  |           |     |        |
 |     |Fri Nov 04 |    Hypothesis tests     |        |   |   [lab 8](/static/labs/lab08.html)         |     |        |
-|  11   |Tue Nov 08 | Hypothesis testing III       | [`r emo::ji("book")`](/prepare/week-11)       |   |           |     |        |
+|  11   |Tue Nov 08 | Hypothesis testing III       | [`r emo::ji("book")`](/prepare/week-11)       | [ae20](/static/appex/ae20.html)  |           |     |        |
 |     |Thu Nov 10 | Hypothesis testing recap      |  [`r emo::ji("book")`](/prepare/week-11)      |   |           | exam 2    |        |
 |     |Fri Nov 11 |   No lab: exam released      |        |   |           |     |        |
 |  12   |Mon Nov 14 |         |        |   |           | exam 2 due    |        |
 |       |Tue Nov 15 | Data science ethics        |        |   |           |     |        |
 |     |Thu Nov 17 |   Project report tips      |        |   |           |     |        |
-|     |Fri Nov 18 | Beyond the classroom     |        |  |   lab 9        |     |        |
+|     |Fri Nov 18 | Beyond the classroom     |        |  |   lab 9         |     |        |
 |  13   |Tue Nov 22 | Project presentation tips        |        |   |           |     |        |
 |     |Thu Nov 24 |NO CLASS: Thanksgiving |        |   |           |     |        |
 |     |Fri Nov 25 |  NO CLASS: Thanksgiving       |        |   |           |     |        |

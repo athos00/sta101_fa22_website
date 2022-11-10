@@ -3,14 +3,14 @@ title: "Exam II"
 output:
   html_document: default
   pdf_document: default
-date: "Due Monday July 25 at 11:59pm"
+date: "Due Monday November 14 at 11:59pm"
 css: "../labs/labs.css"
 ---
 
 
-# Find your exam 2 instructions on sakai:
+# Find your exam 2 instructions on **gradescope**:
 
-`resources` > `exams` > `exam02.pdf`
+`assignments` > `exam02` > `view template`
 
 ## Rules
 
@@ -31,7 +31,7 @@ css: "../labs/labs.css"
     ask questions on any topics from past assignments or material
     related to the exam.
 -   The instructor will provide code debugging if needed, but this will
-    result in a **grade penalty**. Note: ask questions early. Questions asked between 6:00pm and 11:59pm Monday the 25th may not be answered. 
+    result in a **grade penalty**. Note: ask questions early. Questions asked between 6:00pm and 11:59pm Monday the 14th may not be answered. 
     
 With the exception of **major emergencies**, late submissions will not be accepted. In the case of a major emergency, you should have your Dean send the instructor an excuse. Start and submit the exam early in
 order to **avoid any last-minute technical issues.**

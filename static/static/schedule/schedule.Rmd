@@ -85,7 +85,7 @@ Find all assignments and due dates here. This schedule updates frequently.
 |     |Thu Nov 03 |  Hypothesis testing II      |  [`r emo::ji("book")`](/prepare/week-10)       | [ae19](/static/appex/ae19.html)  |           |     |        |
 |     |Fri Nov 04 |    Hypothesis tests     |        |   |   [lab 8](/static/labs/lab08.html)         |     |        |
 |  11   |Tue Nov 08 | Hypothesis testing III       | [`r emo::ji("book")`](/prepare/week-11)       | [ae20](/static/appex/ae20.html)  |           |     |        |
-|     |Thu Nov 10 | Hypothesis testing recap      |  [`r emo::ji("book")`](/prepare/week-11)      |   |           | exam 2    |        |
+|     |Thu Nov 10 | Hypothesis testing recap      |  [`r emo::ji("book")`](/prepare/week-11)      |   |           | [exam 2](/static/exams/exam02.html)    |        |
 |     |Fri Nov 11 |   No lab: exam released      |        |   |           |     |        |
 |  12   |Mon Nov 14 |         |        |   |           | exam 2 due    |        |
 |       |Tue Nov 15 | Data science ethics        |        |   |           |     |        |

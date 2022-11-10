@@ -1,0 +1,35 @@
+---
+title: "Exam 02 template"
+author: "Your name"
+date: "Due Monday November 14 at 11:59pm"
+format: pdf
+---
+
+# Load Packages
+
+```{r load-packages, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(tidymodels)
+``` 
+
+# Load data
+
+```{r, message = F, warning = F}
+bass = read_csv(
+  "https://sta101-fa22.netlify.app/static/appex/data/bass.csv")
+```
+
+
+## Exercise 1
+
+## Exercise 2
+
+## Exercise 3
+
+## Exercise 4
+
+## Exercise 5
+
+## Exercise 6
+
+## Exercise 7

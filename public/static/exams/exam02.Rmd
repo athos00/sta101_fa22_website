@@ -10,7 +10,7 @@ css: "../labs/labs.css"
 
 # Find your exam 2 instructions on **gradescope**:
 
-`assignments` > `exam02` > `view template`
+`Dashboard` > `Exam02` > `Download Exam02 PDF`
 
 ## Rules
 

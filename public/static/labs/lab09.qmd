@@ -1,7 +1,7 @@
 ---
 title: "Lab 09: Beyond this class"
 author: "STA 101"
-subtitle: "Due Thursday November 17 at 11:59pm"
+subtitle: "Due Thursday December 2 at 11:59pm"
 format: html
 css: "labs2.css"
 ---

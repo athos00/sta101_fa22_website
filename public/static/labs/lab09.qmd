@@ -1,7 +1,7 @@
 ---
 title: "Lab 09: Beyond this class"
 author: "STA 101"
-subtitle: "Due Thursday December 2 at 11:59pm"
+subtitle: "Due Thursday December 1 at 11:59pm"
 format: html
 css: "labs2.css"
 ---
@@ -73,7 +73,7 @@ Throughout this course, we've covered `Bernoulli`, `binomial`, `normal` and `t` 
 
 Pick **two** distributions from the above list or elsewhere. For each, describe the distribution and its parameters. Next, give a real-world example of the distribution as a data generative process. Here's an example: 
 
-- The binomial distribution counts the number of "successes" in a series of independent experiments. Two parameters characterize the binomial distribution: $n$, the total number of trials and $p$ the probability of an individual success. Example: A season of Duke basketball games can be modeled as a binomial distribution where $n$ is the total number of games in the season and $p$ is the probability of Duke winning and individual game. Here we assume that Duke has the same probability of winning regardless of the team they play.
+- The binomial distribution counts the number of "successes" in a series of independent experiments. Two parameters characterize the binomial distribution: $n$, the total number of trials and $p$ the probability of an individual success. Example: A season of Duke basketball games can be modeled as a binomial distribution where $n$ is the total number of games in the season and $p$ is the probability of Duke winning an individual game. Here we assume that Duke has the same probability of winning regardless of the team they play.
 
 Next, create a question that you can answer via simulation and/or direct probability estimation. Here's an example:
 

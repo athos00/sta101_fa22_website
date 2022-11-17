@@ -88,10 +88,10 @@ Find all assignments and due dates here. This schedule updates frequently.
 |     |Thu Nov 10 | Hypothesis testing recap      |  [`r emo::ji("book")`](/prepare/week-11)      |   |           | [exam 2](/static/exams/exam02.html)    |        |
 |     |Fri Nov 11 |   No lab: exam released      |        |   |           |     |        |
 |  12   |Mon Nov 14 |         |        |   |           | exam 2 due    |        |
-|       |Tue Nov 15 | Data science ethics        |  [`r emo::ji("book")`](/prepare/week-12)      | [ae21](/static/appex/ae21.html)  |           |     |        |
-|     |Thu Nov 17 |   Project report tips      | [`r emo::ji("book")`](/prepare/week-12)       |   |           |     |        |
+|       |Tue Nov 15 | Ethics        |  [`r emo::ji("book")`](/prepare/week-12)      | [ae21](/static/appex/ae21.html)  |           |     |        |
+|     |Thu Nov 17 |   Regression + Inference      | [`r emo::ji("book")`](/prepare/week-12)       | [ae22](/static/appex/ae22.html)  |           |     |        |
 |     |Fri Nov 18 | Beyond the classroom     |        |  |   [lab 9](/static/labs/lab09.html)         |     |        |
-|  13   |Tue Nov 22 | Project presentation tips        |        |   |           |     |        |
+|  13   |Tue Nov 22 | Project tips        |        |   |           |     |        |
 |     |Thu Nov 24 |NO CLASS: Thanksgiving |        |   |           |     |        |
 |     |Fri Nov 25 |  NO CLASS: Thanksgiving       |        |   |           |     |        |
 |  14   |Tue Nov 29 | Special topic: genetic forensic analysis        |        |   |           |     |        |

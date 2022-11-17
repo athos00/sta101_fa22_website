@@ -1,0 +1,128 @@
+---
+title: "Regression + Inference"
+subtitle: "STA 101"
+format: html
+---
+
+## Bulletin
+
+- Draft final project report due Friday December 2
+- This Friday is last lab before peer-review in two weeks
+
+## Today
+
+By the end of today you will...
+
+- understand regression hypothesis testing
+- interpret p-values in a regression framework
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae22.qmd",
+destfile = "ae22.qmd")
+```
+
+## Load packages
+
+```{r load-libraries, message = F, warning = F}
+library(tidyverse)
+library(tidymodels)
+library(viridis)
+```
+
+## Load data
+
+```{r load-data, warning = F, message = F}
+Seoul_Bikes = read_csv("https://sta101.github.io/static/appex/data/Seoul_Bikes.csv") 
+Seoul_Calendar = read_csv("https://sta101.github.io/static/appex/data/Seoul_Calendar.csv")
+
+bikes = left_join(Seoul_Bikes, Seoul_Calendar)
+```
+
+This data set was originally analyzed in two studies^[Sathishkumar V E, Jangwoo Park, and Yongyun Cho. 'Using data mining techniques for bike sharing demand prediction in metropolitan city.' Computer Communications, Vol.153, pp.353-366, March, 2020; Sathishkumar V E and Yongyun Cho. 'A rule-based model for Seoul Bike sharing demand prediction using weather data' European Journal of Remote Sensing, pp. 1-18, Feb, 2020] of predicting bike-rental usage in Seoul, South Korea. For this lecture, the data was sourced from [UCI Machine Learning Repository](https://archive.ics.uci.edu).
+
+Code book:
+
+- `Date`: the date
+- `rented_bikes`: total number of bikes rented on a given day
+- `temp_c`: mean daily temperature (Celsius)
+-  `humidity_pct`: mean daily humidity
+- `wind_speed`: mean daily windspeed
+- `snowfall_cm`: mean daily snowfall (in cm)
+- `season`: the season
+- `holiday`: whether or not the day is a holiday
+
+```{r glimpse-data}
+glimpse(bikes)
+```
+
+## Notes
+
+### Hypothesis testing in a regression framework
+
+
+```{r plot-1}
+bikes %>%
+  ggplot(aes(x = temp_c, y = rented_bikes, color = holiday)) +
+  geom_point(alpha = 0.5) +
+  theme_bw() +
+  labs(x = "Temperature", y = "Rented No. Bikes", color = "Holiday?",
+       title = "Rented Bicycles in Seoul") +
+  scale_color_manual(values = c("red", "#00539B")) +
+  geom_smooth(method = 'lm')
+```
+
+#### Exercise 1
+
+Write the full model equation to match the figure above to predict the number of bikes rented on a given day based on the temperature outside and whether or not the day is a holiday.
+
+
+$$
+\text{Your equation here}
+$$
+
+
+#### Exercise 2
+
+Fit the model above and examine the tidied output. What are the p-values associated with each predictor?
+
+```{r}
+# code here
+```
+
+The p-value output is associated with a typical hypothesis test... but what's the null and alternative?
+
+The main idea is that if a predictor (e.g. holiday) does not help us explain bike rental numbers then its associated $\beta$ might as well be 0. Within the framework of hypothesis testing:
+
+$H_0$: $\beta_{\text{holiday}} = 0$
+
+$H_A:$ $\beta_{\text{holiday}} \neq 0$
+
+For OLS regression, our test statistic is 
+
+$$
+T = \frac{\hat{\beta} - 0}{\text{SE}_{\hat{\beta}}} \sim t_{n - 4}
+$$
+We want to see if our observed statistic, $T$, falls far in the tail under the null.
+
+`R` takes care of much of this behind the scenes with the tidy output and reports a p-value for each $\beta$ by default.
+
+#### Exercise 3
+
+Calculate the p-value associated with $\beta_{holiday}$ manually using the equation above. Note: in a regression setting, the degrees of freedom is the number of observations minus the number of $\beta$s.
+
+Compare the p-value to one reported in the tidy output.
+
+```{r manual-p-value}
+# code here
+```
+
+- Is $\beta_{\text{holiday}}$ significant at the $\alpha = 0.05$ level? State your conclusion.
+
+- Looking at the tidied output, are any of the $\beta$s not significant at the $\alpha = 0.05$ level?
+
+- Change the model from an interaction effects to a main effects model. What do you notice?
+

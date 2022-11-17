@@ -100,6 +100,8 @@ A data analyst received permission to post a data set that was scraped from a so
 
 - "Simpson's paradox", where conclusions drawn from analyzing subgroups differ from conclusions drawn when the groups are combined. Can you demonstrate Simpson's Paradox with the data below? ^[Source:  https://www.randomservices.org/random/data/Berkeley.html]
 
+- For further reading see [Bickel, Peter J., Eugene A. Hammel, and J. William O'Connell. "Sex Bias in Graduate Admissions: Data from Berkeley: Measuring bias is harder than is usually assumed, and the evidence is sometimes contrary to expectation." Science 187.4175 (1975): 398-404.](https://www.science.org/doi/abs/10.1126/science.187.4175.398)
+
 ```{r s-p, warning = F}
 berk = read_csv("https://sta101.github.io/static/appex/data/BerkeleyAdmissionsData.csv")
 berk

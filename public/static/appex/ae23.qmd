@@ -1,0 +1,162 @@
+---
+title: "Project Tips"
+subtitle: "STA 101"
+execute:
+  echo: true
+  warning: true
+  message: true
+format: 
+  html:
+    fig-width: 7
+    fig-height: 5
+    links-as-notes: true
+bibliography: references.bib
+---
+
+## Bulletin
+
+- Reminders
+  - Draft final project report due Friday December 2. Peer-review in this lab.
+  - Lab 09 due Thursday December 1st.
+
+## Today
+
+By the end of today you will practice a few quarto/markdown tricks to polish your report and simplify your presentation. Specifically we will discuss:
+
+- code chunk settings
+- citations
+- `kable()` tables
+- quarto presentations
+
+## Getting started
+
+Download this application exercise by pasting the code below into your **console**
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/ae23.qmd",
+destfile = "ae23.qmd")
+```
+
+You can also download the `references.bib` file using the code below.
+
+```
+download.file("https://sta101-fa22.netlify.app/static/appex/references.bib",
+destfile = "references.bib")
+```
+
+## Code chunk settings
+
+Some options available for customizing output (see [quarto documenation](https://quarto.org/docs/computations/execution-options.html) for more detail).
+
+| Option    | Description                                                                                                                                                                                       |
+|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `eval`    | Evaluate the code chunk (if `false`, just echos the code into the output)                                                                                                                        |
+| `echo`    | Include the source code in output                                                                                                                                                                 |
+| `warning` | Include warnings in the output                                                                                                                                                                   |
+| `message` | Whether to preserve messages emitted by message() (similar to the option warning)                                                                        |
+| `include` | Catch all for preventing any output (code or results) from being included (e.g. `include: false` suppresses all output from the code block)                                                      |
+
+These options can be applied globally (the whole document) or locally (a specific code chunk). Global settings are controlled in the YAML (see the top of the document) while local code chunk options can be applied with `#|` (see example below).
+
+#### Exercise 1
+
+In the code chunk below:
+
+- set `warning` to false 
+- set `echo` to false
+
+and re-render.
+
+```{r load-packages}
+library(tidyverse)
+library(knitr)
+```
+
+In addition to code chunks, figures have settings as well.
+
+We can set captions and an `alt` attributes using `#| fig-cap:` and `#| fig-alt:` respectively. `alt` captions specify "alternate text" for an image. Alternative text appears if an image cannot be displayed and is also read by screen-readers.
+
+Additional figure options include 
+
+| Option    | Description                                                                                                                                                                                       |
+|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `fig-width`    | figure width in inches                                                                                                                        |
+| `fig-height`    | figure height in inches                                                                                                                                                               |
+| `fig.align` | e.g. `fig.align: center"` centers figure alignment                                                                                                                                                                 |
+| `fig.asp` | changes figure height based on aspect ratio with width                                                              |
+| `out.width` | sets figure width relative to text (1000 = 100% text width), e.g. `out.width: 1000`                                                      |
+
+In all cases above, we can again set options locally or globally. Note: local options override global options.
+
+#### Exercise 2
+
+Add a figure caption to the figure below. Next, change the output width to be 50% of the text. Finally, align the figure with the center of the page.
+
+```{r}
+starwars %>%
+  ggplot(aes(x = height)) +
+  geom_density() +
+  labs(x = "Height (cm)", y = "Density") +
+  theme_bw()
+```
+
+#### Project specific notes 
+
+For the project, you will set the option `echo: FALSE` and `warning: FALSE` to hide all code and warnings in your final report.
+
+**Suggestion**: make your figures consistently themed, e.g. use similar figure size/aspect ratio and color scheme throughout your report. Change the default gray background, see [themes](https://ggplot2.tidyverse.org/reference/ggtheme.html).
+
+#### Exercise 3
+
+Change the global code chunk settings so the document is formatted as your final project will be. Render and take a look at the updated PDF. 
+
+## Citations 
+
+Your report will include citations, e.g. the data source, previous research, and other sources as needed. At a minimum, you should have a citation for the data source. 
+
+All of your bibliography entries will be stored in a `.bib` file. The entries of the bibliography are stored using BibTex, i.e., a format to store citations in LaTeX. Let's take a look at `references.bib`.
+
+In addition to the .bib file: 
+
+- Include `bibliography: references.bib` in the YAML. 
+- At the end of the report, include `## References`. This will list all of the references at the end of the document.
+
+### Citation examples
+
+1. In @wickham2016package, the authors focus present the grammar of graphics package `ggplot2` for R.
+
+2. Within the grammar of graphics, `ggplot()` is the first layer of any plot [@wickham2016package].
+
+#### Exercise 4
+
+- Add a citation for *tidytuesday* to this document. Hint: check out the `tidytuesday` [GitHub page](https://github.com/rfordatascience/tidytuesday).
+
+## Links
+
+Add URLs to your document using the following syntax:
+
+[DISPLAYED TEXT](FULL URL)
+
+## Neat kable table
+
+- Calculate the mean, median, and standard deviation of `mass`. Display the results.
+
+#### Exercise 5
+
+```{r summary-stats}
+# code here
+```
+
+- Let's neatly display the results using the `kable` function from the **knitr** package. We will 
+  - Display results to 2 decimal places
+  - Customize column names
+  - Add a caption
+  
+```{r format-table}
+## add code
+
+```
+
+## Presentations (demo)
+
+## References

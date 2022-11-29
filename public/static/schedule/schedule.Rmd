@@ -96,7 +96,7 @@ Find all assignments and due dates here. This schedule updates frequently.
 |     |Fri Nov 25 |  NO CLASS: Thanksgiving       |        |   |           |     |        |
 |  14   |Tue Nov 29 | Special topic: genetic forensic analysis        | [`r emo::ji("book")`](/prepare/week-14)       | [ae24](/static/appex/ae24.html)  |           |     |        |
 |     |Thu Dec 01 |  Special topic: cryptanalysis      |  [`r emo::ji("book")`](/prepare/week-14)      |   |           |     |        |
-|     |Fri Dec 02 |   Final project peer review     |        |   |           |     |        |
+|     |Fri Dec 02 |   Final project peer review     |        |   | [`r emo::ji("computer")`](/static/slides/peerReviewLab.html)          |     |        |
 |  15   |Tue Dec 06 | Special topic        |        |   |           |     |        |
-|     |Thu Dec 08 | Special topic      |        |   |           |     |        |
+|     |Thu Dec 08 | Project workday      |        |   |           |     |        |
 |     |Fri Dec 09 |  Project workday      |        |   |           |     |        |

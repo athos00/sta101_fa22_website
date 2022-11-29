@@ -1,7 +1,7 @@
 ---
 title: "Peer review instructions"
 subtitle: "STA 101"
-date: "August 2, 2022"
+date: "December 2, 2022"
 output:
   xaringan::moon_reader:
     css: ["xaringan-themer-2.css", "slides.css"]
@@ -32,7 +32,7 @@ countdown::countdown(minutes = 5, seconds = 0)
 
 ## Peer-review
 
-- Check the [team assignments page](https://duke.box.com/s/06n8tniiuroqg2ms0nkrbz79zsq73gpk) and click the `peer-review` tab at the bottom to access peer-review assignments. 
+- Check the [team assignments page](https://duke.box.com/s/gigjvdrogsh8nur2tag78n6gmb4ey0hk) and click on your lab tab at the bottom of the sheet. Next find `peer-review` column at the top to access peer-review assignments. 
 
 - On the discussion forum, navigate to your assigned group's "Conversation" and click `Reply to initial message`. Answer the questions on the following slides and click `Post`. It might help to assign 1 group member to each slide of questions.
 

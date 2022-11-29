@@ -16,8 +16,8 @@ format: html
 Download this application exercise by pasting the code below into your **console**
 
 ```
-download.file("https://sta101-fa22.netlify.app/static/appex/ae22.qmd",
-destfile = "ae22.qmd")
+download.file("https://sta101-fa22.netlify.app/static/appex/ae24.qmd",
+destfile = "ae24.qmd")
 ```
 
 ## Load packages

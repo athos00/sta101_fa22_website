@@ -9,7 +9,6 @@ format:
   html:
     fig-width: 7
     fig-height: 5
-    links-as-notes: true
 bibliography: references.bib
 ---
 
@@ -82,7 +81,7 @@ Additional figure options include
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `fig-width`    | figure width in inches                                                                                                                        |
 | `fig-height`    | figure height in inches                                                                                                                                                               |
-| `fig.align` | e.g. `fig.align: center"` centers figure alignment                                                                                                                                                                 |
+| `fig.align` | e.g. `fig.align: center` centers figure alignment                                                                                                                                                                 |
 | `fig.asp` | changes figure height based on aspect ratio with width                                                              |
 | `out.width` | sets figure width relative to text (1000 = 100% text width), e.g. `out.width: 1000`                                                      |
 

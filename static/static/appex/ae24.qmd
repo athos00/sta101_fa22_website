@@ -8,7 +8,7 @@ format: html
 ## Bulletin
 
 - Wednesday office hours moved to Thursday after class
-- Lab 09 due Thursday. Draft peer-report due Friday (in lab attendance required)
+- Lab 09 due Thursday. Draft peer-report due Friday (in lab review)
 - course evaluations open. $>80\%$ response $\rightarrow$ +1pt final project
 
 ## Getting started

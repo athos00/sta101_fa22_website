@@ -304,7 +304,7 @@ x^2 s_x^2 + 2x y \cdot s_{xy}^2 + y^2 s_y^2 = c^2
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ellipsePoints <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">ellipse</span>(covMatrix2))</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>Hawks2 <span class="sc">%&gt;%</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sWeight, <span class="at">y =</span> sWing)) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sWeight, <span class="at">y =</span> sWing, <span class="at">color =</span> Species)) <span class="sc">+</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> sWeight, <span class="at">y =</span> sWing), <span class="at">data =</span> ellipsePoints, <span class="at">color =</span> <span class="st">'steelblue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -349,6 +349,9 @@ sWing   -7.408548  7.925401</code></pre>
 <ul>
 <li>Example of “principle component analysis” in action: <a href="https://www.nature.com/articles/nature07331">genes mirror geography within Europe</a> and <a href="https://www.nationalgeographic.com/science/article/european-genes-mirror-european-geography">an associated news article</a> discussing the work.</li>
 </ul>
+<div class="cell">
+
+</div>
 </section>
 </section>
 </section>

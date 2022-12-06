@@ -25,6 +25,7 @@ destfile = "ae26.qmd")
 ```{r, warning = FALSE, message  = FALSE}
 library(tidyverse)
 library(tidymodels)
+library(ellipse)
 ```
 
 # Today
@@ -183,7 +184,7 @@ This is the equation of an ellipse.
 ellipsePoints = data.frame(ellipse(covMatrix2))
 
 Hawks2 %>%
-  ggplot(aes(x = sWeight, y = sWing)) +
+  ggplot(aes(x = sWeight, y = sWing, color = Species)) +
   geom_point() +
   theme_bw() +
   geom_point(aes(x = sWeight, y = sWing), data = ellipsePoints, color = 'steelblue')
@@ -220,3 +221,15 @@ getCoordinate(1, 7.925401, 7.925401, -7.408548)
 The axes of the ellipse provide the most informative directions to measure the data. In $n$-dimensions, where we have a $n$-dimensional ellipsoid, it can be useful to look at $p<n$ axes. The largest $p$ axes are called the "principal components".
 
 - Example of "principle component analysis" in action: [genes mirror geography within Europe](https://www.nature.com/articles/nature07331) and [an associated news article](https://www.nationalgeographic.com/science/article/european-genes-mirror-european-geography) discussing the work.
+
+```{r, echo = F, eval = F}
+Hawks %>%
+  select(Weight, Wing) %>%
+  prcomp(scale. = TRUE)
+
+Hawks %>%
+    mutate(pc1 = (0.7071068 * Weight) + (0.7071068 * Wing)) %>%
+    ggplot(aes(x = pc1, y = 0, color = Species)) + 
+    geom_point()
+```
+

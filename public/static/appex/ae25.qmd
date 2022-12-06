@@ -83,7 +83,7 @@ To reduce computational demand, we will load the object created by this analysis
 
 The result of the below analysis is in the object `frequency`.
 
-The `letter` column denotes the first character in a 2 character sequence while subsequent columns determine the second character in the character sequence.
+The `letter` row denotes the first character in a 2 character sequence while columns determine the second character in the character sequence.
 
 - What should be the sum of a row? Check this for the first row of the data frame.
 

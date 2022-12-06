@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Correlation and Covariance</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="ae26_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ae26_files/libs/quarto-html/quarto.js"></script>
+<script src="ae26_files/libs/quarto-html/popper.min.js"></script>
+<script src="ae26_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ae26_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ae26_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ae26_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ae26_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ae26_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ae26_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Correlation and Covariance</h1>
+<p class="subtitle lead">STA 101</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="bulletin" class="level2">
+<h2 class="anchored" data-anchor-id="bulletin">Bulletin</h2>
+<ul>
+<li>Final project due date updated (see announcement)</li>
+<li>Course evaluations. <span class="math inline">\(&gt;80\%\)</span> response <span class="math inline">\(\rightarrow\)</span> +1pt final project.</li>
+<li>If <span class="math inline">\(&gt;80\%\)</span> TA evals, another 0.5 points.</li>
+</ul>
+</section>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<p>Download this application exercise by pasting the code below into your <strong>console</strong></p>
+<pre><code>download.file("https://sta101-fa22.netlify.app/static/appex/ae26.qmd",
+destfile = "ae26.qmd")</code></pre>
+</section>
+<section id="load-packages" class="level2">
+<h2 class="anchored" data-anchor-id="load-packages">Load packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellipse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="today" class="level1">
+<h1>Today</h1>
+<p>By the end of today, you will…</p>
+<ul>
+<li>understand correlation and covariance matrix representations</li>
+<li>visualize geometric intuition</li>
+</ul>
+<section id="covariance-and-correlation" class="level2">
+<h2 class="anchored" data-anchor-id="covariance-and-correlation">Covariance and correlation</h2>
+<p>Empirical covariance between two variables</p>
+<p><span class="math display">\[
+Cov(X,Y) = \frac{1}{n-1} \sum_{i = 1}^{n} (x_i - \bar{x})(y_i - \bar{y})
+\]</span></p>
+<p>Later in this application exercise we write <span class="math inline">\(\sigma_{xy}^2\)</span> as the <strong>covariance</strong> between x and y.</p>
+<p>Empirical correlation between two variables,</p>
+<p><span class="math display">\[
+p_{XY} = \frac{Cov(X,Y)}{\sigma_X \sigma_Y}
+\]</span></p>
+<p>where <span class="math inline">\(\sigma_X\)</span> and <span class="math inline">\(\sigma_Y\)</span> are the standard deviation of X and Y respectively.</p>
+<section id="example" class="level4">
+<h4 class="anchored" data-anchor-id="example">Example</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">3</span>, <span class="fl">2.2</span>, <span class="dv">5</span>, <span class="fl">5.5</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">=</span> <span class="fu">glance</span>(fit1)<span class="sc">$</span>r.squared</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Correlation between x and y: "</span>, <span class="fu">cor</span>(x,y),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">Covariance between x and y: "</span>, <span class="fu">cov</span>(x,y),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">Standard deviation of x: "</span>, <span class="fu">sd</span>(x),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">Standard deviation of y: "</span>, <span class="fu">sd</span>(y),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">R squared: "</span>, r2</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Correlation between x and y:  0.9243906 
+Covariance between x and y:  3 
+Standard deviation of x:  1.581139 
+Standard deviation of y:  2.052559 
+R squared:  0.854498</code></pre>
+</div>
+</div>
+</section>
+<section id="guess-that-correlation" class="level4">
+<h4 class="anchored" data-anchor-id="guess-that-correlation"><a href="https://www.rossmanchance.com/applets/2021/guesscorrelation/GuessCorrelation.html">Guess that correlation!</a></h4>
+</section>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p><code>Hawks</code> is a subset of a data set by the same name in the <code>Stat2Data</code> package. Today we will focus on the following measurements of 891 hawks:</p>
+<ul>
+<li><code>Species</code>: CH = cooper’s, RT = red-tailed, SS = sharp-shinned</li>
+<li><code>Weight</code>: body weight in grams</li>
+<li><code>Wing</code>: length in mm of primary wing feather from tip to wrist it attaches to</li>
+<li><code>Culmen</code>: length in mm of the upper bill from the tip to where it bumps into the fleshy part of the bird</li>
+<li><code>Hallux</code>: length in mm of the killing talon</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Hawks <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://sta101-fa22.netlify.app/static/appex/data/Hawks.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Hawks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 891
+Columns: 5
+$ Species &lt;chr&gt; "RT", "RT", "CH", "SS", "RT", "RT", "RT", "RT", "RT", "RT", "R…
+$ Weight  &lt;dbl&gt; 920, 990, 470, 170, 1090, 960, 855, 1210, 1120, 1010, 1010, 11…
+$ Wing    &lt;dbl&gt; 385, 381, 265, 205, 412, 370, 375, 412, 405, 393, 371, 390, 41…
+$ Culmen  &lt;dbl&gt; 25.7, 26.7, 18.7, 12.5, 28.5, 25.3, 27.2, 29.3, 26.0, 26.3, 25…
+$ Hallux  &lt;dbl&gt; 30.1, 31.3, 23.5, 14.3, 32.2, 30.1, 30.0, 31.3, 30.2, 30.8, 29…</code></pre>
+</div>
+</div>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<section id="two-measurements" class="level3">
+<h3 class="anchored" data-anchor-id="two-measurements">Two measurements</h3>
+<p>Let’s look at weight and wing length.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Hawks <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Weight, <span class="at">y =</span> Wing)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ae26_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Hawks2 <span class="ot">=</span> Hawks <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sWeight =</span> (Weight <span class="sc">-</span> <span class="fu">mean</span>(Weight)) <span class="sc">/</span> <span class="fu">sd</span>(Weight),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">sWing =</span> (Wing <span class="sc">-</span> <span class="fu">mean</span>(Wing)) <span class="sc">/</span> <span class="fu">sd</span>(Wing))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Hawks2 <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sWeight, <span class="at">y =</span> sWing)) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ae26_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>How can we describe the variability of the data?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariance matrix</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>covMatrix1 <span class="ot">=</span> Hawks <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Weight, Wing) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cov</span>()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>covMatrix1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Weight      Wing
+Weight 214310.57 41247.975
+Wing    41247.97  9085.273</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>covMatrix2 <span class="ot">=</span> Hawks2 <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sWeight, sWing) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cov</span>()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>covMatrix2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          sWeight     sWing
+sWeight 1.0000000 0.9347852
+sWing   0.9347852 1.0000000</code></pre>
+</div>
+</div>
+<p>Covariance matrix <span class="math inline">\(\Sigma\)</span> collects variances and covariances together,</p>
+<p><span class="math display">\[
+\Sigma = \begin{pmatrix}\sigma_x^2 &amp; \sigma_{xy}^2\\\ \sigma_{xy}^2 &amp; \sigma_y^2\end{pmatrix}
+\]</span></p>
+<p>How can we visualize the covariance matrix above?</p>
+<ul>
+<li>offline example of matrix multiplication</li>
+</ul>
+<p>The “matrix inverse” helps. The inverse of <span class="math inline">\(\Sigma\)</span> is denoted <span class="math inline">\(\Sigma^{-1}\)</span>. The property of the inverse is:</p>
+<p><span class="math display">\[
+\Sigma^{-1} \Sigma = \begin{pmatrix}1 &amp; 0\\\ 0 &amp; 1 \end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
+z^T \Sigma^{-1} z = c^2
+\]</span></p>
+<p>where <span class="math inline">\(z = (x, y)\)</span> and <span class="math inline">\(\Sigma^{-1} = \begin{pmatrix}s_x^2 &amp; s_{xy}^2\\\ s_{xy}^2 &amp; s_y^2\end{pmatrix}\)</span>. Where have we seen this before? Hint: <code>?pnorm</code> or see <a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">multivariate normal</a></p>
+<p><span class="math display">\[
+\begin{pmatrix} x &amp; y\end{pmatrix}
+\begin{pmatrix}s_x^2 &amp; s_{xy}^2\\\ s_{xy}^2 &amp; s_y^2\end{pmatrix}
+\begin{pmatrix} x\\\ y \end{pmatrix}
+= c^2
+\]</span></p>
+<p><span class="math display">\[
+(x s_x^2 + y s_{xy}^2 \ \ \ \ x s_{xy}^2 + y s_y^2) \begin{pmatrix} x\\\ y \end{pmatrix} = c^2
+\]</span></p>
+<p><span class="math display">\[
+x^2 s_x^2 + 2x y \cdot s_{xy}^2 + y^2 s_y^2 = c^2
+\]</span></p>
+<p>This is the equation of an ellipse.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grab the points (x,y) that satisfy the equation above</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ellipsePoints <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">ellipse</span>(covMatrix2))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>Hawks2 <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sWeight, <span class="at">y =</span> sWing)) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> sWeight, <span class="at">y =</span> sWing), <span class="at">data =</span> ellipsePoints, <span class="at">color =</span> <span class="st">'steelblue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ae26_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Set <span class="math inline">\(c^2 = 6\)</span>:</p>
+<p>To make sure the function <code>ellipse</code> above is doing what we expect:</p>
+<ul>
+<li>First we get <span class="math inline">\(\Sigma^{-1}\)</span>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(covMatrix2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          sWeight     sWing
+sWeight  7.925401 -7.408548
+sWing   -7.408548  7.925401</code></pre>
+</div>
+</div>
+<p>Next, we manually solve the quadratic equation using the quadratic formula:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>getCoordinate <span class="ot">=</span> <span class="cf">function</span>(y, s1, s2, s12) {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  A <span class="ot">=</span> s1</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  B <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>y<span class="sc">*</span>s12</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  C <span class="ot">=</span> (y<span class="sc">*</span>s2) <span class="sc">-</span> <span class="dv">6</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  p1 <span class="ot">=</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>B</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  p2 <span class="ot">=</span> <span class="fu">sqrt</span>(B<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> (<span class="dv">4</span><span class="sc">*</span>A<span class="sc">*</span>C))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  p3 <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>A</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  coord1 <span class="ot">=</span> (p1 <span class="sc">+</span> p2) <span class="sc">/</span> p3</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  coord2 <span class="ot">=</span> (p1 <span class="sc">-</span> p2) <span class="sc">/</span> p3</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(coord1, coord2))</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">getCoordinate</span>(<span class="dv">1</span>, <span class="fl">7.925401</span>, <span class="fl">7.925401</span>, <span class="sc">-</span><span class="fl">7.408548</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.7290667 0.1405038</code></pre>
+</div>
+</div>
+<p>The axes of the ellipse provide the most informative directions to measure the data. In <span class="math inline">\(n\)</span>-dimensions, where we have a <span class="math inline">\(n\)</span>-dimensional ellipsoid, it can be useful to look at <span class="math inline">\(p&lt;n\)</span> axes. The largest <span class="math inline">\(p\)</span> axes are called the “principal components”.</p>
+<ul>
+<li>Example of “principle component analysis” in action: <a href="https://www.nature.com/articles/nature07331">genes mirror geography within Europe</a> and <a href="https://www.nationalgeographic.com/science/article/european-genes-mirror-european-geography">an associated news article</a> discussing the work.</li>
+</ul>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

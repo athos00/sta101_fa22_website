@@ -173,21 +173,23 @@ You can post the link directly into sakai discussion or alternatively post the p
 
 **To post the video to the discussion forum:**
 
-- Click the Presentations tab in the course Sakai site.
+- Click the Discussions tab on the left side of the Sakai course site.
 
-- Click the Presentations topic.
+- Click the `Project-presentations` topic.
 
-- Click “Start New Presentation”.
+- Click "Start a New Conversation".
 
-- Make the title “Your Team Name: Project Title”. For example, “Teaching Team: Analysis of Cars in the US”.
+- Make the title "Your Team Name: Project Title". For example, "Teaching Team: Analysis of Cars in the US".
 
-- Click the Warpwire icon (between the flag and shopping cart icons).
+- Add a link to your video. 
 
-- Select your video, then click “Insert 1 item.” This will embed your video in the conversation.
+- If you uploaded your video to Warpwire, click the Warpwire icon (between the table and shopping cart icons).
+
+- Select your video, then click "Insert 1 item."" This will embed your video in the conversation.
 
 - Under the video, paste the URL to your video.
 
-- You’re done!
+- You're done!
 
 ### Presentation comments `2.5pts`
 
